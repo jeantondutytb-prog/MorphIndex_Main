@@ -42,7 +42,13 @@ Puis ouvrez **http://localhost:8080**.
 ```
 faceiq-clone/
 ├── index.html
+├── brand.html          # Aperçu des 4 logos
 ├── css/styles.css
+├── assets/logos/
+│   ├── logo-primary.svg
+│   ├── logo-secondary.svg
+│   ├── logo-simplified.svg
+│   └── logo-submark.svg
 └── js/
     ├── i18n.js
     └── theme.js

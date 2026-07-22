@@ -203,10 +203,38 @@ button {
 .nav__brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: block;
+  color: var(--text);
+}
+
+.logo--primary {
+  display: none;
+  height: 1.625rem;
+  width: auto;
+}
+
+.logo--submark {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .logo--primary {
+    display: block;
+  }
+
+  .logo--submark {
+    display: none;
+  }
+}
+
+.logo--footer {
+  height: 4.5rem;
+  width: auto;
 }
 
 .nav__brand-short {
@@ -1275,9 +1303,6 @@ button {
 .footer__brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
 }
 
 .footer__links {

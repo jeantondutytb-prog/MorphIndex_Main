@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MorphIndex — Brand Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logos/logo-submark.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var stored = localStorage.getItem("theme");
+      document.documentElement.setAttribute("data-theme", stored || "light");
+    })();
+  </script>
+  <style>
+    .brand-page { padding: 6rem 1.5rem 4rem; max-width: 56rem; margin-inline: auto; }
+    .brand-page h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .brand-page > p { color: var(--text-muted); margin-bottom: 3rem; }
+    .brand-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .brand-grid { grid-template-columns: 1fr 1fr; } }
+    .brand-card {
+      padding: 2rem;
+      border-radius: 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+    }
+    .brand-card__preview {
+      width: 100%;
+      min-height: 7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: var(--card-muted);
+    }
+    .brand-card__preview img { max-width: 100%; height: auto; color: var(--text); }
+    .brand-card__preview--dark { background: #18181b; color: #fafafa; }
+    .brand-card h2 { font-size: 0.9375rem; font-weight: 600; }
+    .brand-card p { font-size: 0.75rem; color: var(--text-muted); }
+    .brand-card code { font-size: 0.6875rem; color: var(--text-subtle); }
+    .brand-back { display: inline-block; margin-bottom: 2rem; font-size: 0.875rem; color: var(--text-muted); }
+    .brand-back:hover { color: var(--text); }
+    .logo--primary-brand { height: 2.5rem; }
+    .logo--secondary-brand { height: 6.5rem; }
+    .logo--simplified-brand { height: 2.25rem; }
+    .logo--submark-brand { height: 3.5rem; width: 3.5rem; }
+  </style>
+</head>
+<body>
+  <div class="brand-page">
+    <a href="index.html" class="brand-back">← Retour à la landing page</a>
+    <h1>MorphIndex — Brand Kit</h1>
+    <p>Les 4 variantes du logo. Utilisation de <code>currentColor</code> : compatible mode clair et sombre.</p>
+
+    <div class="brand-grid">
+      <article class="brand-card">
+        <div class="brand-card__preview">
+          <img src="assets/logos/logo-primary.svg" alt="Logo principal MorphIndex" class="logo--primary-brand">
+        </div>
+        <div>
+          <h2>Logo principal</h2>
+          <p>Usage principal — header, documents officiels, présentations.</p>
+          <code>assets/logos/logo-primary.svg</code>
+        </div>
+      </article>
+
+      <article class="brand-card">
+        <div class="brand-card__preview">
+          <img src="assets/logos/logo-secondary.svg" alt="Logo secondaire MorphIndex" class="logo--secondary-brand">
+        </div>
+        <div>
+          <h2>Logo secondaire</h2>
+          <p>Format empilé — splash screens, cartes, réseaux sociaux.</p>
+          <code>assets/logos/logo-secondary.svg</code>
+        </div>
+      </article>
+
+      <article class="brand-card">
+        <div class="brand-card__preview">
+          <img src="assets/logos/logo-simplified.svg" alt="Logo simplifié Morph" class="logo--simplified-brand">
+        </div>
+        <div>
+          <h2>Logo simplifié</h2>
+          <p>Version compacte — navigation mobile, espaces réduits.</p>
+          <code>assets/logos/logo-simplified.svg</code>
+        </div>
+      </article>
+
+      <article class="brand-card">
+        <div class="brand-card__preview">
+          <img src="assets/logos/logo-submark.svg" alt="Sub mark MorphIndex" class="logo--submark-brand">
+        </div>
+        <div>
+          <h2>Sub mark</h2>
+          <p>Symbole seul — favicon, app icon, watermark, avatar.</p>
+          <code>assets/logos/logo-submark.svg</code>
+        </div>
+      </article>
+    </div>
+
+    <article class="brand-card" style="margin-top: 1.5rem;">
+      <div class="brand-card__preview brand-card__preview--dark">
+        <img src="assets/logos/logo-primary.svg" alt="Logo sur fond sombre" class="logo--primary-brand" style="filter: brightness(0) invert(1);">
+      </div>
+      <div>
+        <h2>Sur fond sombre</h2>
+        <p>Le logo s'adapte via <code>currentColor</code> ou inversion CSS si nécessaire.</p>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
