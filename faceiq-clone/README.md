@@ -44,5 +44,5 @@ Puis ouvrez **http://localhost:8080**.
 faceiq-clone/
 ├── index.html
 ├── css/styles.css
-└── assets/
+└── js/theme.js
 ```
