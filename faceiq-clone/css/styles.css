@@ -525,11 +525,15 @@ button {
   align-items: baseline;
   justify-content: center;
   gap: 0.5rem 0.75rem;
-  margin-bottom: 2.5rem;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.hero__stats--bottom {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
 }
 
 .hero__stats strong {
@@ -710,6 +714,10 @@ button {
     flex-direction: row;
     align-items: flex-start;
     gap: 3.5rem;
+  }
+
+  .transformation--reverse {
+    flex-direction: row-reverse;
   }
 }
 
@@ -952,6 +960,10 @@ button {
   .pillars__grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .pillars__grid--quad {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .pillar-card__visual {
@@ -1025,13 +1037,28 @@ button {
 }
 
 /* Testimonials */
-.testimonial {
-  padding-block: 2.5rem;
-  border-bottom: 1px solid var(--border);
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
-.testimonial:last-child {
-  border-bottom: none;
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.testimonial {
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  background: var(--card);
+}
+
+.testimonials-grid .testimonial blockquote {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  margin-bottom: 1.25rem;
 }
 
 .testimonial__stars {
@@ -1131,6 +1158,10 @@ button {
   .showcase {
     grid-template-columns: 1fr 1fr;
   }
+
+  .showcase--reverse .showcase__browser {
+    order: -1;
+  }
 }
 
 .showcase__browser {
@@ -1168,10 +1199,35 @@ button {
   .steps {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .steps--timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 3rem;
+  }
 }
 
 .step-card {
   text-align: center;
+}
+
+.steps--timeline .step-card {
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  align-items: start;
+}
+
+.steps--timeline .step-card__number {
+  grid-row: 1 / span 2;
+  margin: 0;
+}
+
+.steps--timeline .step-card h3,
+.steps--timeline .step-card p {
+  grid-column: 2;
 }
 
 .step-card__number {
