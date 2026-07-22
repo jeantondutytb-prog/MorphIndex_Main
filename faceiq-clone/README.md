@@ -43,5 +43,11 @@ Puis ouvrez **http://localhost:8080**.
 faceiq-clone/
 ├── index.html
 ├── css/styles.css
-└── js/theme.js
+└── js/
+    ├── i18n.js
+    └── theme.js
 ```
+
+## Langues
+
+Le site est disponible en **français**, **anglais** et **espagnol**. Utilisez le bouton globe (FR / EN / ES) dans la barre de navigation. La préférence est sauvegardée dans le navigateur.

@@ -13,12 +13,13 @@
     (function () {
       var stored = localStorage.getItem("theme");
       document.documentElement.setAttribute("data-theme", stored || "light");
+      var lang = localStorage.getItem("lang");
+      if (lang) document.documentElement.setAttribute("lang", lang);
     })();
   </script>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav class="nav">
     <div class="nav__inner">
       <a href="#" class="nav__brand">
@@ -27,53 +28,74 @@
         <span class="nav__brand-full">MorphIndex</span>
       </a>
       <div class="nav__links">
-        <a href="#" class="nav__link">Benchmarks</a>
-        <a href="#" class="nav__link">Community</a>
-        <a href="#" class="nav__link">Sign In</a>
-        <button class="theme-toggle" type="button" aria-label="Changer le thème" data-theme-toggle>
+        <a href="#" class="nav__link" data-i18n="nav.benchmarks">Benchmarks</a>
+        <a href="#" class="nav__link" data-i18n="nav.community">Community</a>
+        <a href="#" class="nav__link" data-i18n="nav.signin">Sign In</a>
+        <div class="lang-switcher">
+          <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <span data-lang-current>EN</span>
+          </button>
+          <div class="lang-switcher__menu" role="menu">
+            <button type="button" role="menuitem" data-lang-option="fr">Français</button>
+            <button type="button" role="menuitem" data-lang-option="en">English</button>
+            <button type="button" role="menuitem" data-lang-option="es">Español</button>
+          </div>
+        </div>
+        <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
           <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
           <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
         </button>
-        <a href="#" class="btn">Get Started</a>
+        <a href="#" class="btn" data-i18n="nav.cta">Get Started</a>
       </div>
       <div class="nav__mobile">
-        <button class="theme-toggle" type="button" aria-label="Changer le thème" data-theme-toggle>
+        <div class="lang-switcher">
+          <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <span data-lang-current>EN</span>
+          </button>
+          <div class="lang-switcher__menu" role="menu">
+            <button type="button" role="menuitem" data-lang-option="fr">Français</button>
+            <button type="button" role="menuitem" data-lang-option="en">English</button>
+            <button type="button" role="menuitem" data-lang-option="es">Español</button>
+          </div>
+        </div>
+        <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
           <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
           <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
         </button>
-        <a href="#" class="btn">Get Started</a>
+        <a href="#" class="btn" data-i18n="nav.cta">Get Started</a>
       </div>
     </div>
   </nav>
 
   <main>
 
-    <!-- Hero -->
     <section class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="hero__content">
         <div class="hero__stats">
-          <div class="hero__stars" aria-label="5 stars">
+          <div class="hero__stars" data-i18n-aria="a11y.stars">
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <span><strong>120,000+</strong> members</span>
+          <span><strong>120,000+</strong> <span data-i18n="hero.members">members</span></span>
           <span class="hero__divider">·</span>
-          <span><strong>2,400,000+</strong> scans</span>
+          <span><strong>2,400,000+</strong> <span data-i18n="hero.scans">scans</span></span>
         </div>
-        <h1 class="hero__title">Your Face.<br>Mapped. Scored. Refined.</h1>
-        <p class="hero__subtitle">MorphIndex breaks down your facial structure into 100+ data points, delivers a tailored action plan, and shows how you evolve over time.</p>
+        <h1 class="hero__title" data-i18n-html="hero.title">Your Face.<br>Mapped. Scored. Refined.</h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex breaks down your facial structure into 100+ data points, delivers a tailored action plan, and shows how you evolve over time.</p>
         <div class="hero__actions">
           <a href="#" class="btn btn--lg">
-            Start My Analysis
+            <span data-i18n="hero.cta">Start My Analysis</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
-          <a href="#how-it-works" class="btn btn--ghost">Discover the process</a>
+          <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">Discover the process</a>
         </div>
-        <p class="hero__note">Built for people who want measurable progress, not guesswork.</p>
+        <p class="hero__note" data-i18n="hero.note">Built for people who want measurable progress, not guesswork.</p>
       </div>
 
       <div class="browser">
@@ -86,18 +108,17 @@
         </div>
       </div>
       <div class="browser__tabs">
-        <span class="browser__tab">Front View</span>
-        <span class="browser__tab browser__tab--inactive">Profile View</span>
+        <span class="browser__tab" data-i18n="hero.tabFront">Front View</span>
+        <span class="browser__tab browser__tab--inactive" data-i18n="hero.tabProfile">Profile View</span>
       </div>
     </section>
 
-    <!-- Transformation -->
     <section class="section section--muted">
       <div class="container">
         <div class="section__header">
-          <p class="eyebrow">Consistency compounds</p>
-          <h2 class="section-title">Real Progress, Documented</h2>
-          <p class="section-subtitle" style="margin-inline: auto;">Two years of disciplined effort — every milestone captured in data.</p>
+          <p class="eyebrow" data-i18n="transform.eyebrow">Consistency compounds</p>
+          <h2 class="section-title" data-i18n="transform.title">Real Progress, Documented</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="transform.subtitle">Two years of disciplined effort — every milestone captured in data.</p>
         </div>
         <div class="transformation">
           <div class="transformation__image-wrap">
@@ -106,19 +127,19 @@
               <div class="transformation__score">5.1<small>/10</small></div>
             </div>
             <div class="transformation__controls">
-              <button aria-label="Previous">
+              <button data-i18n-aria="a11y.prev">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
               </button>
               <div class="transformation__dots">
                 <span class="active"></span><span></span><span></span><span></span><span></span>
               </div>
-              <button aria-label="Next">
+              <button data-i18n-aria="a11y.next">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
               </button>
             </div>
             <div class="transformation__toggle">
-              <span class="pill pill--active">Start</span>
-              <span class="pill">Now</span>
+              <span class="pill pill--active" data-i18n="transform.start">Start</span>
+              <span class="pill" data-i18n="transform.now">Now</span>
             </div>
           </div>
           <div class="transformation__content">
@@ -127,50 +148,49 @@
               <span class="score-compare__arrow">→</span>
               <span class="score-compare__value">7.42</span>
             </div>
-            <p class="score-compare__label">MorphIndex score progression over 24 months</p>
+            <p class="score-compare__label" data-i18n="transform.label">MorphIndex score progression over 24 months</p>
             <div class="timeline">
               <div class="timeline__item timeline__item--active">
-                <h4>Foundation Phase</h4>
-                <p>Month 0–8 · 8 months</p>
+                <h4 data-i18n="transform.t1h">Foundation Phase</h4>
+                <p data-i18n="transform.t1p">Month 0–8 · 8 months</p>
               </div>
               <div class="timeline__item">
-                <h4>Visible Shift</h4>
-                <p>Month 8–14 · 6 months</p>
+                <h4 data-i18n="transform.t2h">Visible Shift</h4>
+                <p data-i18n="transform.t2p">Month 8–14 · 6 months</p>
               </div>
               <div class="timeline__item">
-                <h4>Structural Gains</h4>
-                <p>Month 14–26 · 12 months</p>
+                <h4 data-i18n="transform.t3h">Structural Gains</h4>
+                <p data-i18n="transform.t3p">Month 14–26 · 12 months</p>
               </div>
               <div class="timeline__item">
-                <h4>Peak Form</h4>
-                <p>Month 26–30 · 4 months</p>
+                <h4 data-i18n="transform.t4h">Peak Form</h4>
+                <p data-i18n="transform.t4p">Month 26–30 · 4 months</p>
               </div>
             </div>
             <div class="transformation__quote">
-              <p>Lasting change doesn't come from luck — it comes from discipline.</p>
-              <p>The people who improve the most log every scan, trust the numbers, and stick to the plan. MorphIndex is the framework that keeps them focused and moving forward.</p>
+              <p data-i18n="transform.q1">Lasting change doesn't come from luck — it comes from discipline.</p>
+              <p data-i18n="transform.q2">The people who improve the most log every scan, trust the numbers, and stick to the plan. MorphIndex is the framework that keeps them focused and moving forward.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Analysis Pillars -->
     <section class="section">
       <div class="container">
         <div class="section__header section__header--left">
-          <p class="eyebrow mono">Core Metrics</p>
-          <h2 class="section-title">Four axes that define your morphology</h2>
-          <p class="section-subtitle">Each dimension captures a distinct layer of your facial structure.</p>
+          <p class="eyebrow mono" data-i18n="pillars.eyebrow">Core Metrics</p>
+          <h2 class="section-title" data-i18n="pillars.title">Four axes that define your morphology</h2>
+          <p class="section-subtitle" data-i18n="pillars.subtitle">Each dimension captures a distinct layer of your facial structure.</p>
         </div>
 
         <div class="pillars__top">
           <div class="pillars__connector"></div>
           <svg class="pillars__arrow" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M6 2L3 5M6 2L9 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <div class="pillars__center">
-            <span class="eyebrow mono">Axis 1</span>
-            <h3>Proportions</h3>
-            <p class="section-subtitle" style="font-size: 0.75rem;">Balance and symmetry across facial thirds</p>
+            <span class="eyebrow mono" data-i18n="pillars.axis1">Axis 1</span>
+            <h3 data-i18n="pillars.p1">Proportions</h3>
+            <p class="section-subtitle" style="font-size: 0.75rem;" data-i18n="pillars.p1d">Balance and symmetry across facial thirds</p>
           </div>
           <div class="pillars__line"></div>
           <div class="pillars__dot"></div>
@@ -181,55 +201,53 @@
             <div class="pillar-card__visual">
               <div class="media-placeholder media-placeholder--pillar" aria-hidden="true"></div>
               <span class="pillar-card__number">5</span>
-              <span class="pillar-card__label mono">criteria</span>
+              <span class="pillar-card__label mono" data-i18n="pillars.criteria">criteria</span>
             </div>
             <div class="pillar-card__info">
-              <span class="eyebrow mono">Axis 2</span>
-              <h3>Definition</h3>
-              <p>Jawline sharpness and skeletal contour</p>
+              <span class="eyebrow mono" data-i18n="pillars.axis2">Axis 2</span>
+              <h3 data-i18n="pillars.p2">Definition</h3>
+              <p data-i18n="pillars.p2d">Jawline sharpness and skeletal contour</p>
             </div>
           </article>
           <article class="pillar-card">
             <div class="pillar-card__visual">
               <div class="media-placeholder media-placeholder--pillar" aria-hidden="true"></div>
               <span class="pillar-card__number">12</span>
-              <span class="pillar-card__label mono">ratios</span>
+              <span class="pillar-card__label mono" data-i18n="pillars.ratios">ratios</span>
             </div>
             <div class="pillar-card__info">
-              <span class="eyebrow mono">Axis 3</span>
-              <h3>Traits</h3>
-              <p>Masculine and feminine morphological markers</p>
+              <span class="eyebrow mono" data-i18n="pillars.axis3">Axis 3</span>
+              <h3 data-i18n="pillars.p3">Traits</h3>
+              <p data-i18n="pillars.p3d">Masculine and feminine morphological markers</p>
             </div>
           </article>
           <article class="pillar-card">
             <div class="pillar-card__visual">
               <div class="media-placeholder media-placeholder--pillar" aria-hidden="true"></div>
               <span class="pillar-card__number">40+</span>
-              <span class="pillar-card__label mono">signals</span>
+              <span class="pillar-card__label mono" data-i18n="pillars.signals">signals</span>
             </div>
             <div class="pillar-card__info">
-              <span class="eyebrow mono">Axis 4</span>
-              <h3>Vitality</h3>
-              <p>Skin quality, symmetry, and feature health</p>
+              <span class="eyebrow mono" data-i18n="pillars.axis4">Axis 4</span>
+              <h3 data-i18n="pillars.p4">Vitality</h3>
+              <p data-i18n="pillars.p4d">Skin quality, symmetry, and feature health</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Banner -->
     <div class="banner">
       <div class="container">
-        <p>Designed by researchers who pioneered quantitative facial analysis — for anyone ready to take their morphology seriously.</p>
+        <p data-i18n="banner">Designed by researchers who pioneered quantitative facial analysis — for anyone ready to take their morphology seriously.</p>
       </div>
     </div>
 
-    <!-- Testimonials -->
     <section class="section">
       <div class="container" style="max-width: 48rem;">
         <div class="section__header section__header--left">
-          <h2 class="section-title">Trusted by our community</h2>
-          <p class="section-subtitle">Honest feedback from people who use MorphIndex daily.</p>
+          <h2 class="section-title" data-i18n="testimonials.title">Trusted by our community</h2>
+          <p class="section-subtitle" data-i18n="testimonials.subtitle">Honest feedback from people who use MorphIndex daily.</p>
         </div>
 
         <article class="testimonial">
@@ -240,7 +258,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"MorphIndex delivers exactly what it promises — precise, no-fluff analysis. Whether you're optimizing your look or just curious about your structure, this is the most reliable tool I've found."</blockquote>
+          <blockquote data-i18n="testimonials.t1">"MorphIndex delivers exactly what it promises — precise, no-fluff analysis. Whether you're optimizing your look or just curious about your structure, this is the most reliable tool I've found."</blockquote>
           <div class="testimonial__author">H. J.</div>
         </article>
 
@@ -252,7 +270,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"I'd always had a vague sense of my weak points, but MorphIndex put numbers on it. Having objective data instead of random opinions changed how I approach improvement entirely."</blockquote>
+          <blockquote data-i18n="testimonials.t2">"I'd always had a vague sense of my weak points, but MorphIndex put numbers on it. Having objective data instead of random opinions changed how I approach improvement entirely."</blockquote>
           <div class="testimonial__author">Katie L.</div>
         </article>
 
@@ -264,7 +282,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"My overall score was decent, but I needed specifics on skin texture and under-eye hollows. MorphIndex was the first platform to give me precise, actionable feedback — not generic advice."</blockquote>
+          <blockquote data-i18n="testimonials.t3">"My overall score was decent, but I needed specifics on skin texture and under-eye hollows. MorphIndex was the first platform to give me precise, actionable feedback — not generic advice."</blockquote>
           <div class="testimonial__author">Ryan T.</div>
         </article>
 
@@ -276,7 +294,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"Finally a tool that shows me exactly where I stand — strengths, gaps, and what to prioritize. That level of clarity alone is worth it."</blockquote>
+          <blockquote data-i18n="testimonials.t4">"Finally a tool that shows me exactly where I stand — strengths, gaps, and what to prioritize. That level of clarity alone is worth it."</blockquote>
           <div class="testimonial__author">Marcus D.</div>
         </article>
 
@@ -288,7 +306,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"The depth of analysis is on another level. Every scan reveals something new, and the personalized plans keep me accountable week after week."</blockquote>
+          <blockquote data-i18n="testimonials.t5">"The depth of analysis is on another level. Every scan reveals something new, and the personalized plans keep me accountable week after week."</blockquote>
           <div class="testimonial__author">Aisha N.</div>
         </article>
 
@@ -300,7 +318,7 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"MorphIndex gave me a full roadmap — not just clinical options, but daily habits that actually move the needle. Nothing else comes close in terms of precision."</blockquote>
+          <blockquote data-i18n="testimonials.t6">"MorphIndex gave me a full roadmap — not just clinical options, but daily habits that actually move the needle. Nothing else comes close in terms of precision."</blockquote>
           <div class="testimonial__author">E. M.</div>
         </article>
 
@@ -312,66 +330,64 @@
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <blockquote>"I downloaded MorphIndex out of curiosity about my score. The recommendations were so detailed that I scheduled a consultation with a specialist. The app genuinely changed my approach."</blockquote>
+          <blockquote data-i18n="testimonials.t7">"I downloaded MorphIndex out of curiosity about my score. The recommendations were so detailed that I scheduled a consultation with a specialist. The app genuinely changed my approach."</blockquote>
           <div class="testimonial__author">Drew K.</div>
         </article>
       </div>
     </section>
 
-    <!-- Features -->
     <section class="section section--muted">
       <div class="container">
         <div class="section__header section__header--left">
-          <h2 class="section-title">Everything you need in one dashboard</h2>
-          <p class="section-subtitle">Scanning is just the beginning. Monitor trends, preview changes, and get guidance — all in one place.</p>
+          <h2 class="section-title" data-i18n="features.title">Everything you need in one dashboard</h2>
+          <p class="section-subtitle" data-i18n="features.subtitle">Scanning is just the beginning. Monitor trends, preview changes, and get guidance — all in one place.</p>
         </div>
         <div class="features-grid">
           <article class="feature-card">
             <div class="feature-card__number">01</div>
-            <h3>MorphIndex Score</h3>
-            <p>A composite rating across 4 axes with 70+ anatomical ratios.</p>
+            <h3 data-i18n="features.f1t">MorphIndex Score</h3>
+            <p data-i18n="features.f1d">A composite rating across 4 axes with 70+ anatomical ratios.</p>
           </article>
           <article class="feature-card">
             <div class="feature-card__number">02</div>
-            <h3>MorphAI <span class="badge">New</span></h3>
-            <p>Ask any question about your morphology — get instant, expert-level answers.</p>
+            <h3><span data-i18n="features.f2t">MorphAI</span> <span class="badge" data-i18n="features.new">New</span></h3>
+            <p data-i18n="features.f2d">Ask any question about your morphology — get instant, expert-level answers.</p>
           </article>
           <article class="feature-card">
             <div class="feature-card__number">03</div>
-            <h3>Visual Previews <span class="badge">New</span></h3>
-            <p>Preview potential changes before making any decision.</p>
+            <h3><span data-i18n="features.f3t">Visual Previews</span> <span class="badge" data-i18n="features.new">New</span></h3>
+            <p data-i18n="features.f3d">Preview potential changes before making any decision.</p>
           </article>
           <article class="feature-card">
             <div class="feature-card__number">04</div>
-            <h3>Action Plan</h3>
-            <p>A step-by-step roadmap built from your unique profile.</p>
+            <h3 data-i18n="features.f4t">Action Plan</h3>
+            <p data-i18n="features.f4d">A step-by-step roadmap built from your unique profile.</p>
           </article>
           <article class="feature-card">
             <div class="feature-card__number">05</div>
-            <h3>Side-by-Side <span class="badge">New</span></h3>
-            <p>Compare scans over time with granular metric breakdowns.</p>
+            <h3><span data-i18n="features.f5t">Side-by-Side</span> <span class="badge" data-i18n="features.new">New</span></h3>
+            <p data-i18n="features.f5d">Compare scans over time with granular metric breakdowns.</p>
           </article>
           <article class="feature-card">
             <div class="feature-card__number">06</div>
-            <h3>Rankings <span class="badge">New</span></h3>
-            <p>Climb the community leaderboard and track your position.</p>
+            <h3><span data-i18n="features.f6t">Rankings</span> <span class="badge" data-i18n="features.new">New</span></h3>
+            <p data-i18n="features.f6d">Climb the community leaderboard and track your position.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Showcase -->
     <section class="section">
       <div class="container">
         <div class="showcase">
           <div>
             <div class="showcase__tags">
-              <span>MorphAI 2.0</span>
-              <span>Preview Engine</span>
+              <span data-i18n="showcase.tag1">MorphAI 2.0</span>
+              <span data-i18n="showcase.tag2">Preview Engine</span>
             </div>
-            <h2 class="section-title" style="margin-bottom: 1rem;">Explore the platform</h2>
-            <p class="section-subtitle">Each scan unlocks a deep breakdown — from skin vitality to proportional ratios across every facial zone.</p>
-            <p class="eyebrow" style="margin-top: 1.5rem;">100+ data points per analysis</p>
+            <h2 class="section-title" style="margin-bottom: 1rem;" data-i18n="showcase.title">Explore the platform</h2>
+            <p class="section-subtitle" data-i18n="showcase.subtitle">Each scan unlocks a deep breakdown — from skin vitality to proportional ratios across every facial zone.</p>
+            <p class="eyebrow" style="margin-top: 1.5rem;" data-i18n="showcase.metrics">100+ data points per analysis</p>
           </div>
           <div class="browser showcase__browser">
             <div class="browser__chrome">
@@ -386,88 +402,83 @@
       </div>
     </section>
 
-    <!-- How it works -->
     <section class="section section--muted" id="how-it-works">
       <div class="container">
         <div class="section__header">
-          <h2 class="section-title">How MorphIndex works</h2>
-          <p class="section-subtitle" style="margin-inline: auto;">Four steps. Repeat the cycle. Watch your index rise.</p>
+          <h2 class="section-title" data-i18n="steps.title">How MorphIndex works</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="steps.subtitle">Four steps. Repeat the cycle. Watch your index rise.</p>
         </div>
         <div class="steps">
           <article class="step-card">
             <div class="step-card__mock">morphindex.com</div>
             <div class="step-card__number">1</div>
-            <h3>Capture</h3>
-            <p>Upload a front-facing photo and a side profile.</p>
+            <h3 data-i18n="steps.s1t">Capture</h3>
+            <p data-i18n="steps.s1d">Upload a front-facing photo and a side profile.</p>
           </article>
           <article class="step-card">
             <div class="step-card__mock">morphindex.com</div>
             <div class="step-card__number">2</div>
-            <h3>Measure</h3>
-            <p>Receive a full report across proportions, definition, traits, and vitality.</p>
+            <h3 data-i18n="steps.s2t">Measure</h3>
+            <p data-i18n="steps.s2d">Receive a full report across proportions, definition, traits, and vitality.</p>
           </article>
           <article class="step-card">
             <div class="step-card__mock">morphindex.com</div>
             <div class="step-card__number">3</div>
-            <h3>Strategize</h3>
-            <p>Get a ranked list of lifestyle and clinical options tailored to your goals.</p>
+            <h3 data-i18n="steps.s3t">Strategize</h3>
+            <p data-i18n="steps.s3d">Get a ranked list of lifestyle and clinical options tailored to your goals.</p>
           </article>
           <article class="step-card">
             <div class="step-card__number">4</div>
-            <h3>Execute &amp; Monitor</h3>
-            <p>Follow your plan, preview outcomes with MorphAI, and re-scan to measure real progress.</p>
+            <h3 data-i18n="steps.s4t">Execute &amp; Monitor</h3>
+            <p data-i18n="steps.s4d">Follow your plan, preview outcomes with MorphAI, and re-scan to measure real progress.</p>
           </article>
         </div>
-        <p class="eyebrow" style="text-align: center; margin-top: 2.5rem;">Profile analysis included at no extra cost.</p>
+        <p class="eyebrow" style="text-align: center; margin-top: 2.5rem;" data-i18n="steps.note">Profile analysis included at no extra cost.</p>
       </div>
     </section>
 
-    <!-- Score Projection -->
     <section class="section">
       <div class="container">
         <div class="projection">
-          <p class="eyebrow">Index Forecast</p>
-          <h2 class="section-title">Your index can grow</h2>
-          <p class="section-subtitle" style="margin-inline: auto;">Incremental improvements stack up. Follow the data and watch your potential unfold.</p>
+          <p class="eyebrow" data-i18n="projection.eyebrow">Index Forecast</p>
+          <h2 class="section-title" data-i18n="projection.title">Your index can grow</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="projection.subtitle">Incremental improvements stack up. Follow the data and watch your potential unfold.</p>
           <div class="projection__scores">
             <div class="projection__score">
-              <span>Current</span>
+              <span data-i18n="projection.current">Current</span>
               <strong>5.10</strong>
             </div>
             <span class="projection__arrow">→</span>
             <div class="projection__score">
-              <span>Projected</span>
+              <span data-i18n="projection.projected">Projected</span>
               <strong>7.42</strong>
             </div>
           </div>
-          <a href="#" class="btn">View my forecast</a>
+          <a href="#" class="btn" data-i18n="projection.cta">View my forecast</a>
         </div>
       </div>
     </section>
 
-    <!-- Not for everyone -->
     <section class="section section--muted">
       <div class="container" style="max-width: 40rem; text-align: center;">
-        <p class="eyebrow">Who this is for</p>
-        <h2 class="section-title" style="margin-bottom: 1rem;">Not for the passive</h2>
-        <p class="section-subtitle" style="margin-inline: auto; margin-bottom: 1rem;">Most people glance at their score and move on. The ones who actually evolve treat it as a baseline — then put in the work.</p>
-        <p style="font-weight: 500;">MorphIndex was built for that mindset.</p>
+        <p class="eyebrow" data-i18n="audience.eyebrow">Who this is for</p>
+        <h2 class="section-title" style="margin-bottom: 1rem;" data-i18n="audience.title">Not for the passive</h2>
+        <p class="section-subtitle" style="margin-inline: auto; margin-bottom: 1rem;" data-i18n="audience.p1">Most people glance at their score and move on. The ones who actually evolve treat it as a baseline — then put in the work.</p>
+        <p style="font-weight: 500;" data-i18n="audience.p2">MorphIndex was built for that mindset.</p>
       </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="cta">
       <div class="container">
-        <h2 class="cta__title">It all starts with one scan</h2>
-        <p class="cta__subtitle">Over 120,000 people already use MorphIndex. Will you be next?</p>
-        <a href="#" class="btn btn--lg">Launch My First Scan</a>
-        <p class="cta__note">Your morphology deserves better than guesswork.</p>
+        <h2 class="cta__title" data-i18n="cta.title">It all starts with one scan</h2>
+        <p class="cta__subtitle" data-i18n="cta.subtitle">Over 120,000 people already use MorphIndex. Will you be next?</p>
+        <a href="#" class="btn btn--lg" data-i18n="cta.btn">Launch My First Scan</a>
+        <p class="cta__note" data-i18n="cta.note">Your morphology deserves better than guesswork.</p>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
@@ -476,15 +487,16 @@
           <span>MorphIndex</span>
         </a>
         <div class="footer__links">
-          <a href="#">Careers</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="#" data-i18n="footer.careers">Careers</a>
+          <a href="#" data-i18n="footer.privacy">Privacy</a>
+          <a href="#" data-i18n="footer.terms">Terms</a>
         </div>
-        <p class="footer__copy">&copy; 2026 MorphIndex</p>
+        <p class="footer__copy" data-i18n="footer.copy">&copy; 2026 MorphIndex</p>
       </div>
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
 </body>
 </html>
