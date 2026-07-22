@@ -1,6 +1,6 @@
-# FaceIQ Labs — Clone landing page
+# MorphIndex — Landing page
 
-Clone statique de [faceiqlabs.com](https://www.faceiqlabs.com/) en HTML + CSS.
+Landing page statique pour **MorphIndex**, en HTML + CSS.
 
 ## Ouvrir dans le navigateur
 
@@ -34,9 +34,8 @@ Puis ouvrez **http://localhost:8080**.
 
 ## Important
 
-- **Ne double-cliquez pas** sur `index.html` : le CSS et la vidéo ne se chargeront pas correctement en `file://`.
+- **Ne double-cliquez pas** sur `index.html` : le CSS ne se chargera pas correctement en `file://`.
 - **Entrez toujours dans le dossier `faceiq-clone`** avant de lancer le serveur.
-- `http://localhost:8080` ne fonctionne que sur **votre** machine, pas sur l’environnement cloud de l’agent Cursor.
 
 ## Structure
 

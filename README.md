@@ -1,8 +1,8 @@
 # MorphIndex_Main
 
-## FaceIQ Labs — Landing page clone
+## MorphIndex — Landing page
 
-Un clone statique de la landing page [faceiqlabs.com](https://www.faceiqlabs.com/) se trouve dans le dossier `faceiq-clone/`.
+La landing page de **MorphIndex** se trouve dans le dossier `faceiq-clone/`.
 
 ### Prévisualiser en local
 
