@@ -208,33 +208,48 @@ button {
 
 .logo {
   display: block;
-  color: var(--text);
 }
 
 .logo--primary {
   display: none;
-  height: 1.625rem;
+  height: 1.75rem;
   width: auto;
 }
 
 .logo--submark {
-  height: 1.75rem;
-  width: 1.75rem;
-}
-
-@media (min-width: 768px) {
-  .logo--primary {
-    display: block;
-  }
-
-  .logo--submark {
-    display: none;
-  }
+  height: 1.875rem;
+  width: 1.875rem;
 }
 
 .logo--footer {
-  height: 4.5rem;
+  height: 5rem;
   width: auto;
+}
+
+.logo--theme-dark {
+  display: none;
+}
+
+[data-theme="dark"] .logo--theme-light {
+  display: none;
+}
+
+[data-theme="dark"] .logo--theme-dark {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .logo--submark {
+    display: none;
+  }
+
+  [data-theme="light"] .logo--primary.logo--theme-light {
+    display: block;
+  }
+
+  [data-theme="dark"] .logo--primary.logo--theme-dark {
+    display: block;
+  }
 }
 
 .nav__brand-short {
