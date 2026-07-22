@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - cursor/faceiq-landing-clone-1029
     paths:
       - 'faceiq-clone/**'
       - '.github/workflows/pages.yml'
