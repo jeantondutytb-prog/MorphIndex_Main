@@ -277,8 +277,7 @@ button {
   height: 1rem;
 }
 
-[data-theme="light"] .theme-toggle__sun,
-:root:not([data-theme]) .theme-toggle__sun {
+[data-theme="light"] .theme-toggle__sun {
   display: none;
 }
 
