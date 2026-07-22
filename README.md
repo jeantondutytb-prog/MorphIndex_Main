@@ -25,6 +25,24 @@ Puis ouvrez **http://localhost:8080** dans votre navigateur.
 
 > **Important :** Vercel déploie en **Production** uniquement sur la branche `main`. Tous les pushes des agents doivent aller sur `main` (pas seulement sur des branches `cursor/*`).
 
+#### Règle — un seul push par changement
+
+**Ne jamais pousser deux fois pour le même travail.** Chaque `git push` déclenche un déploiement Vercel :
+
+| Action | Déploiement déclenché |
+|--------|------------------------|
+| `git push` sur une branche `cursor/*` | Preview |
+| `git push` sur `main` | Production |
+| `npx vercel deploy --prod` | Production (en plus du push) |
+
+Pousser d'abord une branche feature **puis** `main` consomme donc **2 déploiements** pour une seule modification — et si un agent pousse aussi via la CLI, on arrive facilement à 3 ou 4 déploiements pour 2 commits.
+
+**À faire :**
+
+1. Travailler et commiter directement sur `main` (ou merger localement une branche `cursor/*` dans `main` sans pousser la branche).
+2. Un seul `git push origin main` à la fin.
+3. Ne pas lancer `npx vercel deploy --prod` si `main` vient d'être poussé — Vercel déploie déjà automatiquement.
+
 1. Va sur [vercel.com](https://vercel.com) → **Add New Project** → importe le repo `MorphIndex_Main`
 2. Laisse les réglages par défaut (le fichier `vercel.json` à la racine pointe déjà vers `faceiq-clone/`)
 3. Clique **Deploy** — tu obtiens une URL du type `morphindex-main.vercel.app`
