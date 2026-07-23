@@ -1,6 +1,7 @@
 (function () {
-  var INTERVAL_MS = 5000;
-  var OFFSET_MS = 2500;
+  var MEMBERS_INTERVAL_MS = 5000;
+  var ANALYSES_INTERVAL_MS = 3000;
+  var ANALYSES_START_DELAY_MS = 1500;
   var BASE_MEMBERS = 225000;
   var BASE_ANALYSES = 175000;
 
@@ -96,13 +97,13 @@
 
     setInterval(function () {
       tickStat("members");
-    }, INTERVAL_MS);
+    }, MEMBERS_INTERVAL_MS);
 
     setTimeout(function () {
       tickStat("analyses");
       setInterval(function () {
         tickStat("analyses");
-      }, INTERVAL_MS);
-    }, OFFSET_MS);
+      }, ANALYSES_INTERVAL_MS);
+    }, ANALYSES_START_DELAY_MS);
   });
 })();
