@@ -3,6 +3,13 @@
   "outputDirectory": "faceiq-clone",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/onboarding/consent",
+      "destination": "/onboarding/front",
+      "permanent": false
+    }
+  ],
   "functions": {
     "api/analyze-face.js": {
       "maxDuration": 60

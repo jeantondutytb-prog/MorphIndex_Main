@@ -1,14 +1,13 @@
 (function () {
   var STORAGE_PREFIX = "faceiq_onboarding_";
-  var TOTAL_STEPS = 6;
+  var TOTAL_STEPS = 5;
 
   var stepRoutes = {
     1: "/onboarding",
-    2: "/onboarding/consent",
-    3: "/onboarding/front",
-    4: "/onboarding/side",
-    5: "/onboarding/analyzing",
-    6: "/onboarding/results"
+    2: "/onboarding/front",
+    3: "/onboarding/side",
+    4: "/onboarding/analyzing",
+    5: "/onboarding/results"
   };
 
   function redirectToLogin() {
@@ -93,20 +92,20 @@
 
       var user = session.user;
 
-      if (currentStep > 1 && !hasCompletedScan(user) && currentStep > 5) {
+      if (currentStep > 1 && !hasCompletedScan(user) && currentStep > 4) {
         var state = getState(user.id);
-        if (!state.frontPhoto && currentStep > 3) {
-          window.location.href = stepRoutes[3];
+        if (!state.frontPhoto && currentStep > 2) {
+          window.location.href = stepRoutes[2];
           return null;
         }
-        if (!state.sidePhoto && currentStep > 4) {
-          window.location.href = stepRoutes[4];
+        if (!state.sidePhoto && currentStep > 3) {
+          window.location.href = stepRoutes[3];
           return null;
         }
       }
 
-      if (hasCompletedScan(user) && currentStep < 6) {
-        window.location.href = stepRoutes[6];
+      if (hasCompletedScan(user) && currentStep < 5) {
+        window.location.href = stepRoutes[5];
         return null;
       }
 

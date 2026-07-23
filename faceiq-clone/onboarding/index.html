@@ -54,7 +54,7 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>1</span>/<span data-onboarding-total>6</span>
+          <span data-onboarding-step-current>1</span>/<span data-onboarding-total>5</span>
         </p>
       </div>
 
@@ -86,7 +86,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
   <script src="../js/i18n.js?v=20260723r"></script>
   <script src="../js/theme.js"></script>
-  <script src="../js/onboarding.js?v=20260723r"></script>
+  <script src="../js/onboarding.js?v=20260723w"></script>
   <script>
     (function () {
       var client = window.Onboarding.initSupabase();
@@ -96,7 +96,7 @@
       }
       window.Onboarding.requireStep(client, 1, 1).then(function (ctx) {
         if (!ctx) return;
-        window.Onboarding.bindContinue("#onboarding-continue", "/onboarding/consent");
+        window.Onboarding.bindContinue("#onboarding-continue", "/onboarding/front");
       });
     })();
   </script>

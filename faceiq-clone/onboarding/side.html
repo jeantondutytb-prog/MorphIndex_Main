@@ -54,7 +54,7 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>4</span>/<span data-onboarding-total>6</span>
+          <span data-onboarding-step-current>3</span>/<span data-onboarding-total>5</span>
         </p>
       </div>
 
@@ -93,7 +93,7 @@
   <script src="../js/i18n.js?v=20260723r"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/image-compress.js?v=20260723v"></script>
-  <script src="../js/onboarding.js?v=20260723v"></script>
+  <script src="../js/onboarding.js?v=20260723w"></script>
   <script>
     (function () {
       var photoInput = document.getElementById("photo-input");
@@ -156,7 +156,7 @@
         return;
       }
 
-      window.Onboarding.requireStep(client, 4, 4).then(function (ctx) {
+      window.Onboarding.requireStep(client, 3, 3).then(function (ctx) {
         if (!ctx) return;
         userId = ctx.user.id;
         var state = window.Onboarding.getState(userId);
