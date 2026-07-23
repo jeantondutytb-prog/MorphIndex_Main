@@ -63,9 +63,46 @@
     if (toggleBtn) toggleBtn.disabled = state;
   }
 
+  var SIGNED_OUT_FLAG = "faceiq-signed-out";
+
   function redirectAfterLogin() {
+    clearSignedOutFlag();
     var target = (window.APP_CONFIG && window.APP_CONFIG.redirectAfterLogin) || "/";
     window.location.href = target;
+  }
+
+  function recentlySignedOut() {
+    try {
+      var raw = sessionStorage.getItem(SIGNED_OUT_FLAG);
+      if (!raw) return false;
+      var ts = Number(raw);
+      if (!ts || isNaN(ts)) return true;
+      // Keep the guard long enough to cover slow redirects / token refresh races.
+      return Date.now() - ts < 5 * 60 * 1000;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function clearAuthStorage() {
+    [localStorage, sessionStorage].forEach(function (storage) {
+      try {
+        var keys = [];
+        for (var i = 0; i < storage.length; i++) {
+          var key = storage.key(i);
+          if (!key) continue;
+          var lower = key.toLowerCase();
+          if (key.indexOf("sb-") === 0 || lower.indexOf("supabase") !== -1) {
+            keys.push(key);
+          }
+        }
+        keys.forEach(function (key) {
+          storage.removeItem(key);
+        });
+      } catch (err) {
+        // Ignore.
+      }
+    });
   }
 
   function initSupabase() {
@@ -138,12 +175,21 @@
     showError(t("checkEmail"));
   }
 
+  function clearSignedOutFlag() {
+    try {
+      sessionStorage.removeItem(SIGNED_OUT_FLAG);
+    } catch (err) {
+      // Ignore.
+    }
+  }
+
   async function handleGoogleSignIn() {
     clearError();
     if (!supabaseClient) return;
     if (busy) return;
 
     setBusy(true);
+    clearSignedOutFlag();
     try {
       var redirectTo = window.location.origin + window.location.pathname;
       var result = await supabaseClient.auth.signInWithOAuth({
@@ -174,6 +220,7 @@
     }
 
     setBusy(true);
+    clearSignedOutFlag();
     try {
       await handleEmailSubmit(emailInput.value.trim(), passwordInput.value);
     } catch (err) {
@@ -190,6 +237,21 @@
   function bootAuth() {
     supabaseClient = initSupabase();
     if (!supabaseClient) return;
+
+    // After "Se déconnecter", ignore leftover sessions so the user is not bounced back to /app.
+    if (recentlySignedOut()) {
+      clearAuthStorage();
+      supabaseClient.auth.signOut({ scope: "local" }).catch(function () {
+        return null;
+      });
+      supabaseClient.auth.onAuthStateChange(function (event, session) {
+        // Only follow an explicit new sign-in from this page (form / OAuth), not a stale restore.
+        if (event === "SIGNED_IN" && session && !recentlySignedOut()) {
+          redirectAfterLogin();
+        }
+      });
+      return;
+    }
 
     supabaseClient.auth.getSession().then(function (sessionResult) {
       if (sessionResult.data.session) {

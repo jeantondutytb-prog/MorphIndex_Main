@@ -18,26 +18,50 @@
     return val != null ? val : key;
   }
 
+  var SIGNED_OUT_FLAG = "faceiq-signed-out";
+
   function redirectToLogin() {
     window.location.href = "/login";
   }
 
-  function clearAuthStorage() {
+  function redirectAfterSignOut() {
     try {
-      var keys = [];
-      for (var i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        if (!key) continue;
-        // Supabase persists sessions as sb-<project-ref>-auth-token (+ related keys).
-        if (key.indexOf("sb-") === 0 || key.toLowerCase().indexOf("supabase") !== -1) {
-          keys.push(key);
-        }
-      }
-      keys.forEach(function (key) {
-        localStorage.removeItem(key);
-      });
+      sessionStorage.setItem(SIGNED_OUT_FLAG, String(Date.now()));
     } catch (err) {
-      // Ignore storage access errors (private mode, quota, etc.).
+      // Ignore.
+    }
+    // Landing page — avoid /login which auto-bounces back to /app if a session remains.
+    window.location.replace("/");
+  }
+
+  function isAuthStorageKey(key) {
+    if (!key) return false;
+    var lower = key.toLowerCase();
+    return key.indexOf("sb-") === 0 || lower.indexOf("supabase") !== -1;
+  }
+
+  function clearAuthStorage() {
+    [localStorage, sessionStorage].forEach(function (storage) {
+      try {
+        var keys = [];
+        for (var i = 0; i < storage.length; i++) {
+          var key = storage.key(i);
+          if (isAuthStorageKey(key)) keys.push(key);
+        }
+        keys.forEach(function (key) {
+          storage.removeItem(key);
+        });
+      } catch (err) {
+        // Ignore storage access errors (private mode, quota, etc.).
+      }
+    });
+  }
+
+  function markSignedOut() {
+    try {
+      sessionStorage.setItem(SIGNED_OUT_FLAG, String(Date.now()));
+    } catch (err) {
+      // Ignore.
     }
   }
 
@@ -50,13 +74,18 @@
       finished = true;
       currentUser = null;
       currentSession = null;
+      markSignedOut();
+      // Clear again in case a concurrent token refresh rewrote storage.
       clearAuthStorage();
-      redirectToLogin();
+      redirectAfterSignOut();
     }
 
+    // Mark + wipe local session first so /login or /register cannot bounce back to /app.
+    markSignedOut();
+    clearAuthStorage();
+
     // Supabase signOut({ scope: "global" }) can hang on the network revoke call.
-    // Always clear local session and redirect, with a short timeout fallback.
-    var timeoutId = window.setTimeout(finish, 1500);
+    var timeoutId = window.setTimeout(finish, 800);
     var signOutPromise =
       client && client.auth
         ? client.auth.signOut({ scope: "local" })
