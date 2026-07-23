@@ -132,6 +132,32 @@
       dashboard: {
         eyebrow: "Your analysis",
         title: "Dashboard",
+        nav: {
+          label: "Dashboard sections",
+          backToApp: "Back to dashboard",
+          overview: "Overview",
+          preview: "6-month preview",
+          metrics: "Metrics",
+          plan: "Plan"
+        },
+        pages: {
+          overview: {
+            title: "Overview",
+            description: "Your facial analysis scores, pillars, and key summary metrics."
+          },
+          preview: {
+            title: "6-month preview",
+            description: "AI projection of your results if you follow your improvement plan."
+          },
+          metrics: {
+            title: "Metrics",
+            description: "Detailed metrics across harmony, angularity, dimorphism, and features."
+          },
+          plan: {
+            title: "Improvement plan",
+            description: "Prioritized actions based on your weakest metrics."
+          }
+        },
         overall: "Overall score",
         potential: "Potential score",
         percentile: "Top {n}% of users",
@@ -434,6 +460,32 @@
       dashboard: {
         eyebrow: "Votre analyse",
         title: "Tableau de bord",
+        nav: {
+          label: "Sections du tableau de bord",
+          backToApp: "Retour au tableau de bord",
+          overview: "Aperçu",
+          preview: "Aperçu 6 mois",
+          metrics: "Métriques",
+          plan: "Plan"
+        },
+        pages: {
+          overview: {
+            title: "Aperçu",
+            description: "Vos scores, piliers et métriques clés de l'analyse faciale."
+          },
+          preview: {
+            title: "Aperçu à 6 mois",
+            description: "Projection IA de vos résultats si vous suivez votre plan d'amélioration."
+          },
+          metrics: {
+            title: "Métriques",
+            description: "Métriques détaillées sur harmonie, angularité, dimorphisme et traits."
+          },
+          plan: {
+            title: "Plan d'amélioration",
+            description: "Actions prioritaires basées sur vos métriques les plus faibles."
+          }
+        },
         overall: "Score global",
         potential: "Score potentiel",
         percentile: "Top {n}% des utilisateurs",
@@ -736,6 +788,32 @@
       dashboard: {
         eyebrow: "Tu análisis",
         title: "Panel",
+        nav: {
+          label: "Secciones del panel",
+          backToApp: "Volver al panel",
+          overview: "Resumen",
+          preview: "Vista previa 6 meses",
+          metrics: "Métricas",
+          plan: "Plan"
+        },
+        pages: {
+          overview: {
+            title: "Resumen",
+            description: "Tus puntuaciones, pilares y métricas clave del análisis facial."
+          },
+          preview: {
+            title: "Vista previa a 6 meses",
+            description: "Proyección IA de tus resultados si sigues tu plan de mejora."
+          },
+          metrics: {
+            title: "Métricas",
+            description: "Métricas detalladas de armonía, angularidad, dimorfismo y rasgos."
+          },
+          plan: {
+            title: "Plan de mejora",
+            description: "Acciones prioritarias según tus métricas más débiles."
+          }
+        },
         overall: "Puntuación global",
         potential: "Puntuación potencial",
         percentile: "Top {n}% de usuarios",

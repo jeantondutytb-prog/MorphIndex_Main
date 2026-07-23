@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your FaceIQ Labs analysis dashboard.">
-  <title>FaceIQ Labs — Dashboard</title>
+  <meta name="description" content="Your personalized facial improvement plan.">
+  <title>FaceIQ Labs — Improvement plan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260723u">
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723v">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
       var stored = localStorage.getItem("theme");
@@ -19,10 +19,10 @@
     })();
   </script>
 </head>
-<body class="auth-page app-page app-page--booting" data-auth-page="app">
+<body class="auth-page app-page app-page--booting" data-auth-page="app" data-app-view="plan">
 
   <header class="auth-header">
-    <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
+    <a href="/app" class="auth-header__back" data-i18n="dashboard.nav.backToApp">Back to dashboard</a>
     <div class="auth-header__actions">
       <div class="lang-switcher">
         <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
@@ -46,38 +46,32 @@
     <div class="auth__card auth__card--dashboard">
       <div class="dashboard-header">
         <a href="/" class="auth__logo dashboard-header__logo" aria-label="FaceIQ Labs">
-          <img src="assets/logo.svg" alt="">
+          <img src="../assets/logo.svg" alt="">
         </a>
         <div class="dashboard-header__intro">
           <p class="dashboard-header__eyebrow" data-i18n="dashboard.eyebrow">Your analysis</p>
-          <h1 class="dashboard-header__title" data-i18n="dashboard.title">Dashboard</h1>
+          <h1 class="dashboard-header__title" id="dashboard-page-title" data-i18n="dashboard.pages.plan.title">Improvement plan</h1>
           <p class="auth__email dashboard-header__email" id="app-email" hidden></p>
         </div>
         <button type="button" class="btn btn--ghost btn--sm dashboard-header__signout" id="app-signout" data-i18n="app.signOut">Sign out</button>
       </div>
 
-      <div id="dashboard-preview"></div>
-      <div id="dashboard-hero"></div>
-      <div id="dashboard-photos" hidden></div>
-      <div id="dashboard-pillars"></div>
-      <div id="dashboard-summary"></div>
-      <div id="dashboard-metrics"></div>
+      <div id="dashboard-nav"></div>
       <div id="dashboard-plan"></div>
 
       <p class="dashboard-footer" data-i18n="dashboard.disclaimer">Scores are for self-improvement guidance only — not medical advice.</p>
     </div>
   </main>
 
-  <script src="js/config.js?v=20260723s"></script>
+  <script src="../js/config.js?v=20260723w"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="js/i18n.js?v=20260723s"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/analysis-data.js?v=20260723v"></script>
-  <script src="js/image-compress.js?v=20260723v"></script>
-  <script src="js/ai-api.js?v=20260723v"></script>
-  <script src="js/dashboard.js?v=20260723v"></script>
-  <script src="js/onboarding.js?v=20260723w"></script>
-  <script src="js/app.js?v=20260723v"></script>
+  <script src="../js/i18n.js?v=20260723w"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/analysis-data.js?v=20260723w"></script>
+  <script src="../js/onboarding.js?v=20260723w"></script>
+  <script src="../js/dashboard.js?v=20260723w"></script>
+  <script src="../js/app-shell.js?v=20260723w"></script>
+  <script src="../js/app.js?v=20260723w"></script>
 </body>
 </html>

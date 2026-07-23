@@ -2754,6 +2754,40 @@ body.paywall-open {
   white-space: nowrap;
 }
 
+.dashboard-nav {
+  display: flex;
+  gap: 0.375rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-nav__link {
+  flex-shrink: 0;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--card);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.dashboard-nav__link:hover:not(.is-active) {
+  color: var(--text);
+  border-color: var(--text-muted);
+  background: var(--card-muted);
+}
+
+.dashboard-nav__link.is-active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
 .dashboard-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
