@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260723o">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723p">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -19,11 +19,11 @@
     })();
   </script>
 </head>
-<body class="onboarding-page">
+<body class="auth-page" data-app-shell="onboarding">
 
-  <header class="onboarding-header">
-    <a href="/onboarding" class="onboarding-header__back" data-i18n="onboarding.back">Back</a>
-    <div class="onboarding-header__actions">
+  <header class="auth-header">
+    <a href="/onboarding" class="auth-header__back" data-i18n="onboarding.back">Back</a>
+    <div class="auth-header__actions">
       <div class="lang-switcher">
         <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
@@ -42,21 +42,24 @@
     </div>
   </header>
 
-  <main class="onboarding">
-    <div class="onboarding__progress" aria-hidden="true">
-      <div class="onboarding__progress-track">
-        <div class="onboarding__progress-fill" data-onboarding-progress></div>
-      </div>
-      <p class="onboarding__progress-label">
-        <span data-i18n="onboarding.step">Step</span>
-        <span data-onboarding-step-current>2</span>/<span data-onboarding-total>6</span>
-      </p>
-    </div>
+  <main class="auth">
+    <div class="auth__card">
+      <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
+        <img src="../assets/logo.svg" alt="">
+      </a>
 
-    <div class="onboarding__card">
-      <p class="eyebrow" data-i18n="onboarding.consent.eyebrow">Before we start</p>
-      <h1 class="onboarding__title" data-i18n="onboarding.consent.title">Your data, your control</h1>
-      <p class="onboarding__subtitle" data-i18n="onboarding.consent.subtitle">We need your consent to analyze your facial photos and store your results securely.</p>
+      <div class="shell-progress" aria-hidden="true">
+        <div class="shell-progress__track">
+          <div class="shell-progress__fill" data-shell-progress-fill></div>
+        </div>
+        <p class="shell-progress__label">
+          <span data-i18n="onboarding.step">Step</span>
+          <span data-onboarding-step-current>2</span>/<span data-onboarding-total>6</span>
+        </p>
+      </div>
+
+      <h1 class="auth__title" data-i18n="onboarding.consent.title">Your data, your control</h1>
+      <p class="auth__subtitle" data-i18n="onboarding.consent.subtitle">We need your consent to analyze your facial photos and store your results securely.</p>
 
       <div class="onboarding__consent-list">
         <label class="onboarding__checkbox">
@@ -73,17 +76,17 @@
         </label>
       </div>
 
-      <button type="button" class="btn btn--lg btn--full" id="onboarding-continue" disabled data-i18n="onboarding.continue">Continue</button>
-      <p class="onboarding__legal" data-i18n="onboarding.consent.legal">Read our Privacy Policy and Terms of Service for full details.</p>
+      <button type="button" class="btn btn--full btn--lg" id="onboarding-continue" disabled data-i18n="onboarding.continue">Continue</button>
+      <p class="auth__legal" data-i18n="onboarding.consent.legal">Read our Privacy Policy and Terms of Service for full details.</p>
     </div>
   </main>
 
-  <script src="../js/config.js?v=20260723o"></script>
+  <script src="../js/config.js?v=20260723p"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723o"></script>
+  <script src="../js/i18n.js?v=20260723p"></script>
   <script src="../js/theme.js"></script>
-  <script src="../js/onboarding.js?v=20260723o"></script>
+  <script src="../js/onboarding.js?v=20260723p"></script>
   <script>
     (function () {
       var checks = [

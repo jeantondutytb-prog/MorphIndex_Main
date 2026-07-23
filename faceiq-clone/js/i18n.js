@@ -662,7 +662,7 @@
     var authPage = document.body && document.body.dataset.authPage;
     var isAuthPage = document.body && document.body.classList.contains("auth-page");
     var isAppPage = document.body && document.body.classList.contains("app-page");
-    var isOnboardingPage = document.body && document.body.classList.contains("onboarding-page");
+    var isOnboardingPage = document.body && document.body.dataset.appShell === "onboarding";
 
     if (isOnboardingPage && dict.onboarding && dict.onboarding.meta) {
       document.title = dict.onboarding.meta.title;

@@ -77,7 +77,7 @@
     document.querySelectorAll("[data-onboarding-total]").forEach(function (el) {
       el.textContent = TOTAL_STEPS;
     });
-    var fill = document.querySelector("[data-onboarding-progress]");
+    var fill = document.querySelector("[data-shell-progress-fill]");
     if (fill) {
       fill.style.width = Math.round((step / TOTAL_STEPS) * 100) + "%";
     }
