@@ -77,6 +77,7 @@ Redéploie le projet après avoir ajouté les variables.
 #### Analyse IA (Anthropic + fal.ai)
 
 - **Pendant l'onboarding** (`/onboarding/analyzing`) : les photos frontale + profil sont envoyées à `/api/analyze-face` (Claude vision). Sans clé Anthropic, l'app retombe sur des scores simulés.
+- **Compression automatique** : les photos sont redimensionnées (max 1280 px) et exportées en JPEG (~85 % qualité) à l'upload et avant chaque appel API. Cela réduit fortement les tokens vision (~2–3× moins cher) sans changer de modèle — gardez `claude-sonnet-4-6` pour des résultats fiables.
 - **Après abonnement** : `/api/generate-preview` appelle fal.ai (`face-enhancement`) pour générer un aperçu « dans 6 mois », affiché sur le dashboard `/app`.
 
 Les clés API restent **côté serveur** (variables Vercel) — jamais exposées au navigateur.
