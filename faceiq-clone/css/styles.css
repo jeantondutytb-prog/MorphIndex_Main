@@ -371,15 +371,33 @@ button {
 }
 
 .nav__drawer {
+  position: fixed;
+  top: calc(1rem + env(safe-area-inset-top, 0px) + var(--nav-height) + 0.625rem);
+  left: calc(1rem + env(safe-area-inset-left, 0px));
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  z-index: 110;
   display: none;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 0.75rem 1rem 1rem;
-  border-top: 1px solid var(--border);
+  padding: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-height: calc(100dvh - 6rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav__drawer.is-open {
   display: flex;
+}
+
+@media (min-width: 640px) {
+  .nav__drawer {
+    left: calc(1.5rem + env(safe-area-inset-left, 0px));
+    right: calc(1.5rem + env(safe-area-inset-right, 0px));
+  }
 }
 
 @media (min-width: 768px) {
@@ -393,9 +411,9 @@ button {
   align-items: center;
   min-height: var(--touch-min);
   padding-inline: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
   border-radius: 0.75rem;
   transition: color 0.2s, background 0.2s;
 }
@@ -424,6 +442,12 @@ button {
 
 .nav__backdrop[hidden] {
   display: none;
+}
+
+.nav.is-menu-open {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: var(--shadow-xl);
 }
 
 .btn {
@@ -834,15 +858,25 @@ button {
 }
 
 .transformation__dots button {
+  width: var(--touch-min);
+  height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.transformation__dots button::after {
+  content: "";
   width: 0.5rem;
   height: 0.5rem;
-  padding: 0;
   border-radius: var(--radius-full);
   background: var(--border-strong);
   transition: width 0.2s, background 0.2s;
 }
 
-.transformation__dots button.active {
+.transformation__dots button.active::after {
   width: 1.5rem;
   background: var(--text);
 }

@@ -1,4 +1,5 @@
 (function () {
+  var nav = document.querySelector(".nav");
   var toggle = document.querySelector("[data-nav-toggle]");
   var drawer = document.querySelector("[data-nav-drawer]");
   var backdrop = document.querySelector("[data-nav-backdrop]");
@@ -7,10 +8,10 @@
 
   function setOpen(open) {
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    drawer.setAttribute("aria-hidden", open ? "false" : "true");
     drawer.classList.toggle("is-open", open);
     backdrop.hidden = !open;
     document.body.classList.toggle("nav-open", open);
+    if (nav) nav.classList.toggle("is-menu-open", open);
   }
 
   function closeMenu() {
