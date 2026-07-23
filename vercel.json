@@ -31,6 +31,7 @@
     "api/simulate-procedure.js": { "maxDuration": 120 },
     "api/chat.js": { "maxDuration": 60 },
     "api/journey.js": { "maxDuration": 30 },
+    "api/scan.js": { "maxDuration": 60 },
     "api/stripe.js": { "maxDuration": 30 }
   }
 }

@@ -79,7 +79,8 @@
   <script src="../js/analysis-data.js?v=20260724e"></script>
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
-  <script src="../js/onboarding.js?v=20260723a"></script>
+  <script src="../js/onboarding.js?v=20260725a"></script>
+  <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
     (function () {
       var steps = document.querySelectorAll("#analysis-steps li");
@@ -101,13 +102,28 @@
           scanComplete: true,
           scores: analysis.scores,
           analysis: analysis,
-          rescanPending: false
+          rescanPending: false,
+          scanUpdatedAt: new Date().toISOString()
         });
         window.Onboarding.appendScoreHistory(ctx.user.id, analysis);
 
-        ctx.client.auth.updateUser({
-          data: { onboarding_complete: true }
-        }).finally(function () {
+        if (window.ScanApi) {
+          window.ScanApi.setSession(ctx.session);
+        }
+
+        var syncPromise =
+          window.Onboarding.queueScanSync
+            ? window.Onboarding.queueScanSync(ctx.user.id, { includePhotos: true })
+            : Promise.resolve({ ok: false });
+
+        Promise.all([
+          syncPromise.catch(function () {
+            return { ok: false };
+          }),
+          ctx.client.auth.updateUser({
+            data: { onboarding_complete: true }
+          })
+        ]).finally(function () {
           window.location.href = "/onboarding/results";
         });
       }

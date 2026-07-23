@@ -115,7 +115,8 @@
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
   <script src="../js/billing-api.js?v=20260724e"></script>
-  <script src="../js/onboarding.js?v=20260723a"></script>
+  <script src="../js/onboarding.js?v=20260725a"></script>
+  <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
     (function () {
       var paywall = document.getElementById("paywall");
@@ -163,6 +164,9 @@
             patch.preview6mAt = previewResult.generatedAt;
           }
           window.Onboarding.saveState(ctx.user.id, patch);
+          if (patch.preview6mUrl && window.Onboarding.queueScanSync) {
+            window.Onboarding.queueScanSync(ctx.user.id, { includePhotos: false });
+          }
         });
       }
 
@@ -214,9 +218,22 @@
 
       window.Onboarding.requireStep(client, 4, 4).then(function (ctx) {
         if (!ctx) return;
+
+        if (window.ScanApi) {
+          window.ScanApi.setSession(ctx.session);
+        }
+
+        var hydratePromise =
+          window.ScanApi && window.ScanApi.hydrate
+            ? window.ScanApi.hydrate(ctx.session, ctx.user.id)
+            : Promise.resolve();
+
+        return hydratePromise.catch(function () {
+          return null;
+        }).then(function () {
         var state = window.Onboarding.getState(ctx.user.id);
 
-        if (!state.scanComplete) {
+        if (!state.scanComplete && !(state.analysis || state.frontPhoto)) {
           window.location.href = "/onboarding";
           return;
         }
@@ -286,6 +303,7 @@
             openPaywall();
             showPaywallError(t("onboarding.paywall.checkoutError"));
           });
+        });
         });
       });
     })();

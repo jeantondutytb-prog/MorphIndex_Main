@@ -134,6 +134,9 @@
             var sims = Object.assign({}, state.procedureSimulations || {});
             sims[procedure] = { previewUrl: result.previewUrl, generatedAt: result.generatedAt, intensity: intensity };
             window.Onboarding.saveState(ctx.user.id, { procedureSimulations: sims });
+            if (window.Onboarding.queueScanSync) {
+              window.Onboarding.queueScanSync(ctx.user.id, { includePhotos: false });
+            }
             state = window.Onboarding.getState(ctx.user.id);
             resultUrl = result.previewUrl;
             updateCompare();

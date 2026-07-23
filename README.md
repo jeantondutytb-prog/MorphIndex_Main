@@ -77,7 +77,9 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `STRIPE_PRICE_YEARLY` | ID du prix Stripe annuel (ex. `price_...`, 59,99 €/an) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clé **service_role** Supabase (Settings → API) — active l'abonnement après paiement |
 
-**Parcours utilisateur (Phase 2)** : la progression du plan (`journey`, `scoreHistory`, `planProgress`) est synchronisée dans `user_metadata.app_state` via `/api/journey`. Aucune table SQL supplémentaire n'est requise — `SUPABASE_SERVICE_ROLE_KEY` doit être configurée.
+**Parcours utilisateur (Phase 2)** : la progression du plan (`journey`, `scoreHistory`, `planProgress`) est synchronisée dans `user_metadata.app_state` via `/api/journey`.
+
+**Scan cloud (Phase 3)** : les photos + l'analyse complète sont persistées dans Supabase Storage (bucket privé `user-scans`) via `/api/scan`. Au login sur un autre appareil, le dashboard hydrate automatiquement le scan distant. Les avancées client (journey, chat, previews, simulations) sont aussi poussées dans ce sync. Aucune table SQL supplémentaire n'est requise — `SUPABASE_SERVICE_ROLE_KEY` doit être configurée (le bucket est créé automatiquement au premier upload).
 
 | `FACEGPT_DAILY_LIMIT` | Optionnel — limite de messages FaceGPT par jour et par utilisateur (défaut : `25`) |
 | `FACEGPT_MAX_HISTORY` | Optionnel — nombre de messages renvoyés à Anthropic par requête (défaut : `6`) |

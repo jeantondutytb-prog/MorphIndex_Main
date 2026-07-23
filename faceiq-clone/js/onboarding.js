@@ -109,6 +109,16 @@
     if (window.JourneyApi && window.JourneyApi.sync) {
       window.JourneyApi.sync(userId);
     }
+    if (window.ScanApi && window.ScanApi.sync) {
+      window.ScanApi.sync(userId, { includePhotos: false });
+    }
+  }
+
+  function queueScanSync(userId, options) {
+    if (window.ScanApi && window.ScanApi.sync) {
+      return window.ScanApi.sync(userId, options);
+    }
+    return Promise.resolve({ ok: false });
   }
 
   function defaultJourneyForAnalysis(analysis) {
@@ -299,18 +309,34 @@
         previewGenerating: false,
         previewError: false,
         cameraReady: false,
-        cameraSkipped: false
+        cameraSkipped: false,
+        scanUpdatedAt: new Date().toISOString()
       }));
 
-      client.auth.updateUser({
-        data: { onboarding_complete: false }
-      }).then(function () {
-        return client.auth.refreshSession();
-      }).then(function () {
-        window.location.href = stepRoutes[2];
-      }).catch(function () {
-        window.location.href = stepRoutes[2];
+      var session = result.data.session;
+      if (window.ScanApi) {
+        window.ScanApi.setSession(session);
+      }
+
+      var syncPromise = queueScanSync(userId, { includePhotos: false }).catch(function () {
+        return { ok: false };
       });
+
+      Promise.all([
+        syncPromise,
+        client.auth.updateUser({
+          data: { onboarding_complete: false }
+        })
+      ])
+        .then(function () {
+          return client.auth.refreshSession();
+        })
+        .then(function () {
+          window.location.href = stepRoutes[2];
+        })
+        .catch(function () {
+          window.location.href = stepRoutes[2];
+        });
     });
   }
 
@@ -334,6 +360,7 @@
     updateProgress: updateProgress,
     requireStep: requireStep,
     bindContinue: bindContinue,
-    startRescan: startRescan
+    startRescan: startRescan,
+    queueScanSync: queueScanSync
   };
 })();

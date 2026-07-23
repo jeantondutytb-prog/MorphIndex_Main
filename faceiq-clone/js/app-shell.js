@@ -57,9 +57,14 @@
   function getAppContext() {
     if (!currentUser) return null;
     var state = window.Onboarding.getState(currentUser.id);
-    var analysis = window.AnalysisData.ensureAnalysis(state, currentUser.id);
-    if (!state.analysis) {
-      window.Onboarding.saveState(currentUser.id, { analysis: analysis });
+    var hasPhotos = !!(state.frontPhoto || state.sidePhoto);
+    var analysis = state.analysis || null;
+    if (!analysis && hasPhotos && window.AnalysisData) {
+      analysis = window.AnalysisData.ensureAnalysis(state, currentUser.id);
+      if (!state.analysis) {
+        window.Onboarding.saveState(currentUser.id, { analysis: analysis });
+        state = window.Onboarding.getState(currentUser.id);
+      }
     }
     return { user: currentUser, session: currentSession, state: state, analysis: analysis };
   }
@@ -160,17 +165,33 @@
       if (window.JourneyApi) {
         window.JourneyApi.setSession(currentSession);
       }
+      if (window.ScanApi) {
+        window.ScanApi.setSession(currentSession);
+      }
 
       var view = document.body.getAttribute("data-app-view") || "overview";
       renderNav(view);
       applyPageMeta(view);
 
-      var hydratePromise =
+      var scanHydrate =
+        window.ScanApi && window.ScanApi.hydrate
+          ? window.ScanApi.hydrate(currentSession, currentUser.id)
+          : Promise.resolve();
+      var journeyHydrate =
         window.JourneyApi && window.JourneyApi.hydrate
           ? window.JourneyApi.hydrate(currentSession, currentUser.id)
           : Promise.resolve();
 
-      hydratePromise
+      // Restore cloud scan first so the dashboard is not empty on a new device.
+      scanHydrate
+        .catch(function () {
+          return null;
+        })
+        .then(function () {
+          return journeyHydrate.catch(function () {
+            return null;
+          });
+        })
         .finally(function () {
           if (typeof onReady === "function") {
             onReady(getAppContext());

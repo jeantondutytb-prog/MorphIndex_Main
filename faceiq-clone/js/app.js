@@ -70,6 +70,9 @@
             previewGenerating: false,
             previewError: false
           });
+          if (window.Onboarding.queueScanSync) {
+            window.Onboarding.queueScanSync(user.id, { includePhotos: false });
+          }
         } else {
           window.Onboarding.saveState(user.id, { previewGenerating: false, previewError: true });
         }

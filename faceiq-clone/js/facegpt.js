@@ -47,6 +47,9 @@
 
     function saveMessages() {
       window.Onboarding.saveState(ctx.user.id, { chatHistory: messages });
+      if (window.Onboarding.queueScanSync) {
+        window.Onboarding.queueScanSync(ctx.user.id, { includePhotos: false });
+      }
     }
 
     function renderMessages() {
