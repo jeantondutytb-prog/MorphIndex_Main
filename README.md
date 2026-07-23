@@ -71,8 +71,25 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `FAL_KEY` | Clé API fal.ai (aperçu 6 mois après abonnement) |
 | `FAL_MODEL` | Optionnel — voir recommandations ci-dessous (défaut : `fal-ai/image-editing/face-enhancement`) |
 | `APP_ORIGIN` | Optionnel — origine CORS (défaut : `https://www.morphindex.com`) |
+| `STRIPE_SECRET_KEY` | Clé secrète Stripe (Dashboard → Developers → API keys) |
+| `STRIPE_WEBHOOK_SECRET` | Secret du webhook Stripe (`checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`) |
+| `STRIPE_PRICE_MONTHLY` | ID du prix Stripe mensuel (ex. `price_...`, 9,99 €/mois) |
+| `STRIPE_PRICE_YEARLY` | ID du prix Stripe annuel (ex. `price_...`, 59,99 €/an) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clé **service_role** Supabase (Settings → API) — active l'abonnement après paiement |
 
 Redéploie le projet après avoir ajouté les variables.
+
+#### Paiement Stripe (abonnement)
+
+Sans Stripe configuré, le bouton **S'abonner** affiche une erreur — il n'est plus possible de débloquer les résultats sans payer.
+
+1. Dans [Stripe Dashboard](https://dashboard.stripe.com) → **Products** : crée deux prix récurrents (mensuel 9,99 €, annuel 59,99 €) et copie les `price_...` dans `STRIPE_PRICE_MONTHLY` et `STRIPE_PRICE_YEARLY`.
+2. **Developers → Webhooks** → endpoint `https://www.morphindex.com/api/stripe-webhook` avec les événements :
+   - `checkout.session.completed`
+   - `customer.subscription.updated`
+   - `customer.subscription.deleted`
+3. Copie le **Signing secret** dans `STRIPE_WEBHOOK_SECRET`.
+4. Le flux : l'utilisateur clique **Débloquer mes résultats** → Stripe Checkout → retour sur `/onboarding/results` → vérification serveur → accès `/app`. Le webhook met à jour `subscription_active` dans les métadonnées Supabase.
 
 #### Analyse IA (Anthropic + fal.ai)
 

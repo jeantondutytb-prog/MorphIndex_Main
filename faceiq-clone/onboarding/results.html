@@ -101,7 +101,7 @@
       </div>
 
       <button type="button" class="btn btn--full btn--lg" id="paywall-subscribe" data-i18n="onboarding.paywall.subscribe">Subscribe now</button>
-      <p class="auth__legal" data-i18n="onboarding.paywall.legal">Cancel anytime. Payment processing coming soon.</p>
+      <p class="auth__legal" data-i18n="onboarding.paywall.legal">Cancel anytime. Secure payment via Stripe.</p>
     </div>
   </div>
 
@@ -114,7 +114,8 @@
   <script src="../js/dashboard.js?v=20260723v"></script>
   <script src="../js/image-compress.js?v=20260723v"></script>
   <script src="../js/ai-api.js?v=20260723v"></script>
-  <script src="../js/onboarding.js?v=20260723w"></script>
+  <script src="../js/billing-api.js?v=20260723x"></script>
+  <script src="../js/onboarding.js?v=20260723x"></script>
   <script>
     (function () {
       var paywall = document.getElementById("paywall");
@@ -122,6 +123,7 @@
       var closeBtn = document.getElementById("paywall-dismiss");
       var backdrop = document.getElementById("paywall-close");
       var dashboardEl = document.getElementById("results-dashboard");
+      var subtitleEl = document.querySelector(".auth__subtitle");
 
       function openPaywall() {
         paywall.hidden = false;
@@ -135,6 +137,45 @@
 
       function unlockResults() {
         window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, false);
+      }
+
+      function getSelectedPlan() {
+        var selected = document.querySelector('.paywall__plan input[type="radio"]:checked');
+        return selected && selected.value === "monthly" ? "monthly" : "yearly";
+      }
+
+      function setSubscribeLoading(isLoading, label) {
+        subscribeBtn.disabled = isLoading;
+        subscribeBtn.textContent = label || t("onboarding.paywall.subscribe");
+      }
+
+      function startPreviewGeneration(client, ctx, state) {
+        window.Onboarding.saveState(ctx.user.id, { previewGenerating: true });
+
+        var previewPromise = window.AiApi
+          ? window.AiApi.generatePreview(ctx.session, state.frontPhoto, currentAnalysis.plan)
+          : Promise.resolve({ ok: false });
+
+        return previewPromise.then(function (previewResult) {
+          var patch = { previewGenerating: false };
+          if (previewResult.ok && previewResult.previewUrl) {
+            patch.preview6mUrl = previewResult.previewUrl;
+            patch.preview6mAt = previewResult.generatedAt;
+          }
+          window.Onboarding.saveState(ctx.user.id, patch);
+        });
+      }
+
+      function finishSubscriptionFlow(client, ctx, state) {
+        return client.auth.refreshSession().then(function () {
+          return startPreviewGeneration(client, ctx, state);
+        }).finally(function () {
+          closePaywall();
+          unlockResults();
+          setTimeout(function () {
+            window.location.href = "/app";
+          }, 1200);
+        });
       }
 
       closeBtn.addEventListener("click", closePaywall);
@@ -158,6 +199,9 @@
       }
 
       var currentAnalysis = null;
+      var checkoutParams = new URLSearchParams(window.location.search);
+      var checkoutStatus = checkoutParams.get("checkout");
+      var checkoutSessionId = checkoutParams.get("session_id");
 
       function t(key) {
         var lang = document.documentElement.getAttribute("lang") || "en";
@@ -186,40 +230,65 @@
           window.Onboarding.saveState(ctx.user.id, { analysis: currentAnalysis });
         }
 
-        if (window.Onboarding.hasActiveSubscription(ctx.user)) {
+        function renderLockedResults(message) {
+          window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true);
+          if (subtitleEl && message) {
+            subtitleEl.textContent = message;
+          }
+          var unlockBtn = document.getElementById("unlock-btn");
+          if (unlockBtn) {
+            unlockBtn.addEventListener("click", openPaywall);
+          }
+        }
+
+        function handleActiveSubscription() {
           window.location.href = "/app";
+        }
+
+        if (window.Onboarding.hasActiveSubscription(ctx.user)) {
+          handleActiveSubscription();
           return;
         }
 
-        window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true);
-        var unlockBtn = document.getElementById("unlock-btn");
-        if (unlockBtn) {
-          unlockBtn.addEventListener("click", openPaywall);
+        if (checkoutStatus === "success" && checkoutSessionId && window.BillingApi) {
+          if (subtitleEl) {
+            subtitleEl.textContent = t("onboarding.paywall.verifying");
+          }
+          window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true);
+
+          window.BillingApi.verifyCheckout(ctx.session, checkoutSessionId).then(function (result) {
+            window.history.replaceState({}, "", "/onboarding/results");
+            if (result.ok && result.active) {
+              return finishSubscriptionFlow(client, ctx, state);
+            }
+            renderLockedResults(t("onboarding.paywall.checkoutError"));
+          });
+          return;
         }
 
+        if (checkoutStatus === "cancelled") {
+          window.history.replaceState({}, "", "/onboarding/results");
+          renderLockedResults(t("onboarding.paywall.cancelled"));
+          return;
+        }
+
+        renderLockedResults();
+
         subscribeBtn.addEventListener("click", function () {
-          subscribeBtn.disabled = true;
-          subscribeBtn.textContent = t("dashboard.preview.generating");
-          window.Onboarding.saveState(ctx.user.id, { subscriptionActive: true, previewGenerating: true });
+          if (!window.BillingApi) {
+            renderLockedResults(t("onboarding.paywall.checkoutError"));
+            return;
+          }
 
-          var previewPromise = window.AiApi
-            ? window.AiApi.generatePreview(ctx.session, state.frontPhoto, currentAnalysis.plan)
-            : Promise.resolve({ ok: false });
-
-          previewPromise.then(function (previewResult) {
-            var patch = { subscriptionActive: true, previewGenerating: false };
-            if (previewResult.ok && previewResult.previewUrl) {
-              patch.preview6mUrl = previewResult.previewUrl;
-              patch.preview6mAt = previewResult.generatedAt;
+          setSubscribeLoading(true, t("dashboard.preview.generating"));
+          window.BillingApi.createCheckoutSession(ctx.session, getSelectedPlan()).then(function (result) {
+            if (result.ok && result.url) {
+              window.location.href = result.url;
+              return;
             }
-            window.Onboarding.saveState(ctx.user.id, patch);
-            return client.auth.updateUser({ data: { subscription_active: true } });
-          }).finally(function () {
-            closePaywall();
-            unlockResults();
-            setTimeout(function () {
-              window.location.href = "/app";
-            }, 1200);
+            setSubscribeLoading(false);
+            openPaywall();
+            alert(t("onboarding.paywall.checkoutError"));
           });
         });
       });

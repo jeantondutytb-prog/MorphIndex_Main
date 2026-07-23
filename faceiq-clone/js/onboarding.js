@@ -52,9 +52,7 @@
 
   function hasActiveSubscription(user) {
     if (!user) return false;
-    if (user.user_metadata && user.user_metadata.subscription_active) return true;
-    var state = getState(user.id);
-    return !!state.subscriptionActive;
+    return !!(user.user_metadata && user.user_metadata.subscription_active);
   }
 
   function generateMockScores() {

@@ -10,7 +10,7 @@ export function applyCors(request, response) {
   if (origin === allowed || origin.endsWith(".vercel.app")) {
     response.setHeader("Access-Control-Allow-Origin", origin);
   }
-  response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 }
 

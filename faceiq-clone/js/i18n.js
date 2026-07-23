@@ -294,7 +294,10 @@
           monthlyPrice: "€9.99/month",
           bestValue: "Best value",
           subscribe: "Subscribe now",
-          legal: "Cancel anytime. Payment processing coming soon."
+          legal: "Cancel anytime. Secure payment via Stripe.",
+          verifying: "Confirming your payment…",
+          checkoutError: "Unable to start checkout. Please try again.",
+          cancelled: "Payment cancelled. Subscribe to unlock your full results."
         },
         meta: {
           title: "FaceIQ Labs — Onboarding",
@@ -593,7 +596,10 @@
           monthlyPrice: "9,99 €/mois",
           bestValue: "Meilleur choix",
           subscribe: "S'abonner maintenant",
-          legal: "Annulation à tout moment. Paiement bientôt disponible."
+          legal: "Annulation à tout moment. Paiement sécurisé via Stripe.",
+          verifying: "Confirmation de votre paiement…",
+          checkoutError: "Impossible de démarrer le paiement. Réessayez.",
+          cancelled: "Paiement annulé. Abonnez-vous pour débloquer vos résultats."
         },
         meta: {
           title: "FaceIQ Labs — Onboarding",
@@ -892,7 +898,10 @@
           monthlyPrice: "9,99 €/mes",
           bestValue: "Mejor valor",
           subscribe: "Suscribirse ahora",
-          legal: "Cancela cuando quieras. Pago próximamente."
+          legal: "Cancela cuando quieras. Pago seguro con Stripe.",
+          verifying: "Confirmando tu pago…",
+          checkoutError: "No se pudo iniciar el pago. Inténtalo de nuevo.",
+          cancelled: "Pago cancelado. Suscríbete para desbloquear tus resultados."
         },
         meta: {
           title: "FaceIQ Labs — Onboarding",

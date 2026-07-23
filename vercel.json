@@ -16,6 +16,9 @@
     },
     "api/generate-preview.js": {
       "maxDuration": 120
+    },
+    "api/stripe-webhook.js": {
+      "maxDuration": 30
     }
   }
 }
