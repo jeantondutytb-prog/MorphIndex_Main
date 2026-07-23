@@ -1895,12 +1895,113 @@ button {
 .onboarding__photo-zone {
   position: relative;
   aspect-ratio: 3 / 4;
-  max-height: 18rem;
+  max-height: 20rem;
   margin: 0 auto 1.25rem;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
-  background: var(--card-muted);
+  background: #0f1115;
   overflow: hidden;
+}
+
+.onboarding__photo-zone--camera {
+  background: #000;
+}
+
+.onboarding__camera-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onboarding__camera-video--mirror {
+  transform: scaleX(-1);
+}
+
+.onboarding__camera-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 3rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.onboarding__camera-overlay .onboarding__face-outline {
+  width: 9rem;
+  max-width: 58%;
+  height: auto;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.72);
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.35));
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.onboarding__camera-overlay.is-aligned .onboarding__face-outline {
+  color: #7dffb8;
+  transform: scale(1.02);
+}
+
+.onboarding__camera-overlay.is-warning .onboarding__face-outline {
+  color: #ffd27d;
+}
+
+.onboarding__camera-overlay--side .onboarding__face-outline {
+  width: 8.5rem;
+  max-width: 54%;
+}
+
+.onboarding__camera-guide {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+}
+
+.onboarding__camera-status {
+  position: absolute;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  z-index: 3;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(0, 0, 0, 0.58);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.onboarding__camera-status[data-camera-status="aligned"] {
+  background: rgba(24, 94, 62, 0.82);
+  border-color: rgba(125, 255, 184, 0.35);
+}
+
+.onboarding__camera-status[data-camera-status="warning"] {
+  background: rgba(94, 68, 24, 0.82);
+  border-color: rgba(255, 210, 125, 0.35);
+}
+
+.onboarding__photo-zone.has-preview .onboarding__camera-video,
+.onboarding__photo-zone.has-preview .onboarding__camera-overlay,
+.onboarding__photo-zone.has-preview .onboarding__camera-status {
+  display: none;
+}
+
+.onboarding__photo-zone.has-preview .onboarding__photo-preview {
+  display: block;
 }
 
 .onboarding__photo-guide {
@@ -1923,9 +2024,12 @@ button {
 }
 
 .onboarding__photo-preview {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
 }
 
 .onboarding__tips {
