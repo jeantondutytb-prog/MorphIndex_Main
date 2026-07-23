@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 PORT="${PORT:-8080}"
 
 echo ""
-echo "  MorphIndex — prévisualisation locale"
+echo "  FaceIQ Labs — prévisualisation locale"
 echo "  --------------------------------------"
 echo "  Ouvrez dans votre navigateur :"
 echo ""

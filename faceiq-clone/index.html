@@ -3,423 +3,474 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FaceIQ Labs — Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time.">
+  <meta name="description" content="Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time.">
   <title>FaceIQ Labs — The Self-Improvement System for Your Appearance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260723c">
-  <link rel="icon" href="assets/logos/logo-faceiq.svg" type="image/svg+xml">
-  <script>
-    (function () {
-      var stored = localStorage.getItem("theme");
-      document.documentElement.setAttribute("data-theme", stored || "light");
-      var lang = localStorage.getItem("lang");
-      if (lang) document.documentElement.setAttribute("lang", lang);
-    })();
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
 
-  <div class="page-bg" aria-hidden="true">
-    <div class="page-bg__orb page-bg__orb--1"></div>
-    <div class="page-bg__orb page-bg__orb--2"></div>
-    <div class="page-bg__orb page-bg__orb--3"></div>
-  </div>
-
+  <!-- Navigation -->
   <nav class="nav">
-    <div class="nav__inner container">
+    <div class="nav__inner">
       <a href="#" class="nav__brand">
-        <img src="assets/logos/logo-faceiq.svg" alt="FaceIQ Labs" class="logo">
+        <img src="assets/logo.svg" alt="FaceIQ Labs">
+        <span class="nav__brand-short">FaceIQ</span>
+        <span class="nav__brand-full">FaceIQ Labs</span>
       </a>
       <div class="nav__links">
-        <a href="#pillars" class="nav__link" data-i18n="nav.pillars">Pillars</a>
-        <a href="#platform" class="nav__link" data-i18n="nav.platform">Platform</a>
-        <a href="#how-it-works" class="nav__link" data-i18n="nav.how">How it works</a>
-        <a href="#" class="nav__link" data-i18n="nav.signin">Sign In</a>
-        <div class="lang-switcher">
-          <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            <span data-lang-current>EN</span>
-          </button>
-          <div class="lang-switcher__menu" role="menu">
-            <button type="button" role="menuitem" data-lang-option="fr">Français</button>
-            <button type="button" role="menuitem" data-lang-option="en">English</button>
-            <button type="button" role="menuitem" data-lang-option="es">Español</button>
-          </div>
-        </div>
-        <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
-          <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-          <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-        </button>
-        <a href="#" class="btn btn--primary" data-i18n="nav.cta">Get started</a>
+        <a href="#" class="nav__link">Celebs</a>
+        <a href="#" class="nav__link">Creators</a>
+        <a href="#" class="nav__link">Login</a>
+        <a href="#" class="btn">Try Free</a>
       </div>
       <div class="nav__mobile">
-        <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
-          <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-          <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-        </button>
-        <a href="#" class="btn btn--primary btn--sm" data-i18n="nav.cta">Get started</a>
+        <a href="#" class="btn">Try Free</a>
       </div>
     </div>
   </nav>
 
   <main>
 
+    <!-- Hero -->
     <section class="hero">
-      <div class="container hero__inner">
-        <p class="hero__stats" data-i18n="hero.stats">450,000+ users · 2,500,000+ analyses</p>
-        <h1 class="hero__title" data-i18n-html="hero.title">Your Looks.<br><span class="gradient-text">Measured. Tracked. Improved.</span></h1>
-        <p class="hero__subtitle" data-i18n="hero.subtitle">Analyze your face across 100+ metrics, get a personalized plan, and track your progress over time.</p>
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content">
+        <div class="hero__stats">
+          <div class="hero__stars" aria-label="5 stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <span><strong>450,000+</strong> users</span>
+          <span class="hero__divider">·</span>
+          <span><strong>5,000,000+</strong> analyses</span>
+        </div>
+        <h1 class="hero__title">Your Looks.<br>Measured. Tracked. Improved.</h1>
+        <p class="hero__subtitle">Analyze your face across 100+ metrics, get a personalized plan, and track your progress over time.</p>
         <div class="hero__actions">
-          <a href="#" class="btn btn--primary btn--lg">
-            <span data-i18n="hero.cta">Start Your Journey</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <a href="#" class="btn btn--lg">
+            Start Your Journey
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
-          <a href="#how-it-works" class="btn btn--secondary btn--lg" data-i18n="hero.link">See how it works</a>
+          <a href="#how-it-works" class="btn btn--ghost">See how it works</a>
         </div>
-        <p class="hero__note" data-i18n="hero.note">For those serious about self-improvement.</p>
+        <p class="hero__note">For those serious about self-improvement.</p>
+      </div>
 
-        <div class="product-preview">
-          <div class="product-preview__tabs" role="tablist">
-            <button type="button" class="product-preview__tab is-active" role="tab" aria-selected="true" data-video-tab="front" data-i18n="hero.tabFront">Front Harmony</button>
-            <button type="button" class="product-preview__tab" role="tab" aria-selected="false" data-video-tab="side" data-i18n="hero.tabSide">Side Harmony</button>
+      <div class="browser">
+        <div class="browser__chrome">
+          <div class="browser__dots"><span></span><span></span><span></span></div>
+          <div class="browser__url"><span>faceiqlabs.com</span></div>
+        </div>
+        <div class="browser__viewport">
+          <video src="assets/front-harmony.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </div>
+      <div class="browser__tabs">
+        <span class="browser__tab">Front Harmony</span>
+        <span class="browser__tab browser__tab--inactive">Side Harmony</span>
+      </div>
+    </section>
+
+    <!-- Transformation -->
+    <section class="section section--muted">
+      <div class="container">
+        <div class="section__header">
+          <p class="eyebrow">Commitment pays off</p>
+          <h2 class="section-title">See What's Possible</h2>
+          <p class="section-subtitle" style="margin-inline: auto;">2.5 years of real commitment, every step tracked.</p>
+        </div>
+        <div class="transformation">
+          <div class="transformation__image-wrap">
+            <div class="transformation__image">
+              <img src="assets/transformation.jpg" alt="Transformation before">
+              <div class="transformation__score">5.1<small>/10</small></div>
+            </div>
+            <div class="transformation__controls">
+              <button aria-label="Previous">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <div class="transformation__dots">
+                <span class="active"></span><span></span><span></span><span></span><span></span>
+              </div>
+              <button aria-label="Next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+            <div class="transformation__toggle">
+              <span class="pill pill--active">Before</span>
+              <span class="pill">After</span>
+            </div>
           </div>
-          <div class="product-preview__frame">
-            <video class="product-preview__video is-active" data-video="front" autoplay muted loop playsinline poster="assets/images/transformation-before.webp">
-              <source src="assets/videos/front-harmony.mp4" type="video/mp4">
-            </video>
-            <video class="product-preview__video" data-video="side" muted loop playsinline>
-              <source src="assets/videos/side-harmony.mp4" type="video/mp4">
-            </video>
+          <div class="transformation__content">
+            <div class="score-compare">
+              <span class="score-compare__value">5.1</span>
+              <span class="score-compare__arrow">→</span>
+              <span class="score-compare__value">7.42</span>
+            </div>
+            <p class="score-compare__label">Overall facial score over 2.5 years</p>
+            <div class="timeline">
+              <div class="timeline__item timeline__item--active">
+                <h4>Just the Beginning</h4>
+                <p>Month 0–8 · 8 months</p>
+              </div>
+              <div class="timeline__item">
+                <h4>Early Results + Confidence Boost</h4>
+                <p>Month 8–14 · 6 months</p>
+              </div>
+              <div class="timeline__item">
+                <h4>Serious Results</h4>
+                <p>Month 14–26 · 12 months</p>
+              </div>
+              <div class="timeline__item">
+                <h4>Ascension</h4>
+                <p>Month 26–30 · 4 months</p>
+              </div>
+            </div>
+            <div class="transformation__quote">
+              <p>The people who get results aren't gifted — they're committed.</p>
+              <p>They track every change, follow the data, and stay the course. FaceIQ Labs gives them the system to do it — and the clarity to never waste effort.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="transformation">
+    <!-- Analysis Pillars -->
+    <section class="section">
       <div class="container">
-        <div class="feature-row">
-          <div class="feature-row__content">
-            <p class="eyebrow" data-i18n="transform.eyebrow">Commitment pays off</p>
-            <h2 class="section-title" data-i18n="transform.title">See What's Possible</h2>
-            <p class="section-subtitle" data-i18n="transform.subtitle">2.5 years of real commitment, every step tracked.</p>
-            <div class="score-card">
-              <div class="score-card__scores">
-                <span class="score-card__before">5.1</span>
-                <span class="score-card__arrow" aria-hidden="true">→</span>
-                <span class="score-card__after">7.42</span>
-              </div>
-              <p class="score-card__label" data-i18n="transform.scoreLabel">Overall facial score over 2.5 years</p>
-            </div>
-            <p class="feature-row__body" data-i18n="transform.body">The people who get results aren't gifted — they're committed. They track every change, follow the data, and stay the course.</p>
+        <div class="section__header section__header--left">
+          <p class="eyebrow mono">Analysis Pillars</p>
+          <h2 class="section-title">Track your progress across 4 dimensions</h2>
+          <p class="section-subtitle">Each pillar measures a different aspect of your facial structure.</p>
+        </div>
+
+        <div class="pillars__top">
+          <div class="pillars__connector"></div>
+          <svg class="pillars__arrow" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M6 2L3 5M6 2L9 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="pillars__center">
+            <span class="eyebrow mono">Pillar 1</span>
+            <h3>Harmony</h3>
+            <p class="section-subtitle" style="font-size: 0.75rem;">Facial proportional balance</p>
           </div>
-          <div class="feature-row__media">
-            <img src="assets/images/transformation-before.webp" alt="" class="feature-row__img" loading="lazy">
-            <div class="timeline-phases">
-              <div class="timeline-phases__item">
-                <span class="timeline-phases__label" data-i18n="transform.p1t">Just the Beginning</span>
-                <span class="timeline-phases__meta" data-i18n="transform.p1d">Month 0–8 · 8 months</span>
-              </div>
-              <div class="timeline-phases__item">
-                <span class="timeline-phases__label" data-i18n="transform.p2t">Early Results + Confidence Boost</span>
-                <span class="timeline-phases__meta" data-i18n="transform.p2d">Month 8–14 · 6 months</span>
-              </div>
-              <div class="timeline-phases__item">
-                <span class="timeline-phases__label" data-i18n="transform.p3t">Serious Results</span>
-                <span class="timeline-phases__meta" data-i18n="transform.p3d">Month 14–26 · 12 months</span>
-              </div>
-              <div class="timeline-phases__item">
-                <span class="timeline-phases__label" data-i18n="transform.p4t">Ascension</span>
-                <span class="timeline-phases__meta" data-i18n="transform.p4d">Month 26–30 · 4 months</span>
-              </div>
+          <div class="pillars__line"></div>
+          <div class="pillars__dot"></div>
+        </div>
+
+        <div class="pillars__grid">
+          <article class="pillar-card">
+            <div class="pillar-card__visual">
+              <img src="assets/mountains.webp" alt="">
+              <span class="pillar-card__number">5</span>
+              <span class="pillar-card__label mono">assessments</span>
             </div>
-          </div>
+            <div class="pillar-card__info">
+              <span class="eyebrow mono">Pillar 2</span>
+              <h3>Angularity</h3>
+              <p>Jawline &amp; bone structure definition</p>
+            </div>
+          </article>
+          <article class="pillar-card">
+            <div class="pillar-card__visual">
+              <img src="assets/dna.webp" alt="">
+              <span class="pillar-card__number">12</span>
+              <span class="pillar-card__label mono">measurements</span>
+            </div>
+            <div class="pillar-card__info">
+              <span class="eyebrow mono">Pillar 3</span>
+              <h3>Dimorphism</h3>
+              <p>Gender-specific trait measurement</p>
+            </div>
+          </article>
+          <article class="pillar-card">
+            <div class="pillar-card__visual">
+              <img src="assets/cloud.png" alt="">
+              <span class="pillar-card__number">40+</span>
+              <span class="pillar-card__label mono">health indicators</span>
+            </div>
+            <div class="pillar-card__info">
+              <span class="eyebrow mono">Pillar 4</span>
+              <h3>Health Indicators</h3>
+              <p>Skin health, symmetry &amp; feature analysis</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section section--muted" id="pillars">
+    <!-- Banner -->
+    <div class="banner">
       <div class="container">
-        <div class="section__header section__header--center">
-          <p class="eyebrow" data-i18n="pillars.eyebrow">Analysis Pillars</p>
-          <h2 class="section-title" data-i18n="pillars.title">Track your progress across 4 dimensions</h2>
-          <p class="section-subtitle" data-i18n="pillars.subtitle">Each pillar measures a different aspect of your facial structure.</p>
+        <p>Built by the team behind the industry's first facial harmony system — for those who take their appearance seriously.</p>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="section">
+      <div class="container" style="max-width: 48rem;">
+        <div class="section__header section__header--left">
+          <h2 class="section-title">What people say</h2>
+          <p class="section-subtitle">Real results from real users.</p>
         </div>
-        <div class="pillars-grid">
-          <article class="pillar-card">
-            <div class="pillar-card__media">
-              <video autoplay muted loop playsinline>
-                <source src="assets/videos/front-harmony.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="pillar-card__body">
-              <span class="pillar-card__tag" data-i18n="pillars.p1tag">Pillar 1</span>
-              <h3 data-i18n="pillars.p1">Harmony</h3>
-              <p data-i18n="pillars.p1d">Facial proportional balance</p>
-              <span class="pillar-card__meta" data-i18n="pillars.p1m">5 assessments</span>
-            </div>
-          </article>
-          <article class="pillar-card">
-            <div class="pillar-card__media">
-              <img src="assets/images/pillars/angularity.webp" alt="" loading="lazy">
-            </div>
-            <div class="pillar-card__body">
-              <span class="pillar-card__tag" data-i18n="pillars.p2tag">Pillar 2</span>
-              <h3 data-i18n="pillars.p2">Angularity</h3>
-              <p data-i18n="pillars.p2d">Jawline &amp; bone structure definition</p>
-              <span class="pillar-card__meta" data-i18n="pillars.p2m">12 measurements</span>
-            </div>
-          </article>
-          <article class="pillar-card">
-            <div class="pillar-card__media">
-              <img src="assets/images/pillars/dimorphism.webp" alt="" loading="lazy">
-            </div>
-            <div class="pillar-card__body">
-              <span class="pillar-card__tag" data-i18n="pillars.p3tag">Pillar 3</span>
-              <h3 data-i18n="pillars.p3">Dimorphism</h3>
-              <p data-i18n="pillars.p3d">Gender-specific trait measurement</p>
-              <span class="pillar-card__meta" data-i18n="pillars.p3m">40+ health indicators</span>
-            </div>
-          </article>
-          <article class="pillar-card">
-            <div class="pillar-card__media">
-              <img src="assets/images/pillars/features.png" alt="" loading="lazy">
-            </div>
-            <div class="pillar-card__body">
-              <span class="pillar-card__tag" data-i18n="pillars.p4tag">Pillar 4</span>
-              <h3 data-i18n="pillars.p4">Health Indicators</h3>
-              <p data-i18n="pillars.p4d">Skin health, symmetry &amp; feature analysis</p>
-              <span class="pillar-card__meta" data-i18n="pillars.p4m">100+ metrics</span>
-            </div>
-          </article>
-        </div>
-        <p class="section-footnote" data-i18n="pillars.footnote">Built by the team behind the industry's first facial harmony system — for those who take their appearance seriously.</p>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"FaceIQ Labs is a quality app. You get exactly what you pay for. I would recommend it to anyone seeking aesthetic improvement or just curious where they stand. I hope the app grows in popularity because it's a real gem."</blockquote>
+          <div class="testimonial__author">H. J.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"The analysis confirmed things I'd always suspected about my facial structure but could never quantify. It's refreshing to have an honest, data-driven tool instead of relying on opinions. Now I know what to improve and how."</blockquote>
+          <div class="testimonial__author">Katie L.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"My scores were solid overall, but I wanted to target my skin and under-eye area. FaceIQ Labs is the only tool that gave me genuinely accurate, actionable insights — everything else felt vague and unreliable."</blockquote>
+          <div class="testimonial__author">Ryan T.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"The app helped me map out exactly where my strengths and weaknesses are, so I can focus my improvement efforts where they'll actually make a difference. Having that kind of clarity is a game-changer."</blockquote>
+          <div class="testimonial__author">Marcus D.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"Hands down the best facial analysis tool available. The depth of measurement is unmatched, and the personalized improvement plans keep me coming back."</blockquote>
+          <div class="testimonial__author">Aisha N.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"FaceIQ Labs gave me a clear, complete roadmap for improving my appearance — not just surgery, but practical, everyday steps to look and feel more attractive. It's the most advanced self-improvement tool I've used."</blockquote>
+          <div class="testimonial__author">E. M.</div>
+        </article>
+
+        <article class="testimonial">
+          <div class="testimonial__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          </div>
+          <blockquote>"I initially signed up for FaceIQ Labs to see my score, but I ended up booking an appointment with my surgeon thanks to the advice they provided. I'm about to have my tri-max procedure with CCW rotation. This is a real story about how this app helped me improve."</blockquote>
+          <div class="testimonial__author">Drew K.</div>
+        </article>
       </div>
     </section>
 
-    <section class="section" id="platform">
+    <!-- Features -->
+    <section class="section section--muted">
       <div class="container">
-        <div class="section__header section__header--center">
-          <h2 class="section-title" data-i18n="platform.title">Your self-improvement command center</h2>
-          <p class="section-subtitle" data-i18n="platform.subtitle">Analysis is step one. Track progress, simulate changes, get expert guidance — every week.</p>
+        <div class="section__header section__header--left">
+          <h2 class="section-title">Your self-improvement command center</h2>
+          <p class="section-subtitle">Analysis is step one. Track progress, simulate changes, get expert guidance — every week.</p>
         </div>
         <div class="features-grid">
           <article class="feature-card">
-            <span class="feature-card__num">01</span>
-            <h3 data-i18n="platform.f1t">Harmony Analysis</h3>
-            <p data-i18n="platform.f1d">Score across 4 pillars with 70+ precise facial ratios.</p>
+            <div class="feature-card__number">01</div>
+            <h3>Harmony Analysis</h3>
+            <p>Score across 4 pillars with 70+ precise facial ratios.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-card__num">02</span>
-            <h3><span data-i18n="platform.f2t">FaceGPT</span> <span class="badge" data-i18n="platform.new">New</span></h3>
-            <p data-i18n="platform.f2d">Ask anything about your face — instant expert answers.</p>
+            <div class="feature-card__number">02</div>
+            <h3>FaceGPT <span class="badge">New</span></h3>
+            <p>Ask anything about your face — instant expert answers.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-card__num">03</span>
-            <h3><span data-i18n="platform.f3t">Simulations</span> <span class="badge" data-i18n="platform.new">New</span></h3>
-            <p data-i18n="platform.f3d">See what procedures would look like before you commit.</p>
+            <div class="feature-card__number">03</div>
+            <h3>Simulations <span class="badge">New</span></h3>
+            <p>See what procedures would look like before you commit.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-card__num">04</span>
-            <h3 data-i18n="platform.f4t">Your Plan</h3>
-            <p data-i18n="platform.f4d">A personalized roadmap based on your unique scores.</p>
+            <div class="feature-card__number">04</div>
+            <h3>Your Plan</h3>
+            <p>A personalized roadmap based on your unique scores.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-card__num">05</span>
-            <h3><span data-i18n="platform.f5t">Compare</span> <span class="badge" data-i18n="platform.new">New</span></h3>
-            <p data-i18n="platform.f5d">Side-by-side analysis with detailed breakdowns.</p>
+            <div class="feature-card__number">05</div>
+            <h3>Compare <span class="badge">New</span></h3>
+            <p>Side-by-side analysis with detailed breakdowns.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-card__num">06</span>
-            <h3><span data-i18n="platform.f6t">Creator League</span> <span class="badge" data-i18n="platform.new">New</span></h3>
-            <p data-i18n="platform.f6d">Compete for the top spot on the leaderboard.</p>
+            <div class="feature-card__number">06</div>
+            <h3>Creator League <span class="badge">New</span></h3>
+            <p>Compete for the top spot on the leaderboard.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section--muted">
-      <div class="container">
-        <div class="feature-row feature-row--reverse">
-          <div class="feature-row__content">
-            <div class="showcase__tags">
-              <span data-i18n="showcase.tag1">FaceGPT 1.5</span>
-              <span data-i18n="showcase.tag2">Simulate v1.0</span>
-            </div>
-            <h2 class="section-title" data-i18n="showcase.title">See what's inside</h2>
-            <p class="section-subtitle" data-i18n="showcase.subtitle">Conversational AI that answers any question about your face — and creates complex morphs in seconds with simple language.</p>
-            <p class="feature-row__highlight" data-i18n="showcase.highlight">+100 metrics to track your transformation</p>
-          </div>
-          <div class="feature-row__media">
-            <div class="product-preview__frame product-preview__frame--compact">
-              <video autoplay muted loop playsinline>
-                <source src="assets/videos/facegpt.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Showcase -->
     <section class="section">
       <div class="container">
-        <div class="section__header section__header--center">
-          <p class="eyebrow" data-i18n="assessments.eyebrow">Detailed assessments</p>
-          <h2 class="section-title" data-i18n="assessments.title">Every analysis includes dozens of detailed assessments</h2>
-          <p class="section-subtitle" data-i18n="assessments.subtitle">From skin health to facial harmony ratios.</p>
-        </div>
-        <div class="assessments-grid">
-          <img src="assets/images/assessments/acne.webp" alt="" loading="lazy">
-          <img src="assets/images/assessments/dark-circles.webp" alt="" loading="lazy">
-          <img src="assets/images/assessments/bulbous-nasal-tip.webp" alt="" loading="lazy">
-          <img src="assets/images/assessments/jaw-definition.webp" alt="" loading="lazy">
-          <img src="assets/images/assessments/nasofrontal-angle.webp" alt="" loading="lazy">
-          <img src="assets/images/assessments/upper-eyelid-exposure.webp" alt="" loading="lazy">
+        <div class="showcase">
+          <div>
+            <div class="showcase__tags">
+              <span>FaceGPT 1.5</span>
+              <span>Simulate v1.0</span>
+            </div>
+            <h2 class="section-title" style="margin-bottom: 1rem;">See what's inside</h2>
+            <p class="section-subtitle">Every analysis includes dozens of detailed assessments — from skin health to facial harmony ratios.</p>
+            <p class="eyebrow" style="margin-top: 1.5rem;">+100 metrics to track your transformation</p>
+          </div>
+          <div class="browser showcase__browser">
+            <div class="browser__chrome">
+              <div class="browser__dots"><span></span><span></span><span></span></div>
+              <div class="browser__url"><span>faceiqlabs.com</span></div>
+            </div>
+            <div class="browser__viewport">
+              <video src="assets/front-harmony.mp4" autoplay muted loop playsinline></video>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- How it works -->
     <section class="section section--muted" id="how-it-works">
       <div class="container">
-        <div class="section__header section__header--center">
-          <h2 class="section-title" data-i18n="steps.title">How it works</h2>
-          <p class="section-subtitle" data-i18n="steps.subtitle">Four steps. One cycle. Ongoing improvement.</p>
+        <div class="section__header">
+          <h2 class="section-title">How it works</h2>
+          <p class="section-subtitle" style="margin-inline: auto;">Four steps. One cycle. Ongoing improvement.</p>
         </div>
-        <ol class="steps-grid">
-          <li class="step-card">
-            <span class="step-card__num">1</span>
-            <h3 data-i18n="steps.s1t">Upload</h3>
-            <p data-i18n="steps.s1d">Take a front and side photo.</p>
-          </li>
-          <li class="step-card">
-            <span class="step-card__num">2</span>
-            <h3 data-i18n="steps.s2t">Analyze</h3>
-            <p data-i18n="steps.s2d">Get your complete analysis across 4 pillars — harmony, angularity, dimorphism, and features.</p>
-          </li>
-          <li class="step-card">
-            <span class="step-card__num">3</span>
-            <h3 data-i18n="steps.s3t">Plan</h3>
-            <p data-i18n="steps.s3d">Receive a personalized roadmap with non-surgical and surgical options ranked by impact.</p>
-          </li>
-          <li class="step-card">
-            <span class="step-card__num">4</span>
-            <h3 data-i18n="steps.s4t">Act &amp; Track</h3>
-            <p data-i18n="steps.s4d">Follow your plan. Simulate changes. Ask FaceGPT along the way. Re-analyze over time and see how your scores move.</p>
-          </li>
-        </ol>
-        <p class="section-footnote section-footnote--center" data-i18n="steps.note">Side profile analysis is free.</p>
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-card__mock">faceiqlabs.com</div>
+            <div class="step-card__number">1</div>
+            <h3>Upload</h3>
+            <p>Take a front and side photo.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-card__mock">faceiqlabs.com</div>
+            <div class="step-card__number">2</div>
+            <h3>Analyze</h3>
+            <p>Get your complete analysis across 4 pillars — harmony, angularity, dimorphism, and features.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-card__mock">faceiqlabs.com</div>
+            <div class="step-card__number">3</div>
+            <h3>Plan</h3>
+            <p>Receive a personalized roadmap with non-surgical and surgical options ranked by impact.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-card__number">4</div>
+            <h3>Act &amp; Track</h3>
+            <p>Follow your plan. Simulate changes. Ask FaceGPT along the way. Re-analyze over time and see how your scores move.</p>
+          </article>
+        </div>
+        <p class="eyebrow" style="text-align: center; margin-top: 2.5rem;">Side profile analysis is free.</p>
       </div>
     </section>
 
+    <!-- Score Projection -->
     <section class="section">
       <div class="container">
-        <div class="projection-card">
-          <div class="projection-card__content">
-            <p class="eyebrow" data-i18n="projection.eyebrow">Score Projection</p>
-            <h2 class="section-title" data-i18n="projection.title">Your score isn't fixed</h2>
-            <p class="section-subtitle" data-i18n="projection.subtitle">Small, consistent changes compound over time. Track your progress and watch your score move.</p>
-          </div>
-          <div class="projection-card__scores">
-            <div class="projection-score">
-              <span class="projection-score__label" data-i18n="projection.today">Today</span>
-              <span class="projection-score__value" data-projection-today>5.10</span>
+        <div class="projection">
+          <p class="eyebrow">Score Projection</p>
+          <h2 class="section-title">Your score isn't fixed</h2>
+          <p class="section-subtitle" style="margin-inline: auto;">Small, consistent changes compound over time. Track your progress and watch your score move.</p>
+          <div class="projection__scores">
+            <div class="projection__score">
+              <span>Today</span>
+              <strong>5.10</strong>
             </div>
-            <span class="projection-card__arrow" aria-hidden="true">→</span>
-            <div class="projection-score projection-score--potential">
-              <span class="projection-score__label" data-i18n="projection.potential">Potential</span>
-              <span class="projection-score__value" data-projection-potential>7.42</span>
+            <span class="projection__arrow">→</span>
+            <div class="projection__score">
+              <span>Potential</span>
+              <strong>7.42</strong>
             </div>
           </div>
+          <a href="#" class="btn">See your projection</a>
         </div>
       </div>
     </section>
 
+    <!-- Not for everyone -->
     <section class="section section--muted">
-      <div class="container">
-        <div class="audience-card">
-          <p class="eyebrow" data-i18n="audience.eyebrow">A note on who this is for</p>
-          <h2 class="section-title" data-i18n="audience.title">This isn't for everyone</h2>
-          <p class="section-subtitle" data-i18n="audience.p1">Most people see their score and do nothing. They let the number define them. The ones who actually transform treat it as a starting point — and commit to the process.</p>
-          <p class="audience-card__highlight" data-i18n="audience.p2">FaceIQ Labs is built for them.</p>
-        </div>
+      <div class="container" style="max-width: 40rem; text-align: center;">
+        <p class="eyebrow">A note on who this is for</p>
+        <h2 class="section-title" style="margin-bottom: 1rem;">This isn't for everyone</h2>
+        <p class="section-subtitle" style="margin-inline: auto; margin-bottom: 1rem;">Most people see their score and do nothing. They let the number define them. The ones who actually transform treat it as a starting point — and commit to the process.</p>
+        <p style="font-weight: 500;">FaceIQ Labs is built for them.</p>
       </div>
     </section>
 
-    <section class="section" id="testimonials">
-      <div class="container">
-        <div class="section__header section__header--center">
-          <h2 class="section-title" data-i18n="testimonials.title">What people say</h2>
-          <p class="section-subtitle" data-i18n="testimonials.subtitle">Real results from real users.</p>
-        </div>
-        <div class="testimonials-grid">
-          <article class="testimonial">
-            <blockquote data-i18n="testimonials.t1">"FaceIQ Labs is a quality app. You get exactly what you pay for. I would recommend it to anyone seeking aesthetic improvement or just curious where they stand."</blockquote>
-            <div class="testimonial__author">H. J.</div>
-          </article>
-          <article class="testimonial">
-            <blockquote data-i18n="testimonials.t2">"The analysis confirmed things I'd always suspected about my facial structure but could never quantify. Now I know what to improve and how."</blockquote>
-            <div class="testimonial__author">Katie L.</div>
-          </article>
-          <article class="testimonial">
-            <blockquote data-i18n="testimonials.t3">"My scores were solid overall, but I wanted to target my skin and under-eye area. FaceIQ Labs is the only tool that gave me genuinely accurate, actionable insights."</blockquote>
-            <div class="testimonial__author">Ryan T.</div>
-          </article>
-          <article class="testimonial">
-            <blockquote data-i18n="testimonials.t4">"The app helped me map out exactly where my strengths and weaknesses are, so I can focus my improvement efforts where they'll actually make a difference."</blockquote>
-            <div class="testimonial__author">Marcus D.</div>
-          </article>
-          <article class="testimonial is-hidden" data-testimonial-extra>
-            <blockquote data-i18n="testimonials.t5">"Hands down the best facial analysis tool available. The depth of measurement is unmatched, and the personalized improvement plans keep me coming back."</blockquote>
-            <div class="testimonial__author">Aisha N.</div>
-          </article>
-          <article class="testimonial is-hidden" data-testimonial-extra>
-            <blockquote data-i18n="testimonials.t6">"FaceIQ Labs gave me a clear, complete roadmap for improving my appearance — not just surgery, but practical, everyday steps to look and feel more attractive."</blockquote>
-            <div class="testimonial__author">E. M.</div>
-          </article>
-          <article class="testimonial is-hidden" data-testimonial-extra>
-            <blockquote data-i18n="testimonials.t7">"I initially signed up to see my score, but I ended up booking an appointment with my surgeon thanks to the advice they provided. This is a real story about how this app helped me improve."</blockquote>
-            <div class="testimonial__author">Drew K.</div>
-          </article>
-        </div>
-        <div class="testimonials-more">
-          <button type="button" class="btn btn--secondary" data-testimonials-toggle data-i18n="testimonials.showMore">Show more...</button>
-        </div>
-      </div>
-    </section>
-
+    <!-- Final CTA -->
     <section class="cta">
-      <div class="container cta__inner">
-        <h2 class="cta__title" data-i18n="cta.title">Your transformation starts with a single photo</h2>
-        <p class="cta__subtitle" data-i18n="cta.subtitle">450,000+ people have started their journey. The question is — will you?</p>
-        <div class="cta__actions">
-          <a href="#" class="btn btn--primary btn--lg" data-i18n="cta.btn">Begin Your Assessment</a>
-          <a href="#" class="btn btn--secondary btn--lg" data-i18n="cta.sales">Talk to sales</a>
-        </div>
-        <p class="cta__note" data-i18n="cta.note">Your future self will thank you.</p>
+      <div class="container">
+        <h2 class="cta__title">Your transformation starts with a single photo</h2>
+        <p class="cta__subtitle">450,000+ people have started their journey. The question is — will you?</p>
+        <a href="#" class="btn btn--lg">Begin Your Assessment</a>
+        <p class="cta__note">Your future self will thank you.</p>
       </div>
     </section>
 
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <a href="#" class="footer__brand">
-          <img src="assets/logos/logo-faceiq.svg" alt="FaceIQ Labs" class="logo">
+          <img src="assets/logo.svg" alt="FaceIQ Labs">
+          <span>FaceIQ Labs</span>
         </a>
         <div class="footer__links">
-          <a href="#" data-i18n="footer.privacy">Privacy</a>
-          <a href="#" data-i18n="footer.terms">Terms</a>
-          <a href="#" data-i18n="footer.contact">Contact</a>
+          <a href="#">Join Us</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
         </div>
-        <p class="footer__copy" data-i18n="footer.copy">&copy; 2026 FaceIQ Labs</p>
+        <p class="footer__copy">&copy; 2026 FaceIQ Labs</p>
       </div>
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260723c"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/landing.js?v=20260723c"></script>
 </body>
 </html>

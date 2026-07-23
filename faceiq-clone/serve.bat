@@ -1,7 +1,7 @@
 @echo off
 cd /d "%~dp0"
 echo.
-echo   MorphIndex - previsualisation locale
+echo   FaceIQ Labs - previsualisation locale
 echo   --------------------------------------
 echo   Ouvrez dans votre navigateur :
 echo.
