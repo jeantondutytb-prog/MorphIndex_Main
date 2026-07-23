@@ -1,14 +1,12 @@
 (function () {
   var STORAGE_PREFIX = "faceiq_onboarding_";
-  var TOTAL_STEPS = 6;
+  var TOTAL_STEPS = 4;
 
   var stepRoutes = {
     1: "/onboarding",
-    2: "/onboarding/camera",
-    3: "/onboarding/front",
-    4: "/onboarding/side",
-    5: "/onboarding/analyzing",
-    6: "/onboarding/results"
+    2: "/onboarding/photos",
+    3: "/onboarding/analyzing",
+    4: "/onboarding/results"
   };
 
   function redirectToLogin() {
@@ -68,17 +66,29 @@
     return !!(user.user_metadata && user.user_metadata.subscription_active);
   }
 
-  function generateMockScores() {
-    function score(min, max) {
-      return Math.round((min + Math.random() * (max - min)) * 10) / 10;
-    }
-    return {
-      overall: score(6.2, 8.4),
-      harmony: score(5.8, 8.8),
-      angularity: score(5.5, 8.5),
-      dimorphism: score(6.0, 8.2),
-      features: score(6.3, 8.6)
-    };
+  function appendScoreHistory(userId, analysis) {
+    if (!analysis || !analysis.scores) return;
+    var state = getState(userId);
+    var history = Array.isArray(state.scoreHistory) ? state.scoreHistory.slice() : [];
+    history.push({
+      analyzedAt: analysis.analyzedAt || new Date().toISOString(),
+      scores: analysis.scores,
+      overall: analysis.scores.overall
+    });
+    if (history.length > 12) history = history.slice(-12);
+    saveState(userId, { scoreHistory: history });
+  }
+
+  function getPlanProgress(userId) {
+    var state = getState(userId);
+    return state.planProgress || {};
+  }
+
+  function togglePlanItem(userId, key, done) {
+    var progress = getPlanProgress(userId);
+    progress[key] = !!done;
+    saveState(userId, { planProgress: progress });
+    return progress;
   }
 
   function updateProgress(step) {
@@ -105,23 +115,19 @@
       var user = session.user;
       var state = getState(user.id);
 
-      if (currentStep > 1 && !hasCompletedScan(user) && currentStep > 5) {
-        if (!state.cameraReady && !state.cameraSkipped && !state.frontPhoto && currentStep > 2) {
+      if (!hasCompletedScan(user)) {
+        if (currentStep > 2 && (!state.frontPhoto || !state.sidePhoto)) {
           window.location.href = stepRoutes[2];
           return null;
         }
-        if (!state.frontPhoto && currentStep > 3) {
-          window.location.href = stepRoutes[3];
-          return null;
-        }
-        if (!state.sidePhoto && currentStep > 4) {
-          window.location.href = stepRoutes[4];
+        if (currentStep > 3 && (!state.frontPhoto || !state.sidePhoto)) {
+          window.location.href = stepRoutes[2];
           return null;
         }
       }
 
-      if (hasCompletedScan(user) && currentStep < 6) {
-        window.location.href = stepRoutes[6];
+      if (hasCompletedScan(user) && currentStep < 4) {
+        window.location.href = stepRoutes[4];
         return null;
       }
 
@@ -155,13 +161,24 @@
       var userId = session.user.id;
       var current = getState(userId);
 
+      if (current.analysis) {
+        appendScoreHistory(userId, current.analysis);
+      }
+
       try {
         localStorage.setItem(backupKey(userId), JSON.stringify(current));
       } catch (e) {
         /* backup best-effort */
       }
 
-      saveState(userId, {
+      var preserved = {
+        scoreHistory: getState(userId).scoreHistory,
+        planProgress: current.planProgress || {},
+        procedureSimulations: current.procedureSimulations || {},
+        chatHistory: current.chatHistory || []
+      };
+
+      saveState(userId, Object.assign(preserved, {
         rescanPending: true,
         rescanStartedAt: Date.now(),
         frontPhoto: null,
@@ -171,8 +188,10 @@
         scores: null,
         preview6mUrl: null,
         previewGenerating: false,
-        previewError: false
-      });
+        previewError: false,
+        cameraReady: false,
+        cameraSkipped: false
+      }));
 
       client.auth.updateUser({
         data: { onboarding_complete: false }
@@ -196,7 +215,9 @@
     isRescanPending: isRescanPending,
     hasCompletedScan: hasCompletedScan,
     hasActiveSubscription: hasActiveSubscription,
-    generateMockScores: generateMockScores,
+    appendScoreHistory: appendScoreHistory,
+    getPlanProgress: getPlanProgress,
+    togglePlanItem: togglePlanItem,
     updateProgress: updateProgress,
     requireStep: requireStep,
     bindContinue: bindContinue,

@@ -1,0 +1,67 @@
+const SYSTEM_PROMPT = `You are FaceGPT, an expert facial aesthetics coach inside FaceIQ Labs.
+You help users understand their facial analysis scores and improvement plan.
+Be concise, supportive, and practical. This is self-improvement guidance — not medical advice.
+Never recommend specific surgeons or guarantee results. Reference the user's scores when relevant.`;
+
+export async function chatWithAnthropic({ messages, analysis }) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    return { error: "Anthropic API key is not configured", status: 503 };
+  }
+
+  const contextParts = [];
+  if (analysis && analysis.scores) {
+    contextParts.push(
+      "User analysis context:\n" +
+        JSON.stringify({
+          scores: analysis.scores,
+          potential: analysis.potential,
+          percentile: analysis.percentile,
+          summary: analysis.summary,
+          plan: (analysis.plan || []).map(function (item) {
+            return { key: item.key, pillar: item.pillar, impact: item.impact, weeks: item.weeks };
+          })
+        })
+    );
+  }
+
+  const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
+  const anthropicMessages = (messages || [])
+    .filter(function (m) {
+      return m && m.role && m.content;
+    })
+    .map(function (m) {
+      return { role: m.role === "assistant" ? "assistant" : "user", content: m.content };
+    });
+
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01"
+    },
+    body: JSON.stringify({
+      model: model,
+      max_tokens: 1024,
+      temperature: 0.4,
+      system: SYSTEM_PROMPT + (contextParts.length ? "\n\n" + contextParts.join("\n") : ""),
+      messages: anthropicMessages
+    })
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    return { error: "FaceGPT request failed", status: 502, detail: detail };
+  }
+
+  const payload = await response.json();
+  const textBlock = (payload.content || []).find(function (block) {
+    return block.type === "text";
+  });
+
+  return {
+    reply: textBlock && textBlock.text ? textBlock.text.trim() : "",
+    model: model
+  };
+}

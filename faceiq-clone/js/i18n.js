@@ -138,7 +138,9 @@
           overview: "Home",
           preview: "Preview",
           metrics: "Metrics",
-          plan: "Plan"
+          plan: "Plan",
+          chat: "FaceGPT",
+          simulate: "Simulate"
         },
         pages: {
           overview: {
@@ -156,6 +158,14 @@
           plan: {
             title: "Improvement plan",
             description: "Prioritized actions based on your weakest metrics."
+          },
+          chat: {
+            title: "FaceGPT",
+            description: "Ask your AI facial aesthetics coach about your analysis and improvement plan."
+          },
+          simulate: {
+            title: "Simulations",
+            description: "Preview cosmetic procedure effects on your photo with adjustable intensity."
           }
         },
         overall: "Overall score",
@@ -166,6 +176,7 @@
         ideal: "Ideal",
         planTitle: "Your improvement plan",
         planSubtitle: "Prioritized actions based on your weakest metrics.",
+        planProgress: "{done}/{total} done",
         weeks: "{n} weeks",
         disclaimer: "Scores are for self-improvement guidance only — not medical advice.",
         rescanConfirm: "Start a new scan? Your current photos will be replaced.",
@@ -184,6 +195,33 @@
           planDesc: "Prioritized actions for your goals",
           rescan: "New scan",
           rescanDesc: "Track progress with a fresh analysis"
+        },
+        history: {
+          title: "Score history",
+          subtitle: "Track how your overall score changes across scans."
+        },
+        chat: {
+          subtitle: "Ask FaceGPT anything about your scores, metrics, or improvement plan.",
+          placeholder: "Ask about your analysis…",
+          send: "Send",
+          empty: "Start a conversation — ask about your scores or what to focus on first.",
+          error: "FaceGPT is unavailable right now. Please try again."
+        },
+        simulate: {
+          subtitle: "Preview how a cosmetic adjustment might look on your photo.",
+          intensity: "Intensity",
+          generate: "Generate simulation",
+          generating: "Generating…",
+          after: "Simulated",
+          disclaimer: "Simulations are illustrative only — not medical advice or guarantees.",
+          error: "Simulation failed. Please try again.",
+          procedures: {
+            jawline: "Jawline",
+            nose: "Nose",
+            cheeks: "Cheeks",
+            chin: "Chin",
+            lips: "Lips"
+          }
         },
         preview: {
           title: "Your 6-month preview",
@@ -287,6 +325,10 @@
           storage: "I agree to secure storage of my photos and analysis results",
           disclaimer: "I understand this is not medical advice",
           legal: "Read our Privacy Policy and Terms of Service for full details."
+        },
+        photos: {
+          phaseFront: "1 of 2 — Front photo",
+          phaseSide: "2 of 2 — Side profile"
         },
         front: {
           eyebrow: "Front photo",
@@ -487,7 +529,9 @@
           overview: "Accueil",
           preview: "6 mois",
           metrics: "Métriques",
-          plan: "Plan"
+          plan: "Plan",
+          chat: "FaceGPT",
+          simulate: "Simuler"
         },
         pages: {
           overview: {
@@ -505,6 +549,14 @@
           plan: {
             title: "Plan d'amélioration",
             description: "Actions prioritaires basées sur vos métriques les plus faibles."
+          },
+          chat: {
+            title: "FaceGPT",
+            description: "Posez vos questions à votre coach IA sur votre analyse et votre plan."
+          },
+          simulate: {
+            title: "Simulations",
+            description: "Prévisualisez l'effet de procédures esthétiques sur votre photo."
           }
         },
         overall: "Score global",
@@ -515,6 +567,7 @@
         ideal: "Idéal",
         planTitle: "Votre plan d'amélioration",
         planSubtitle: "Actions prioritaires basées sur vos métriques les plus faibles.",
+        planProgress: "{done}/{total} terminées",
         weeks: "{n} semaines",
         disclaimer: "Les scores sont indicatifs pour l'auto-amélioration — pas un avis médical.",
         rescanConfirm: "Lancer un nouveau scan ? Vos photos actuelles seront remplacées.",
@@ -533,6 +586,33 @@
           planDesc: "Actions prioritaires pour vos objectifs",
           rescan: "Nouveau scan",
           rescanDesc: "Suivre vos progrès avec une nouvelle analyse"
+        },
+        history: {
+          title: "Historique des scores",
+          subtitle: "Suivez l'évolution de votre score global entre les scans."
+        },
+        chat: {
+          subtitle: "Posez à FaceGPT vos questions sur vos scores, métriques ou plan.",
+          placeholder: "Posez une question sur votre analyse…",
+          send: "Envoyer",
+          empty: "Commencez la conversation — demandez par quoi commencer.",
+          error: "FaceGPT est indisponible pour le moment. Réessayez."
+        },
+        simulate: {
+          subtitle: "Prévisualisez l'effet d'un ajustement esthétique sur votre photo.",
+          intensity: "Intensité",
+          generate: "Générer la simulation",
+          generating: "Génération…",
+          after: "Simulé",
+          disclaimer: "Les simulations sont indicatives — pas un avis médical ni une garantie.",
+          error: "Échec de la simulation. Réessayez.",
+          procedures: {
+            jawline: "Mâchoire",
+            nose: "Nez",
+            cheeks: "Joues",
+            chin: "Menton",
+            lips: "Lèvres"
+          }
         },
         preview: {
           title: "Votre aperçu à 6 mois",
@@ -636,6 +716,10 @@
           storage: "J'accepte le stockage sécurisé de mes photos et résultats d'analyse",
           disclaimer: "Je comprends que ce n'est pas un avis médical",
           legal: "Consultez notre Politique de confidentialité et nos Conditions d'utilisation."
+        },
+        photos: {
+          phaseFront: "1 sur 2 — Photo de face",
+          phaseSide: "2 sur 2 — Photo de profil"
         },
         front: {
           eyebrow: "Photo de face",
@@ -836,7 +920,9 @@
           overview: "Inicio",
           preview: "Vista",
           metrics: "Métricas",
-          plan: "Plan"
+          plan: "Plan",
+          chat: "FaceGPT",
+          simulate: "Simular"
         },
         pages: {
           overview: {
@@ -854,6 +940,14 @@
           plan: {
             title: "Plan de mejora",
             description: "Acciones prioritarias según tus métricas más débiles."
+          },
+          chat: {
+            title: "FaceGPT",
+            description: "Pregunta a tu coach IA sobre tu análisis y plan de mejora."
+          },
+          simulate: {
+            title: "Simulaciones",
+            description: "Previsualiza efectos de procedimientos estéticos en tu foto."
           }
         },
         overall: "Puntuación global",
@@ -864,6 +958,7 @@
         ideal: "Ideal",
         planTitle: "Tu plan de mejora",
         planSubtitle: "Acciones prioritarias según tus métricas más débiles.",
+        planProgress: "{done}/{total} completadas",
         weeks: "{n} semanas",
         disclaimer: "Las puntuaciones son orientativas para la auto-mejora — no son consejo médico.",
         rescanConfirm: "¿Iniciar un nuevo escaneo? Tus fotos actuales serán reemplazadas.",
@@ -882,6 +977,33 @@
           planDesc: "Acciones prioritarias para tus objetivos",
           rescan: "Nuevo escaneo",
           rescanDesc: "Sigue tu progreso con un análisis nuevo"
+        },
+        history: {
+          title: "Historial de puntuación",
+          subtitle: "Sigue cómo cambia tu puntuación global entre escaneos."
+        },
+        chat: {
+          subtitle: "Pregunta a FaceGPT sobre tus puntuaciones, métricas o plan.",
+          placeholder: "Pregunta sobre tu análisis…",
+          send: "Enviar",
+          empty: "Empieza la conversación — pregunta por dónde empezar.",
+          error: "FaceGPT no está disponible ahora. Inténtalo de nuevo."
+        },
+        simulate: {
+          subtitle: "Previsualiza cómo podría verse un ajuste estético en tu foto.",
+          intensity: "Intensidad",
+          generate: "Generar simulación",
+          generating: "Generando…",
+          after: "Simulado",
+          disclaimer: "Las simulaciones son ilustrativas — no son consejo médico ni garantía.",
+          error: "Error en la simulación. Inténtalo de nuevo.",
+          procedures: {
+            jawline: "Mandíbula",
+            nose: "Nariz",
+            cheeks: "Mejillas",
+            chin: "Mentón",
+            lips: "Labios"
+          }
         },
         preview: {
           title: "Tu vista previa a 6 meses",
@@ -985,6 +1107,10 @@
           storage: "Acepto el almacenamiento seguro de mis fotos y resultados",
           disclaimer: "Entiendo que esto no es consejo médico",
           legal: "Lee nuestra Política de privacidad y Términos de servicio."
+        },
+        photos: {
+          phaseFront: "1 de 2 — Foto frontal",
+          phaseSide: "2 de 2 — Perfil lateral"
         },
         front: {
           eyebrow: "Foto frontal",

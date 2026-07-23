@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260723u">
+  <link rel="stylesheet" href="../css/styles.css?v=20260724e">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -54,7 +54,7 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>5</span>/<span data-onboarding-total>6</span>
+          <span data-onboarding-step-current>3</span>/<span data-onboarding-total>4</span>
         </p>
       </div>
 
@@ -71,15 +71,15 @@
     </div>
   </main>
 
-  <script src="../js/config.js?v=20260723s"></script>
+  <script src="../js/config.js?v=20260724e"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723s"></script>
+  <script src="../js/i18n.js?v=20260724e"></script>
   <script src="../js/theme.js"></script>
-  <script src="../js/analysis-data.js?v=20260723v"></script>
-  <script src="../js/image-compress.js?v=20260723v"></script>
-  <script src="../js/ai-api.js?v=20260723v"></script>
-  <script src="../js/onboarding.js?v=20260723w"></script>
+  <script src="../js/analysis-data.js?v=20260724e"></script>
+  <script src="../js/image-compress.js?v=20260724e"></script>
+  <script src="../js/ai-api.js?v=20260724e"></script>
+  <script src="../js/onboarding.js?v=20260724e"></script>
   <script>
     (function () {
       var steps = document.querySelectorAll("#analysis-steps li");
@@ -103,6 +103,7 @@
           analysis: analysis,
           rescanPending: false
         });
+        window.Onboarding.appendScoreHistory(ctx.user.id, analysis);
 
         ctx.client.auth.updateUser({
           data: { onboarding_complete: true }
@@ -117,11 +118,11 @@
         return;
       }
 
-      window.Onboarding.requireStep(client, 5, 5).then(function (ctx) {
+      window.Onboarding.requireStep(client, 3, 3).then(function (ctx) {
         if (!ctx) return;
         var state = window.Onboarding.getState(ctx.user.id);
         if (!state.frontPhoto || !state.sidePhoto) {
-          window.location.href = state.frontPhoto ? "/onboarding/side" : "/onboarding/front";
+          window.location.href = "/onboarding/photos";
           return;
         }
 

@@ -87,7 +87,7 @@
         if (window.Onboarding && window.Onboarding.startRescan) {
           window.Onboarding.startRescan();
         } else {
-          window.location.href = "/onboarding/camera";
+          window.location.href = "/onboarding/photos";
         }
       });
     }
@@ -270,14 +270,28 @@
     });
   }
 
-  function renderPlan(container, analysis) {
-    var html = '<div class="dashboard-plan"><h2 class="dashboard-section__title" data-i18n="dashboard.planTitle">' + t("dashboard.planTitle") + '</h2>';
-    html += '<p class="dashboard-section__subtitle" data-i18n="dashboard.planSubtitle">' + t("dashboard.planSubtitle") + '</p>';
+  function renderPlan(container, analysis, userId, onToggle) {
+    var progress = userId && window.Onboarding ? window.Onboarding.getPlanProgress(userId) : {};
+    var doneCount = 0;
+    analysis.plan.forEach(function (item) {
+      if (progress[item.key]) doneCount += 1;
+    });
+
+    var html = '<div class="dashboard-plan">';
+    html += '<div class="dashboard-plan__head">';
+    html += '<h2 class="dashboard-section__title">' + t("dashboard.planTitle") + '</h2>';
+    html += '<p class="dashboard-plan__progress">' + t("dashboard.planProgress").replace("{done}", doneCount).replace("{total}", analysis.plan.length) + '</p>';
+    html += '</div>';
+    html += '<p class="dashboard-section__subtitle">' + t("dashboard.planSubtitle") + '</p>';
     html += '<ol class="dashboard-plan__list">';
     analysis.plan.forEach(function (item, i) {
+      var checked = !!progress[item.key];
       html +=
-        '<li class="dashboard-plan__item">' +
-          '<span class="dashboard-plan__rank">' + (i + 1) + '</span>' +
+        '<li class="dashboard-plan__item' + (checked ? " is-done" : "") + '">' +
+          '<label class="dashboard-plan__check">' +
+            '<input type="checkbox" class="dashboard-plan__checkbox" data-plan-key="' + item.key + '"' + (checked ? " checked" : "") + ">" +
+            '<span class="dashboard-plan__rank">' + (i + 1) + '</span>' +
+          '</label>' +
           '<div class="dashboard-plan__body">' +
             '<strong>' + t("dashboard.plan." + item.key + ".title") + '</strong>' +
             '<p>' + t("dashboard.plan." + item.key + ".desc") + '</p>' +
@@ -291,6 +305,65 @@
     });
     html += '</ol></div>';
     container.innerHTML = html;
+
+    container.querySelectorAll(".dashboard-plan__checkbox").forEach(function (input) {
+      input.addEventListener("change", function () {
+        var key = input.getAttribute("data-plan-key");
+        if (typeof onToggle === "function") {
+          onToggle(key, input.checked);
+        }
+      });
+    });
+  }
+
+  function renderScoreHistory(container, state, currentAnalysis) {
+    if (!container) return;
+    var history = (state && state.scoreHistory) || [];
+    var points = history.slice();
+    if (currentAnalysis && currentAnalysis.scores) {
+      var hasCurrent = points.some(function (p) {
+        return p.analyzedAt === currentAnalysis.analyzedAt;
+      });
+      if (!hasCurrent) {
+        points.push({
+          analyzedAt: currentAnalysis.analyzedAt || new Date().toISOString(),
+          overall: currentAnalysis.scores.overall,
+          scores: currentAnalysis.scores
+        });
+      }
+    }
+
+    if (points.length < 2) {
+      container.hidden = true;
+      container.innerHTML = "";
+      return;
+    }
+
+    container.hidden = false;
+    var max = 10;
+    var minScore = Math.min.apply(null, points.map(function (p) { return p.overall; }));
+    var maxScore = Math.max.apply(null, points.map(function (p) { return p.overall; }));
+    var range = Math.max(0.5, maxScore - minScore);
+
+    var bars = points.map(function (point, i) {
+      var height = 20 + ((point.overall - minScore) / range) * 70;
+      var date = new Date(point.analyzedAt);
+      var label = isNaN(date.getTime()) ? "" : date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+      return (
+        '<div class="score-history__item">' +
+          '<div class="score-history__bar" style="height:' + height.toFixed(1) + '%" title="' + point.overall + '/10"></div>' +
+          '<span class="score-history__score">' + point.overall + '</span>' +
+          '<span class="score-history__date">' + label + '</span>' +
+        '</div>'
+      );
+    }).join("");
+
+    container.innerHTML =
+      '<section class="score-history">' +
+        '<h2 class="dashboard-section__title">' + t("dashboard.history.title") + '</h2>' +
+        '<p class="dashboard-section__subtitle">' + t("dashboard.history.subtitle") + '</p>' +
+        '<div class="score-history__chart" role="img" aria-label="' + t("dashboard.history.title") + '">' + bars + '</div>' +
+      '</section>';
   }
 
   function renderSummaryGrid(container, analysis) {
@@ -368,13 +441,14 @@
         if (window.Onboarding && window.Onboarding.startRescan) {
           window.Onboarding.startRescan();
         } else {
-          window.location.href = "/onboarding/camera";
+          window.location.href = "/onboarding/photos";
         }
       });
     }
   }
 
   window.Dashboard = {
+    renderScoreHistory: renderScoreHistory,
     renderPreview: renderPreview,
     renderQuickActions: renderQuickActions,
     renderEmptyState: renderEmptyState,

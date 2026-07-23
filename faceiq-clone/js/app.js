@@ -1,15 +1,4 @@
 (function () {
-  var currentView = "overview";
-  var PREVIEW_STALE_MS = 3 * 60 * 1000;
-
-  function isPreviewStale(state) {
-    return !!(
-      state.previewGenerating &&
-      state.previewGeneratingAt &&
-      Date.now() - state.previewGeneratingAt > PREVIEW_STALE_MS
-    );
-  }
-
   function renderOverview(ctx) {
     if (!ctx) return;
     var state = ctx.state;
@@ -22,6 +11,7 @@
 
     window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
     window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
+    window.Dashboard.renderScoreHistory(document.getElementById("dashboard-history"), state, analysis);
     window.Dashboard.renderQuickActions(document.getElementById("dashboard-quick-actions"));
     window.Dashboard.renderPhotos(document.getElementById("dashboard-photos"), state);
     window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
@@ -40,7 +30,8 @@
       return;
     }
 
-    if (isPreviewStale(state)) {
+    var PREVIEW_STALE_MS = 3 * 60 * 1000;
+    if (state.previewGenerating && state.previewGeneratingAt && Date.now() - state.previewGeneratingAt > PREVIEW_STALE_MS) {
       window.Onboarding.saveState(user.id, { previewGenerating: false, previewError: true });
       state = window.Onboarding.getState(user.id);
     }
@@ -95,16 +86,44 @@
       window.Dashboard.renderEmptyState(document.getElementById("dashboard-plan"), ctx.state);
       return;
     }
-    window.Dashboard.renderPlan(document.getElementById("dashboard-plan"), ctx.analysis);
+    window.Dashboard.renderPlan(
+      document.getElementById("dashboard-plan"),
+      ctx.analysis,
+      ctx.user.id,
+      function (key, done) {
+        window.Onboarding.togglePlanItem(ctx.user.id, key, done);
+        renderPlanPage(window.AppShell.getAppContext());
+      }
+    );
+  }
+
+  function renderChatPage(ctx) {
+    if (!ctx) return;
+    if (window.FaceGpt) {
+      window.FaceGpt.mount(document.getElementById("facegpt-root"), ctx);
+    }
+  }
+
+  function renderSimulatePage(ctx) {
+    if (!ctx) return;
+    if (!ctx.state.frontPhoto) {
+      window.Dashboard.renderEmptyState(document.getElementById("simulate-root"), ctx.state);
+      return;
+    }
+    if (window.Simulate) {
+      window.Simulate.mount(document.getElementById("simulate-root"), ctx);
+    }
   }
 
   function bootPage() {
-    currentView = document.body.getAttribute("data-app-view") || "overview";
+    var currentView = document.body.getAttribute("data-app-view") || "overview";
     var renderers = {
       overview: renderOverview,
       preview: renderPreviewPage,
       metrics: renderMetricsPage,
-      plan: renderPlanPage
+      plan: renderPlanPage,
+      chat: renderChatPage,
+      simulate: renderSimulatePage
     };
 
     function renderCurrent(ctx) {

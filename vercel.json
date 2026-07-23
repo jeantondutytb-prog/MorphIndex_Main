@@ -6,19 +6,30 @@
   "redirects": [
     {
       "source": "/onboarding/consent",
-      "destination": "/onboarding/front",
+      "destination": "/onboarding/photos",
+      "permanent": false
+    },
+    {
+      "source": "/onboarding/camera",
+      "destination": "/onboarding/photos",
+      "permanent": false
+    },
+    {
+      "source": "/onboarding/front",
+      "destination": "/onboarding/photos",
+      "permanent": false
+    },
+    {
+      "source": "/onboarding/side",
+      "destination": "/onboarding/photos",
       "permanent": false
     }
   ],
   "functions": {
-    "api/analyze-face.js": {
-      "maxDuration": 60
-    },
-    "api/generate-preview.js": {
-      "maxDuration": 120
-    },
-    "api/stripe.js": {
-      "maxDuration": 30
-    }
+    "api/analyze-face.js": { "maxDuration": 60 },
+    "api/generate-preview.js": { "maxDuration": 120 },
+    "api/simulate-procedure.js": { "maxDuration": 120 },
+    "api/chat.js": { "maxDuration": 60 },
+    "api/stripe.js": { "maxDuration": 30 }
   }
 }
