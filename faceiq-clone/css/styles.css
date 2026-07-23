@@ -426,12 +426,35 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-weight: 600;
 }
 
+.hero__title--lookmax {
+  font-family: var(--font-sans);
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title-punch {
+  display: block;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.hero__title-punch--accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #5b8def 55%, #7aa8f5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .hero__subtitle {
   font-size: clamp(1rem, 2vw, 1.125rem);
   color: var(--text-muted);
-  max-width: 32rem;
+  max-width: 34rem;
   margin-inline: auto;
   margin-bottom: 2rem;
+  line-height: 1.7;
 }
 
 @media (min-width: 1024px) {
