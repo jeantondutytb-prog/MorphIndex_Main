@@ -480,11 +480,127 @@
     return t("dashboard.protocols._shared." + section + "." + id);
   }
 
+  function catalogT(path) {
+    return window.CatalogCopy && window.CatalogCopy.t ? window.CatalogCopy.t(path) : path;
+  }
+
   function escapeAttr(text) {
     return String(text)
       .replace(/&/g, "&amp;")
       .replace(/"/g, "&quot;")
       .replace(/</g, "&lt;");
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderActionDetailHtml(actionKey) {
+    var catalog = window.ProtocolCatalog;
+    if (!catalog) return "";
+    var detail = catalog.getActionDetail(actionKey);
+    if (!detail) return "";
+
+    var html = '<div class="dashboard-action-detail">';
+    if (detail.frequency || detail.duration) {
+      html += '<p class="dashboard-action-detail__meta">';
+      if (detail.frequency) {
+        html +=
+          "<span><strong>" +
+          escapeHtml(catalogT("ui.frequency")) +
+          "</strong> " +
+          escapeHtml(detail.frequency) +
+          "</span>";
+      }
+      if (detail.duration) {
+        html +=
+          "<span><strong>" +
+          escapeHtml(catalogT("ui.duration")) +
+          "</strong> " +
+          escapeHtml(detail.duration) +
+          "</span>";
+      }
+      html += "</p>";
+    }
+
+    if (detail.steps && detail.steps.length) {
+      html += "<h4>" + escapeHtml(catalogT("ui.steps")) + "</h4><ol>";
+      detail.steps.forEach(function (stepKey) {
+        html += "<li>" + escapeHtml(catalogT("steps." + stepKey)) + "</li>";
+      });
+      html += "</ol>";
+    }
+
+    if (detail.exercises && detail.exercises.length) {
+      html += "<h4>" + escapeHtml(catalogT("ui.exercises")) + "</h4>";
+      detail.exercises.forEach(function (exId) {
+        var ex = catalog.getExercise(exId) || {};
+        html += '<article class="dashboard-action-exercise">';
+        html += "<strong>" + escapeHtml(catalogT("exercises." + exId + ".title")) + "</strong>";
+        if (ex.sets || ex.durationMin) {
+          html +=
+            '<p class="dashboard-action-exercise__meta">' +
+            escapeHtml(
+              (ex.sets ? ex.sets : "") +
+                (ex.sets && ex.durationMin ? " · " : "") +
+                (ex.durationMin ? "~" + ex.durationMin + " min" : "")
+            ) +
+            "</p>";
+        }
+        var caution = catalogT("exercises." + exId + ".caution");
+        if (caution && caution.indexOf("exercises.") !== 0) {
+          html +=
+            '<p class="dashboard-action-exercise__caution"><strong>' +
+            escapeHtml(catalogT("ui.caution")) +
+            ":</strong> " +
+            escapeHtml(caution) +
+            "</p>";
+        }
+        var steps = catalogT("exercises." + exId + ".steps");
+        if (Array.isArray(steps)) {
+          html += "<ol>";
+          steps.forEach(function (step) {
+            html += "<li>" + escapeHtml(step) + "</li>";
+          });
+          html += "</ol>";
+        }
+        html += "</article>";
+      });
+    }
+
+    if (detail.products && detail.products.length) {
+      html += "<h4>" + escapeHtml(catalogT("ui.products")) + "</h4>";
+      html += '<ul class="dashboard-action-products">';
+      detail.products.forEach(function (productId) {
+        var product = catalog.getProduct(productId) || {};
+        html += "<li>";
+        html +=
+          "<strong>" + escapeHtml(catalogT("products." + productId + ".name")) + "</strong>";
+        html +=
+          "<p>" +
+          escapeHtml(catalogT("ui.why")) +
+          ": " +
+          escapeHtml(catalogT("products." + productId + ".why")) +
+          "</p>";
+        if (product.examples && product.examples.length) {
+          html +=
+            '<p class="dashboard-action-products__examples"><span>' +
+            escapeHtml(catalogT("ui.examples")) +
+            ":</span> " +
+            escapeHtml(product.examples.join(" · ")) +
+            "</p>";
+        }
+        html += "</li>";
+      });
+      html += "</ul>";
+    }
+
+    html += "</div>";
+    return html;
   }
 
   function renderPlan(container, analysis, userId, callbacks) {
@@ -601,13 +717,16 @@
           .replace("{total}", phaseActions.length) +
         "</p>";
       html += "</div>";
-      html += '<ul class="dashboard-journey__actions">';
-      phaseActions.forEach(function (actionKey) {
+      html += '<ul class="dashboard-journey__actions dashboard-journey__actions--detailed">';
+      phaseActions.forEach(function (actionKey, actionIndex) {
         var checked = !!actionProgress[actionKey];
+        var detailId = "action-detail-" + actionIndex + "-" + actionKey;
         html +=
-          '<li class="dashboard-journey__action' +
+          '<li class="dashboard-journey__action dashboard-journey__action--card' +
           (checked ? " is-done" : "") +
           '">' +
+          '<div class="dashboard-action-card">' +
+          '<div class="dashboard-action-card__head">' +
           '<label class="dashboard-journey__action-label">' +
           '<input type="checkbox" class="dashboard-journey__action-checkbox" data-action-key="' +
           escapeAttr(actionKey) +
@@ -618,6 +737,18 @@
           protocolText(focusKey, "actions", actionKey) +
           "</span>" +
           "</label>" +
+          '<button type="button" class="dashboard-action-card__toggle" aria-expanded="false" aria-controls="' +
+          escapeAttr(detailId) +
+          '" data-action-toggle>' +
+          escapeHtml(catalogT("ui.showDetail")) +
+          "</button>" +
+          "</div>" +
+          '<div class="dashboard-action-card__body" id="' +
+          escapeAttr(detailId) +
+          '" hidden>' +
+          renderActionDetailHtml(actionKey) +
+          "</div>" +
+          "</div>" +
           "</li>";
       });
       html += "</ul>";
@@ -719,6 +850,33 @@
         if (typeof callbacks.onActionToggle === "function") {
           callbacks.onActionToggle(key, input.checked);
         }
+      });
+    });
+
+    container.querySelectorAll("[data-action-toggle]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var card = button.closest(".dashboard-action-card");
+        if (!card) return;
+        var body = card.querySelector(".dashboard-action-card__body");
+        if (!body) return;
+        var willOpen = button.getAttribute("aria-expanded") !== "true";
+
+        container.querySelectorAll(".dashboard-action-card.is-open").forEach(function (openCard) {
+          if (openCard === card) return;
+          openCard.classList.remove("is-open");
+          var openToggle = openCard.querySelector("[data-action-toggle]");
+          var openBody = openCard.querySelector(".dashboard-action-card__body");
+          if (openToggle) {
+            openToggle.setAttribute("aria-expanded", "false");
+            openToggle.textContent = catalogT("ui.showDetail");
+          }
+          if (openBody) openBody.hidden = true;
+        });
+
+        card.classList.toggle("is-open", willOpen);
+        button.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        button.textContent = willOpen ? catalogT("ui.hideDetail") : catalogT("ui.showDetail");
+        body.hidden = !willOpen;
       });
     });
 

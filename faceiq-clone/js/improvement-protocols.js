@@ -1,7 +1,7 @@
 (function () {
   /**
-   * Structural protocol data — display text lives in i18n (dashboard.protocols.*).
-   * Each protocol has 3 phases (~4 weeks each) with actionable checklist items.
+   * Structural protocol data — display text lives in i18n (dashboard.protocols.*)
+   * and detailed how-to / products / exercises in protocol-catalog.js.
    */
   var PROTOCOLS = {
     jawlineDefinition: {
@@ -12,13 +12,13 @@
           id: "foundation",
           weekStart: 1,
           weekEnd: 4,
-          actions: ["baselinePhotos", "bodyFat", "tonguePosture"]
+          actions: ["baselinePhotos", "bodyFat", "tonguePosture", "chinTucks", "guaShaLymph"]
         },
         {
           id: "training",
           weekStart: 5,
           weekEnd: 8,
-          actions: ["mewingDaily", "jawExercises", "neckPosture"]
+          actions: ["mewingDaily", "jawExercises", "neckPosture", "hardChewing", "weeklyPhotos"]
         },
         {
           id: "refinement",
@@ -38,13 +38,13 @@
           id: "foundation",
           weekStart: 1,
           weekEnd: 4,
-          actions: ["consistentAngles", "sleepPosition", "hydration"]
+          actions: ["baselinePhotos", "consistentAngles", "sleepPosition", "hydration"]
         },
         {
           id: "training",
           weekStart: 5,
           weekEnd: 8,
-          actions: ["cheekExercises", "midfaceAwareness", "weeklyPhotos"]
+          actions: ["cheekExercises", "guaShaCheek", "midfaceAwareness", "weeklyPhotos"]
         },
         {
           id: "refinement",
@@ -64,13 +64,13 @@
           id: "foundation",
           weekStart: 1,
           weekEnd: 4,
-          actions: ["gentleCleanser", "dailySpf", "baselinePhotos"]
+          actions: ["patchTest", "gentleCleanser", "moisturizerBasic", "dailySpf", "baselinePhotos"]
         },
         {
           id: "training",
           weekStart: 5,
           weekEnd: 8,
-          actions: ["introduceRetinoid", "moisturize", "weeklyPhotos"]
+          actions: ["niacinamide", "introduceRetinoid", "moisturize", "guaShaFace", "weeklyPhotos"]
         },
         {
           id: "refinement",
@@ -90,13 +90,13 @@
           id: "foundation",
           weekStart: 1,
           weekEnd: 3,
-          actions: ["sleepSchedule", "hydration", "baselinePhotos"]
+          actions: ["sleepSchedule", "hydration", "coldCompress", "baselinePhotos"]
         },
         {
           id: "training",
           weekStart: 4,
           weekEnd: 6,
-          actions: ["caffeineTopical", "coldCompress", "weeklyPhotos"]
+          actions: ["caffeineTopical", "eyeCream", "lymphaticDrain", "weeklyPhotos"]
         },
         {
           id: "refinement",
@@ -116,13 +116,13 @@
           id: "foundation",
           weekStart: 1,
           weekEnd: 4,
-          actions: ["learnTechnique", "postureChecks", "reminderSetup"]
+          actions: ["learnTechnique", "nasalBreathing", "postureChecks", "reminderSetup"]
         },
         {
           id: "training",
           weekStart: 5,
           weekEnd: 8,
-          actions: ["dailyBlocks", "neckAlignment", "weeklyPhotos"]
+          actions: ["dailyBlocks", "neckAlignment", "mewingDaily", "weeklyPhotos"]
         },
         {
           id: "refinement",
@@ -148,7 +148,7 @@
           id: "training",
           weekStart: 4,
           weekEnd: 6,
-          actions: ["haircutUpdate", "facialHair", "weeklyPhotos"]
+          actions: ["haircutUpdate", "facialHair", "browGroom", "weeklyPhotos"]
         },
         {
           id: "refinement",

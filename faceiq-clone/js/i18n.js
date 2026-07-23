@@ -439,11 +439,14 @@
           },
           jawlineDefinition: {
             actions: {
-              bodyFat: "Maintain a moderate caloric deficit if body fat may be softening your jawline",
-              tonguePosture: "Practice proper tongue posture for 10 minutes daily",
-              mewingDaily: "Keep consistent tongue-on-palate posture during the day",
-              jawExercises: "Add light jaw/masseter exercises 3× per week",
-              neckPosture: "Do daily neck alignment drills (chin tuck, wall posture)"
+              bodyFat: "Body composition: keep facial fat lower so the jaw shows",
+              tonguePosture: "Learn tongue posture (10 min drills)",
+              mewingDaily: "Hold mewing posture during the day",
+              jawExercises: "Masseter work + release (3× / week)",
+              neckPosture: "Neck alignment drills (chin tuck, wall posture)",
+              chinTucks: "Daily chin-tuck sets for neck/jaw support",
+              guaShaLymph: "Gua sha lymphatic drainage for the jawline",
+              hardChewing: "Balanced hard-gum chew sessions (optional)"
             },
             avoid: {
               unsupervisedSurgery: "Booking procedures without a qualified professional",
@@ -456,11 +459,12 @@
           },
           midfaceBalance: {
             actions: {
-              consistentAngles: "Photograph your face from the same front and ¾ angles each week",
-              sleepPosition: "Avoid sleeping face-down to reduce puffiness asymmetry",
-              hydration: "Drink enough water daily to reduce midface bloating",
-              cheekExercises: "Practice gentle cheek lift holds 5 min/day",
-              midfaceAwareness: "Notice posture and facial tension that collapses midface support"
+              consistentAngles: "Weekly photos at identical front / ¾ angles",
+              sleepPosition: "Sleep position: avoid face-down puffiness",
+              hydration: "Hydration + lower late salt to reduce midface bloat",
+              cheekExercises: "Cheek lift holds (5 min/day)",
+              midfaceAwareness: "Catch posture/tension that collapses midface support",
+              guaShaCheek: "Gua sha for cheeks / midface lift appearance"
             },
             avoid: {
               fillerWithoutConsult: "DIY fillers or unlicensed injectables",
@@ -473,10 +477,14 @@
           },
           skinRoutine: {
             actions: {
-              gentleCleanser: "Use a gentle cleanser morning and night",
-              dailySpf: "Apply SPF 30+ every morning, even indoors",
-              introduceRetinoid: "Introduce a retinoid slowly (2–3 nights/week)",
-              moisturize: "Use a non-comedogenic moisturizer after actives"
+              patchTest: "Patch-test every new product (24–48h)",
+              gentleCleanser: "Gentle cleanser morning and night",
+              moisturizerBasic: "Barrier moisturizer morning and night",
+              dailySpf: "SPF 50 every morning (non-negotiable)",
+              niacinamide: "Add niacinamide serum for pores / oil",
+              introduceRetinoid: "Introduce beginner retinol 2–3 nights/week",
+              moisturize: "Moisturize after every active",
+              guaShaFace: "Full-face gua sha + lymphatic drainage"
             },
             avoid: {
               stackingActives: "Using multiple strong actives on the same night",
@@ -489,10 +497,12 @@
           },
           underEyeCare: {
             actions: {
-              sleepSchedule: "Target 7–8 hours of sleep with a consistent bedtime",
-              hydration: "Stay hydrated and reduce late-night salt intake",
-              caffeineTopical: "Use a caffeine-based eye product in the morning",
-              coldCompress: "Apply a cool compress for 5–10 min on puffy mornings"
+              sleepSchedule: "Fixed 7–8h sleep schedule",
+              hydration: "Hydration + cut late salt/alcohol",
+              caffeineTopical: "Morning caffeine eye serum",
+              eyeCream: "Night peptide / repair eye cream",
+              coldCompress: "Cool compress on puffy mornings",
+              lymphaticDrain: "Under-eye lymphatic gua sha drain"
             },
             avoid: {
               harshScrubs: "Aggressive scrubs or strong acids on the under-eye area",
@@ -505,12 +515,14 @@
           },
           postureMewing: {
             actions: {
-              learnTechnique: "Learn correct resting tongue posture (tip behind front teeth, whole tongue up)",
-              postureChecks: "Set 3 daily reminders to reset posture",
-              reminderSetup: "Place visual cues (notes) at your desk and mirror",
-              dailyBlocks: "Do two 5-minute focused posture blocks daily",
-              neckAlignment: "Practice chin tucks and neck extension daily",
-              habitReview: "Review which times of day you lose posture and fix triggers"
+              learnTechnique: "Learn correct mewing technique in the mirror",
+              nasalBreathing: "Build all-day nasal breathing habit",
+              postureChecks: "3 daily posture reset alarms",
+              reminderSetup: "Desk + mirror visual cues",
+              dailyBlocks: "Two 5-minute focused mewing blocks",
+              neckAlignment: "Chin tucks + wall posture daily",
+              mewingDaily: "Keep resting tongue posture all day",
+              habitReview: "Weekly review of posture triggers"
             },
             avoid: {
               forcefulPressure: "Pressing the tongue with excessive force",
@@ -523,11 +535,12 @@
           },
           grooming: {
             actions: {
-              styleAudit: "Audit your current haircut and facial hair against your face shape",
-              referencePhotos: "Collect 3 reference looks that match your features",
-              haircutUpdate: "Book a haircut that frames your jaw and balances proportions",
-              facialHair: "Shape or grow facial hair to enhance jaw definition",
-              refineLook: "Fine-tune grooming weekly (lines, length, product)"
+              styleAudit: "Audit haircut / facial hair vs face shape",
+              referencePhotos: "Collect 3 realistic reference looks",
+              haircutUpdate: "Haircut that frames jaw + cheekbones",
+              facialHair: "Shape facial hair to sharpen the jawline",
+              browGroom: "Weekly brow grooming for upper-third frame",
+              refineLook: "Weekly micro-adjustments (lines, length, product)"
             },
             avoid: {
               drasticChanges: "Extreme style changes before tracking baseline photos",
@@ -1094,11 +1107,14 @@
           },
           jawlineDefinition: {
             actions: {
-              bodyFat: "Maintenir un léger déficit calorique si le gras adoucit la mâchoire",
-              tonguePosture: "Pratiquer la posture linguale correcte 10 min/jour",
-              mewingDaily: "Garder la langue au palais de façon constante dans la journée",
-              jawExercises: "Ajouter des exercices légers mâchoire/masséters 3×/semaine",
-              neckPosture: "Faire des exercices d'alignement cervical quotidiens (menton rentré)"
+              bodyFat: "Composition corporelle : moins de gras facial pour révéler la mâchoire",
+              tonguePosture: "Apprendre la posture linguale (drills 10 min)",
+              mewingDaily: "Maintenir le mewing dans la journée",
+              jawExercises: "Travail masséters + relâchement (3× / semaine)",
+              neckPosture: "Alignement cervical (chin tuck, mur)",
+              chinTucks: "Séries quotidiennes de chin tucks",
+              guaShaLymph: "Gua sha lymphatique pour la mâchoire",
+              hardChewing: "Sessions de chewing-gum dur équilibrées (optionnel)"
             },
             avoid: {
               unsupervisedSurgery: "Réserver des procédures sans professionnel qualifié",
@@ -1111,11 +1127,12 @@
           },
           midfaceBalance: {
             actions: {
-              consistentAngles: "Photographier le visage chaque semaine aux mêmes angles face et ¾",
-              sleepPosition: "Éviter de dormir face contre l'oreiller pour limiter les asymétries",
-              hydration: "Boire suffisamment pour réduire les gonflements du midface",
-              cheekExercises: "Pratiquer des légers maintiens des joues 5 min/jour",
-              midfaceAwareness: "Repérer posture et tensions qui affaiblissent le soutien du midface"
+              consistentAngles: "Photos hebdo aux mêmes angles face / ¾",
+              sleepPosition: "Position de sommeil : éviter le ventre",
+              hydration: "Hydratation + moins de sel le soir",
+              cheekExercises: "Maintiens lift des joues (5 min/jour)",
+              midfaceAwareness: "Repérer posture/tensions qui affaissent le midface",
+              guaShaCheek: "Gua sha joues / midface"
             },
             avoid: {
               fillerWithoutConsult: "Fillers en DIY ou injectables non licenciés",
@@ -1128,10 +1145,14 @@
           },
           skinRoutine: {
             actions: {
-              gentleCleanser: "Utiliser un nettoyant doux matin et soir",
-              dailySpf: "Appliquer un SPF 30+ chaque matin, même en intérieur",
-              introduceRetinoid: "Introduire un rétinoïde progressivement (2–3 soirs/semaine)",
-              moisturize: "Hydrater avec une crème non comédogène après les actifs"
+              patchTest: "Test cutané de chaque nouveau produit (24–48 h)",
+              gentleCleanser: "Nettoyant doux matin et soir",
+              moisturizerBasic: "Crème barrière matin et soir",
+              dailySpf: "SPF 50 chaque matin (non négociable)",
+              niacinamide: "Ajouter un sérum niacinamide (pores / gras)",
+              introduceRetinoid: "Introduire un rétinol débutant 2–3 soirs/semaine",
+              moisturize: "Hydrater après chaque actif",
+              guaShaFace: "Gua sha visage complet + drainage lymphatique"
             },
             avoid: {
               stackingActives: "Superposer plusieurs actifs forts le même soir",
@@ -1144,10 +1165,12 @@
           },
           underEyeCare: {
             actions: {
-              sleepSchedule: "Viser 7–8 h de sommeil avec une heure de coucher régulière",
-              hydration: "Rester hydraté et réduire le sel le soir",
-              caffeineTopical: "Utiliser un soin yeux à base de caféine le matin",
-              coldCompress: "Appliquer un compress froid 5–10 min les matins gonflés"
+              sleepSchedule: "Sommeil fixe 7–8 h",
+              hydration: "Hydratation + moins de sel/alcool le soir",
+              caffeineTopical: "Sérum yeux caféine le matin",
+              eyeCream: "Crème yeux peptides / réparation le soir",
+              coldCompress: "Compresses froides les matins gonflés",
+              lymphaticDrain: "Drainage gua sha sous les yeux"
             },
             avoid: {
               harshScrubs: "Gommages agressifs ou acides forts sur le contour des yeux",
@@ -1160,12 +1183,14 @@
           },
           postureMewing: {
             actions: {
-              learnTechnique: "Apprendre la posture linguale au repos (langue entière au palais)",
-              postureChecks: "Programmer 3 rappels quotidiens pour réinitialiser la posture",
-              reminderSetup: "Placer des rappels visuels au bureau et devant le miroir",
-              dailyBlocks: "Faire deux blocs de 5 min de posture ciblée par jour",
-              neckAlignment: "Pratiquer menton rentré et extension cervicale quotidiennement",
-              habitReview: "Identifier les moments où la posture se dégrade et corriger les déclencheurs"
+              learnTechnique: "Apprendre le mewing correct devant le miroir",
+              nasalBreathing: "Habitude de respiration nasale toute la journée",
+              postureChecks: "3 alarmes quotidiennes de reset posture",
+              reminderSetup: "Rappels visuels bureau + miroir",
+              dailyBlocks: "Deux blocs mewing de 5 minutes",
+              neckAlignment: "Chin tucks + posture au mur chaque jour",
+              mewingDaily: "Posture linguale au repos toute la journée",
+              habitReview: "Revue hebdo des triggers de mauvaise posture"
             },
             avoid: {
               forcefulPressure: "Appuyer la langue avec une force excessive",
@@ -1178,11 +1203,12 @@
           },
           grooming: {
             actions: {
-              styleAudit: "Auditer coiffure et pilosité par rapport à la forme du visage",
-              referencePhotos: "Collecter 3 références adaptées à vos traits",
-              haircutUpdate: "Prendre rendez-vous pour une coupe qui cadre la mâchoire",
-              facialHair: "Tailler ou laisser pousser la barbe pour renforcer la mâchoire",
-              refineLook: "Affiner le grooming chaque semaine (lignes, longueur, produits)"
+              styleAudit: "Audit coupe / pilosité vs forme du visage",
+              referencePhotos: "Collecter 3 références réalistes",
+              haircutUpdate: "Coupe qui cadre mâchoire + pommettes",
+              facialHair: "Façonner la barbe pour affiner la jawline",
+              browGroom: "Grooming sourcils hebdo (tiers supérieur)",
+              refineLook: "Micro-ajustements hebdo (lignes, longueur, produit)"
             },
             avoid: {
               drasticChanges: "Changements extrêmes avant les photos de référence",
@@ -1749,11 +1775,14 @@
           },
           jawlineDefinition: {
             actions: {
-              bodyFat: "Mantener un déficit calórico moderado si la grasa suaviza la mandíbula",
-              tonguePosture: "Practicar postura lingual correcta 10 min/día",
-              mewingDaily: "Mantener la lengua en el paladar de forma constante",
-              jawExercises: "Añadir ejercicios ligeros de mandíbula/maseteros 3×/semana",
-              neckPosture: "Hacer ejercicios diarios de alineación cervical (mentón retraído)"
+              bodyFat: "Composición corporal: menos grasa facial para revelar la mandíbula",
+              tonguePosture: "Aprender postura lingual (drills 10 min)",
+              mewingDaily: "Mantener mewing durante el día",
+              jawExercises: "Trabajo de maseteros + liberación (3× / semana)",
+              neckPosture: "Alineación cervical (chin tuck, pared)",
+              chinTucks: "Series diarias de chin tucks",
+              guaShaLymph: "Gua sha linfático para la mandíbula",
+              hardChewing: "Sesiones de chicle duro equilibradas (opcional)"
             },
             avoid: {
               unsupervisedSurgery: "Reservar procedimientos sin un profesional cualificado",
@@ -1766,11 +1795,12 @@
           },
           midfaceBalance: {
             actions: {
-              consistentAngles: "Fotografiar el rostro cada semana en los mismos ángulos frontal y ¾",
-              sleepPosition: "Evitar dormir boca abajo para reducir asimetrías por hinchazón",
-              hydration: "Beber suficiente agua para reducir hinchazón del midface",
-              cheekExercises: "Practicar suaves mantenimientos de mejillas 5 min/día",
-              midfaceAwareness: "Notar postura y tensión que colapsan el soporte del midface"
+              consistentAngles: "Fotos semanales con los mismos ángulos frontal / ¾",
+              sleepPosition: "Posición al dormir: evitar boca abajo",
+              hydration: "Hidratación + menos sal por la noche",
+              cheekExercises: "Mantenimientos de lift de mejillas (5 min/día)",
+              midfaceAwareness: "Detectar postura/tensión que colapsa el midface",
+              guaShaCheek: "Gua sha de mejillas / midface"
             },
             avoid: {
               fillerWithoutConsult: "Rellenos caseros o inyectables sin licencia",
@@ -1783,10 +1813,14 @@
           },
           skinRoutine: {
             actions: {
-              gentleCleanser: "Usar limpiador suave mañana y noche",
-              dailySpf: "Aplicar SPF 30+ cada mañana, incluso en interior",
-              introduceRetinoid: "Introducir retinoide lentamente (2–3 noches/semana)",
-              moisturize: "Hidratar con crema no comedogénica tras los activos"
+              patchTest: "Prueba de parche de cada producto nuevo (24–48 h)",
+              gentleCleanser: "Limpiador suave mañana y noche",
+              moisturizerBasic: "Crema barrera mañana y noche",
+              dailySpf: "SPF 50 cada mañana (no negociable)",
+              niacinamide: "Añadir serum niacinamida (poros / grasa)",
+              introduceRetinoid: "Introducir retinol principiante 2–3 noches/semana",
+              moisturize: "Hidratar después de cada activo",
+              guaShaFace: "Gua sha facial completo + drenaje linfático"
             },
             avoid: {
               stackingActives: "Combinar varios activos fuertes la misma noche",
@@ -1799,10 +1833,12 @@
           },
           underEyeCare: {
             actions: {
-              sleepSchedule: "Apuntar a 7–8 h de sueño con hora fija de acostarse",
-              hydration: "Mantenerse hidratado y reducir sal por la noche",
-              caffeineTopical: "Usar producto ocular con cafeína por la mañana",
-              coldCompress: "Aplicar compresa fría 5–10 min en mañanas hinchadas"
+              sleepSchedule: "Horario fijo de sueño 7–8 h",
+              hydration: "Hidratación + menos sal/alcohol por la noche",
+              caffeineTopical: "Serum ojos con cafeína por la mañana",
+              eyeCream: "Crema ojos péptidos / reparación por la noche",
+              coldCompress: "Compresa fría en mañanas hinchadas",
+              lymphaticDrain: "Drenaje gua sha bajo los ojos"
             },
             avoid: {
               harshScrubs: "Exfoliantes agresivos o ácidos fuertes en el contorno de ojos",
@@ -1815,12 +1851,14 @@
           },
           postureMewing: {
             actions: {
-              learnTechnique: "Aprender postura lingual en reposo (lengua completa en el paladar)",
-              postureChecks: "Programar 3 recordatorios diarios para resetear postura",
-              reminderSetup: "Colocar recordatorios visuales en el escritorio y el espejo",
-              dailyBlocks: "Hacer dos bloques de 5 min de postura enfocada al día",
-              neckAlignment: "Practicar mentón retraído y extensión cervical a diario",
-              habitReview: "Identificar cuándo pierdes postura y corregir los detonantes"
+              learnTechnique: "Aprender mewing correcto frente al espejo",
+              nasalBreathing: "Hábito de respiración nasal todo el día",
+              postureChecks: "3 alarmas diarias de reset de postura",
+              reminderSetup: "Recordatorios visuales escritorio + espejo",
+              dailyBlocks: "Dos bloques de mewing de 5 minutos",
+              neckAlignment: "Chin tucks + postura en pared a diario",
+              mewingDaily: "Postura lingual en reposo todo el día",
+              habitReview: "Revisión semanal de detonantes de mala postura"
             },
             avoid: {
               forcefulPressure: "Presionar la lengua con fuerza excesiva",
@@ -1833,9 +1871,10 @@
           },
           grooming: {
             actions: {
-              styleAudit: "Auditar corte y vello facial según la forma de tu rostro",
-              referencePhotos: "Recopilar 3 referencias que encajen con tus rasgos",
-              haircutUpdate: "Reservar corte que enmarque la mandíbula y equilibre proporciones",
+              styleAudit: "Auditar corte / vello vs forma del rostro",
+              referencePhotos: "Recopilar 3 referencias realistas",
+              haircutUpdate: "Corte que enmarque mandíbula + pómulos",
+              browGroom: "Grooming semanal de cejas (tercio superior)",
               facialHair: "Perfilar o dejar crecer vello facial para realzar la mandíbula",
               refineLook: "Refinar el grooming semanalmente (líneas, longitud, producto)"
             },
