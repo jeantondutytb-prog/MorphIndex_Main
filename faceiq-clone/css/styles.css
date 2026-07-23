@@ -31,13 +31,13 @@
   --bg: #09090b;
   --bg-muted: #0f1018;
   --text: #fafafa;
-  --text-muted: #71717a;
-  --text-subtle: #3f3f46;
-  --border: #27272a;
-  --border-strong: #3f3f46;
+  --text-muted: #a1a1aa;
+  --text-subtle: #71717a;
+  --border: #3f3f46;
+  --border-strong: #52525b;
   --card: #18181b;
   --card-muted: #27272a;
-  --accent: #ffffff;
+  --accent: #fafafa;
   --accent-fg: #18181b;
   --hero-gradient: linear-gradient(180deg, #0c0c14 0%, #0f1018 32%, #111220 58%, #0e0f18 100%);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
@@ -492,6 +492,28 @@ button {
 .btn--ghost:hover {
   color: var(--text);
   opacity: 1;
+}
+
+/* Auth / app / onboarding — clearer secondary buttons */
+.auth-page .btn--ghost {
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding-inline: 1rem;
+}
+
+.auth-page .btn--ghost:hover {
+  background: var(--card-muted);
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.auth-page .btn {
+  border: 1px solid transparent;
+}
+
+.auth-page .btn:not(.btn--ghost):not(:disabled) {
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--text) 12%, transparent);
 }
 
 /* Hero */
@@ -2266,7 +2288,7 @@ button {
   letter-spacing: 0.04em;
   padding: 0.25rem 0.5rem;
   background: var(--text);
-  color: var(--accent-fg);
+  color: var(--bg);
   border-radius: var(--radius-full);
 }
 
@@ -2504,12 +2526,18 @@ body.paywall-open {
   padding: 0.5rem 0.875rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-full);
-  background: var(--card-muted);
+  background: var(--card);
   color: var(--text-muted);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.dashboard-tabs__btn:hover:not(.is-active) {
+  color: var(--text);
+  border-color: var(--text-muted);
+  background: var(--card-muted);
 }
 
 .dashboard-tabs__btn.is-active {
