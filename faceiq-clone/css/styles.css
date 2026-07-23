@@ -402,9 +402,62 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text-muted);
 }
 
-.hero__stats strong {
+.hero__stats strong,
+.hero__stats .stat-counter {
   color: var(--text);
   font-weight: 600;
+}
+
+.stat-counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-counter__value {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.stat-counter__plus {
+  font-size: 0.85em;
+  opacity: 0.55;
+  letter-spacing: 0;
+}
+
+.stat-digit {
+  display: inline-block;
+  height: 1em;
+  line-height: 1;
+  overflow: hidden;
+  vertical-align: baseline;
+}
+
+.stat-digit--sep {
+  overflow: visible;
+  width: 0.25em;
+  text-align: center;
+}
+
+.stat-digit__reel {
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.stat-digit__reel span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.stat-digit__reel--spin {
+  transform: translateY(0);
+}
+
+.stat-digit__reel--spin.is-spinning {
+  transform: translateY(-100%);
 }
 
 .hero__stars {
