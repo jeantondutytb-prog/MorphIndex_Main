@@ -89,7 +89,21 @@
         subtitle: "450,000+ people have started their journey. The question is — will you?",
         btn: "Begin Your Assessment", note: "Your future self will thank you."
       },
-      footer: { join: "Join Us", privacy: "Privacy", terms: "Terms", copy: "© 2026 FaceIQ Labs" }
+      footer: { join: "Join Us", privacy: "Privacy", terms: "Terms", copy: "© 2026 FaceIQ Labs" },
+      auth: {
+        title: "Log in or sign up",
+        emailPlaceholder: "Email",
+        continue: "Continue",
+        or: "or",
+        google: "Continue with Google",
+        apple: "Continue with Apple",
+        legal: "By continuing, you agree to our Terms of Service and Privacy Policy.",
+        back: "Back to home",
+        meta: {
+          title: "FaceIQ Labs — Log in or sign up",
+          description: "Create your FaceIQ Labs account or log in to start your transformation journey."
+        }
+      }
     },
     fr: {
       meta: {
@@ -177,7 +191,21 @@
         subtitle: "450 000+ personnes ont commencé leur parcours. La question est — allez-vous le faire ?",
         btn: "Commencer votre évaluation", note: "Votre futur vous vous remerciera."
       },
-      footer: { join: "Nous rejoindre", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 FaceIQ Labs" }
+      footer: { join: "Nous rejoindre", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 FaceIQ Labs" },
+      auth: {
+        title: "Se connecter ou s'inscrire",
+        emailPlaceholder: "E-mail",
+        continue: "Continuer",
+        or: "ou",
+        google: "Continuer avec Google",
+        apple: "Continuer avec Apple",
+        legal: "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
+        back: "Retour à l'accueil",
+        meta: {
+          title: "FaceIQ Labs — Se connecter ou s'inscrire",
+          description: "Créez votre compte FaceIQ Labs ou connectez-vous pour commencer votre parcours de transformation."
+        }
+      }
     },
     es: {
       meta: {
@@ -265,7 +293,21 @@
         subtitle: "450.000+ personas han comenzado su viaje. La pregunta es — ¿lo harás tú?",
         btn: "Comenzar tu evaluación", note: "Tu yo del futuro te lo agradecerá."
       },
-      footer: { join: "Únete", privacy: "Privacidad", terms: "Términos", copy: "© 2026 FaceIQ Labs" }
+      footer: { join: "Únete", privacy: "Privacidad", terms: "Términos", copy: "© 2026 FaceIQ Labs" },
+      auth: {
+        title: "Iniciar sesión o registrarse",
+        emailPlaceholder: "Correo electrónico",
+        continue: "Continuar",
+        or: "o",
+        google: "Continuar con Google",
+        apple: "Continuar con Apple",
+        legal: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
+        back: "Volver al inicio",
+        meta: {
+          title: "FaceIQ Labs — Iniciar sesión o registrarse",
+          description: "Crea tu cuenta de FaceIQ Labs o inicia sesión para comenzar tu viaje de transformación."
+        }
+      }
     }
   };
 
@@ -296,9 +338,19 @@
   function applyLang(lang) {
     var dict = T[lang];
     if (!dict) return;
-    document.title = dict.meta.title;
+    var isAuthPage = document.body && document.body.classList.contains("auth-page");
+    document.title = isAuthPage && dict.auth && dict.auth.meta
+      ? dict.auth.meta.title
+      : dict.meta.title;
     var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", dict.meta.description);
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        isAuthPage && dict.auth && dict.auth.meta
+          ? dict.auth.meta.description
+          : dict.meta.description
+      );
+    }
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var val = get(dict, el.getAttribute("data-i18n"));
       if (val != null) el.textContent = val;
@@ -310,6 +362,10 @@
     document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
       var val = get(dict, el.getAttribute("data-i18n-aria"));
       if (val != null) el.setAttribute("aria-label", val);
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      var val = get(dict, el.getAttribute("data-i18n-placeholder"));
+      if (val != null) el.setAttribute("placeholder", val);
     });
   }
 

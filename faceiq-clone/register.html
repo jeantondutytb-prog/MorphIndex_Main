@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your FaceIQ Labs account or log in to start your transformation journey.">
+  <title>FaceIQ Labs — Log in or sign up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20260723e">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var stored = localStorage.getItem("theme");
+      document.documentElement.setAttribute("data-theme", stored || "light");
+      var lang = localStorage.getItem("lang");
+      if (lang) document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
+</head>
+<body class="auth-page">
+
+  <header class="auth-header">
+    <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
+    <div class="auth-header__actions">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span data-lang-current>EN</span>
+        </button>
+        <div class="lang-switcher__menu" role="menu">
+          <button type="button" role="menuitem" data-lang-option="fr">Français</button>
+          <button type="button" role="menuitem" data-lang-option="en">English</button>
+          <button type="button" role="menuitem" data-lang-option="es">Español</button>
+        </div>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
+        <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="auth">
+    <div class="auth__card">
+      <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
+        <img src="assets/logo.svg" alt="">
+      </a>
+
+      <h1 class="auth__title" data-i18n="auth.title">Log in or sign up</h1>
+
+      <form class="auth__form" id="auth-form" novalidate>
+        <div class="auth__field">
+          <input
+            type="email"
+            id="auth-email"
+            name="email"
+            class="auth__input"
+            autocomplete="email"
+            inputmode="email"
+            required
+            data-i18n-placeholder="auth.emailPlaceholder"
+            placeholder="Email"
+          >
+          <button type="button" class="auth__clear" id="auth-clear" hidden aria-label="Clear email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+        <button type="submit" class="btn btn--full btn--lg" data-i18n="auth.continue">Continue</button>
+      </form>
+
+      <div class="auth__divider" role="separator">
+        <span data-i18n="auth.or">or</span>
+      </div>
+
+      <div class="auth__socials">
+        <button type="button" class="auth__social" data-provider="google">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <span data-i18n="auth.google">Continue with Google</span>
+        </button>
+
+        <button type="button" class="auth__social" data-provider="apple">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <span data-i18n="auth.apple">Continue with Apple</span>
+        </button>
+      </div>
+
+      <p class="auth__legal" data-i18n="auth.legal">By continuing, you agree to our Terms of Service and Privacy Policy.</p>
+    </div>
+  </main>
+
+  <script src="js/i18n.js?v=20260723e"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/auth.js?v=20260723e"></script>
+</body>
+</html>
