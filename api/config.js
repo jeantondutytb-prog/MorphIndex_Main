@@ -7,7 +7,7 @@ export default function handler(request, response) {
       JSON.stringify({
         supabaseUrl: process.env.SUPABASE_URL || "",
         supabaseAnonKey: process.env.SUPABASE_ANON_KEY || "",
-        redirectAfterLogin: process.env.AUTH_REDIRECT_URL || "/"
+        redirectAfterLogin: process.env.AUTH_REDIRECT_URL || "/app"
       }) +
       ";"
   );

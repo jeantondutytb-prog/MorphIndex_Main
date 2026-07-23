@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Create your FaceIQ Labs account or log in to start your transformation journey.">
-  <title>FaceIQ Labs — Log in or sign up</title>
+  <meta name="description" content="Log in to your FaceIQ Labs account.">
+  <title>FaceIQ Labs — Log in</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     })();
   </script>
 </head>
-<body class="auth-page" data-auth-page="register">
+<body class="auth-page" data-auth-page="login">
 
   <header class="auth-header">
     <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
@@ -48,7 +48,7 @@
         <img src="assets/logo.svg" alt="">
       </a>
 
-      <h1 class="auth__title" data-i18n="auth.registerTitle">Create your account</h1>
+      <h1 class="auth__title" data-i18n="auth.loginTitle">Log in</h1>
 
       <p class="auth__error" id="auth-error" hidden role="alert"></p>
 
@@ -83,7 +83,7 @@
             <svg class="auth__toggle-icon auth__toggle-icon--hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
           </button>
         </div>
-        <button type="submit" class="btn btn--full btn--lg" data-i18n="auth.registerSubmit">Continue</button>
+        <button type="submit" class="btn btn--full btn--lg" data-i18n="auth.loginSubmit">Log in</button>
       </form>
 
       <div class="auth__divider" role="separator">
@@ -103,8 +103,8 @@
       </div>
 
       <p class="auth__switch">
-        <span data-i18n="auth.switchToLogin">Already have an account?</span>
-        <a href="/login" data-i18n="auth.switchToLoginLink">Log in</a>
+        <span data-i18n="auth.switchToRegister">Don't have an account?</span>
+        <a href="/register" data-i18n="auth.switchToRegisterLink">Sign up</a>
       </p>
 
       <p class="auth__legal" data-i18n="auth.legal">By continuing, you agree to our Terms of Service and Privacy Policy.</p>

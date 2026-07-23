@@ -9,6 +9,7 @@
 
   if (!form || !emailInput || !passwordInput) return;
 
+  var authMode = document.body.dataset.authPage || "register";
   var supabaseClient = null;
   var busy = false;
 
@@ -96,6 +97,18 @@
   }
 
   async function handleEmailSubmit(email, password) {
+    if (authMode === "login") {
+      var loginResult = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+      if (loginResult.error) {
+        if (loginResult.error.message === "Invalid login credentials") {
+          throw new Error(t("wrongPassword"));
+        }
+        throw new Error(loginResult.error.message);
+      }
+      redirectAfterLogin();
+      return;
+    }
+
     var signIn = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
     if (!signIn.error && signIn.data.session) {
       redirectAfterLogin();

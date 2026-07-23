@@ -3,5 +3,5 @@
 window.APP_CONFIG = {
   supabaseUrl: "",
   supabaseAnonKey: "",
-  redirectAfterLogin: "/"
+  redirectAfterLogin: "/app"
 };

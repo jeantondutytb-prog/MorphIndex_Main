@@ -53,7 +53,7 @@ Dans **Authentication → URL Configuration** :
 | Champ | Valeur |
 |-------|--------|
 | Site URL | `https://www.morphindex.com` |
-| Redirect URLs | `https://www.morphindex.com/register`, `http://localhost:8080/register` |
+| Redirect URLs | `https://www.morphindex.com/register`, `https://www.morphindex.com/login`, `https://www.morphindex.com/app` |
 
 #### 4. Variables d'environnement Vercel
 
@@ -63,7 +63,7 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 |----------|--------|
 | `SUPABASE_URL` | URL du projet Supabase |
 | `SUPABASE_ANON_KEY` | Clé anon public Supabase |
-| `AUTH_REDIRECT_URL` | `/` (optionnel, page après connexion) |
+| `AUTH_REDIRECT_URL` | `/app` (page après connexion) |
 
 Redéploie le projet après avoir ajouté les variables.
 

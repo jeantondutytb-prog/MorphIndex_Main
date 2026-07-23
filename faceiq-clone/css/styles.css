@@ -1520,3 +1520,107 @@ button {
   cursor: not-allowed;
   opacity: 0.7;
 }
+
+.auth__switch {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.auth__switch a {
+  margin-left: 0.35rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.auth__switch a:hover {
+  opacity: 0.8;
+}
+
+/* App page */
+.app-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1.25rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.app-header__brand img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+[data-theme="dark"] .app-header__brand img {
+  filter: invert(1);
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-header__signout {
+  font-size: 0.8125rem;
+  padding-inline: 0.75rem;
+}
+
+.app {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.app__card {
+  width: 100%;
+  max-width: 32rem;
+  text-align: center;
+}
+
+.app__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  letter-spacing: -0.02em;
+  margin: 0.75rem 0 1rem;
+}
+
+.app__email {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.app__subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.app__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}

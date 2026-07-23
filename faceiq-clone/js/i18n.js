@@ -91,19 +91,41 @@
       },
       footer: { join: "Join Us", privacy: "Privacy", terms: "Terms", copy: "© 2026 FaceIQ Labs" },
       auth: {
-        title: "Log in or sign up",
+        loginTitle: "Log in",
+        registerTitle: "Create your account",
+        loginSubmit: "Log in",
+        registerSubmit: "Continue",
         emailPlaceholder: "name@example.com",
         passwordPlaceholder: "*********",
-        continue: "Continue",
         or: "or",
         google: "Continue with Google",
         showPassword: "Show password",
         hidePassword: "Hide password",
+        switchToLogin: "Already have an account?",
+        switchToLoginLink: "Log in",
+        switchToRegister: "Don't have an account?",
+        switchToRegisterLink: "Sign up",
         legal: "By continuing, you agree to our Terms of Service and Privacy Policy.",
         back: "Back to home",
+        loginMeta: {
+          title: "FaceIQ Labs — Log in",
+          description: "Log in to your FaceIQ Labs account."
+        },
+        registerMeta: {
+          title: "FaceIQ Labs — Create your account",
+          description: "Create your FaceIQ Labs account and start your transformation journey."
+        }
+      },
+      app: {
+        eyebrow: "Your account",
+        welcome: "Welcome back",
+        subtitle: "You're signed in. Your analysis dashboard will be available here soon.",
+        startAnalysis: "Start your analysis",
+        backHome: "Back to home",
+        signOut: "Sign out",
         meta: {
-          title: "FaceIQ Labs — Log in or sign up",
-          description: "Create your FaceIQ Labs account or log in to start your transformation journey."
+          title: "FaceIQ Labs — Your account",
+          description: "Your FaceIQ Labs account dashboard."
         }
       }
     },
@@ -195,19 +217,41 @@
       },
       footer: { join: "Nous rejoindre", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 FaceIQ Labs" },
       auth: {
-        title: "Se connecter ou s'inscrire",
+        loginTitle: "Connexion",
+        registerTitle: "Créer votre compte",
+        loginSubmit: "Se connecter",
+        registerSubmit: "Continuer",
         emailPlaceholder: "nom@exemple.com",
         passwordPlaceholder: "*********",
-        continue: "Continuer",
         or: "ou",
         google: "Continuer avec Google",
         showPassword: "Afficher le mot de passe",
         hidePassword: "Masquer le mot de passe",
+        switchToLogin: "Vous avez déjà un compte ?",
+        switchToLoginLink: "Se connecter",
+        switchToRegister: "Pas encore de compte ?",
+        switchToRegisterLink: "S'inscrire",
         legal: "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
         back: "Retour à l'accueil",
+        loginMeta: {
+          title: "FaceIQ Labs — Connexion",
+          description: "Connectez-vous à votre compte FaceIQ Labs."
+        },
+        registerMeta: {
+          title: "FaceIQ Labs — Créer votre compte",
+          description: "Créez votre compte FaceIQ Labs et commencez votre parcours de transformation."
+        }
+      },
+      app: {
+        eyebrow: "Votre compte",
+        welcome: "Bon retour",
+        subtitle: "Vous êtes connecté. Votre tableau de bord d'analyse sera bientôt disponible ici.",
+        startAnalysis: "Commencer votre analyse",
+        backHome: "Retour à l'accueil",
+        signOut: "Se déconnecter",
         meta: {
-          title: "FaceIQ Labs — Se connecter ou s'inscrire",
-          description: "Créez votre compte FaceIQ Labs ou connectez-vous pour commencer votre parcours de transformation."
+          title: "FaceIQ Labs — Votre compte",
+          description: "Votre espace compte FaceIQ Labs."
         }
       }
     },
@@ -299,19 +343,41 @@
       },
       footer: { join: "Únete", privacy: "Privacidad", terms: "Términos", copy: "© 2026 FaceIQ Labs" },
       auth: {
-        title: "Iniciar sesión o registrarse",
+        loginTitle: "Iniciar sesión",
+        registerTitle: "Crear tu cuenta",
+        loginSubmit: "Iniciar sesión",
+        registerSubmit: "Continuar",
         emailPlaceholder: "nombre@ejemplo.com",
         passwordPlaceholder: "*********",
-        continue: "Continuar",
         or: "o",
         google: "Continuar con Google",
         showPassword: "Mostrar contraseña",
         hidePassword: "Ocultar contraseña",
+        switchToLogin: "¿Ya tienes una cuenta?",
+        switchToLoginLink: "Iniciar sesión",
+        switchToRegister: "¿No tienes cuenta?",
+        switchToRegisterLink: "Registrarse",
         legal: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
         back: "Volver al inicio",
+        loginMeta: {
+          title: "FaceIQ Labs — Iniciar sesión",
+          description: "Inicia sesión en tu cuenta de FaceIQ Labs."
+        },
+        registerMeta: {
+          title: "FaceIQ Labs — Crear tu cuenta",
+          description: "Crea tu cuenta de FaceIQ Labs y comienza tu viaje de transformación."
+        }
+      },
+      app: {
+        eyebrow: "Tu cuenta",
+        welcome: "Bienvenido de nuevo",
+        subtitle: "Has iniciado sesión. Tu panel de análisis estará disponible aquí pronto.",
+        startAnalysis: "Comenzar tu análisis",
+        backHome: "Volver al inicio",
+        signOut: "Cerrar sesión",
         meta: {
-          title: "FaceIQ Labs — Iniciar sesión o registrarse",
-          description: "Crea tu cuenta de FaceIQ Labs o inicia sesión para comenzar tu viaje de transformación."
+          title: "FaceIQ Labs — Tu cuenta",
+          description: "Tu panel de cuenta de FaceIQ Labs."
         }
       }
     }
@@ -344,18 +410,25 @@
   function applyLang(lang) {
     var dict = T[lang];
     if (!dict) return;
+    var authPage = document.body && document.body.dataset.authPage;
     var isAuthPage = document.body && document.body.classList.contains("auth-page");
-    document.title = isAuthPage && dict.auth && dict.auth.meta
-      ? dict.auth.meta.title
-      : dict.meta.title;
-    var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        isAuthPage && dict.auth && dict.auth.meta
-          ? dict.auth.meta.description
-          : dict.meta.description
-      );
+    var isAppPage = document.body && document.body.classList.contains("app-page");
+
+    if (isAppPage && dict.app && dict.app.meta) {
+      document.title = dict.app.meta.title;
+      var appMeta = document.querySelector('meta[name="description"]');
+      if (appMeta) appMeta.setAttribute("content", dict.app.meta.description);
+    } else if (isAuthPage && dict.auth) {
+      var meta = authPage === "login" ? dict.auth.loginMeta : dict.auth.registerMeta;
+      if (meta) {
+        document.title = meta.title;
+        var authMeta = document.querySelector('meta[name="description"]');
+        if (authMeta) authMeta.setAttribute("content", meta.description);
+      }
+    } else {
+      document.title = dict.meta.title;
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", dict.meta.description);
     }
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var val = get(dict, el.getAttribute("data-i18n"));
