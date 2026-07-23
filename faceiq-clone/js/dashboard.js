@@ -721,11 +721,17 @@
       phaseActions.forEach(function (actionKey, actionIndex) {
         var checked = !!actionProgress[actionKey];
         var detailId = "action-detail-" + actionIndex + "-" + actionKey;
+        // First incomplete action opens by default so the plan never looks empty/vague.
+        var openByDefault = !checked && phaseActions.findIndex(function (key) {
+          return !actionProgress[key];
+        }) === actionIndex;
         html +=
           '<li class="dashboard-journey__action dashboard-journey__action--card' +
           (checked ? " is-done" : "") +
           '">' +
-          '<div class="dashboard-action-card">' +
+          '<div class="dashboard-action-card' +
+          (openByDefault ? " is-open" : "") +
+          '">' +
           '<div class="dashboard-action-card__head">' +
           '<label class="dashboard-journey__action-label">' +
           '<input type="checkbox" class="dashboard-journey__action-checkbox" data-action-key="' +
@@ -737,15 +743,19 @@
           protocolText(focusKey, "actions", actionKey) +
           "</span>" +
           "</label>" +
-          '<button type="button" class="dashboard-action-card__toggle" aria-expanded="false" aria-controls="' +
+          '<button type="button" class="dashboard-action-card__toggle btn btn--sm" aria-expanded="' +
+          (openByDefault ? "true" : "false") +
+          '" aria-controls="' +
           escapeAttr(detailId) +
           '" data-action-toggle>' +
-          escapeHtml(catalogT("ui.showDetail")) +
+          escapeHtml(openByDefault ? catalogT("ui.hideDetail") : catalogT("ui.showDetail")) +
           "</button>" +
           "</div>" +
           '<div class="dashboard-action-card__body" id="' +
           escapeAttr(detailId) +
-          '" hidden>' +
+          '"' +
+          (openByDefault ? "" : " hidden") +
+          ">" +
           renderActionDetailHtml(actionKey) +
           "</div>" +
           "</div>" +
