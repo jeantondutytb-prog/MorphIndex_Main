@@ -2,6 +2,17 @@ import { ADMIN_EMAILS } from "../lib/admins.js";
 import { promoteUserToAdminByEmail } from "../lib/supabase-admin.js";
 import { applyCors, sendJson } from "../lib/http.js";
 
+function isAuthorized(request) {
+  const bootstrapKey = process.env.ADMIN_BOOTSTRAP_KEY;
+  if (!bootstrapKey) {
+    return false;
+  }
+
+  const header = request.headers.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : "";
+  return token === bootstrapKey;
+}
+
 export default async function handler(request, response) {
   applyCors(request, response);
 
@@ -12,6 +23,11 @@ export default async function handler(request, response) {
 
   if (request.method !== "POST" && request.method !== "GET") {
     sendJson(response, 405, { error: "Method not allowed" });
+    return;
+  }
+
+  if (!isAuthorized(request)) {
+    sendJson(response, 401, { error: "Unauthorized" });
     return;
   }
 
