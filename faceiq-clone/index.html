@@ -71,67 +71,45 @@
 
   <main>
 
-    <section class="hero hero--split">
+    <section class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
-      <div class="container hero__grid">
-        <div class="hero__content">
-          <p class="hero__badge" data-i18n="hero.badge">Morphology analytics</p>
-          <h1 class="hero__title" data-i18n-html="hero.title">Facial structure,<br>measured like data.</h1>
-          <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex converts two photos into a structured morphology report — metrics, protocols, and longitudinal tracking in one analytics workspace.</p>
-          <div class="hero__actions">
-            <a href="#" class="btn btn--lg">
-              <span data-i18n="hero.cta">Generate my report</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-            <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">View workflow</a>
+      <div class="hero__content">
+        <div class="hero__stats">
+          <div class="hero__stars" data-i18n-aria="a11y.stars">
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
           </div>
-          <dl class="hero__stats">
-            <div>
-              <dt data-i18n="hero.stat1l">Variables tracked</dt>
-              <dd>100+</dd>
-            </div>
-            <div>
-              <dt data-i18n="hero.stat2l">Analysis layers</dt>
-              <dd>4</dd>
-            </div>
-            <div>
-              <dt data-i18n="hero.stat3l">Active profiles</dt>
-              <dd>120k</dd>
-            </div>
-          </dl>
+          <span><strong>120,000+</strong> <span data-i18n="hero.members">members</span></span>
+          <span class="hero__divider">·</span>
+          <span><strong>2,400,000+</strong> <span data-i18n="hero.scans">analyses</span></span>
         </div>
+        <h1 class="hero__title" data-i18n-html="hero.title">Facial structure,<br>measured like data.</h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex converts two photos into a structured morphology report — metrics, protocols, and longitudinal tracking in one analytics workspace.</p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--lg">
+            <span data-i18n="hero.cta">Generate my report</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">View workflow</a>
+        </div>
+        <p class="hero__note" data-i18n="hero.note">For people who prefer data over opinions.</p>
+      </div>
 
-        <div class="dashboard" aria-hidden="true">
-          <div class="dashboard__header">
-            <span class="dashboard__label" data-i18n="hero.panelLabel">Live morphology index</span>
-            <span class="dashboard__index">74<span>/100</span></span>
-          </div>
-          <div class="dashboard__bars">
-            <div class="dashboard__bar">
-              <span data-i18n="pillars.p1">Surface</span>
-              <div class="dashboard__track"><div class="dashboard__fill" style="width: 68%"></div></div>
-              <strong>68</strong>
-            </div>
-            <div class="dashboard__bar">
-              <span data-i18n="pillars.p2">Balance</span>
-              <div class="dashboard__track"><div class="dashboard__fill" style="width: 81%"></div></div>
-              <strong>81</strong>
-            </div>
-            <div class="dashboard__bar">
-              <span data-i18n="pillars.p3">Contour</span>
-              <div class="dashboard__track"><div class="dashboard__fill" style="width: 72%"></div></div>
-              <strong>72</strong>
-            </div>
-            <div class="dashboard__bar">
-              <span data-i18n="pillars.p4">Profile</span>
-              <div class="dashboard__track"><div class="dashboard__fill" style="width: 77%"></div></div>
-              <strong>77</strong>
+      <div class="hero__media">
+        <div class="video-showcase">
+          <div class="video-showcase__frame">
+            <!-- Replace placeholder with <video> when demo is ready -->
+            <div class="video-showcase__placeholder">
+              <div class="video-showcase__play" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <p data-i18n="hero.videoLabel">Product walkthrough — video coming soon</p>
             </div>
           </div>
-          <div class="dashboard__footer">
-            <span data-i18n="hero.panelNote">Last scan · 3 days ago</span>
-            <span class="dashboard__delta">+6.2</span>
-          </div>
+          <p class="video-showcase__caption" data-i18n="hero.videoCaption">A preview of the MorphIndex analytics workspace</p>
         </div>
       </div>
     </section>

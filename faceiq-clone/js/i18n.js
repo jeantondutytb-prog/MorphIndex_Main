@@ -11,13 +11,15 @@
       a11y: { theme: "Toggle theme", language: "Change language", stars: "5 stars", prev: "Previous", next: "Next" },
       nav: { metrics: "Metrics", platform: "Platform", signin: "Sign In", cta: "Open dashboard" },
       hero: {
-        badge: "Morphology analytics",
+        members: "members",
+        scans: "analyses",
         title: "Facial structure,<br>measured like data.",
         subtitle: "MorphIndex converts two photos into a structured morphology report — metrics, protocols, and longitudinal tracking in one analytics workspace.",
         cta: "Generate my report",
         link: "View workflow",
-        stat1l: "Variables tracked", stat2l: "Analysis layers", stat3l: "Active profiles",
-        panelLabel: "Live morphology index", panelNote: "Last scan · 3 days ago"
+        note: "For people who prefer data over opinions.",
+        videoLabel: "Product walkthrough — video coming soon",
+        videoCaption: "A preview of the MorphIndex analytics workspace"
       },
       steps: {
         eyebrow: "Workflow",
@@ -98,13 +100,15 @@
       a11y: { theme: "Changer le thème", language: "Changer la langue", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
       nav: { metrics: "Métriques", platform: "Plateforme", signin: "Connexion", cta: "Ouvrir le tableau de bord" },
       hero: {
-        badge: "Analyse morphologique",
+        members: "membres",
+        scans: "analyses",
         title: "Structure faciale,<br>mesurée comme une donnée.",
         subtitle: "MorphIndex convertit deux photos en rapport morphologique structuré — métriques, protocoles et suivi longitudinal dans un seul espace d'analyse.",
         cta: "Générer mon rapport",
         link: "Voir le workflow",
-        stat1l: "Variables suivies", stat2l: "Couches d'analyse", stat3l: "Profils actifs",
-        panelLabel: "Index morphologique en direct", panelNote: "Dernier scan · il y a 3 jours"
+        note: "Pour ceux qui préfèrent les données aux avis.",
+        videoLabel: "Démo produit — vidéo bientôt disponible",
+        videoCaption: "Un aperçu de l'espace d'analyse MorphIndex"
       },
       steps: {
         eyebrow: "Workflow",
@@ -185,13 +189,15 @@
       a11y: { theme: "Cambiar tema", language: "Cambiar idioma", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
       nav: { metrics: "Métricas", platform: "Plataforma", signin: "Iniciar sesión", cta: "Abrir panel" },
       hero: {
-        badge: "Análisis morfológico",
+        members: "miembros",
+        scans: "análisis",
         title: "Estructura facial,<br>medida como un dato.",
         subtitle: "MorphIndex convierte dos fotos en un informe morfológico estructurado — métricas, protocolos y seguimiento longitudinal en un solo espacio de análisis.",
         cta: "Generar mi informe",
         link: "Ver flujo de trabajo",
-        stat1l: "Variables rastreadas", stat2l: "Capas de análisis", stat3l: "Perfiles activos",
-        panelLabel: "Índice morfológico en vivo", panelNote: "Último escaneo · hace 3 días"
+        note: "Para quienes prefieren datos antes que opiniones.",
+        videoLabel: "Demo del producto — vídeo próximamente",
+        videoCaption: "Una vista previa del espacio de análisis MorphIndex"
       },
       steps: {
         eyebrow: "Flujo de trabajo",
