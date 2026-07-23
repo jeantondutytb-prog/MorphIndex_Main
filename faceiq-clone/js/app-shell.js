@@ -22,6 +22,56 @@
     window.location.href = "/login";
   }
 
+  function clearAuthStorage() {
+    try {
+      var keys = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        if (!key) continue;
+        // Supabase persists sessions as sb-<project-ref>-auth-token (+ related keys).
+        if (key.indexOf("sb-") === 0 || key.toLowerCase().indexOf("supabase") !== -1) {
+          keys.push(key);
+        }
+      }
+      keys.forEach(function (key) {
+        localStorage.removeItem(key);
+      });
+    } catch (err) {
+      // Ignore storage access errors (private mode, quota, etc.).
+    }
+  }
+
+  function performSignOut() {
+    if (signOutBtn) signOutBtn.disabled = true;
+
+    var finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      currentUser = null;
+      currentSession = null;
+      clearAuthStorage();
+      redirectToLogin();
+    }
+
+    // Supabase signOut({ scope: "global" }) can hang on the network revoke call.
+    // Always clear local session and redirect, with a short timeout fallback.
+    var timeoutId = window.setTimeout(finish, 1500);
+    var signOutPromise =
+      client && client.auth
+        ? client.auth.signOut({ scope: "local" })
+        : Promise.resolve();
+
+    Promise.resolve(signOutPromise)
+      .catch(function () {
+        return null;
+      })
+      .finally(function () {
+        window.clearTimeout(timeoutId);
+        finish();
+      });
+  }
+
   function setBooting(isBooting) {
     document.body.classList.toggle("app-page--booting", isBooting);
   }
@@ -213,11 +263,9 @@
     });
 
     if (signOutBtn) {
-      signOutBtn.addEventListener("click", function () {
-        signOutBtn.disabled = true;
-        client.auth.signOut().finally(function () {
-          redirectToLogin();
-        });
+      signOutBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        performSignOut();
       });
     }
   }
