@@ -135,8 +135,8 @@
         nav: {
           label: "Dashboard sections",
           backToApp: "Back to dashboard",
-          overview: "Overview",
-          preview: "6-month preview",
+          overview: "Home",
+          preview: "Preview",
           metrics: "Metrics",
           plan: "Plan"
         },
@@ -463,8 +463,8 @@
         nav: {
           label: "Sections du tableau de bord",
           backToApp: "Retour au tableau de bord",
-          overview: "Aperçu",
-          preview: "Aperçu 6 mois",
+          overview: "Accueil",
+          preview: "6 mois",
           metrics: "Métriques",
           plan: "Plan"
         },
@@ -791,8 +791,8 @@
         nav: {
           label: "Secciones del panel",
           backToApp: "Volver al panel",
-          overview: "Resumen",
-          preview: "Vista previa 6 meses",
+          overview: "Inicio",
+          preview: "Vista",
           metrics: "Métricas",
           plan: "Plan"
         },

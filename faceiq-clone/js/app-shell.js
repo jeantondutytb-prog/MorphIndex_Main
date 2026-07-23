@@ -64,6 +64,17 @@
     return { user: currentUser, session: currentSession, state: state, analysis: analysis };
   }
 
+  var NAV_ICONS = {
+    overview:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>',
+    preview:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.4 4.3L18 9l-4.6 1.7L12 15l-1.4-4.3L6 9l4.6-1.7L12 3z"/><path d="M19 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg>',
+    metrics:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20v-9"/></svg>',
+    plan:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4.5 6.5 6 8l1.5-1.5"/><path d="M4.5 12.5 6 14l1.5-1.5"/><path d="M4.5 18.5 6 20l1.5-1.5"/></svg>'
+  };
+
   function renderNav(activeView) {
     var nav = document.getElementById("dashboard-nav");
     if (!nav) return;
@@ -76,16 +87,19 @@
     ];
 
     nav.innerHTML =
-      '<nav class="dashboard-nav" aria-label="' + t("dashboard.nav.label") + '">' +
-        items.map(function (item) {
-          var active = item.view === activeView;
-          return (
-            '<a href="' + item.href + '" class="dashboard-nav__link' + (active ? " is-active" : "") + '"' +
-              (active ? ' aria-current="page"' : "") + ">" +
-              t(item.key) +
-            "</a>"
-          );
-        }).join("") +
+      '<nav class="dashboard-tabbar" aria-label="' + t("dashboard.nav.label") + '">' +
+        '<div class="dashboard-tabbar__inner">' +
+          items.map(function (item) {
+            var active = item.view === activeView;
+            return (
+              '<a href="' + item.href + '" class="dashboard-tabbar__item' + (active ? " is-active" : "") + '"' +
+                (active ? ' aria-current="page"' : "") + ">" +
+                '<span class="dashboard-tabbar__icon">' + (NAV_ICONS[item.view] || "") + "</span>" +
+                '<span class="dashboard-tabbar__label">' + t(item.key) + "</span>" +
+              "</a>"
+            );
+          }).join("") +
+        "</div>" +
       "</nav>";
   }
 
