@@ -5,325 +5,262 @@
   var T = {
     en: {
       meta: {
-        title: "MorphIndex — Your Morphology, Quantified",
-        description: "MorphIndex turns facial photos into structured metrics, a personalized roadmap, and measurable progress over time."
+        title: "MorphIndex — Morphology Analytics Platform",
+        description: "MorphIndex is a morphology analytics platform — structured facial metrics, personalized protocols, and longitudinal tracking."
       },
-      a11y: {
-        theme: "Toggle theme",
-        language: "Change language",
-        stars: "5 stars",
-        prev: "Previous",
-        next: "Next"
-      },
-      nav: { benchmarks: "Profiles", community: "Community", signin: "Sign In", cta: "Try MorphIndex" },
+      a11y: { theme: "Toggle theme", language: "Change language", stars: "5 stars", prev: "Previous", next: "Next" },
+      nav: { metrics: "Metrics", platform: "Platform", signin: "Sign In", cta: "Open dashboard" },
       hero: {
-        members: "active users",
-        scans: "scans completed",
-        title: "Decode your structure.<br>Track what changes.",
-        subtitle: "MorphIndex turns your facial photos into a living scorecard — structured metrics, a prioritized roadmap, and proof of progress as you go.",
-        cta: "Run my first scan",
-        link: "See how it works",
-        note: "For people who prefer data over opinions.",
-        tabFront: "Front scan",
-        tabProfile: "Side scan"
-      },
-      transform: {
-        eyebrow: "Case study",
-        title: "Two years, one trajectory",
-        subtitle: "Disciplined habits, logged scans, visible index growth — documented month by month.",
-        start: "Day one",
-        now: "Today",
-        label: "Index growth over 24 months of consistent effort",
-        t1h: "Baseline & habits", t1p: "Months 0–8 · establishing routines",
-        t2h: "Early signals", t2p: "Months 8–14 · first measurable shifts",
-        t3h: "Structural momentum", t3p: "Months 14–26 · deeper contour changes",
-        t4h: "Peak window", t4p: "Months 26–30 · consolidating gains",
-        q1: "Progress isn't accidental — it's the product of showing up.",
-        q2: "Members who gain the most treat every scan as a checkpoint, not a verdict. MorphIndex keeps that rhythm alive."
-      },
-      pillars: {
-        eyebrow: "Scoring model",
-        title: "Four dimensions, one composite index",
-        subtitle: "Every scan scores you across independent layers of facial morphology.",
-        axis1: "Dimension A", p1: "Vitality", p1d: "Skin tone, feature clarity, and overall facial freshness",
-        criteria: "criteria", ratios: "ratios", signals: "signals", markers: "markers",
-        axis2: "Dimension B", p2: "Proportions", p2d: "Thirds, spacing, and symmetry across the face",
-        axis3: "Dimension C", p3: "Definition", p3d: "Jaw contour, cheek structure, and bone visibility",
-        axis4: "Dimension D", p4: "Traits", p4d: "Masculine and feminine morphological signatures"
-      },
-      banner: "Built on quantitative facial research — for anyone who treats appearance improvement as a measurable discipline.",
-      testimonials: {
-        title: "What members say",
-        subtitle: "Unfiltered feedback from people who scan regularly.",
-        t1: "\"No hype, just numbers I can act on. Whether I'm optimizing or simply understanding my structure, MorphIndex is the most consistent tool I've used.\"",
-        t2: "\"I knew my weak spots vaguely — MorphIndex quantified them. Replacing guesswork with metrics completely changed how I approach improvement.\"",
-        t3: "\"My composite score looked fine, but I needed detail on texture and under-eye volume. MorphIndex was the first app to give me specifics I could actually use.\"",
-        t4: "\"Strengths, gaps, priorities — laid out clearly. That alone justified signing up.\"",
-        t5: "\"Every re-scan surfaces something I missed. The personalized plans keep me accountable without feeling generic.\"",
-        t6: "\"Clinical options plus daily habits — all ranked by impact. I haven't found anything else this precise.\"",
-        t7: "\"I tried MorphIndex out of curiosity. The depth of the recommendations led me to book a specialist — the app genuinely shifted my approach.\""
-      },
-      features: {
-        title: "One workspace for the full picture",
-        subtitle: "Beyond the initial scan: trends, simulations, guidance, and community benchmarks — unified.",
-        f1t: "Composite Index", f1d: "A single score synthesizing 70+ anatomical ratios across all four dimensions.",
-        f2t: "MorphAI", f2d: "Conversational guidance about your face — ask anything, get structured answers.",
-        f3t: "Outcome Simulator", f3d: "Visualize potential changes before committing to any intervention.",
-        f4t: "Action Plan", f4d: "A step-by-step roadmap built from your unique morphology profile.",
-        f5t: "Progress Tracker", f5d: "Line up scans side by side and watch individual metrics shift over time.",
-        f6t: "Community Rank", f6d: "See where you stand among members and track your climb over time.",
-        new: "New"
-      },
-      showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulator",
-        title: "Inside the analysis engine",
-        subtitle: "Each scan surfaces granular detail — from skin vitality to zone-by-zone proportional ratios.",
-        metrics: "100+ tracked variables per session"
+        badge: "Morphology analytics",
+        title: "Facial structure,<br>measured like data.",
+        subtitle: "MorphIndex converts two photos into a structured morphology report — metrics, protocols, and longitudinal tracking in one analytics workspace.",
+        cta: "Generate my report",
+        link: "View workflow",
+        stat1l: "Variables tracked", stat2l: "Analysis layers", stat3l: "Active profiles",
+        panelLabel: "Live morphology index", panelNote: "Last scan · 3 days ago"
       },
       steps: {
-        eyebrow: "The method",
-        title: "From photo to progress in four moves",
-        subtitle: "Scan, understand, plan, repeat — each cycle sharpens your index.",
-        s1t: "Upload", s1d: "Add a front photo and a side profile — that's all MorphIndex needs to start.",
-        s2t: "Analyze", s2d: "Get a full breakdown across vitality, proportions, definition, and traits.",
-        s3t: "Prioritize", s3d: "Receive lifestyle and clinical options ranked by expected impact on your profile.",
-        s4t: "Iterate", s4d: "Execute your plan, simulate outcomes with MorphAI, and re-scan to confirm gains.",
-        note: "Side-profile analysis included with every scan."
+        eyebrow: "Workflow",
+        title: "A repeatable analysis cycle",
+        subtitle: "Capture, quantify, prioritize, and re-measure — each loop refines your morphology profile.",
+        s1t: "Ingest", s1d: "Submit frontal and lateral captures. MorphIndex normalizes lighting and alignment automatically.",
+        s2t: "Quantify", s2d: "Surface, balance, contour, and profile layers are scored independently, then synthesized.",
+        s3t: "Protocol", s3d: "Interventions and habits are ranked by projected impact on your weakest metrics.",
+        s4t: "Track", s4d: "Re-run the cycle, compare sessions, and let MorphAI answer protocol questions along the way.",
+        note: "Lateral capture analysis included with every session."
       },
-      projection: {
-        eyebrow: "Growth model",
-        title: "Small gains compound",
-        subtitle: "MorphIndex models where your score could land if you follow the recommended path.",
-        current: "Today", projected: "Potential",
-        cta: "Explore my trajectory"
+      pillars: {
+        eyebrow: "Index layers",
+        title: "Four independent scoring layers",
+        subtitle: "Unlike a single beauty score, MorphIndex breaks morphology into measurable subsystems.",
+        axis1: "Layer 01", p1: "Surface", p1d: "Skin quality, periorbital volume, and feature vitality markers",
+        criteria: "criteria", ratios: "ratios", signals: "signals", markers: "markers",
+        axis2: "Layer 02", p2: "Balance", p2d: "Facial thirds, inter-feature spacing, and bilateral symmetry",
+        axis3: "Layer 03", p3: "Contour", p3d: "Mandibular line, zygomatic projection, and skeletal visibility",
+        axis4: "Layer 04", p4: "Profile", p4d: "Sex-specific morphological markers and trait expression"
+      },
+      banner: "MorphIndex applies quantitative morphology research to everyday self-optimization — structured, repeatable, evidence-based.",
+      testimonials: {
+        title: "From the community",
+        subtitle: "Notes from members who run regular analysis cycles.",
+        t1: "\"Finally a tool that treats my face like a dataset. The layer breakdowns are what sold me — not another single vanity score.\"",
+        t2: "\"I stopped guessing which habits mattered. MorphIndex ranked interventions by metric impact, and the index actually moved.\"",
+        t3: "\"Surface layer detail on texture and periorbital volume was more precise than anything I'd tried before.\"",
+        t4: "\"Session compare alone is worth it. I can see exactly which metrics shifted after each protocol change.\""
+      },
+      features: {
+        title: "Platform modules",
+        subtitle: "Everything lives in one morphology workspace — no switching between tools.",
+        f1t: "Composite Index", f1d: "Weighted synthesis across all four layers.",
+        f2t: "MorphAI", f2d: "Query your morphology data in natural language.",
+        f3t: "Morph Preview", f3d: "Model projected outcomes before committing to a protocol step.",
+        f4t: "Protocol Builder", f4d: "Auto-generated intervention sequences ranked by metric impact.",
+        f5t: "Session Compare", f5d: "Diff any two scans at the metric level.",
+        f6t: "Cohort Benchmarks", f6d: "See how your index compares within anonymized cohorts.",
+        new: "Beta"
+      },
+      showcase: {
+        tag1: "MorphAI", tag2: "Preview engine",
+        title: "Granular by design",
+        subtitle: "Every session produces layer-level breakdowns, zone maps, and protocol suggestions — not a single opaque number.",
+        l1: "Per-zone ratio tables", l2: "Layer trend lines across sessions", l3: "Impact-ranked protocol steps",
+        metrics: "Index 62 → 74 over 18 months"
+      },
+      transform: {
+        eyebrow: "Longitudinal data",
+        title: "Protocols that move the index",
+        subtitle: "Members who follow structured protocols see measurable layer shifts — not overnight, but consistently.",
+        start: "Session 1", now: "Session 8", unit: "index points",
+        t1h: "Protocol setup", t1p: "Months 1–6",
+        t2h: "Metric response", t2p: "Months 6–12",
+        t3h: "Layer convergence", t3p: "Months 12–18",
+        t4h: "Stable plateau", t4p: "Months 18+",
+        q1: "The index rewards consistency, not shortcuts. Members who re-scan on schedule see the clearest trajectories."
       },
       audience: {
-        eyebrow: "Built for",
-        title: "The committed, not the curious",
-        p1: "A score alone changes nothing. The members who transform treat MorphIndex as a starting line — then do the work between scans.",
-        p2: "If that sounds like you, you're in the right place."
+        eyebrow: "Who it's for",
+        title: "Analysts, not spectators",
+        p1: "MorphIndex is for people who treat facial morphology as a dataset — something to measure, intervene on, and re-measure."
       },
       cta: {
-        title: "Your baseline starts here",
-        subtitle: "Join 120,000+ members who measure before they optimize.",
-        btn: "Create my profile",
-        note: "One scan. Full picture. No guesswork."
+        title: "Start with a morphology report",
+        subtitle: "Two photos. Four layers. One structured index.",
+        btn: "Generate report",
+        note: "Free lateral analysis included."
       },
       footer: { careers: "Careers", privacy: "Privacy", terms: "Terms", copy: "© 2026 MorphIndex" }
     },
     fr: {
       meta: {
-        title: "MorphIndex — Votre morphologie, chiffrée",
-        description: "MorphIndex transforme vos photos faciales en métriques structurées, un parcours personnalisé et des progrès mesurables dans le temps."
+        title: "MorphIndex — Plateforme d'analyse morphologique",
+        description: "MorphIndex est une plateforme d'analyse morphologique — métriques faciales structurées, protocoles personnalisés et suivi longitudinal."
       },
-      a11y: {
-        theme: "Changer le thème",
-        language: "Changer la langue",
-        stars: "5 étoiles",
-        prev: "Précédent",
-        next: "Suivant"
-      },
-      nav: { benchmarks: "Profils", community: "Communauté", signin: "Connexion", cta: "Essayer MorphIndex" },
+      a11y: { theme: "Changer le thème", language: "Changer la langue", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
+      nav: { metrics: "Métriques", platform: "Plateforme", signin: "Connexion", cta: "Ouvrir le tableau de bord" },
       hero: {
-        members: "utilisateurs actifs",
-        scans: "analyses réalisées",
-        title: "Décryptez votre structure.<br>Suivez ce qui évolue.",
-        subtitle: "MorphIndex transforme vos photos en tableau de bord vivant — métriques structurées, feuille de route priorisée et preuves de progression au fil du temps.",
-        cta: "Lancer mon premier scan",
-        link: "Voir comment ça marche",
-        note: "Pour ceux qui préfèrent les données aux avis.",
-        tabFront: "Scan de face",
-        tabProfile: "Scan de profil"
-      },
-      transform: {
-        eyebrow: "Étude de cas",
-        title: "Deux ans, une trajectoire",
-        subtitle: "Habitudes disciplinées, scans enregistrés, progression visible — documentée mois après mois.",
-        start: "Jour 1",
-        now: "Aujourd'hui",
-        label: "Progression de l'index sur 24 mois d'efforts réguliers",
-        t1h: "Base & habitudes", t1p: "Mois 0–8 · mise en place des routines",
-        t2h: "Premiers signaux", t2p: "Mois 8–14 · premiers changements mesurables",
-        t3h: "Élan structurel", t3p: "Mois 14–26 · modifications plus profondes",
-        t4h: "Fenêtre optimale", t4p: "Mois 26–30 · consolidation des gains",
-        q1: "La progression n'est pas un hasard — c'est le fruit de la constance.",
-        q2: "Les membres qui progressent le plus traitent chaque scan comme un point de contrôle, pas un jugement. MorphIndex entretient ce rythme."
-      },
-      pillars: {
-        eyebrow: "Modèle de notation",
-        title: "Quatre dimensions, un index composite",
-        subtitle: "Chaque scan vous évalue sur des couches indépendantes de morphologie faciale.",
-        axis1: "Dimension A", p1: "Vitalité", p1d: "Teint, clarté des traits et fraîcheur globale du visage",
-        criteria: "critères", ratios: "ratios", signals: "signaux", markers: "marqueurs",
-        axis2: "Dimension B", p2: "Proportions", p2d: "Tiers, espacements et symétrie du visage",
-        axis3: "Dimension C", p3: "Définition", p3d: "Contour de mâchoire, structure des pommettes et visibilité osseuse",
-        axis4: "Dimension D", p4: "Traits", p4d: "Signatures morphologiques masculines et féminines"
-      },
-      banner: "Fondé sur la recherche faciale quantitative — pour tous ceux qui abordent l'amélioration de l'apparence comme une discipline mesurable.",
-      testimonials: {
-        title: "Ce que disent les membres",
-        subtitle: "Retours sans filtre de personnes qui scannent régulièrement.",
-        t1: "\"Pas de blabla, juste des chiffres sur lesquels agir. Que j'optimise ou que je comprenne ma structure, MorphIndex est l'outil le plus fiable que j'utilise.\"",
-        t2: "\"Je connaissais vaguement mes points faibles — MorphIndex les a quantifiés. Remplacer les suppositions par des métriques a tout changé.\"",
-        t3: "\"Mon score composite était correct, mais j'avais besoin de détails sur la texture et le creux sous les yeux. MorphIndex a été la première app à me donner des éléments exploitables.\"",
-        t4: "\"Forces, lacunes, priorités — tout est clair. Ça seul valait l'inscription.\"",
-        t5: "\"Chaque re-scan révèle quelque chose que j'avais manqué. Les plans personnalisés me responsabilisent sans paraître génériques.\"",
-        t6: "\"Options cliniques et habitudes quotidiennes — tout classé par impact. Je n'ai rien trouvé d'aussi précis ailleurs.\"",
-        t7: "\"J'ai testé MorphIndex par curiosité. La profondeur des recommandations m'a poussé à consulter un spécialiste — l'app a vraiment changé mon approche.\""
-      },
-      features: {
-        title: "Un espace de travail pour la vue d'ensemble",
-        subtitle: "Au-delà du scan initial : tendances, simulations, conseils et benchmarks communautaires — réunis.",
-        f1t: "Index composite", f1d: "Un score unique synthétisant plus de 70 ratios anatomiques sur les quatre dimensions.",
-        f2t: "MorphAI", f2d: "Guidance conversationnelle sur votre visage — posez n'importe quelle question, obtenez des réponses structurées.",
-        f3t: "Simulateur de résultats", f3d: "Visualisez les changements potentiels avant tout engagement.",
-        f4t: "Plan d'action", f4d: "Une feuille de route étape par étape construite à partir de votre profil morphologique unique.",
-        f5t: "Suivi de progression", f5d: "Alignez vos scans côte à côte et observez l'évolution de chaque métrique.",
-        f6t: "Classement communautaire", f6d: "Voyez votre position parmi les membres et suivez votre progression.",
-        new: "Nouveau"
-      },
-      showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulateur",
-        title: "Au cœur du moteur d'analyse",
-        subtitle: "Chaque scan révèle des détails granulaires — de la vitalité de la peau aux ratios proportionnels zone par zone.",
-        metrics: "Plus de 100 variables suivies par session"
+        badge: "Analyse morphologique",
+        title: "Structure faciale,<br>mesurée comme une donnée.",
+        subtitle: "MorphIndex convertit deux photos en rapport morphologique structuré — métriques, protocoles et suivi longitudinal dans un seul espace d'analyse.",
+        cta: "Générer mon rapport",
+        link: "Voir le workflow",
+        stat1l: "Variables suivies", stat2l: "Couches d'analyse", stat3l: "Profils actifs",
+        panelLabel: "Index morphologique en direct", panelNote: "Dernier scan · il y a 3 jours"
       },
       steps: {
-        eyebrow: "La méthode",
-        title: "De la photo à la progression en quatre étapes",
-        subtitle: "Scanner, comprendre, planifier, recommencer — chaque cycle affine votre index.",
-        s1t: "Importer", s1d: "Ajoutez une photo de face et une de profil — c'est tout ce dont MorphIndex a besoin.",
-        s2t: "Analyser", s2d: "Recevez une analyse complète sur vitalité, proportions, définition et traits.",
-        s3t: "Prioriser", s3d: "Obtenez des options lifestyle et cliniques classées par impact attendu sur votre profil.",
-        s4t: "Itérer", s4d: "Suivez votre plan, simulez les résultats avec MorphAI et re-scannez pour confirmer vos gains.",
-        note: "L'analyse de profil est incluse à chaque scan."
+        eyebrow: "Workflow",
+        title: "Un cycle d'analyse reproductible",
+        subtitle: "Capturer, quantifier, prioriser et re-mesurer — chaque boucle affine votre profil morphologique.",
+        s1t: "Ingérer", s1d: "Soumettez des captures frontale et latérale. MorphIndex normalise automatiquement l'éclairage et l'alignement.",
+        s2t: "Quantifier", s2d: "Les couches surface, équilibre, contour et profil sont notées indépendamment, puis synthétisées.",
+        s3t: "Protocole", s3d: "Les interventions et habitudes sont classées par impact projeté sur vos métriques les plus faibles.",
+        s4t: "Suivre", s4d: "Relancez le cycle, comparez les sessions et laissez MorphAI répondre à vos questions de protocole.",
+        note: "Analyse de capture latérale incluse à chaque session."
       },
-      projection: {
-        eyebrow: "Modèle de croissance",
-        title: "Les petits gains s'accumulent",
-        subtitle: "MorphIndex modélise où votre score pourrait atterrir si vous suivez le parcours recommandé.",
-        current: "Aujourd'hui", projected: "Potentiel",
-        cta: "Explorer ma trajectoire"
+      pillars: {
+        eyebrow: "Couches d'index",
+        title: "Quatre couches de notation indépendantes",
+        subtitle: "Contrairement à un score beauté unique, MorphIndex décompose la morphologie en sous-systèmes mesurables.",
+        axis1: "Couche 01", p1: "Surface", p1d: "Qualité de peau, volume périorbitaire et marqueurs de vitalité des traits",
+        criteria: "critères", ratios: "ratios", signals: "signaux", markers: "marqueurs",
+        axis2: "Couche 02", p2: "Équilibre", p2d: "Tiers du visage, espacements inter-traits et symétrie bilatérale",
+        axis3: "Couche 03", p3: "Contour", p3d: "Ligne mandibulaire, projection zygomatique et visibilité osseuse",
+        axis4: "Couche 04", p4: "Profil", p4d: "Marqueurs morphologiques spécifiques au sexe et expression des traits"
+      },
+      banner: "MorphIndex applique la recherche en morphologie quantitative à l'auto-optimisation quotidienne — structurée, reproductible, fondée sur les données.",
+      testimonials: {
+        title: "De la communauté",
+        subtitle: "Retours de membres qui effectuent des cycles d'analyse réguliers.",
+        t1: "\"Enfin un outil qui traite mon visage comme un jeu de données. Les décompositions par couche m'ont convaincu — pas un autre score vanité unique.\"",
+        t2: "\"J'ai arrêté de deviner quelles habitudes comptaient. MorphIndex a classé les interventions par impact métrique, et l'index a vraiment bougé.\"",
+        t3: "\"Le détail de la couche surface sur la texture et le volume périorbitaire était plus précis que tout ce que j'avais testé.\"",
+        t4: "\"La comparaison de sessions à elle seule vaut le coup. Je vois exactement quelles métriques ont changé après chaque modification de protocole.\""
+      },
+      features: {
+        title: "Modules de la plateforme",
+        subtitle: "Tout vit dans un seul espace morphologique — pas besoin de changer d'outil.",
+        f1t: "Index composite", f1d: "Synthèse pondérée sur les quatre couches.",
+        f2t: "MorphAI", f2d: "Interrogez vos données morphologiques en langage naturel.",
+        f3t: "Aperçu Morph", f3d: "Modélisez les résultats projetés avant de valider une étape de protocole.",
+        f4t: "Constructeur de protocole", f4d: "Séquences d'intervention auto-générées classées par impact métrique.",
+        f5t: "Comparaison de sessions", f5d: "Comparez deux scans au niveau métrique.",
+        f6t: "Benchmarks de cohorte", f6d: "Voyez comment votre index se situe dans des cohortes anonymisées.",
+        new: "Bêta"
+      },
+      showcase: {
+        tag1: "MorphAI", tag2: "Moteur d'aperçu",
+        title: "Granulaire par conception",
+        subtitle: "Chaque session produit des décompositions par couche, des cartes de zones et des suggestions de protocole — pas un chiffre opaque.",
+        l1: "Tableaux de ratios par zone", l2: "Courbes de tendance par couche", l3: "Étapes de protocole classées par impact",
+        metrics: "Index 62 → 74 sur 18 mois"
+      },
+      transform: {
+        eyebrow: "Données longitudinales",
+        title: "Des protocoles qui font bouger l'index",
+        subtitle: "Les membres qui suivent des protocoles structurés voient des décalages mesurables par couche — pas du jour au lendemain, mais de façon constante.",
+        start: "Session 1", now: "Session 8", unit: "points d'index",
+        t1h: "Mise en place du protocole", t1p: "Mois 1–6",
+        t2h: "Réponse métrique", t2p: "Mois 6–12",
+        t3h: "Convergence des couches", t3p: "Mois 12–18",
+        t4h: "Plateau stable", t4p: "Mois 18+",
+        q1: "L'index récompense la constance, pas les raccourcis. Les membres qui re-scannent régulièrement voient les trajectoires les plus claires."
       },
       audience: {
-        eyebrow: "Conçu pour",
-        title: "Les engagés, pas les curieux",
-        p1: "Un score seul ne change rien. Les membres qui se transforment traitent MorphIndex comme une ligne de départ — puis font le travail entre les scans.",
-        p2: "Si cela vous ressemble, vous êtes au bon endroit."
+        eyebrow: "Pour qui",
+        title: "Des analystes, pas des spectateurs",
+        p1: "MorphIndex s'adresse à ceux qui traitent la morphologie faciale comme un jeu de données — quelque chose à mesurer, intervenir et re-mesurer."
       },
       cta: {
-        title: "Votre base de départ, ici",
-        subtitle: "Rejoignez plus de 120 000 membres qui mesurent avant d'optimiser.",
-        btn: "Créer mon profil",
-        note: "Un scan. Vue complète. Zéro approximation."
+        title: "Commencez par un rapport morphologique",
+        subtitle: "Deux photos. Quatre couches. Un index structuré.",
+        btn: "Générer le rapport",
+        note: "Analyse latérale gratuite incluse."
       },
       footer: { careers: "Carrières", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 MorphIndex" }
     },
     es: {
       meta: {
-        title: "MorphIndex — Tu morfología, cuantificada",
-        description: "MorphIndex convierte fotos faciales en métricas estructuradas, una hoja de ruta personalizada y progreso medible a lo largo del tiempo."
+        title: "MorphIndex — Plataforma de análisis morfológico",
+        description: "MorphIndex es una plataforma de análisis morfológico — métricas faciales estructuradas, protocolos personalizados y seguimiento longitudinal."
       },
-      a11y: {
-        theme: "Cambiar tema",
-        language: "Cambiar idioma",
-        stars: "5 estrellas",
-        prev: "Anterior",
-        next: "Siguiente"
-      },
-      nav: { benchmarks: "Perfiles", community: "Comunidad", signin: "Iniciar sesión", cta: "Probar MorphIndex" },
+      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
+      nav: { metrics: "Métricas", platform: "Plataforma", signin: "Iniciar sesión", cta: "Abrir panel" },
       hero: {
-        members: "usuarios activos",
-        scans: "análisis completados",
-        title: "Descifra tu estructura.<br>Rastrea lo que cambia.",
-        subtitle: "MorphIndex convierte tus fotos en un panel vivo — métricas estructuradas, hoja de ruta priorizada y prueba de progreso a medida que avanzas.",
-        cta: "Hacer mi primer escaneo",
-        link: "Ver cómo funciona",
-        note: "Para quienes prefieren datos antes que opiniones.",
-        tabFront: "Escaneo frontal",
-        tabProfile: "Escaneo lateral"
-      },
-      transform: {
-        eyebrow: "Caso de estudio",
-        title: "Dos años, una trayectoria",
-        subtitle: "Hábitos disciplinados, escaneos registrados, crecimiento visible del índice — documentado mes a mes.",
-        start: "Día uno",
-        now: "Hoy",
-        label: "Crecimiento del índice en 24 meses de esfuerzo constante",
-        t1h: "Base y hábitos", t1p: "Meses 0–8 · estableciendo rutinas",
-        t2h: "Primeras señales", t2p: "Meses 8–14 · primeros cambios medibles",
-        t3h: "Impulso estructural", t3p: "Meses 14–26 · cambios de contorno más profundos",
-        t4h: "Ventana óptima", t4p: "Meses 26–30 · consolidando ganancias",
-        q1: "El progreso no es casualidad — es el resultado de la constancia.",
-        q2: "Los miembros que más avanzan tratan cada escaneo como un punto de control, no un veredicto. MorphIndex mantiene ese ritmo."
-      },
-      pillars: {
-        eyebrow: "Modelo de puntuación",
-        title: "Cuatro dimensiones, un índice compuesto",
-        subtitle: "Cada escaneo te evalúa en capas independientes de morfología facial.",
-        axis1: "Dimensión A", p1: "Vitalidad", p1d: "Tono de piel, claridad de rasgos y frescura facial general",
-        criteria: "criterios", ratios: "ratios", signals: "señales", markers: "marcadores",
-        axis2: "Dimensión B", p2: "Proporciones", p2d: "Tercios, espaciado y simetría del rostro",
-        axis3: "Dimensión C", p3: "Definición", p3d: "Contorno mandibular, estructura de pómulos y visibilidad ósea",
-        axis4: "Dimensión D", p4: "Rasgos", p4d: "Firmas morfológicas masculinas y femeninas"
-      },
-      banner: "Basado en investigación facial cuantitativa — para quienes tratan la mejora de apariencia como una disciplina medible.",
-      testimonials: {
-        title: "Lo que dicen los miembros",
-        subtitle: "Opiniones sin filtro de personas que escanean con regularidad.",
-        t1: "\"Sin exageraciones, solo números sobre los que puedo actuar. Ya sea optimizando o entendiendo mi estructura, MorphIndex es la herramienta más consistente que he usado.\"",
-        t2: "\"Conocía vagamente mis puntos débiles — MorphIndex los cuantificó. Reemplazar suposiciones por métricas cambió por completo mi enfoque.\"",
-        t3: "\"Mi puntuación compuesta parecía bien, pero necesitaba detalle sobre textura y volumen bajo los ojos. MorphIndex fue la primera app en darme datos que realmente puedo usar.\"",
-        t4: "\"Fortalezas, carencias, prioridades — todo claro. Eso solo ya justificó registrarme.\"",
-        t5: "\"Cada re-escaneo revela algo que pasé por alto. Los planes personalizados me mantienen responsable sin sentirse genéricos.\"",
-        t6: "\"Opciones clínicas más hábitos diarios — todo clasificado por impacto. No he encontrado nada tan preciso.\"",
-        t7: "\"Probé MorphIndex por curiosidad. La profundidad de las recomendaciones me llevó a consultar a un especialista — la app cambió genuinamente mi enfoque.\""
-      },
-      features: {
-        title: "Un espacio de trabajo para el panorama completo",
-        subtitle: "Más allá del escaneo inicial: tendencias, simulaciones, orientación y benchmarks comunitarios — unificados.",
-        f1t: "Índice compuesto", f1d: "Una puntuación única que sintetiza más de 70 ratios anatómicos en las cuatro dimensiones.",
-        f2t: "MorphAI", f2d: "Orientación conversacional sobre tu rostro — pregunta lo que quieras, obtén respuestas estructuradas.",
-        f3t: "Simulador de resultados", f3d: "Visualiza cambios potenciales antes de comprometerte con cualquier intervención.",
-        f4t: "Plan de acción", f4d: "Una hoja de ruta paso a paso construida desde tu perfil morfológico único.",
-        f5t: "Seguimiento de progreso", f5d: "Alinea escaneos lado a lado y observa cómo cambian las métricas individuales.",
-        f6t: "Ranking comunitario", f6d: "Mira dónde estás entre los miembros y sigue tu ascenso.",
-        new: "Nuevo"
-      },
-      showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulador",
-        title: "Dentro del motor de análisis",
-        subtitle: "Cada escaneo revela detalle granular — desde vitalidad de piel hasta ratios proporcionales por zona.",
-        metrics: "Más de 100 variables rastreadas por sesión"
+        badge: "Análisis morfológico",
+        title: "Estructura facial,<br>medida como un dato.",
+        subtitle: "MorphIndex convierte dos fotos en un informe morfológico estructurado — métricas, protocolos y seguimiento longitudinal en un solo espacio de análisis.",
+        cta: "Generar mi informe",
+        link: "Ver flujo de trabajo",
+        stat1l: "Variables rastreadas", stat2l: "Capas de análisis", stat3l: "Perfiles activos",
+        panelLabel: "Índice morfológico en vivo", panelNote: "Último escaneo · hace 3 días"
       },
       steps: {
-        eyebrow: "El método",
-        title: "De la foto al progreso en cuatro pasos",
-        subtitle: "Escanear, entender, planificar, repetir — cada ciclo afina tu índice.",
-        s1t: "Subir", s1d: "Añade una foto frontal y una de perfil — eso es todo lo que MorphIndex necesita.",
-        s2t: "Analizar", s2d: "Recibe un desglose completo en vitalidad, proporciones, definición y rasgos.",
-        s3t: "Priorizar", s3d: "Obtén opciones de estilo de vida y clínicas clasificadas por impacto esperado en tu perfil.",
-        s4t: "Iterar", s4d: "Ejecuta tu plan, simula resultados con MorphAI y vuelve a escanear para confirmar ganancias.",
-        note: "El análisis de perfil está incluido en cada escaneo."
+        eyebrow: "Flujo de trabajo",
+        title: "Un ciclo de análisis repetible",
+        subtitle: "Capturar, cuantificar, priorizar y re-medir — cada ciclo refina tu perfil morfológico.",
+        s1t: "Ingestar", s1d: "Envía capturas frontal y lateral. MorphIndex normaliza iluminación y alineación automáticamente.",
+        s2t: "Cuantificar", s2d: "Las capas superficie, equilibrio, contorno y perfil se puntúan de forma independiente y luego se sintetizan.",
+        s3t: "Protocolo", s3d: "Las intervenciones y hábitos se clasifican por impacto proyectado en tus métricas más débiles.",
+        s4t: "Rastrear", s4d: "Repite el ciclo, compara sesiones y deja que MorphAI responda preguntas de protocolo.",
+        note: "Análisis de captura lateral incluido en cada sesión."
       },
-      projection: {
-        eyebrow: "Modelo de crecimiento",
-        title: "Las pequeñas ganancias se acumulan",
-        subtitle: "MorphIndex modela dónde podría llegar tu puntuación si sigues el camino recomendado.",
-        current: "Hoy", projected: "Potencial",
-        cta: "Explorar mi trayectoria"
+      pillars: {
+        eyebrow: "Capas de índice",
+        title: "Cuatro capas de puntuación independientes",
+        subtitle: "A diferencia de una puntuación de belleza única, MorphIndex descompone la morfología en subsistemas medibles.",
+        axis1: "Capa 01", p1: "Superficie", p1d: "Calidad de piel, volumen periorbitario y marcadores de vitalidad",
+        criteria: "criterios", ratios: "ratios", signals: "señales", markers: "marcadores",
+        axis2: "Capa 02", p2: "Equilibrio", p2d: "Tercios faciales, espaciado inter-rasgos y simetría bilateral",
+        axis3: "Capa 03", p3: "Contorno", p3d: "Línea mandibular, proyección cigomática y visibilidad ósea",
+        axis4: "Capa 04", p4: "Perfil", p4d: "Marcadores morfológicos específicos de sexo y expresión de rasgos"
+      },
+      banner: "MorphIndex aplica investigación en morfología cuantitativa a la auto-optimización diaria — estructurada, repetible y basada en evidencia.",
+      testimonials: {
+        title: "De la comunidad",
+        subtitle: "Notas de miembros que ejecutan ciclos de análisis regulares.",
+        t1: "\"Por fin una herramienta que trata mi rostro como un dataset. Las descomposiciones por capa me convencieron — no otra puntuación vanidad única.\"",
+        t2: "\"Dejé de adivinar qué hábitos importaban. MorphIndex clasificó intervenciones por impacto métrico, y el índice realmente se movió.\"",
+        t3: "\"El detalle de la capa superficie en textura y volumen periorbitario fue más preciso que cualquier cosa que hubiera probado.\"",
+        t4: "\"La comparación de sesiones sola vale la pena. Veo exactamente qué métricas cambiaron tras cada modificación de protocolo.\""
+      },
+      features: {
+        title: "Módulos de la plataforma",
+        subtitle: "Todo vive en un solo espacio morfológico — sin cambiar de herramienta.",
+        f1t: "Índice compuesto", f1d: "Síntesis ponderada en las cuatro capas.",
+        f2t: "MorphAI", f2d: "Consulta tus datos morfológicos en lenguaje natural.",
+        f3t: "Vista previa Morph", f3d: "Modela resultados proyectados antes de comprometerte con un paso de protocolo.",
+        f4t: "Constructor de protocolo", f4d: "Secuencias de intervención auto-generadas clasificadas por impacto métrico.",
+        f5t: "Comparar sesiones", f5d: "Compara dos escaneos a nivel métrico.",
+        f6t: "Benchmarks de cohorte", f6d: "Mira cómo se compara tu índice en cohortes anonimizadas.",
+        new: "Beta"
+      },
+      showcase: {
+        tag1: "MorphAI", tag2: "Motor de vista previa",
+        title: "Granular por diseño",
+        subtitle: "Cada sesión produce desgloses por capa, mapas de zonas y sugerencias de protocolo — no un número opaco.",
+        l1: "Tablas de ratios por zona", l2: "Líneas de tendencia por capa", l3: "Pasos de protocolo clasificados por impacto",
+        metrics: "Índice 62 → 74 en 18 meses"
+      },
+      transform: {
+        eyebrow: "Datos longitudinales",
+        title: "Protocolos que mueven el índice",
+        subtitle: "Los miembros que siguen protocolos estructurados ven cambios medibles por capa — no de la noche a la mañana, pero de forma constante.",
+        start: "Sesión 1", now: "Sesión 8", unit: "puntos de índice",
+        t1h: "Configuración del protocolo", t1p: "Meses 1–6",
+        t2h: "Respuesta métrica", t2p: "Meses 6–12",
+        t3h: "Convergencia de capas", t3p: "Meses 12–18",
+        t4h: "Meseta estable", t4p: "Meses 18+",
+        q1: "El índice premia la constancia, no los atajos. Los miembros que re-escanean con regularidad ven las trayectorias más claras."
       },
       audience: {
-        eyebrow: "Creado para",
-        title: "Los comprometidos, no los curiosos",
-        p1: "Una puntuación sola no cambia nada. Los miembros que se transforman tratan MorphIndex como línea de salida — y hacen el trabajo entre escaneos.",
-        p2: "Si eso te describe, estás en el lugar correcto."
+        eyebrow: "Para quién",
+        title: "Analistas, no espectadores",
+        p1: "MorphIndex es para quienes tratan la morfología facial como un dataset — algo que medir, intervenir y re-medir."
       },
       cta: {
-        title: "Tu línea base empieza aquí",
-        subtitle: "Únete a más de 120.000 miembros que miden antes de optimizar.",
-        btn: "Crear mi perfil",
-        note: "Un escaneo. Panorama completo. Sin suposiciones."
+        title: "Empieza con un informe morfológico",
+        subtitle: "Dos fotos. Cuatro capas. Un índice estructurado.",
+        btn: "Generar informe",
+        note: "Análisis lateral gratuito incluido."
       },
       footer: { careers: "Empleo", privacy: "Privacidad", terms: "Términos", copy: "© 2026 MorphIndex" }
     }
@@ -356,26 +293,19 @@
   function applyLang(lang) {
     var dict = T[lang];
     if (!dict) return;
-
     document.title = dict.meta.title;
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute("content", dict.meta.description);
-
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
-      var val = get(dict, key);
+      var val = get(dict, el.getAttribute("data-i18n"));
       if (val != null) el.textContent = val;
     });
-
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n-html");
-      var val = get(dict, key);
+      var val = get(dict, el.getAttribute("data-i18n-html"));
       if (val != null) el.innerHTML = val;
     });
-
     document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n-aria");
-      var val = get(dict, key);
+      var val = get(dict, el.getAttribute("data-i18n-aria"));
       if (val != null) el.setAttribute("aria-label", val);
     });
   }
@@ -385,13 +315,11 @@
       var btn = wrap.querySelector("[data-lang-toggle]");
       var menu = wrap.querySelector(".lang-switcher__menu");
       if (!btn || !menu) return;
-
       btn.addEventListener("click", function (e) {
         e.stopPropagation();
         var open = wrap.classList.toggle("is-open");
         btn.setAttribute("aria-expanded", open ? "true" : "false");
       });
-
       menu.querySelectorAll("[data-lang-option]").forEach(function (option) {
         option.addEventListener("click", function () {
           setLang(option.getAttribute("data-lang-option"));
@@ -400,7 +328,6 @@
         });
       });
     });
-
     document.addEventListener("click", function () {
       document.querySelectorAll(".lang-switcher.is-open").forEach(function (wrap) {
         wrap.classList.remove("is-open");
@@ -411,7 +338,6 @@
   }
 
   window.MorphI18n = { setLang: setLang, getLang: getLang };
-
   document.addEventListener("DOMContentLoaded", function () {
     setLang(getLang());
     initLangSwitcher();
