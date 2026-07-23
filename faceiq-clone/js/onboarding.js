@@ -71,7 +71,7 @@
   }
 
   function updateProgress(step) {
-    document.querySelectorAll("[data-onboarding-step]").forEach(function (el) {
+    document.querySelectorAll("[data-onboarding-step-current]").forEach(function (el) {
       el.textContent = step;
     });
     document.querySelectorAll("[data-onboarding-total]").forEach(function (el) {
