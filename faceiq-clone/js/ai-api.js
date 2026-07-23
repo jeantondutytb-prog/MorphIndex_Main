@@ -18,15 +18,27 @@
     });
   }
 
+  function compressForApi(dataUrl) {
+    if (!dataUrl || !window.ImageCompress) {
+      return Promise.resolve(dataUrl);
+    }
+    return window.ImageCompress.compressDataUrl(dataUrl);
+  }
+
   function analyzeFace(session, frontPhoto, sidePhoto) {
     var token = getAccessToken(session);
     if (!token) {
       return Promise.resolve({ ok: false, error: "Not authenticated" });
     }
 
-    return postJson("/api/analyze-face", token, {
-      frontPhoto: frontPhoto,
-      sidePhoto: sidePhoto
+    return Promise.all([
+      compressForApi(frontPhoto),
+      compressForApi(sidePhoto)
+    ]).then(function (photos) {
+      return postJson("/api/analyze-face", token, {
+        frontPhoto: photos[0],
+        sidePhoto: photos[1]
+      });
     }).then(function (result) {
       if (!result.ok) {
         return {
@@ -47,9 +59,11 @@
       return Promise.resolve({ ok: false, error: "Not authenticated" });
     }
 
-    return postJson("/api/generate-preview", token, {
-      frontPhoto: frontPhoto,
-      plan: plan || []
+    return compressForApi(frontPhoto).then(function (compressedPhoto) {
+      return postJson("/api/generate-preview", token, {
+        frontPhoto: compressedPhoto,
+        plan: plan || []
+      });
     }).then(function (result) {
       if (!result.ok) {
         return {
