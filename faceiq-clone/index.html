@@ -22,7 +22,7 @@
 <body>
 
   <nav class="nav">
-    <div class="nav__inner">
+    <div class="nav__inner container">
       <a href="#" class="nav__brand">
         <img src="assets/logos/logo-primary.svg" alt="MorphIndex" class="logo logo--primary">
         <img src="assets/logos/logo-submark.svg" alt="MorphIndex" class="logo logo--submark">
@@ -73,43 +73,34 @@
 
     <section class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
-      <div class="hero__content">
-        <div class="hero__stats">
-          <div class="hero__stars" data-i18n-aria="a11y.stars">
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="hero__badge" data-i18n="hero.badge">Longitudinal tracking</span>
+          <h1 class="hero__title" data-i18n-html="hero.title">Track how your morphology evolves,<br>session by session.</h1>
+          <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex turns two photos into a living morphology profile — axis scores, protocol steps, and session history in one workspace.</p>
+          <div class="hero__actions">
+            <a href="#" class="btn btn--lg">
+              <span data-i18n="hero.cta">Start first session</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">See how it works</a>
           </div>
-          <span><strong class="stat-counter" data-stat-members></strong> <span data-i18n="hero.members">members</span></span>
-          <span class="hero__divider">·</span>
-          <span><strong class="stat-counter" data-stat-analyses></strong> <span data-i18n="hero.scans">analyses</span></span>
+          <p class="hero__note" data-i18n="hero.note">No vanity score. Just measurable change over time.</p>
         </div>
-        <h1 class="hero__title" data-i18n-html="hero.title">Facial structure,<br>measured like data.</h1>
-        <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex converts two photos into a structured morphology report — metrics, protocols, and longitudinal tracking in one analytics workspace.</p>
-        <div class="hero__actions">
-          <a href="#" class="btn btn--lg">
-            <span data-i18n="hero.cta">Generate my report</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">View workflow</a>
-        </div>
-        <p class="hero__note" data-i18n="hero.note">For people who prefer data over opinions.</p>
-      </div>
 
-      <div class="hero__media">
-        <div class="video-showcase">
-          <div class="video-showcase__frame">
-            <!-- Replace placeholder with <video> when demo is ready -->
-            <div class="video-showcase__placeholder">
-              <div class="video-showcase__play" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <div class="hero__media">
+          <div class="video-showcase">
+            <div class="video-showcase__frame">
+              <!-- Replace placeholder with <video> when demo is ready -->
+              <div class="video-showcase__placeholder">
+                <div class="video-showcase__play" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <p data-i18n="hero.videoLabel">Product walkthrough — video coming soon</p>
               </div>
-              <p data-i18n="hero.videoLabel">Product walkthrough — video coming soon</p>
             </div>
+            <p class="video-showcase__caption" data-i18n="hero.videoCaption">A preview of the MorphIndex analytics workspace</p>
           </div>
-          <p class="video-showcase__caption" data-i18n="hero.videoCaption">A preview of the MorphIndex analytics workspace</p>
         </div>
       </div>
     </section>
@@ -133,7 +124,7 @@
             <span class="workflow__num">02</span>
             <div>
               <h3 data-i18n="steps.s2t">Quantify</h3>
-              <p data-i18n="steps.s2d">Surface, balance, contour, and profile layers are scored independently, then synthesized.</p>
+              <p data-i18n="steps.s2d">Symmetry, Proportions, Structure, and Expression axes are scored independently, then synthesized.</p>
             </div>
           </li>
           <li class="workflow__step">
@@ -157,27 +148,17 @@
     <section class="section" id="metrics">
       <div class="container">
         <div class="section__header section__header--left">
-          <p class="eyebrow mono" data-i18n="pillars.eyebrow">Index layers</p>
-          <h2 class="section-title" data-i18n="pillars.title">Four independent scoring layers</h2>
-          <p class="section-subtitle" data-i18n="pillars.subtitle">Unlike a single beauty score, MorphIndex breaks morphology into measurable subsystems.</p>
+          <p class="eyebrow mono" data-i18n="pillars.eyebrow">Analysis axes</p>
+          <h2 class="section-title" data-i18n="pillars.title">Four independent measurement axes</h2>
+          <p class="section-subtitle" data-i18n="pillars.subtitle">Unlike a single beauty score, MorphIndex breaks morphology into measurable subsystems you can track over time.</p>
         </div>
 
         <div class="metrics-list">
           <article class="metrics-row">
             <div class="metrics-row__head">
-              <span class="metrics-row__tag" data-i18n="pillars.axis1">Layer 01</span>
-              <h3 data-i18n="pillars.p1">Surface</h3>
-              <p data-i18n="pillars.p1d">Skin quality, periorbital volume, and feature vitality markers</p>
-            </div>
-            <div class="metrics-row__meta mono">
-              <span>40+ <span data-i18n="pillars.signals">signals</span></span>
-            </div>
-          </article>
-          <article class="metrics-row">
-            <div class="metrics-row__head">
-              <span class="metrics-row__tag" data-i18n="pillars.axis2">Layer 02</span>
-              <h3 data-i18n="pillars.p2">Balance</h3>
-              <p data-i18n="pillars.p2d">Facial thirds, inter-feature spacing, and bilateral symmetry</p>
+              <span class="metrics-row__tag" data-i18n="pillars.axis1">Axis 01</span>
+              <h3 data-i18n="pillars.p1">Symmetry</h3>
+              <p data-i18n="pillars.p1d">Bilateral balance, feature alignment, and mirror-line deviation</p>
             </div>
             <div class="metrics-row__meta mono">
               <span>12 <span data-i18n="pillars.ratios">ratios</span></span>
@@ -185,8 +166,18 @@
           </article>
           <article class="metrics-row">
             <div class="metrics-row__head">
-              <span class="metrics-row__tag" data-i18n="pillars.axis3">Layer 03</span>
-              <h3 data-i18n="pillars.p3">Contour</h3>
+              <span class="metrics-row__tag" data-i18n="pillars.axis2">Axis 02</span>
+              <h3 data-i18n="pillars.p2">Proportions</h3>
+              <p data-i18n="pillars.p2d">Facial thirds, inter-feature spacing, and golden-ratio markers</p>
+            </div>
+            <div class="metrics-row__meta mono">
+              <span>18 <span data-i18n="pillars.signals">signals</span></span>
+            </div>
+          </article>
+          <article class="metrics-row">
+            <div class="metrics-row__head">
+              <span class="metrics-row__tag" data-i18n="pillars.axis3">Axis 03</span>
+              <h3 data-i18n="pillars.p3">Structure</h3>
               <p data-i18n="pillars.p3d">Mandibular line, zygomatic projection, and skeletal visibility</p>
             </div>
             <div class="metrics-row__meta mono">
@@ -195,9 +186,9 @@
           </article>
           <article class="metrics-row">
             <div class="metrics-row__head">
-              <span class="metrics-row__tag" data-i18n="pillars.axis4">Layer 04</span>
-              <h3 data-i18n="pillars.p4">Profile</h3>
-              <p data-i18n="pillars.p4d">Sex-specific morphological markers and trait expression</p>
+              <span class="metrics-row__tag" data-i18n="pillars.axis4">Axis 04</span>
+              <h3 data-i18n="pillars.p4">Expression</h3>
+              <p data-i18n="pillars.p4d">Trait dynamics, soft-tissue markers, and sex-specific morphology</p>
             </div>
             <div class="metrics-row__meta mono">
               <span>8 <span data-i18n="pillars.markers">markers</span></span>
@@ -220,7 +211,7 @@
           </article>
           <article class="bento__card">
             <h3 data-i18n="features.f1t">Composite Index</h3>
-            <p data-i18n="features.f1d">Weighted synthesis across all four layers.</p>
+            <p data-i18n="features.f1d">Weighted synthesis across all four axes.</p>
           </article>
           <article class="bento__card">
             <h3><span data-i18n="features.f2t">MorphAI</span> <span class="badge" data-i18n="features.new">Beta</span></h3>
@@ -251,10 +242,10 @@
               <span data-i18n="showcase.tag2">Preview engine</span>
             </div>
             <h2 class="section-title" data-i18n="showcase.title">Granular by design</h2>
-            <p class="section-subtitle" data-i18n="showcase.subtitle">Every session produces layer-level breakdowns, zone maps, and protocol suggestions — not a single opaque number.</p>
+            <p class="section-subtitle" data-i18n="showcase.subtitle">Every session produces axis-level breakdowns, zone maps, and protocol suggestions — not a single opaque number.</p>
             <ul class="insight__list">
               <li data-i18n="showcase.l1">Per-zone ratio tables</li>
-              <li data-i18n="showcase.l2">Layer trend lines across sessions</li>
+              <li data-i18n="showcase.l2">Axis trend lines across sessions</li>
               <li data-i18n="showcase.l3">Impact-ranked protocol steps</li>
             </ul>
           </div>
@@ -268,7 +259,7 @@
               <span data-i18n="transform.start">Session 1</span>
               <span data-i18n="transform.now">Session 8</span>
             </div>
-            <p class="insight__chart-note mono" data-i18n="showcase.metrics">Index 62 → 74 over 18 months</p>
+            <p class="insight__chart-note mono" data-i18n="showcase.metrics">4 sessions over 16 months</p>
           </div>
         </div>
       </div>
@@ -280,40 +271,60 @@
       </div>
     </div>
 
-    <section class="section section--muted">
+    <section class="section section--muted" id="timeline">
       <div class="container">
         <div class="section__header">
-          <p class="eyebrow" data-i18n="transform.eyebrow">Longitudinal data</p>
-          <h2 class="section-title" data-i18n="transform.title">Protocols that move the index</h2>
-          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="transform.subtitle">Members who follow structured protocols see measurable layer shifts — not overnight, but consistently.</p>
+          <p class="eyebrow" data-i18n="transform.eyebrow">Session history</p>
+          <h2 class="section-title" data-i18n="transform.title">See change unfold over time</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="transform.subtitle">Each re-scan adds a data point to your morphology timeline — not a single score comparison.</p>
         </div>
-        <div class="milestones">
-          <div class="milestones__score">
-            <span class="milestones__from">62</span>
-            <span class="milestones__arrow">→</span>
-            <span class="milestones__to">74</span>
-            <span class="milestones__unit" data-i18n="transform.unit">index points</span>
-          </div>
-          <div class="milestones__grid">
-            <article>
-              <h4 data-i18n="transform.t1h">Protocol setup</h4>
-              <p data-i18n="transform.t1p">Months 1–6</p>
-            </article>
-            <article>
-              <h4 data-i18n="transform.t2h">Metric response</h4>
-              <p data-i18n="transform.t2p">Months 6–12</p>
-            </article>
-            <article>
-              <h4 data-i18n="transform.t3h">Layer convergence</h4>
-              <p data-i18n="transform.t3p">Months 12–18</p>
-            </article>
-            <article>
-              <h4 data-i18n="transform.t4h">Stable plateau</h4>
-              <p data-i18n="transform.t4p">Months 18+</p>
-            </article>
-          </div>
-          <blockquote class="milestones__quote" data-i18n="transform.q1">The index rewards consistency, not shortcuts. Members who re-scan on schedule see the clearest trajectories.</blockquote>
+        <div class="timeline">
+          <article class="timeline__item">
+            <div class="timeline__marker">
+              <time class="timeline__date mono" data-i18n="transform.s1d">Mar 2024</time>
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__body">
+              <h4 data-i18n="transform.s1h">Baseline capture</h4>
+              <p data-i18n="transform.s1p">Initial profile established across all four axes.</p>
+              <span class="timeline__meta mono" data-i18n="transform.s1m">Composite 62</span>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <div class="timeline__marker">
+              <time class="timeline__date mono" data-i18n="transform.s2d">Aug 2024</time>
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__body">
+              <h4 data-i18n="transform.s2h">Protocol adjusted</h4>
+              <p data-i18n="transform.s2p">Structure and Proportions targeted after first review.</p>
+              <span class="timeline__meta mono" data-i18n="transform.s2m">Structure +4</span>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <div class="timeline__marker">
+              <time class="timeline__date mono" data-i18n="transform.s3d">Feb 2025</time>
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__body">
+              <h4 data-i18n="transform.s3h">Mid-cycle scan</h4>
+              <p data-i18n="transform.s3p">Symmetry and Expression show measurable drift.</p>
+              <span class="timeline__meta mono" data-i18n="transform.s3m">Symmetry +3</span>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <div class="timeline__marker">
+              <time class="timeline__date mono" data-i18n="transform.s4d">Jul 2025</time>
+              <span class="timeline__dot timeline__dot--active" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__body">
+              <h4 data-i18n="transform.s4h">Latest session</h4>
+              <p data-i18n="transform.s4p">Fourth scan confirms sustained axis convergence.</p>
+              <span class="timeline__meta mono timeline__meta--highlight" data-i18n="transform.s4m">Composite 74</span>
+            </div>
+          </article>
         </div>
+        <blockquote class="timeline__quote" data-i18n="transform.q1">The clearest trajectories come from regular re-scans — not from chasing a single number.</blockquote>
       </div>
     </section>
 
@@ -354,9 +365,9 @@
 
     <section class="cta">
       <div class="container">
-        <h2 class="cta__title" data-i18n="cta.title">Start with a morphology report</h2>
-        <p class="cta__subtitle" data-i18n="cta.subtitle">Two photos. Four layers. One structured index.</p>
-        <a href="#" class="btn btn--lg" data-i18n="cta.btn">Generate report</a>
+        <h2 class="cta__title" data-i18n="cta.title">Open your morphology workspace</h2>
+        <p class="cta__subtitle" data-i18n="cta.subtitle">Two photos. Four axes. A timeline that grows with you.</p>
+        <a href="#" class="btn btn--lg" data-i18n="cta.btn">Start first session</a>
         <p class="cta__note" data-i18n="cta.note">Free lateral analysis included.</p>
       </div>
     </section>
@@ -381,6 +392,5 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
-  <script src="js/stats.js"></script>
 </body>
 </html>
