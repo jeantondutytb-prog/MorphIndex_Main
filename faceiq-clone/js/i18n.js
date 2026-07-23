@@ -127,6 +127,89 @@
           title: "FaceIQ Labs — Your account",
           description: "Your FaceIQ Labs account dashboard."
         }
+      },
+      onboarding: {
+        step: "Step",
+        back: "Back",
+        continue: "Continue",
+        uploadPhoto: "Upload photo",
+        retake: "Retake",
+        welcome: {
+          eyebrow: "Getting started",
+          title: "Welcome to FaceIQ Labs",
+          subtitle: "Let's analyze your face across 100+ metrics and build your personalized improvement plan.",
+          item1: "Take a front and side photo",
+          item2: "Get your analysis across 4 pillars",
+          item3: "Unlock your full results and personalized plan",
+          note: "Takes about 2 minutes. Your photos stay private."
+        },
+        consent: {
+          eyebrow: "Before we start",
+          title: "Your data, your control",
+          subtitle: "We need your consent to analyze your facial photos and store your results securely.",
+          photos: "I agree to upload photos for AI facial analysis",
+          storage: "I agree to secure storage of my photos and analysis results",
+          disclaimer: "I understand this is not medical advice",
+          legal: "Read our Privacy Policy and Terms of Service for full details."
+        },
+        front: {
+          eyebrow: "Front photo",
+          title: "Take a front-facing photo",
+          subtitle: "Look straight at the camera with a neutral expression. Good lighting, no obstructions.",
+          guide: "Center your face in the frame",
+          tip1: "Face the camera directly",
+          tip2: "Use natural, even lighting",
+          tip3: "Remove glasses and keep hair off your face"
+        },
+        side: {
+          eyebrow: "Side profile",
+          title: "Take a side profile photo",
+          subtitle: "Turn your head 90° to show your profile. Keep your chin level and look straight ahead.",
+          guide: "Show your full profile",
+          tip1: "Turn exactly 90° from the camera",
+          tip2: "Keep your jawline visible",
+          tip3: "Same lighting as your front photo"
+        },
+        analyzing: {
+          title: "Analyzing your face…",
+          subtitle: "Measuring 100+ facial metrics across 4 pillars.",
+          harmony: "Mapping facial harmony ratios",
+          angularity: "Measuring jawline & bone structure",
+          dimorphism: "Evaluating dimorphic traits",
+          features: "Analyzing skin & feature quality"
+        },
+        results: {
+          eyebrow: "Analysis complete",
+          title: "Your results are ready",
+          subtitle: "Subscribe to unlock your full analysis, personalized plan, and progress tracking.",
+          overall: "Overall score",
+          metric1: "Facial thirds ratio",
+          metric2: "Jaw angle",
+          metric3: "Symmetry deviation",
+          metric4: "IPD ratio",
+          lock: "Subscribe to unlock your full results",
+          unlock: "Unlock my results"
+        },
+        paywall: {
+          eyebrow: "FaceIQ Pro",
+          title: "Unlock your full analysis",
+          subtitle: "Get access to your complete results, personalized plan, and progress tracking.",
+          f1: "Full analysis across 100+ metrics",
+          f2: "Personalized improvement plan",
+          f3: "FaceGPT — AI expert guidance",
+          f4: "Progress tracking & re-scans",
+          yearly: "Yearly",
+          yearlyPrice: "€59.99/year",
+          monthly: "Monthly",
+          monthlyPrice: "€9.99/month",
+          bestValue: "Best value",
+          subscribe: "Subscribe now",
+          legal: "Cancel anytime. Payment processing coming soon."
+        },
+        meta: {
+          title: "FaceIQ Labs — Onboarding",
+          description: "Complete your first facial analysis with FaceIQ Labs."
+        }
       }
     },
     fr: {
@@ -252,6 +335,89 @@
         meta: {
           title: "FaceIQ Labs — Votre compte",
           description: "Votre espace compte FaceIQ Labs."
+        }
+      },
+      onboarding: {
+        step: "Étape",
+        back: "Retour",
+        continue: "Continuer",
+        uploadPhoto: "Importer une photo",
+        retake: "Reprendre",
+        welcome: {
+          eyebrow: "Premiers pas",
+          title: "Bienvenue sur FaceIQ Labs",
+          subtitle: "Analysons votre visage selon plus de 100 métriques et construisons votre plan d'amélioration personnalisé.",
+          item1: "Prenez une photo de face et de profil",
+          item2: "Obtenez votre analyse sur 4 piliers",
+          item3: "Débloquez vos résultats complets et votre plan personnalisé",
+          note: "Environ 2 minutes. Vos photos restent privées."
+        },
+        consent: {
+          eyebrow: "Avant de commencer",
+          title: "Vos données, votre contrôle",
+          subtitle: "Nous avons besoin de votre consentement pour analyser vos photos et stocker vos résultats en toute sécurité.",
+          photos: "J'accepte d'importer des photos pour l'analyse faciale par IA",
+          storage: "J'accepte le stockage sécurisé de mes photos et résultats d'analyse",
+          disclaimer: "Je comprends que ce n'est pas un avis médical",
+          legal: "Consultez notre Politique de confidentialité et nos Conditions d'utilisation."
+        },
+        front: {
+          eyebrow: "Photo de face",
+          title: "Prenez une photo de face",
+          subtitle: "Regardez droit la caméra avec une expression neutre. Bon éclairage, sans obstruction.",
+          guide: "Centrez votre visage dans le cadre",
+          tip1: "Faites face à la caméra",
+          tip2: "Utilisez un éclairage naturel et uniforme",
+          tip3: "Retirez vos lunettes et dégagez votre visage"
+        },
+        side: {
+          eyebrow: "Photo de profil",
+          title: "Prenez une photo de profil",
+          subtitle: "Tournez la tête à 90° pour montrer votre profil. Gardez le menton à niveau.",
+          guide: "Montrez votre profil complet",
+          tip1: "Tournez exactement à 90° de la caméra",
+          tip2: "Gardez la mâchoire visible",
+          tip3: "Même éclairage que la photo de face"
+        },
+        analyzing: {
+          title: "Analyse de votre visage…",
+          subtitle: "Mesure de plus de 100 métriques faciales sur 4 piliers.",
+          harmony: "Cartographie des ratios d'harmonie faciale",
+          angularity: "Mesure de la mâchoire et de la structure osseuse",
+          dimorphism: "Évaluation des traits dimorphiques",
+          features: "Analyse de la peau et des traits"
+        },
+        results: {
+          eyebrow: "Analyse terminée",
+          title: "Vos résultats sont prêts",
+          subtitle: "Abonnez-vous pour débloquer votre analyse complète, votre plan personnalisé et le suivi de vos progrès.",
+          overall: "Score global",
+          metric1: "Ratio des tiers faciaux",
+          metric2: "Angle de la mâchoire",
+          metric3: "Déviation de symétrie",
+          metric4: "Ratio IPD",
+          lock: "Abonnez-vous pour débloquer vos résultats",
+          unlock: "Débloquer mes résultats"
+        },
+        paywall: {
+          eyebrow: "FaceIQ Pro",
+          title: "Débloquez votre analyse complète",
+          subtitle: "Accédez à vos résultats complets, votre plan personnalisé et le suivi de vos progrès.",
+          f1: "Analyse complète sur plus de 100 métriques",
+          f2: "Plan d'amélioration personnalisé",
+          f3: "FaceGPT — conseils d'expert par IA",
+          f4: "Suivi des progrès et re-scans",
+          yearly: "Annuel",
+          yearlyPrice: "59,99 €/an",
+          monthly: "Mensuel",
+          monthlyPrice: "9,99 €/mois",
+          bestValue: "Meilleur choix",
+          subscribe: "S'abonner maintenant",
+          legal: "Annulation à tout moment. Paiement bientôt disponible."
+        },
+        meta: {
+          title: "FaceIQ Labs — Onboarding",
+          description: "Complétez votre première analyse faciale avec FaceIQ Labs."
         }
       }
     },
@@ -379,6 +545,89 @@
           title: "FaceIQ Labs — Tu cuenta",
           description: "Tu panel de cuenta de FaceIQ Labs."
         }
+      },
+      onboarding: {
+        step: "Paso",
+        back: "Volver",
+        continue: "Continuar",
+        uploadPhoto: "Subir foto",
+        retake: "Repetir",
+        welcome: {
+          eyebrow: "Primeros pasos",
+          title: "Bienvenido a FaceIQ Labs",
+          subtitle: "Analicemos tu rostro según más de 100 métricas y construyamos tu plan de mejora personalizado.",
+          item1: "Toma una foto frontal y lateral",
+          item2: "Obtén tu análisis en 4 pilares",
+          item3: "Desbloquea tus resultados completos y tu plan personalizado",
+          note: "Toma unos 2 minutos. Tus fotos son privadas."
+        },
+        consent: {
+          eyebrow: "Antes de empezar",
+          title: "Tus datos, tu control",
+          subtitle: "Necesitamos tu consentimiento para analizar tus fotos y almacenar tus resultados de forma segura.",
+          photos: "Acepto subir fotos para análisis facial con IA",
+          storage: "Acepto el almacenamiento seguro de mis fotos y resultados",
+          disclaimer: "Entiendo que esto no es consejo médico",
+          legal: "Lee nuestra Política de privacidad y Términos de servicio."
+        },
+        front: {
+          eyebrow: "Foto frontal",
+          title: "Toma una foto de frente",
+          subtitle: "Mira directamente a la cámara con expresión neutra. Buena iluminación, sin obstrucciones.",
+          guide: "Centra tu rostro en el marco",
+          tip1: "Mira directamente a la cámara",
+          tip2: "Usa iluminación natural y uniforme",
+          tip3: "Quítate las gafas y despeja tu rostro"
+        },
+        side: {
+          eyebrow: "Foto lateral",
+          title: "Toma una foto de perfil",
+          subtitle: "Gira la cabeza 90° para mostrar tu perfil. Mantén la barbilla a nivel.",
+          guide: "Muestra tu perfil completo",
+          tip1: "Gira exactamente 90° de la cámara",
+          tip2: "Mantén la mandíbula visible",
+          tip3: "Misma iluminación que la foto frontal"
+        },
+        analyzing: {
+          title: "Analizando tu rostro…",
+          subtitle: "Midiendo más de 100 métricas faciales en 4 pilares.",
+          harmony: "Mapeando ratios de armonía facial",
+          angularity: "Midiendo mandíbula y estructura ósea",
+          dimorphism: "Evaluando rasgos dimórficos",
+          features: "Analizando piel y rasgos"
+        },
+        results: {
+          eyebrow: "Análisis completo",
+          title: "Tus resultados están listos",
+          subtitle: "Suscríbete para desbloquear tu análisis completo, plan personalizado y seguimiento.",
+          overall: "Puntuación global",
+          metric1: "Ratio de tercios faciales",
+          metric2: "Ángulo de mandíbula",
+          metric3: "Desviación de simetría",
+          metric4: "Ratio IPD",
+          lock: "Suscríbete para desbloquear tus resultados",
+          unlock: "Desbloquear mis resultados"
+        },
+        paywall: {
+          eyebrow: "FaceIQ Pro",
+          title: "Desbloquea tu análisis completo",
+          subtitle: "Accede a tus resultados completos, plan personalizado y seguimiento de progreso.",
+          f1: "Análisis completo en más de 100 métricas",
+          f2: "Plan de mejora personalizado",
+          f3: "FaceGPT — orientación experta con IA",
+          f4: "Seguimiento de progreso y re-escaneos",
+          yearly: "Anual",
+          yearlyPrice: "59,99 €/año",
+          monthly: "Mensual",
+          monthlyPrice: "9,99 €/mes",
+          bestValue: "Mejor valor",
+          subscribe: "Suscribirse ahora",
+          legal: "Cancela cuando quieras. Pago próximamente."
+        },
+        meta: {
+          title: "FaceIQ Labs — Onboarding",
+          description: "Completa tu primer análisis facial con FaceIQ Labs."
+        }
       }
     }
   };
@@ -413,8 +662,13 @@
     var authPage = document.body && document.body.dataset.authPage;
     var isAuthPage = document.body && document.body.classList.contains("auth-page");
     var isAppPage = document.body && document.body.classList.contains("app-page");
+    var isOnboardingPage = document.body && document.body.classList.contains("onboarding-page");
 
-    if (isAppPage && dict.app && dict.app.meta) {
+    if (isOnboardingPage && dict.onboarding && dict.onboarding.meta) {
+      document.title = dict.onboarding.meta.title;
+      var onboardingMeta = document.querySelector('meta[name="description"]');
+      if (onboardingMeta) onboardingMeta.setAttribute("content", dict.onboarding.meta.description);
+    } else if (isAppPage && dict.app && dict.app.meta) {
       document.title = dict.app.meta.title;
       var appMeta = document.querySelector('meta[name="description"]');
       if (appMeta) appMeta.setAttribute("content", dict.app.meta.description);

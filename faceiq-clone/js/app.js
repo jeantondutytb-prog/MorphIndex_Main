@@ -15,6 +15,32 @@
     return window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
   }
 
+  function hasCompletedOnboarding(user) {
+    if (!user) return false;
+    if (user.user_metadata && user.user_metadata.onboarding_complete) return true;
+    try {
+      var raw = localStorage.getItem("faceiq_onboarding_" + user.id);
+      if (!raw) return false;
+      var state = JSON.parse(raw);
+      return !!state.scanComplete;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function hasActiveSubscription(user) {
+    if (!user) return false;
+    if (user.user_metadata && user.user_metadata.subscription_active) return true;
+    try {
+      var raw = localStorage.getItem("faceiq_onboarding_" + user.id);
+      if (!raw) return false;
+      var state = JSON.parse(raw);
+      return !!state.subscriptionActive;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function showUser(session) {
     if (!session || !session.user) {
       redirectToLogin();
@@ -35,6 +61,17 @@
         redirectToLogin();
         return;
       }
+
+      var user = result.data.session.user;
+      if (!hasCompletedOnboarding(user)) {
+        window.location.href = "/onboarding";
+        return;
+      }
+      if (!hasActiveSubscription(user)) {
+        window.location.href = "/onboarding/results";
+        return;
+      }
+
       showUser(result.data.session);
     });
 

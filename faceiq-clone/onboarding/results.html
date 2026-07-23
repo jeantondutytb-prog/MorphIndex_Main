@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your FaceIQ Labs analysis results.">
+  <title>FaceIQ Labs — Your results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723o">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var stored = localStorage.getItem("theme");
+      document.documentElement.setAttribute("data-theme", stored || "light");
+      var lang = localStorage.getItem("lang");
+      if (lang) document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
+</head>
+<body class="onboarding-page onboarding-page--results" data-onboarding-step="6">
+
+  <header class="onboarding-header">
+    <span class="onboarding-header__brand">
+      <img src="../assets/logo.svg" alt="">
+      <span>FaceIQ Labs</span>
+    </span>
+    <div class="onboarding-header__actions">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span data-lang-current>EN</span>
+        </button>
+        <div class="lang-switcher__menu" role="menu">
+          <button type="button" role="menuitem" data-lang-option="fr">Français</button>
+          <button type="button" role="menuitem" data-lang-option="en">English</button>
+          <button type="button" role="menuitem" data-lang-option="es">Español</button>
+        </div>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
+        <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="onboarding">
+    <div class="onboarding__progress" aria-hidden="true">
+      <div class="onboarding__progress-track">
+        <div class="onboarding__progress-fill" data-onboarding-progress style="width: 100%"></div>
+      </div>
+      <p class="onboarding__progress-label">
+        <span data-i18n="onboarding.step">Step</span>
+        <span data-onboarding-step>6</span>/<span data-onboarding-total>6</span>
+      </p>
+    </div>
+
+    <div class="onboarding__card onboarding__card--wide">
+      <p class="eyebrow" data-i18n="onboarding.results.eyebrow">Analysis complete</p>
+      <h1 class="onboarding__title" data-i18n="onboarding.results.title">Your results are ready</h1>
+      <p class="onboarding__subtitle" data-i18n="onboarding.results.subtitle">Subscribe to unlock your full analysis, personalized plan, and progress tracking.</p>
+
+      <div class="results-dashboard" id="results-dashboard">
+        <div class="results-dashboard__overall">
+          <span class="results-dashboard__label" data-i18n="onboarding.results.overall">Overall score</span>
+          <span class="results-dashboard__score" id="score-overall">—</span>
+        </div>
+
+        <div class="results-dashboard__pillars">
+          <div class="results-dashboard__pillar">
+            <span class="results-dashboard__pillar-name" data-i18n="pillars.p1">Harmony</span>
+            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-harmony"></div></div>
+            <span class="results-dashboard__pillar-score" id="score-harmony">—</span>
+          </div>
+          <div class="results-dashboard__pillar">
+            <span class="results-dashboard__pillar-name" data-i18n="pillars.p2">Angularity</span>
+            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-angularity"></div></div>
+            <span class="results-dashboard__pillar-score" id="score-angularity">—</span>
+          </div>
+          <div class="results-dashboard__pillar">
+            <span class="results-dashboard__pillar-name" data-i18n="pillars.p3">Dimorphism</span>
+            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-dimorphism"></div></div>
+            <span class="results-dashboard__pillar-score" id="score-dimorphism">—</span>
+          </div>
+          <div class="results-dashboard__pillar">
+            <span class="results-dashboard__pillar-name" data-i18n="pillars.p4">Health Indicators</span>
+            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-features"></div></div>
+            <span class="results-dashboard__pillar-score" id="score-features">—</span>
+          </div>
+        </div>
+
+        <div class="results-dashboard__metrics">
+          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">Facial thirds ratio</span><strong id="metric-1">—</strong></div>
+          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">Jaw angle</span><strong id="metric-2">—</strong></div>
+          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">Symmetry deviation</span><strong id="metric-3">—</strong></div>
+          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">IPD ratio</span><strong id="metric-4">—</strong></div>
+        </div>
+
+        <div class="results-dashboard__lock" id="results-lock">
+          <div class="results-dashboard__lock-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <p class="results-dashboard__lock-text" data-i18n="onboarding.results.lock">Subscribe to unlock your full results</p>
+          <button type="button" class="btn btn--lg" id="unlock-btn" data-i18n="onboarding.results.unlock">Unlock my results</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="paywall" id="paywall" hidden>
+    <div class="paywall__backdrop" id="paywall-close"></div>
+    <div class="paywall__panel" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
+      <button type="button" class="paywall__close" id="paywall-dismiss" aria-label="Close">&times;</button>
+      <p class="eyebrow" data-i18n="onboarding.paywall.eyebrow">FaceIQ Pro</p>
+      <h2 class="paywall__title" id="paywall-title" data-i18n="onboarding.paywall.title">Unlock your full analysis</h2>
+      <p class="paywall__subtitle" data-i18n="onboarding.paywall.subtitle">Get access to your complete results, personalized plan, and progress tracking.</p>
+
+      <ul class="paywall__features">
+        <li data-i18n="onboarding.paywall.f1">Full analysis across 100+ metrics</li>
+        <li data-i18n="onboarding.paywall.f2">Personalized improvement plan</li>
+        <li data-i18n="onboarding.paywall.f3">FaceGPT — AI expert guidance</li>
+        <li data-i18n="onboarding.paywall.f4">Progress tracking & re-scans</li>
+      </ul>
+
+      <div class="paywall__plans">
+        <label class="paywall__plan paywall__plan--selected">
+          <input type="radio" name="plan" value="yearly" checked>
+          <span class="paywall__plan-info">
+            <strong data-i18n="onboarding.paywall.yearly">Yearly</strong>
+            <span data-i18n="onboarding.paywall.yearlyPrice">€59.99/year</span>
+          </span>
+          <span class="paywall__plan-badge" data-i18n="onboarding.paywall.bestValue">Best value</span>
+        </label>
+        <label class="paywall__plan">
+          <input type="radio" name="plan" value="monthly">
+          <span class="paywall__plan-info">
+            <strong data-i18n="onboarding.paywall.monthly">Monthly</strong>
+            <span data-i18n="onboarding.paywall.monthlyPrice">€9.99/month</span>
+          </span>
+        </label>
+      </div>
+
+      <button type="button" class="btn btn--lg btn--full" id="paywall-subscribe" data-i18n="onboarding.paywall.subscribe">Subscribe now</button>
+      <p class="paywall__legal" data-i18n="onboarding.paywall.legal">Cancel anytime. Payment processing coming soon.</p>
+    </div>
+  </div>
+
+  <script src="../js/config.js?v=20260723o"></script>
+  <script src="/api/config.js" onerror="void 0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script src="../js/i18n.js?v=20260723o"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/onboarding.js?v=20260723o"></script>
+  <script>
+    (function () {
+      var paywall = document.getElementById("paywall");
+      var unlockBtn = document.getElementById("unlock-btn");
+      var subscribeBtn = document.getElementById("paywall-subscribe");
+      var closeBtn = document.getElementById("paywall-dismiss");
+      var backdrop = document.getElementById("paywall-close");
+      var dashboard = document.getElementById("results-dashboard");
+      var lockOverlay = document.getElementById("results-lock");
+
+      function openPaywall() {
+        paywall.hidden = false;
+        document.body.classList.add("paywall-open");
+      }
+
+      function closePaywall() {
+        paywall.hidden = true;
+        document.body.classList.remove("paywall-open");
+      }
+
+      function renderScores(scores) {
+        document.getElementById("score-overall").textContent = scores.overall;
+        document.getElementById("score-harmony").textContent = scores.harmony;
+        document.getElementById("score-angularity").textContent = scores.angularity;
+        document.getElementById("score-dimorphism").textContent = scores.dimorphism;
+        document.getElementById("score-features").textContent = scores.features;
+
+        document.getElementById("bar-harmony").style.width = (scores.harmony / 10 * 100) + "%";
+        document.getElementById("bar-angularity").style.width = (scores.angularity / 10 * 100) + "%";
+        document.getElementById("bar-dimorphism").style.width = (scores.dimorphism / 10 * 100) + "%";
+        document.getElementById("bar-features").style.width = (scores.features / 10 * 100) + "%";
+
+        document.getElementById("metric-1").textContent = (1.0 + Math.random() * 0.15).toFixed(2);
+        document.getElementById("metric-2").textContent = Math.round(118 + Math.random() * 14) + "°";
+        document.getElementById("metric-3").textContent = (1.5 + Math.random() * 3).toFixed(1) + "%";
+        document.getElementById("metric-4").textContent = (0.44 + Math.random() * 0.06).toFixed(2);
+      }
+
+      function unlockResults() {
+        dashboard.classList.add("is-unlocked");
+        lockOverlay.hidden = true;
+      }
+
+      unlockBtn.addEventListener("click", openPaywall);
+      closeBtn.addEventListener("click", closePaywall);
+      backdrop.addEventListener("click", closePaywall);
+
+      document.querySelectorAll(".paywall__plan").forEach(function (plan) {
+        plan.addEventListener("click", function () {
+          document.querySelectorAll(".paywall__plan").forEach(function (p) {
+            p.classList.remove("paywall__plan--selected");
+          });
+          plan.classList.add("paywall__plan--selected");
+          var radio = plan.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+        });
+      });
+
+      var client = window.Onboarding.initSupabase();
+      if (!client) {
+        window.Onboarding.redirectToLogin();
+        return;
+      }
+
+      window.Onboarding.requireStep(client, 6, 6).then(function (ctx) {
+        if (!ctx) return;
+        var state = window.Onboarding.getState(ctx.user.id);
+
+        if (!state.scanComplete) {
+          window.location.href = "/onboarding";
+          return;
+        }
+
+        if (state.scores) {
+          renderScores(state.scores);
+        }
+
+        if (window.Onboarding.hasActiveSubscription(ctx.user)) {
+          unlockResults();
+          return;
+        }
+
+        subscribeBtn.addEventListener("click", function () {
+          window.Onboarding.saveState(ctx.user.id, { subscriptionActive: true });
+          client.auth.updateUser({
+            data: { subscription_active: true }
+          }).finally(function () {
+            closePaywall();
+            unlockResults();
+            setTimeout(function () {
+              window.location.href = "/app";
+            }, 1500);
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

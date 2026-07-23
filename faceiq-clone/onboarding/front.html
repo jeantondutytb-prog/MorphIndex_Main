@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Upload your front photo for FaceIQ Labs analysis.">
+  <title>FaceIQ Labs — Front photo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723o">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var stored = localStorage.getItem("theme");
+      document.documentElement.setAttribute("data-theme", stored || "light");
+      var lang = localStorage.getItem("lang");
+      if (lang) document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
+</head>
+<body class="onboarding-page" data-onboarding-step="3">
+
+  <header class="onboarding-header">
+    <a href="/onboarding/consent" class="onboarding-header__back" data-i18n="onboarding.back">Back</a>
+    <div class="onboarding-header__actions">
+      <div class="lang-switcher">
+        <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span data-lang-current>EN</span>
+        </button>
+        <div class="lang-switcher__menu" role="menu">
+          <button type="button" role="menuitem" data-lang-option="fr">Français</button>
+          <button type="button" role="menuitem" data-lang-option="en">English</button>
+          <button type="button" role="menuitem" data-lang-option="es">Español</button>
+        </div>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle data-i18n-aria="a11y.theme">
+        <svg class="theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+        <svg class="theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="onboarding">
+    <div class="onboarding__progress" aria-hidden="true">
+      <div class="onboarding__progress-track">
+        <div class="onboarding__progress-fill" data-onboarding-progress></div>
+      </div>
+      <p class="onboarding__progress-label">
+        <span data-i18n="onboarding.step">Step</span>
+        <span data-onboarding-step>3</span>/<span data-onboarding-total>6</span>
+      </p>
+    </div>
+
+    <div class="onboarding__card onboarding__card--wide">
+      <p class="eyebrow" data-i18n="onboarding.front.eyebrow">Front photo</p>
+      <h1 class="onboarding__title" data-i18n="onboarding.front.title">Take a front-facing photo</h1>
+      <p class="onboarding__subtitle" data-i18n="onboarding.front.subtitle">Look straight at the camera with a neutral expression. Good lighting, no obstructions.</p>
+
+      <div class="onboarding__photo-zone" id="photo-zone">
+        <div class="onboarding__photo-guide" id="photo-guide">
+          <svg viewBox="0 0 200 260" aria-hidden="true" class="onboarding__face-outline">
+            <ellipse cx="100" cy="110" rx="70" ry="90" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="8 6" opacity="0.4"/>
+            <ellipse cx="100" cy="230" rx="90" ry="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.2"/>
+          </svg>
+          <p data-i18n="onboarding.front.guide">Center your face in the frame</p>
+        </div>
+        <img id="photo-preview" class="onboarding__photo-preview" alt="" hidden>
+      </div>
+
+      <ul class="onboarding__tips">
+        <li data-i18n="onboarding.front.tip1">Face the camera directly</li>
+        <li data-i18n="onboarding.front.tip2">Use natural, even lighting</li>
+        <li data-i18n="onboarding.front.tip3">Remove glasses and keep hair off your face</li>
+      </ul>
+
+      <input type="file" id="photo-input" accept="image/*" capture="user" hidden>
+      <div class="onboarding__photo-actions">
+        <button type="button" class="btn btn--lg" id="photo-upload" data-i18n="onboarding.uploadPhoto">Upload photo</button>
+        <button type="button" class="btn btn--ghost" id="photo-retake" hidden data-i18n="onboarding.retake">Retake</button>
+      </div>
+
+      <button type="button" class="btn btn--lg btn--full" id="onboarding-continue" disabled data-i18n="onboarding.continue">Continue</button>
+    </div>
+  </main>
+
+  <script src="../js/config.js?v=20260723o"></script>
+  <script src="/api/config.js" onerror="void 0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script src="../js/i18n.js?v=20260723o"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/onboarding.js?v=20260723o"></script>
+  <script>
+    (function () {
+      var photoInput = document.getElementById("photo-input");
+      var photoUpload = document.getElementById("photo-upload");
+      var photoRetake = document.getElementById("photo-retake");
+      var photoPreview = document.getElementById("photo-preview");
+      var photoGuide = document.getElementById("photo-guide");
+      var continueBtn = document.getElementById("onboarding-continue");
+      var photoData = null;
+      var userId = null;
+
+      function showPreview(dataUrl) {
+        photoData = dataUrl;
+        photoPreview.src = dataUrl;
+        photoPreview.hidden = false;
+        photoGuide.hidden = true;
+        photoRetake.hidden = false;
+        continueBtn.disabled = false;
+      }
+
+      function resetPreview() {
+        photoData = null;
+        photoPreview.src = "";
+        photoPreview.hidden = true;
+        photoGuide.hidden = false;
+        photoRetake.hidden = true;
+        continueBtn.disabled = true;
+        photoInput.value = "";
+      }
+
+      photoUpload.addEventListener("click", function () {
+        photoInput.click();
+      });
+
+      photoRetake.addEventListener("click", resetPreview);
+
+      photoInput.addEventListener("change", function () {
+        var file = photoInput.files && photoInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          showPreview(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+
+      var client = window.Onboarding.initSupabase();
+      if (!client) {
+        window.Onboarding.redirectToLogin();
+        return;
+      }
+
+      window.Onboarding.requireStep(client, 3, 3).then(function (ctx) {
+        if (!ctx) return;
+        userId = ctx.user.id;
+        var state = window.Onboarding.getState(userId);
+        if (state.frontPhoto) {
+          showPreview(state.frontPhoto);
+        }
+        continueBtn.addEventListener("click", function () {
+          if (!photoData) return;
+          window.Onboarding.saveState(userId, { frontPhoto: photoData });
+          window.location.href = "/onboarding/side";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
