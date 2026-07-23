@@ -1,7 +1,7 @@
-import { requireUser } from "./lib/auth.js";
-import { applyCors, readJsonBody, sendJson } from "./lib/http.js";
-import { activateSubscription, deactivateSubscription } from "./lib/subscription.js";
-import { getAppOrigin, getPriceId, getStripe, isSubscriptionActive } from "./lib/stripe.js";
+import { requireUser } from "../lib/auth.js";
+import { applyCors, readJsonBody, sendJson } from "../lib/http.js";
+import { activateSubscription, deactivateSubscription } from "../lib/subscription.js";
+import { getAppOrigin, getPriceId, getStripe, isSubscriptionActive } from "../lib/stripe.js";
 
 export const config = {
   api: {

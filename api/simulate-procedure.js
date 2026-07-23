@@ -1,6 +1,6 @@
-import { requireUser } from "./lib/auth.js";
-import { applyCors, readJsonBody, sendJson } from "./lib/http.js";
-import { generateProcedureSimulation } from "./lib/fal.js";
+import { requireUser } from "../lib/auth.js";
+import { applyCors, readJsonBody, sendJson } from "../lib/http.js";
+import { generateProcedureSimulation } from "../lib/fal.js";
 
 export default async function handler(request, response) {
   applyCors(request, response);
