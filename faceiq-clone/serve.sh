@@ -17,9 +17,9 @@ echo "  (Appuyez sur Ctrl+C pour arrêter le serveur)"
 echo ""
 
 if command -v python3 >/dev/null 2>&1; then
-  python3 -m http.server "$PORT"
+  exec python3 serve.py
 elif command -v python >/dev/null 2>&1; then
-  python -m http.server "$PORT"
+  exec python serve.py
 elif command -v npx >/dev/null 2>&1; then
   npx --yes serve . -l "$PORT"
 else
