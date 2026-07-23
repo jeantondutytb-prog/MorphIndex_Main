@@ -5,267 +5,312 @@
   var T = {
     en: {
       meta: {
-        title: "MorphIndex — Morphology Analytics Platform",
-        description: "MorphIndex is a morphology analytics platform — structured facial metrics, personalized protocols, and longitudinal tracking."
+        title: "FaceIQ Labs — The Self-Improvement System for Your Appearance",
+        description: "Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time. Side profile analysis is free."
       },
-      a11y: { theme: "Toggle theme", language: "Change language", stars: "5 stars", prev: "Previous", next: "Next" },
-      nav: { metrics: "Metrics", platform: "Platform", signin: "Sign In", cta: "Open dashboard" },
+      a11y: { theme: "Toggle theme", language: "Change language" },
+      nav: { pillars: "Pillars", platform: "Platform", how: "How it works", signin: "Sign In", cta: "Get started" },
       hero: {
-        badge: "Facial analysis",
-        title: 'Your appearance.<br><span class="hero__title-punch">Measured.</span><br><span class="hero__title-punch">Tracked.</span><br><span class="hero__title-punch hero__title-punch--accent">Improved.</span>',
-        subtitle: "Analyze your face across 100+ criteria, get a personalized plan, and track your progress over time.",
-        cta: "Start first session",
+        stats: "450,000+ users · 2,500,000+ analyses",
+        title: 'Your Looks.<br><span class="gradient-text">Measured. Tracked. Improved.</span>',
+        subtitle: "Analyze your face across 100+ metrics, get a personalized plan, and track your progress over time.",
+        cta: "Start Your Journey",
         link: "See how it works",
-        note: "No vanity score. Just measurable change over time.",
-        videoLabel: "Product walkthrough — video coming soon",
-        videoCaption: "A preview of the MorphIndex analytics workspace"
-      },
-      steps: {
-        eyebrow: "Workflow",
-        title: "A repeatable analysis cycle",
-        subtitle: "Capture, quantify, prioritize, and re-measure — each loop refines your morphology profile.",
-        s1t: "Ingest", s1d: "Submit frontal and lateral captures. MorphIndex normalizes lighting and alignment automatically.",
-        s2t: "Quantify", s2d: "Symmetry, Proportions, Structure, and Expression axes are scored independently, then synthesized.",
-        s3t: "Protocol", s3d: "Interventions and habits are ranked by projected impact on your weakest metrics.",
-        s4t: "Track", s4d: "Re-run the cycle, compare sessions, and let MorphAI answer protocol questions along the way.",
-        note: "Lateral capture analysis included with every session."
-      },
-      pillars: {
-        eyebrow: "Analysis axes",
-        title: "Four independent measurement axes",
-        subtitle: "Unlike a single beauty score, MorphIndex breaks morphology into measurable subsystems you can track over time.",
-        axis1: "Axis 01", p1: "Symmetry", p1d: "Bilateral balance, feature alignment, and mirror-line deviation",
-        criteria: "criteria", ratios: "ratios", signals: "signals", markers: "markers",
-        axis2: "Axis 02", p2: "Proportions", p2d: "Facial thirds, inter-feature spacing, and golden-ratio markers",
-        axis3: "Axis 03", p3: "Structure", p3d: "Mandibular line, zygomatic projection, and skeletal visibility",
-        axis4: "Axis 04", p4: "Expression", p4d: "Trait dynamics, soft-tissue markers, and sex-specific morphology"
-      },
-      banner: "MorphIndex applies quantitative morphology research to everyday self-optimization — structured, repeatable, evidence-based.",
-      testimonials: {
-        title: "From the community",
-        subtitle: "Notes from members who run regular analysis cycles.",
-        t1: "\"Finally a tool that treats my face like a dataset. The axis breakdowns are what sold me — not another single vanity score.\"",
-        t2: "\"I stopped guessing which habits mattered. MorphIndex ranked interventions by metric impact, and the index actually moved.\"",
-        t3: "\"Symmetry axis detail on alignment and bilateral balance was more precise than anything I'd tried before.\"",
-        t4: "\"Session compare alone is worth it. I can see exactly which metrics shifted after each protocol change.\""
-      },
-      features: {
-        title: "Platform modules",
-        subtitle: "Everything lives in one morphology workspace — no switching between tools.",
-        f1t: "Composite Index", f1d: "Weighted synthesis across all four axes.",
-        f2t: "MorphAI", f2d: "Query your morphology data in natural language.",
-        f3t: "Morph Preview", f3d: "Model projected outcomes before committing to a protocol step.",
-        f4t: "Protocol Builder", f4d: "Auto-generated intervention sequences ranked by metric impact.",
-        f5t: "Session Compare", f5d: "Diff any two scans at the metric level.",
-        f6t: "Cohort Benchmarks", f6d: "See how your index compares within anonymized cohorts.",
-        new: "Beta"
-      },
-      showcase: {
-        tag1: "MorphAI", tag2: "Preview engine",
-        title: "Granular by design",
-        subtitle: "Every session produces axis-level breakdowns, zone maps, and protocol suggestions — not a single opaque number.",
-        l1: "Per-zone ratio tables", l2: "Axis trend lines across sessions", l3: "Impact-ranked protocol steps",
-        metrics: "4 sessions over 16 months"
+        note: "For those serious about self-improvement.",
+        tabFront: "Front Harmony",
+        tabSide: "Side Harmony"
       },
       transform: {
-        eyebrow: "Session history",
-        title: "See change unfold over time",
-        subtitle: "Each re-scan adds a data point to your morphology timeline — not a single score comparison.",
-        s1d: "Mar 2024", s1h: "Baseline capture", s1p: "Initial profile established across all four axes.", s1m: "Composite 62",
-        s2d: "Aug 2024", s2h: "Protocol adjusted", s2p: "Structure and Proportions targeted after first review.", s2m: "Structure +4",
-        s3d: "Feb 2025", s3h: "Mid-cycle scan", s3p: "Symmetry and Expression show measurable drift.", s3m: "Symmetry +3",
-        s4d: "Jul 2025", s4h: "Latest session", s4p: "Fourth scan confirms sustained axis convergence.", s4m: "Composite 74",
-        start: "Session 1", now: "Session 8",
-        q1: "The clearest trajectories come from regular re-scans — not from chasing a single number."
+        eyebrow: "Commitment pays off",
+        title: "See What's Possible",
+        subtitle: "2.5 years of real commitment, every step tracked.",
+        scoreLabel: "Overall facial score over 2.5 years",
+        body: "The people who get results aren't gifted — they're committed. They track every change, follow the data, and stay the course.",
+        p1t: "Just the Beginning", p1d: "Month 0–8 · 8 months",
+        p2t: "Early Results + Confidence Boost", p2d: "Month 8–14 · 6 months",
+        p3t: "Serious Results", p3d: "Month 14–26 · 12 months",
+        p4t: "Ascension", p4d: "Month 26–30 · 4 months"
+      },
+      pillars: {
+        eyebrow: "Analysis Pillars",
+        title: "Track your progress across 4 dimensions",
+        subtitle: "Each pillar measures a different aspect of your facial structure.",
+        p1tag: "Pillar 1", p1: "Harmony", p1d: "Facial proportional balance", p1m: "5 assessments",
+        p2tag: "Pillar 2", p2: "Angularity", p2d: "Jawline & bone structure definition", p2m: "12 measurements",
+        p3tag: "Pillar 3", p3: "Dimorphism", p3d: "Gender-specific trait measurement", p3m: "40+ health indicators",
+        p4tag: "Pillar 4", p4: "Health Indicators", p4d: "Skin health, symmetry & feature analysis", p4m: "100+ metrics",
+        footnote: "Built by the team behind the industry's first facial harmony system — for those who take their appearance seriously."
+      },
+      platform: {
+        title: "Your self-improvement command center",
+        subtitle: "Analysis is step one. Track progress, simulate changes, get expert guidance — every week.",
+        f1t: "Harmony Analysis", f1d: "Score across 4 pillars with 70+ precise facial ratios.",
+        f2t: "FaceGPT", f2d: "Ask anything about your face — instant expert answers.",
+        f3t: "Simulations", f3d: "See what procedures would look like before you commit.",
+        f4t: "Your Plan", f4d: "A personalized roadmap based on your unique scores.",
+        f5t: "Compare", f5d: "Side-by-side analysis with detailed breakdowns.",
+        f6t: "Creator League", f6d: "Compete for the top spot on the leaderboard.",
+        new: "New"
+      },
+      showcase: {
+        tag1: "FaceGPT 1.5", tag2: "Simulate v1.0",
+        title: "See what's inside",
+        subtitle: "Conversational AI that answers any question about your face — and creates complex morphs in seconds with simple language.",
+        highlight: "+100 metrics to track your transformation"
+      },
+      assessments: {
+        eyebrow: "Detailed assessments",
+        title: "Every analysis includes dozens of detailed assessments",
+        subtitle: "From skin health to facial harmony ratios."
+      },
+      steps: {
+        title: "How it works",
+        subtitle: "Four steps. One cycle. Ongoing improvement.",
+        s1t: "Upload", s1d: "Take a front and side photo.",
+        s2t: "Analyze", s2d: "Get your complete analysis across 4 pillars — harmony, angularity, dimorphism, and features.",
+        s3t: "Plan", s3d: "Receive a personalized roadmap with non-surgical and surgical options ranked by impact.",
+        s4t: "Act & Track", s4d: "Follow your plan. Simulate changes. Ask FaceGPT along the way. Re-analyze over time and see how your scores move.",
+        note: "Side profile analysis is free."
+      },
+      projection: {
+        eyebrow: "Score Projection",
+        title: "Your score isn't fixed",
+        subtitle: "Small, consistent changes compound over time. Track your progress and watch your score move.",
+        today: "Today",
+        potential: "Potential"
       },
       audience: {
-        eyebrow: "Who it's for",
-        title: "Analysts, not spectators",
-        p1: "MorphIndex is for people who treat facial morphology as a dataset — something to measure, intervene on, and re-measure."
+        eyebrow: "A note on who this is for",
+        title: "This isn't for everyone",
+        p1: "Most people see their score and do nothing. They let the number define them. The ones who actually transform treat it as a starting point — and commit to the process.",
+        p2: "FaceIQ Labs is built for them."
+      },
+      testimonials: {
+        title: "What people say",
+        subtitle: "Real results from real users.",
+        showMore: "Show more...",
+        t1: "\"FaceIQ Labs is a quality app. You get exactly what you pay for. I would recommend it to anyone seeking aesthetic improvement or just curious where they stand.\"",
+        t2: "\"The analysis confirmed things I'd always suspected about my facial structure but could never quantify. Now I know what to improve and how.\"",
+        t3: "\"My scores were solid overall, but I wanted to target my skin and under-eye area. FaceIQ Labs is the only tool that gave me genuinely accurate, actionable insights.\"",
+        t4: "\"The app helped me map out exactly where my strengths and weaknesses are, so I can focus my improvement efforts where they'll actually make a difference.\"",
+        t5: "\"Hands down the best facial analysis tool available. The depth of measurement is unmatched, and the personalized improvement plans keep me coming back.\"",
+        t6: "\"FaceIQ Labs gave me a clear, complete roadmap for improving my appearance — not just surgery, but practical, everyday steps to look and feel more attractive.\"",
+        t7: "\"I initially signed up to see my score, but I ended up booking an appointment with my surgeon thanks to the advice they provided. This is a real story about how this app helped me improve.\""
       },
       cta: {
-        title: "Open your morphology workspace",
-        subtitle: "Two photos. Four axes. A timeline that grows with you.",
-        btn: "Start first session",
-        note: "Free lateral analysis included."
+        title: "Your transformation starts with a single photo",
+        subtitle: "450,000+ people have started their journey. The question is — will you?",
+        btn: "Begin Your Assessment",
+        sales: "Talk to sales",
+        note: "Your future self will thank you."
       },
-      footer: { careers: "Careers", privacy: "Privacy", terms: "Terms", copy: "© 2026 MorphIndex" }
+      footer: { privacy: "Privacy", terms: "Terms", contact: "Contact", copy: "© 2026 FaceIQ Labs" }
     },
     fr: {
       meta: {
-        title: "MorphIndex — Plateforme d'analyse morphologique",
-        description: "MorphIndex est une plateforme d'analyse morphologique — métriques faciales structurées, protocoles personnalisés et suivi longitudinal."
+        title: "FaceIQ Labs — Le système d'auto-amélioration pour votre apparence",
+        description: "Analysez votre visage selon plus de 100 métriques, obtenez un plan d'amélioration personnalisé et suivez vos progrès. L'analyse de profil est gratuite."
       },
-      a11y: { theme: "Changer le thème", language: "Changer la langue", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
-      nav: { metrics: "Métriques", platform: "Plateforme", signin: "Connexion", cta: "Ouvrir le tableau de bord" },
+      a11y: { theme: "Changer le thème", language: "Changer la langue" },
+      nav: { pillars: "Piliers", platform: "Plateforme", how: "Comment ça marche", signin: "Connexion", cta: "Commencer" },
       hero: {
-        badge: "Analyse faciale",
-        title: 'Votre apparence.<br><span class="hero__title-punch">Mesurée.</span><br><span class="hero__title-punch">Suivie.</span><br><span class="hero__title-punch hero__title-punch--accent">Améliorée.</span>',
-        subtitle: "Analysez votre visage selon plus de 100 critères, obtenez un plan personnalisé et suivez vos progrès au fil du temps.",
-        cta: "Démarrer ma première session",
+        stats: "450 000+ utilisateurs · 2 500 000+ analyses",
+        title: 'Votre apparence.<br><span class="gradient-text">Mesurée. Suivie. Améliorée.</span>',
+        subtitle: "Analysez votre visage selon plus de 100 métriques, obtenez un plan personnalisé et suivez vos progrès au fil du temps.",
+        cta: "Commencer votre parcours",
         link: "Voir comment ça marche",
-        note: "Pas de score vanité. Juste des changements mesurables dans le temps.",
-        videoLabel: "Démo produit — vidéo bientôt disponible",
-        videoCaption: "Un aperçu de l'espace d'analyse MorphIndex"
-      },
-      steps: {
-        eyebrow: "Workflow",
-        title: "Un cycle d'analyse reproductible",
-        subtitle: "Capturer, quantifier, prioriser et re-mesurer — chaque boucle affine votre profil morphologique.",
-        s1t: "Ingérer", s1d: "Soumettez des captures frontale et latérale. MorphIndex normalise automatiquement l'éclairage et l'alignement.",
-        s2t: "Quantifier", s2d: "Les axes Symétrie, Proportions, Structure et Expression sont notés indépendamment, puis synthétisés.",
-        s3t: "Protocole", s3d: "Les interventions et habitudes sont classées par impact projeté sur vos métriques les plus faibles.",
-        s4t: "Suivre", s4d: "Relancez le cycle, comparez les sessions et laissez MorphAI répondre à vos questions de protocole.",
-        note: "Analyse de capture latérale incluse à chaque session."
-      },
-      pillars: {
-        eyebrow: "Axes d'analyse",
-        title: "Quatre axes de mesure indépendants",
-        subtitle: "Contrairement à un score beauté unique, MorphIndex décompose la morphologie en sous-systèmes mesurables que vous pouvez suivre dans le temps.",
-        axis1: "Axe 01", p1: "Symétrie", p1d: "Équilibre bilatéral, alignement des traits et déviation de la ligne médiane",
-        criteria: "critères", ratios: "ratios", signals: "signaux", markers: "marqueurs",
-        axis2: "Axe 02", p2: "Proportions", p2d: "Tiers du visage, espacements inter-traits et marqueurs du nombre d'or",
-        axis3: "Axe 03", p3: "Structure", p3d: "Ligne mandibulaire, projection zygomatique et visibilité osseuse",
-        axis4: "Axe 04", p4: "Expression", p4d: "Dynamique des traits, marqueurs des tissus mous et morphologie spécifique au sexe"
-      },
-      banner: "MorphIndex applique la recherche en morphologie quantitative à l'auto-optimisation quotidienne — structurée, reproductible, fondée sur les données.",
-      testimonials: {
-        title: "De la communauté",
-        subtitle: "Retours de membres qui effectuent des cycles d'analyse réguliers.",
-        t1: "\"Enfin un outil qui traite mon visage comme un jeu de données. Les décompositions par axe m'ont convaincu — pas un autre score vanité unique.\"",
-        t2: "\"J'ai arrêté de deviner quelles habitudes comptaient. MorphIndex a classé les interventions par impact métrique, et l'index a vraiment bougé.\"",
-        t3: "\"Le détail de l'axe Symétrie sur l'alignement et l'équilibre bilatéral était plus précis que tout ce que j'avais testé.\"",
-        t4: "\"La comparaison de sessions à elle seule vaut le coup. Je vois exactement quelles métriques ont changé après chaque modification de protocole.\""
-      },
-      features: {
-        title: "Modules de la plateforme",
-        subtitle: "Tout vit dans un seul espace morphologique — pas besoin de changer d'outil.",
-        f1t: "Index composite", f1d: "Synthèse pondérée sur les quatre axes.",
-        f2t: "MorphAI", f2d: "Interrogez vos données morphologiques en langage naturel.",
-        f3t: "Aperçu Morph", f3d: "Modélisez les résultats projetés avant de valider une étape de protocole.",
-        f4t: "Constructeur de protocole", f4d: "Séquences d'intervention auto-générées classées par impact métrique.",
-        f5t: "Comparaison de sessions", f5d: "Comparez deux scans au niveau métrique.",
-        f6t: "Benchmarks de cohorte", f6d: "Voyez comment votre index se situe dans des cohortes anonymisées.",
-        new: "Bêta"
-      },
-      showcase: {
-        tag1: "MorphAI", tag2: "Moteur d'aperçu",
-        title: "Granulaire par conception",
-        subtitle: "Chaque session produit des décompositions par axe, des cartes de zones et des suggestions de protocole — pas un chiffre opaque.",
-        l1: "Tableaux de ratios par zone", l2: "Courbes de tendance par axe", l3: "Étapes de protocole classées par impact",
-        metrics: "4 sessions sur 16 mois"
+        note: "Pour ceux qui prennent l'auto-amélioration au sérieux.",
+        tabFront: "Harmonie de face",
+        tabSide: "Harmonie de profil"
       },
       transform: {
-        eyebrow: "Historique des sessions",
-        title: "Voir l'évolution se déployer dans le temps",
-        subtitle: "Chaque re-scan ajoute un point de données à votre timeline morphologique — pas une simple comparaison de score.",
-        s1d: "Mars 2024", s1h: "Capture initiale", s1p: "Profil initial établi sur les quatre axes.", s1m: "Composite 62",
-        s2d: "Août 2024", s2h: "Protocole ajusté", s2p: "Structure et Proportions ciblées après la première revue.", s2m: "Structure +4",
-        s3d: "Fév. 2025", s3h: "Scan mi-parcours", s3p: "Symétrie et Expression montrent une dérive mesurable.", s3m: "Symétrie +3",
-        s4d: "Juil. 2025", s4h: "Dernière session", s4p: "Le quatrième scan confirme une convergence soutenue des axes.", s4m: "Composite 74",
-        start: "Session 1", now: "Session 8",
-        q1: "Les trajectoires les plus claires viennent de re-scans réguliers — pas de la course à un seul chiffre."
+        eyebrow: "L'engagement paie",
+        title: "Voyez ce qui est possible",
+        subtitle: "2,5 ans d'engagement réel, chaque étape suivie.",
+        scoreLabel: "Score facial global sur 2,5 ans",
+        body: "Ceux qui obtiennent des résultats ne sont pas chanceux — ils sont engagés. Ils suivent chaque changement, s'appuient sur les données et restent sur la voie.",
+        p1t: "Le début", p1d: "Mois 0–8 · 8 mois",
+        p2t: "Premiers résultats + confiance", p2d: "Mois 8–14 · 6 mois",
+        p3t: "Résultats sérieux", p3d: "Mois 14–26 · 12 mois",
+        p4t: "Ascension", p4d: "Mois 26–30 · 4 mois"
+      },
+      pillars: {
+        eyebrow: "Piliers d'analyse",
+        title: "Suivez vos progrès sur 4 dimensions",
+        subtitle: "Chaque pilier mesure un aspect différent de votre structure faciale.",
+        p1tag: "Pilier 1", p1: "Harmonie", p1d: "Équilibre proportionnel du visage", p1m: "5 évaluations",
+        p2tag: "Pilier 2", p2: "Angularité", p2d: "Définition de la mâchoire et de la structure osseuse", p2m: "12 mesures",
+        p3tag: "Pilier 3", p3: "Dimorphisme", p3d: "Mesure des traits spécifiques au genre", p3m: "40+ indicateurs de santé",
+        p4tag: "Pilier 4", p4: "Indicateurs de santé", p4d: "Santé de la peau, symétrie et analyse des traits", p4m: "100+ métriques",
+        footnote: "Conçu par l'équipe derrière le premier système d'harmonie faciale — pour ceux qui prennent leur apparence au sérieux."
+      },
+      platform: {
+        title: "Votre centre de commande d'auto-amélioration",
+        subtitle: "L'analyse n'est que la première étape. Suivez vos progrès, simulez des changements, obtenez des conseils d'experts — chaque semaine.",
+        f1t: "Analyse d'harmonie", f1d: "Score sur 4 piliers avec plus de 70 ratios faciaux précis.",
+        f2t: "FaceGPT", f2d: "Posez n'importe quelle question sur votre visage — réponses d'expert instantanées.",
+        f3t: "Simulations", f3d: "Visualisez les procédures avant de vous engager.",
+        f4t: "Votre plan", f4d: "Une feuille de route personnalisée basée sur vos scores uniques.",
+        f5t: "Comparer", f5d: "Analyse côte à côte avec des décompositions détaillées.",
+        f6t: "Creator League", f6d: "Compétez pour la première place du classement.",
+        new: "Nouveau"
+      },
+      showcase: {
+        tag1: "FaceGPT 1.5", tag2: "Simulate v1.0",
+        title: "Découvrez l'intérieur",
+        subtitle: "Une IA conversationnelle qui répond à toute question sur votre visage — et crée des morphs complexes en quelques secondes avec un langage simple.",
+        highlight: "+100 métriques pour suivre votre transformation"
+      },
+      assessments: {
+        eyebrow: "Évaluations détaillées",
+        title: "Chaque analyse inclut des dizaines d'évaluations détaillées",
+        subtitle: "De la santé de la peau aux ratios d'harmonie faciale."
+      },
+      steps: {
+        title: "Comment ça marche",
+        subtitle: "Quatre étapes. Un cycle. Une amélioration continue.",
+        s1t: "Télécharger", s1d: "Prenez une photo de face et de profil.",
+        s2t: "Analyser", s2d: "Obtenez votre analyse complète sur 4 piliers — harmonie, angularité, dimorphisme et traits.",
+        s3t: "Planifier", s3d: "Recevez une feuille de route personnalisée avec des options non chirurgicales et chirurgicales classées par impact.",
+        s4t: "Agir & Suivre", s4d: "Suivez votre plan. Simulez des changements. Interrogez FaceGPT. Ré-analysez au fil du temps et voyez vos scores évoluer.",
+        note: "L'analyse de profil est gratuite."
+      },
+      projection: {
+        eyebrow: "Projection de score",
+        title: "Votre score n'est pas figé",
+        subtitle: "De petits changements constants se cumulent avec le temps. Suivez vos progrès et regardez votre score évoluer.",
+        today: "Aujourd'hui",
+        potential: "Potentiel"
       },
       audience: {
-        eyebrow: "Pour qui",
-        title: "Des analystes, pas des spectateurs",
-        p1: "MorphIndex s'adresse à ceux qui traitent la morphologie faciale comme un jeu de données — quelque chose à mesurer, intervenir et re-mesurer."
+        eyebrow: "Pour qui c'est fait",
+        title: "Ce n'est pas pour tout le monde",
+        p1: "La plupart des gens voient leur score et ne font rien. Ils laissent le chiffre les définir. Ceux qui se transforment vraiment le considèrent comme un point de départ — et s'engagent dans le processus.",
+        p2: "FaceIQ Labs est conçu pour eux."
+      },
+      testimonials: {
+        title: "Ce qu'en disent les utilisateurs",
+        subtitle: "Des résultats réels, par de vrais utilisateurs.",
+        showMore: "Voir plus...",
+        t1: "\"FaceIQ Labs est une application de qualité. Vous obtenez exactement ce que vous payez. Je la recommande à quiconque cherche à s'améliorer esthétiquement ou est simplement curieux de sa position.\"",
+        t2: "\"L'analyse a confirmé ce que je soupçonnais toujours sur ma structure faciale sans pouvoir le quantifier. Maintenant je sais quoi améliorer et comment.\"",
+        t3: "\"Mes scores étaient globalement bons, mais je voulais cibler ma peau et le contour des yeux. FaceIQ Labs est le seul outil qui m'a donné des insights vraiment précis et actionnables.\"",
+        t4: "\"L'application m'a aidé à cartographier exactement mes forces et faiblesses, pour concentrer mes efforts là où ça compte vraiment.\"",
+        t5: "\"De loin le meilleur outil d'analyse faciale. La profondeur des mesures est inégalée, et les plans d'amélioration personnalisés me font revenir.\"",
+        t6: "\"FaceIQ Labs m'a donné une feuille de route claire et complète — pas seulement la chirurgie, mais des étapes pratiques au quotidien pour paraître et se sentir plus attirant.\"",
+        t7: "\"Je me suis inscrit pour voir mon score, mais j'ai fini par prendre rendez-vous avec mon chirurgien grâce aux conseils fournis. Une vraie histoire de transformation.\""
       },
       cta: {
-        title: "Ouvrez votre espace morphologique",
-        subtitle: "Deux photos. Quatre axes. Une timeline qui grandit avec vous.",
-        btn: "Démarrer ma première session",
-        note: "Analyse latérale gratuite incluse."
+        title: "Votre transformation commence par une seule photo",
+        subtitle: "450 000+ personnes ont commencé leur parcours. La question est — allez-vous le faire ?",
+        btn: "Commencer votre évaluation",
+        sales: "Parler à l'équipe",
+        note: "Votre futur vous vous remerciera."
       },
-      footer: { careers: "Carrières", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 MorphIndex" }
+      footer: { privacy: "Confidentialité", terms: "Conditions", contact: "Contact", copy: "© 2026 FaceIQ Labs" }
     },
     es: {
       meta: {
-        title: "MorphIndex — Plataforma de análisis morfológico",
-        description: "MorphIndex es una plataforma de análisis morfológico — métricas faciales estructuradas, protocolos personalizados y seguimiento longitudinal."
+        title: "FaceIQ Labs — El sistema de auto-mejora para tu apariencia",
+        description: "Analiza tu rostro según más de 100 métricas, obtén un plan de mejora personalizado y sigue tu progreso. El análisis de perfil es gratuito."
       },
-      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
-      nav: { metrics: "Métricas", platform: "Plataforma", signin: "Iniciar sesión", cta: "Abrir panel" },
+      a11y: { theme: "Cambiar tema", language: "Cambiar idioma" },
+      nav: { pillars: "Pilares", platform: "Plataforma", how: "Cómo funciona", signin: "Iniciar sesión", cta: "Empezar" },
       hero: {
-        badge: "Análisis facial",
-        title: 'Tu apariencia.<br><span class="hero__title-punch">Medida.</span><br><span class="hero__title-punch">Seguida.</span><br><span class="hero__title-punch hero__title-punch--accent">Mejorada.</span>',
-        subtitle: "Analiza tu rostro según más de 100 criterios, obtén un plan personalizado y sigue tu progreso con el tiempo.",
-        cta: "Iniciar primera sesión",
+        stats: "450.000+ usuarios · 2.500.000+ análisis",
+        title: 'Tu apariencia.<br><span class="gradient-text">Medida. Seguida. Mejorada.</span>',
+        subtitle: "Analiza tu rostro según más de 100 métricas, obtén un plan personalizado y sigue tu progreso con el tiempo.",
+        cta: "Comienza tu viaje",
         link: "Ver cómo funciona",
-        note: "Sin puntuación vanidad. Solo cambios medibles en el tiempo.",
-        videoLabel: "Demo del producto — vídeo próximamente",
-        videoCaption: "Una vista previa del espacio de análisis MorphIndex"
-      },
-      steps: {
-        eyebrow: "Flujo de trabajo",
-        title: "Un ciclo de análisis repetible",
-        subtitle: "Capturar, cuantificar, priorizar y re-medir — cada ciclo refina tu perfil morfológico.",
-        s1t: "Ingestar", s1d: "Envía capturas frontal y lateral. MorphIndex normaliza iluminación y alineación automáticamente.",
-        s2t: "Cuantificar", s2d: "Los ejes Simetría, Proporciones, Estructura y Expresión se puntúan de forma independiente y luego se sintetizan.",
-        s3t: "Protocolo", s3d: "Las intervenciones y hábitos se clasifican por impacto proyectado en tus métricas más débiles.",
-        s4t: "Rastrear", s4d: "Repite el ciclo, compara sesiones y deja que MorphAI responda preguntas de protocolo.",
-        note: "Análisis de captura lateral incluido en cada sesión."
-      },
-      pillars: {
-        eyebrow: "Ejes de análisis",
-        title: "Cuatro ejes de medición independientes",
-        subtitle: "A diferencia de una puntuación de belleza única, MorphIndex descompone la morfología en subsistemas medibles que puedes seguir en el tiempo.",
-        axis1: "Eje 01", p1: "Simetría", p1d: "Equilibrio bilateral, alineación de rasgos y desviación de la línea media",
-        criteria: "criterios", ratios: "ratios", signals: "señales", markers: "marcadores",
-        axis2: "Eje 02", p2: "Proporciones", p2d: "Tercios faciales, espaciado inter-rasgos y marcadores de proporción áurea",
-        axis3: "Eje 03", p3: "Estructura", p3d: "Línea mandibular, proyección cigomática y visibilidad ósea",
-        axis4: "Eje 04", p4: "Expresión", p4d: "Dinámica de rasgos, marcadores de tejidos blandos y morfología específica de sexo"
-      },
-      banner: "MorphIndex aplica investigación en morfología cuantitativa a la auto-optimización diaria — estructurada, repetible y basada en evidencia.",
-      testimonials: {
-        title: "De la comunidad",
-        subtitle: "Notas de miembros que ejecutan ciclos de análisis regulares.",
-        t1: "\"Por fin una herramienta que trata mi rostro como un dataset. Las descomposiciones por eje me convencieron — no otra puntuación vanidad única.\"",
-        t2: "\"Dejé de adivinar qué hábitos importaban. MorphIndex clasificó intervenciones por impacto métrico, y el índice realmente se movió.\"",
-        t3: "\"El detalle del eje Simetría en alineación y equilibrio bilateral fue más preciso que cualquier cosa que hubiera probado.\"",
-        t4: "\"La comparación de sesiones sola vale la pena. Veo exactamente qué métricas cambiaron tras cada modificación de protocolo.\""
-      },
-      features: {
-        title: "Módulos de la plataforma",
-        subtitle: "Todo vive en un solo espacio morfológico — sin cambiar de herramienta.",
-        f1t: "Índice compuesto", f1d: "Síntesis ponderada en los cuatro ejes.",
-        f2t: "MorphAI", f2d: "Consulta tus datos morfológicos en lenguaje natural.",
-        f3t: "Vista previa Morph", f3d: "Modela resultados proyectados antes de comprometerte con un paso de protocolo.",
-        f4t: "Constructor de protocolo", f4d: "Secuencias de intervención auto-generadas clasificadas por impacto métrico.",
-        f5t: "Comparar sesiones", f5d: "Compara dos escaneos a nivel métrico.",
-        f6t: "Benchmarks de cohorte", f6d: "Mira cómo se compara tu índice en cohortes anonimizadas.",
-        new: "Beta"
-      },
-      showcase: {
-        tag1: "MorphAI", tag2: "Motor de vista previa",
-        title: "Granular por diseño",
-        subtitle: "Cada sesión produce desgloses por eje, mapas de zonas y sugerencias de protocolo — no un número opaco.",
-        l1: "Tablas de ratios por zona", l2: "Líneas de tendencia por eje", l3: "Pasos de protocolo clasificados por impacto",
-        metrics: "4 sesiones en 16 meses"
+        note: "Para quienes se toman en serio la auto-mejora.",
+        tabFront: "Armonía frontal",
+        tabSide: "Armonía lateral"
       },
       transform: {
-        eyebrow: "Historial de sesiones",
-        title: "Ver el cambio desplegarse en el tiempo",
-        subtitle: "Cada re-escaneo añade un punto de datos a tu timeline morfológica — no una simple comparación de puntuación.",
-        s1d: "Mar 2024", s1h: "Captura inicial", s1p: "Perfil inicial establecido en los cuatro ejes.", s1m: "Compuesto 62",
-        s2d: "Ago 2024", s2h: "Protocolo ajustado", s2p: "Estructura y Proporciones objetivo tras la primera revisión.", s2m: "Estructura +4",
-        s3d: "Feb 2025", s3h: "Escaneo a mitad de ciclo", s3p: "Simetría y Expresión muestran deriva medible.", s3m: "Simetría +3",
-        s4d: "Jul 2025", s4h: "Última sesión", s4p: "El cuarto escaneo confirma convergencia sostenida de ejes.", s4m: "Compuesto 74",
-        start: "Sesión 1", now: "Sesión 8",
-        q1: "Las trayectorias más claras vienen de re-escaneos regulares — no de perseguir un solo número."
+        eyebrow: "El compromiso da frutos",
+        title: "Mira lo que es posible",
+        subtitle: "2,5 años de compromiso real, cada paso registrado.",
+        scoreLabel: "Puntuación facial general en 2,5 años",
+        body: "Quienes obtienen resultados no tienen suerte — están comprometidos. Rastrean cada cambio, siguen los datos y mantienen el rumbo.",
+        p1t: "El comienzo", p1d: "Mes 0–8 · 8 meses",
+        p2t: "Primeros resultados + confianza", p2d: "Mes 8–14 · 6 meses",
+        p3t: "Resultados serios", p3d: "Mes 14–26 · 12 meses",
+        p4t: "Ascensión", p4d: "Mes 26–30 · 4 meses"
+      },
+      pillars: {
+        eyebrow: "Pilares de análisis",
+        title: "Sigue tu progreso en 4 dimensiones",
+        subtitle: "Cada pilar mide un aspecto diferente de tu estructura facial.",
+        p1tag: "Pilar 1", p1: "Armonía", p1d: "Equilibrio proporcional facial", p1m: "5 evaluaciones",
+        p2tag: "Pilar 2", p2: "Angularidad", p2d: "Definición de mandíbula y estructura ósea", p2m: "12 mediciones",
+        p3tag: "Pilar 3", p3: "Dimorfismo", p3d: "Medición de rasgos específicos de género", p3m: "40+ indicadores de salud",
+        p4tag: "Pilar 4", p4: "Indicadores de salud", p4d: "Salud de la piel, simetría y análisis de rasgos", p4m: "100+ métricas",
+        footnote: "Creado por el equipo detrás del primer sistema de armonía facial — para quienes se toman su apariencia en serio."
+      },
+      platform: {
+        title: "Tu centro de comando de auto-mejora",
+        subtitle: "El análisis es solo el primer paso. Sigue el progreso, simula cambios, obtén orientación experta — cada semana.",
+        f1t: "Análisis de armonía", f1d: "Puntuación en 4 pilares con más de 70 ratios faciales precisos.",
+        f2t: "FaceGPT", f2d: "Pregunta cualquier cosa sobre tu rostro — respuestas expertas al instante.",
+        f3t: "Simulaciones", f3d: "Mira cómo se verían los procedimientos antes de comprometerte.",
+        f4t: "Tu plan", f4d: "Una hoja de ruta personalizada basada en tus puntuaciones únicas.",
+        f5t: "Comparar", f5d: "Análisis lado a lado con desgloses detallados.",
+        f6t: "Creator League", f6d: "Compite por el primer puesto en el ranking.",
+        new: "Nuevo"
+      },
+      showcase: {
+        tag1: "FaceGPT 1.5", tag2: "Simulate v1.0",
+        title: "Mira qué hay dentro",
+        subtitle: "IA conversacional que responde cualquier pregunta sobre tu rostro — y crea morphs complejos en segundos con lenguaje simple.",
+        highlight: "+100 métricas para seguir tu transformación"
+      },
+      assessments: {
+        eyebrow: "Evaluaciones detalladas",
+        title: "Cada análisis incluye docenas de evaluaciones detalladas",
+        subtitle: "Desde la salud de la piel hasta los ratios de armonía facial."
+      },
+      steps: {
+        title: "Cómo funciona",
+        subtitle: "Cuatro pasos. Un ciclo. Mejora continua.",
+        s1t: "Subir", s1d: "Toma una foto frontal y lateral.",
+        s2t: "Analizar", s2d: "Obtén tu análisis completo en 4 pilares — armonía, angularidad, dimorfismo y rasgos.",
+        s3t: "Planificar", s3d: "Recibe una hoja de ruta personalizada con opciones no quirúrgicas y quirúrgicas clasificadas por impacto.",
+        s4t: "Actuar y seguir", s4d: "Sigue tu plan. Simula cambios. Pregunta a FaceGPT. Re-analiza con el tiempo y mira cómo evolucionan tus puntuaciones.",
+        note: "El análisis de perfil es gratuito."
+      },
+      projection: {
+        eyebrow: "Proyección de puntuación",
+        title: "Tu puntuación no está fija",
+        subtitle: "Los pequeños cambios constantes se acumulan con el tiempo. Sigue tu progreso y observa cómo se mueve tu puntuación.",
+        today: "Hoy",
+        potential: "Potencial"
       },
       audience: {
-        eyebrow: "Para quién",
-        title: "Analistas, no espectadores",
-        p1: "MorphIndex es para quienes tratan la morfología facial como un dataset — algo que medir, intervenir y re-medir."
+        eyebrow: "Para quién es",
+        title: "Esto no es para todos",
+        p1: "La mayoría ve su puntuación y no hace nada. Dejan que el número los defina. Los que realmente se transforman lo tratan como punto de partida — y se comprometen con el proceso.",
+        p2: "FaceIQ Labs está hecho para ellos."
+      },
+      testimonials: {
+        title: "Lo que dicen los usuarios",
+        subtitle: "Resultados reales de usuarios reales.",
+        showMore: "Ver más...",
+        t1: "\"FaceIQ Labs es una app de calidad. Obtienes exactamente lo que pagas. La recomendaría a cualquiera que busque mejorar estéticamente o simplemente tenga curiosidad.\"",
+        t2: "\"El análisis confirmó cosas que siempre sospeché sobre mi estructura facial pero nunca pude cuantificar. Ahora sé qué mejorar y cómo.\"",
+        t3: "\"Mis puntuaciones eran buenas en general, pero quería enfocarme en mi piel y el área bajo los ojos. FaceIQ Labs es la única herramienta que me dio insights genuinamente precisos y accionables.\"",
+        t4: "\"La app me ayudó a mapear exactamente mis fortalezas y debilidades, para enfocar mis esfuerzos donde realmente importan.\"",
+        t5: "\"Sin duda la mejor herramienta de análisis facial. La profundidad de medición es inigualable, y los planes de mejora personalizados me hacen volver.\"",
+        t6: "\"FaceIQ Labs me dio una hoja de ruta clara y completa — no solo cirugía, sino pasos prácticos diarios para verse y sentirse más atractivo.\"",
+        t7: "\"Me registré para ver mi puntuación, pero terminé reservando una cita con mi cirujano gracias a los consejos que proporcionaron. Una historia real de transformación.\""
       },
       cta: {
-        title: "Abre tu espacio morfológico",
-        subtitle: "Dos fotos. Cuatro ejes. Una timeline que crece contigo.",
-        btn: "Iniciar primera sesión",
-        note: "Análisis lateral gratuito incluido."
+        title: "Tu transformación empieza con una sola foto",
+        subtitle: "450.000+ personas han comenzado su viaje. La pregunta es — ¿lo harás tú?",
+        btn: "Comenzar tu evaluación",
+        sales: "Hablar con ventas",
+        note: "Tu yo del futuro te lo agradecerá."
       },
-      footer: { careers: "Empleo", privacy: "Privacidad", terms: "Términos", copy: "© 2026 MorphIndex" }
+      footer: { privacy: "Privacidad", terms: "Términos", contact: "Contacto", copy: "© 2026 FaceIQ Labs" }
     }
   };
 
@@ -291,7 +336,6 @@
     document.querySelectorAll("[data-lang-option]").forEach(function (btn) {
       btn.classList.toggle("is-active", btn.getAttribute("data-lang-option") === lang);
     });
-    if (window.MorphStats) window.MorphStats.refresh();
   }
 
   function applyLang(lang) {
@@ -341,7 +385,7 @@
     });
   }
 
-  window.MorphI18n = { setLang: setLang, getLang: getLang };
+  window.FaceIQI18n = { setLang: setLang, getLang: getLang };
   document.addEventListener("DOMContentLoaded", function () {
     setLang(getLang());
     initLangSwitcher();
