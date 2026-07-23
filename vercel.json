@@ -17,7 +17,7 @@
     "api/generate-preview.js": {
       "maxDuration": 120
     },
-    "api/stripe-webhook.js": {
+    "api/stripe.js": {
       "maxDuration": 30
     }
   }

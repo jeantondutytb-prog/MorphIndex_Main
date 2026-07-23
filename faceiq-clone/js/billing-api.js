@@ -9,7 +9,7 @@
       return Promise.resolve({ ok: false, error: "Not authenticated" });
     }
 
-    return fetch("/api/create-checkout-session", {
+    return fetch("/api/stripe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@
       return Promise.resolve({ ok: false, error: "Missing session" });
     }
 
-    return fetch("/api/verify-checkout?session_id=" + encodeURIComponent(sessionId), {
+    return fetch("/api/stripe?session_id=" + encodeURIComponent(sessionId), {
       headers: {
         Authorization: "Bearer " + token
       }

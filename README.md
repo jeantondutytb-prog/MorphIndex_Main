@@ -84,7 +84,7 @@ Redéploie le projet après avoir ajouté les variables.
 Sans Stripe configuré, le bouton **S'abonner** affiche une erreur — il n'est plus possible de débloquer les résultats sans payer.
 
 1. Dans [Stripe Dashboard](https://dashboard.stripe.com) → **Products** : crée deux prix récurrents (mensuel 9,99 €, annuel 59,99 €) et copie les `price_...` dans `STRIPE_PRICE_MONTHLY` et `STRIPE_PRICE_YEARLY`.
-2. **Developers → Webhooks** → endpoint `https://www.morphindex.com/api/stripe-webhook` avec les événements :
+2. **Developers → Webhooks** → endpoint `https://www.morphindex.com/api/stripe` avec les événements :
    - `checkout.session.completed`
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
