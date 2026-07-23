@@ -8,7 +8,7 @@
         title: "FaceIQ Labs — The Self-Improvement System for Your Appearance",
         description: "Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time."
       },
-      a11y: { theme: "Toggle theme", language: "Change language", stars: "5 stars", prev: "Previous", next: "Next" },
+      a11y: { theme: "Toggle theme", language: "Change language", menu: "Open menu", stars: "5 stars", prev: "Previous", next: "Next" },
       nav: { celebs: "Celebs", creators: "Creators", login: "Login", cta: "Try Free" },
       hero: {
         users: "users", analyses: "analyses",
@@ -217,7 +217,7 @@
         title: "FaceIQ Labs — Le système d'auto-amélioration pour votre apparence",
         description: "Analysez votre visage selon plus de 100 métriques, obtenez un plan d'amélioration personnalisé et suivez vos progrès."
       },
-      a11y: { theme: "Changer le thème", language: "Changer la langue", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
+      a11y: { theme: "Changer le thème", language: "Changer la langue", menu: "Ouvrir le menu", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
       nav: { celebs: "Célébrités", creators: "Créateurs", login: "Connexion", cta: "Essayer gratuitement" },
       hero: {
         users: "utilisateurs", analyses: "analyses",
@@ -426,7 +426,7 @@
         title: "FaceIQ Labs — El sistema de auto-mejora para tu apariencia",
         description: "Analiza tu rostro según más de 100 métricas, obtén un plan de mejora personalizado y sigue tu progreso."
       },
-      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
+      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", menu: "Abrir menú", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
       nav: { celebs: "Celebridades", creators: "Creadores", login: "Iniciar sesión", cta: "Probar gratis" },
       hero: {
         users: "usuarios", analyses: "análisis",
