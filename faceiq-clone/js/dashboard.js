@@ -25,6 +25,74 @@
     return t("dashboard.impact." + impact);
   }
 
+  function bindCompareSlider(container) {
+    var compare = container.querySelector(".dashboard-compare");
+    if (!compare) return;
+    var range = compare.querySelector(".dashboard-compare__range");
+    var before = compare.querySelector(".dashboard-compare__before");
+    var handle = compare.querySelector(".dashboard-compare__handle");
+    if (!range || !before || !handle) return;
+
+    function update(value) {
+      var pct = Math.min(100, Math.max(0, Number(value)));
+      before.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+      handle.style.left = pct + "%";
+    }
+
+    range.addEventListener("input", function () {
+      update(range.value);
+    });
+    update(range.value || 50);
+  }
+
+  function renderQuickActions(container) {
+    if (!container) return;
+    container.hidden = false;
+    container.innerHTML =
+      '<section class="dashboard-quick-actions" aria-label="' + t("dashboard.quickActions.label") + '">' +
+        '<a href="/app/preview" class="dashboard-quick-actions__card">' +
+          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 1.4 4.3L18 9l-4.6 1.7L12 15l-1.4-4.3L6 9l4.6-1.7L12 3z"/></svg>' +
+          "</span>" +
+          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.preview") + "</span>" +
+          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.previewDesc") + "</span>" +
+        "</a>" +
+        '<a href="/app/metrics" class="dashboard-quick-actions__card">' +
+          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20v-9"/></svg>' +
+          "</span>" +
+          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.metrics") + "</span>" +
+          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.metricsDesc") + "</span>" +
+        "</a>" +
+        '<a href="/app/plan" class="dashboard-quick-actions__card">' +
+          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/></svg>' +
+          "</span>" +
+          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.plan") + "</span>" +
+          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.planDesc") + "</span>" +
+        "</a>" +
+        '<button type="button" class="dashboard-quick-actions__card" id="dashboard-rescan">' +
+          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 3"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 21"/><path d="M3 21v-5h5"/></svg>' +
+          "</span>" +
+          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.rescan") + "</span>" +
+          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.rescanDesc") + "</span>" +
+        "</button>" +
+      "</section>";
+
+    var rescanBtn = container.querySelector("#dashboard-rescan");
+    if (rescanBtn) {
+      rescanBtn.addEventListener("click", function () {
+        if (!window.confirm(t("dashboard.rescanConfirm"))) return;
+        if (window.Onboarding && window.Onboarding.startRescan) {
+          window.Onboarding.startRescan();
+        } else {
+          window.location.href = "/onboarding/camera";
+        }
+      });
+    }
+  }
+
   function renderPreview(container, state, analysis, options) {
     if (!container) return;
     options = options || {};
@@ -38,6 +106,36 @@
     var beforeSrc = state.frontPhoto || "";
     var afterSrc = state.preview6mUrl || "";
     var loading = options.loading;
+    var error = options.error;
+
+    if (afterSrc && !loading) {
+      container.innerHTML =
+        '<section class="dashboard-preview">' +
+          '<div class="dashboard-preview__head">' +
+            '<h2 class="dashboard-section__title">' + t("dashboard.preview.title") + '</h2>' +
+            '<p class="dashboard-section__subtitle">' + t("dashboard.preview.subtitle") + '</p>' +
+          '</div>' +
+          '<div class="dashboard-compare">' +
+            '<div class="dashboard-compare__after"><img src="' + afterSrc + '" alt=""></div>' +
+            '<div class="dashboard-compare__before"><img src="' + beforeSrc + '" alt=""></div>' +
+            '<div class="dashboard-compare__handle" aria-hidden="true"></div>' +
+            '<input type="range" class="dashboard-compare__range" min="0" max="100" value="50" aria-label="' + t("dashboard.preview.dragHint") + '">' +
+          '</div>' +
+          '<div class="dashboard-compare__labels">' +
+            '<span>' + t("dashboard.preview.before") + '</span>' +
+            '<span>' + t("dashboard.preview.after") + '</span>' +
+          '</div>' +
+          (analysis && analysis.potential
+            ? '<p class="dashboard-preview__note">' +
+              t("dashboard.preview.scoreNote")
+                .replace("{current}", analysis.scores.overall)
+                .replace("{potential}", analysis.potential.overall) +
+              "</p>"
+            : "") +
+        "</section>";
+      bindCompareSlider(container);
+      return;
+    }
 
     container.innerHTML =
       '<section class="dashboard-preview">' +
@@ -59,7 +157,10 @@
             '<figcaption>' + t("dashboard.preview.after") + '</figcaption>' +
           '</figure>' +
         '</div>' +
-        (analysis && analysis.potential
+        (error
+          ? '<p class="dashboard-preview__error" role="alert">' + t("dashboard.preview.error") + "</p>"
+          : "") +
+        (analysis && analysis.potential && !error
           ? '<p class="dashboard-preview__note">' +
             t("dashboard.preview.scoreNote")
               .replace("{current}", analysis.scores.overall)
@@ -224,28 +325,31 @@
         '<span class="results-dashboard__label" data-i18n="onboarding.results.overall">' + t("onboarding.results.overall") + '</span>' +
         '<span class="results-dashboard__score">' + scores.overall + '</span>' +
       '</div>' +
-      '<div class="results-dashboard__pillars">' +
-        ["harmony", "angularity", "dimorphism", "features"].map(function (pillar) {
-          var label = pillarLabel(pillar);
-          var val = scores[pillar];
-          return '<div class="results-dashboard__pillar">' +
-            '<span class="results-dashboard__pillar-name">' + label + '</span>' +
-            '<div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" style="width:' + (val / 10 * 100) + '%"></div></div>' +
-            '<span class="results-dashboard__pillar-score">' + val + '</span>' +
-          '</div>';
-        }).join("") +
-      '</div>' +
-      '<div class="results-dashboard__metrics">' +
-        '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + '</strong></div>' +
-        '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + '</strong></div>' +
-        '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + '</strong></div>' +
-        '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + '</strong></div>' +
+      '<div class="results-dashboard__locked-content">' +
+        '<div class="results-dashboard__pillars">' +
+          ["harmony", "angularity", "dimorphism", "features"].map(function (pillar) {
+            var label = pillarLabel(pillar);
+            var val = scores[pillar];
+            return '<div class="results-dashboard__pillar">' +
+              '<span class="results-dashboard__pillar-name">' + label + '</span>' +
+              '<div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" style="width:' + (val / 10 * 100) + '%"></div></div>' +
+              '<span class="results-dashboard__pillar-score">' + val + '</span>' +
+            '</div>';
+          }).join("") +
+        '</div>' +
+        '<div class="results-dashboard__metrics">' +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + '</strong></div>' +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + '</strong></div>' +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + '</strong></div>' +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + '</strong></div>' +
+        '</div>' +
       '</div>' +
       lockHtml;
   }
 
   window.Dashboard = {
     renderPreview: renderPreview,
+    renderQuickActions: renderQuickActions,
     renderScoreHero: renderScoreHero,
     renderPhotos: renderPhotos,
     renderPillarBars: renderPillarBars,

@@ -125,6 +125,27 @@
     });
   }
 
+  function startRescan() {
+    var client = initSupabase();
+    if (!client) {
+      redirectToLogin();
+      return;
+    }
+    client.auth.getSession().then(function (result) {
+      var session = result.data.session;
+      if (!session) {
+        redirectToLogin();
+        return;
+      }
+      localStorage.removeItem(storageKey(session.user.id));
+      client.auth.updateUser({
+        data: { onboarding_complete: false }
+      }).finally(function () {
+        window.location.href = stepRoutes[2];
+      });
+    });
+  }
+
   window.Onboarding = {
     TOTAL_STEPS: TOTAL_STEPS,
     stepRoutes: stepRoutes,
@@ -137,6 +158,7 @@
     generateMockScores: generateMockScores,
     updateProgress: updateProgress,
     requireStep: requireStep,
-    bindContinue: bindContinue
+    bindContinue: bindContinue,
+    startRescan: startRescan
   };
 })();

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260723w">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723z">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -22,7 +22,7 @@
 <body class="auth-page app-page app-page--booting" data-auth-page="app" data-app-view="overview">
 
   <header class="auth-header">
-    <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
+    <span class="auth-header__spacer" aria-hidden="true"></span>
     <div class="auth-header__actions">
       <div class="lang-switcher">
         <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
@@ -44,8 +44,14 @@
 
   <main class="auth auth--dashboard">
     <div class="auth__card auth__card--dashboard">
+      <div class="dashboard-boot" aria-hidden="true">
+        <div class="dashboard-boot__hero"></div>
+        <div class="dashboard-boot__line"></div>
+        <div class="dashboard-boot__line"></div>
+      </div>
+
       <div class="dashboard-header">
-        <a href="/" class="auth__logo dashboard-header__logo" aria-label="FaceIQ Labs">
+        <a href="/app" class="auth__logo dashboard-header__logo" aria-label="FaceIQ Labs">
           <img src="../assets/logo.svg" alt="">
         </a>
         <div class="dashboard-header__intro">
@@ -57,6 +63,7 @@
       </div>
 
       <div id="dashboard-hero"></div>
+      <div id="dashboard-quick-actions" hidden></div>
       <div id="dashboard-photos" hidden></div>
       <div id="dashboard-pillars"></div>
       <div id="dashboard-summary"></div>
@@ -67,15 +74,15 @@
 
   <div id="dashboard-nav"></div>
 
-  <script src="../js/config.js?v=20260723x"></script>
+  <script src="../js/config.js?v=20260723z"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723x"></script>
+  <script src="../js/i18n.js?v=20260723z"></script>
   <script src="../js/theme.js"></script>
-  <script src="../js/analysis-data.js?v=20260723x"></script>
-  <script src="../js/onboarding.js?v=20260723x"></script>
-  <script src="../js/dashboard.js?v=20260723x"></script>
-  <script src="../js/app-shell.js?v=20260723x"></script>
-  <script src="../js/app.js?v=20260723x"></script>
+  <script src="../js/analysis-data.js?v=20260723z"></script>
+  <script src="../js/onboarding.js?v=20260723z"></script>
+  <script src="../js/dashboard.js?v=20260723z"></script>
+  <script src="../js/app-shell.js?v=20260723z"></script>
+  <script src="../js/app.js?v=20260723z"></script>
 </body>
 </html>
