@@ -23,6 +23,8 @@ Puis ouvrez **http://localhost:8080** dans votre navigateur.
 
 ### Déployer sur Vercel (recommandé pour le domaine custom)
 
+> **Important :** Vercel déploie en **Production** uniquement sur la branche `main`. Tous les pushes des agents doivent aller sur `main` (pas seulement sur des branches `cursor/*`).
+
 1. Va sur [vercel.com](https://vercel.com) → **Add New Project** → importe le repo `MorphIndex_Main`
 2. Laisse les réglages par défaut (le fichier `vercel.json` à la racine pointe déjà vers `faceiq-clone/`)
 3. Clique **Deploy** — tu obtiens une URL du type `morphindex-main.vercel.app`
