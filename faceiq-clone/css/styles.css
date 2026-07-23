@@ -2218,13 +2218,13 @@ body.onboarding-scan-active .onboarding__camera-overlay[data-hint="farther"] .on
 }
 
 body.onboarding-scan-active .onboarding__camera-overlay .onboarding__face-outline {
-  width: min(84vw, 24rem);
-  max-width: 84%;
+  width: min(92vw, 30rem);
+  max-width: 92%;
 }
 
 body.onboarding-scan-active .onboarding__camera-overlay--side .onboarding__face-outline {
-  width: min(80vw, 22rem);
-  max-width: 80%;
+  width: min(88vw, 28rem);
+  max-width: 88%;
 }
 
 body.onboarding-scan-active .onboarding__camera-guide {

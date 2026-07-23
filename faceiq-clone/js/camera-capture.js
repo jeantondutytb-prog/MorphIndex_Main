@@ -6,23 +6,23 @@
   var GUIDES = {
     front: {
       cx: 0.5,
-      cy: 0.46,
-      width: 0.4,
-      height: 0.52,
-      minYaw: -0.18,
-      maxYaw: 0.18,
-      minSize: 0.58,
-      maxSize: 0.9
+      cy: 0.47,
+      width: 0.56,
+      height: 0.66,
+      minYaw: -0.2,
+      maxYaw: 0.2,
+      minSize: 0.72,
+      maxSize: 1.38
     },
     side: {
-      cx: 0.54,
-      cy: 0.46,
-      width: 0.38,
-      height: 0.52,
-      minYaw: 0.22,
+      cx: 0.53,
+      cy: 0.47,
+      width: 0.52,
+      height: 0.64,
+      minYaw: 0.2,
       maxYaw: 1,
-      minSize: 0.55,
-      maxSize: 0.9
+      minSize: 0.68,
+      maxSize: 1.35
     }
   };
 
@@ -231,7 +231,7 @@
     if (sizeRatio > this.guide.maxSize) {
       return { aligned: false, reason: "farther" };
     }
-    if (dx > 0.22 || dy > 0.24) {
+    if (dx > 0.28 || dy > 0.3) {
       return { aligned: false, reason: "center" };
     }
 
