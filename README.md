@@ -67,8 +67,9 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `SUPABASE_ANON_KEY` | Clé anon public Supabase |
 | `AUTH_REDIRECT_URL` | `/app` (page après connexion) |
 | `ANTHROPIC_API_KEY` | Clé API Anthropic (analyse faciale vision) |
-| `ANTHROPIC_MODEL` | Optionnel — modèle Claude (défaut : `claude-sonnet-4-20250514`) |
+| `ANTHROPIC_MODEL` | Optionnel — voir recommandations ci-dessous (défaut : `claude-sonnet-4-6`) |
 | `FAL_KEY` | Clé API fal.ai (aperçu 6 mois après abonnement) |
+| `FAL_MODEL` | Optionnel — voir recommandations ci-dessous (défaut : `fal-ai/image-editing/face-enhancement`) |
 | `APP_ORIGIN` | Optionnel — origine CORS (défaut : `https://www.morphindex.com`) |
 
 Redéploie le projet après avoir ajouté les variables.
@@ -79,6 +80,27 @@ Redéploie le projet après avoir ajouté les variables.
 - **Après abonnement** : `/api/generate-preview` appelle fal.ai (`face-enhancement`) pour générer un aperçu « dans 6 mois », affiché sur le dashboard `/app`.
 
 Les clés API restent **côté serveur** (variables Vercel) — jamais exposées au navigateur.
+
+#### Quels modèles utiliser ?
+
+Vous n'avez **pas** à choisir un modèle dans l'interface Anthropic ou fal.ai. Seules les clés `ANTHROPIC_API_KEY` et `FAL_KEY` suffisent : le code choisit les modèles par défaut. Ajoutez les variables optionnelles ci-dessous seulement si vous voulez changer.
+
+**Anthropic — analyse faciale (2 photos → scores + plan)**
+
+| Variable `ANTHROPIC_MODEL` | Quand l'utiliser |
+|------------------------------|------------------|
+| `claude-sonnet-4-6` **(défaut)** | Meilleur compromis qualité / prix pour MorphIndex |
+| `claude-haiku-4-5-20251001` | Plus rapide et moins cher, légèrement moins précis |
+| `claude-opus-4-8` | Analyse la plus fine, plus lent et plus cher |
+
+**fal.ai — aperçu « dans 6 mois » (1 photo → portrait amélioré)**
+
+| Variable `FAL_MODEL` | Quand l'utiliser |
+|----------------------|------------------|
+| `fal-ai/image-editing/face-enhancement` **(défaut)** | Retouche naturelle, ~0,04 $/image, identité bien conservée |
+| `fal-ai/flux-pro/kontext` | Transformation plus visible via prompt (6 mois d'amélioration), un peu plus cher |
+
+Ne pas utiliser `fal-ai/image-apps-v2/portrait-enhance` en production (~0,40 $/image).
 
 #### 5. Test local (optionnel)
 

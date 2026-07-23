@@ -1,6 +1,49 @@
 import { sleep } from "./http.js";
 
-const MODEL_ID = "fal-ai/image-editing/face-enhancement";
+const DEFAULT_MODEL = "fal-ai/image-editing/face-enhancement";
+
+function getModelId() {
+  return process.env.FAL_MODEL || DEFAULT_MODEL;
+}
+
+function buildPreviewPrompt(plan) {
+  const focus = Array.isArray(plan)
+    ? plan
+        .slice(0, 3)
+        .map(function (item) {
+          return item && item.key ? item.key : "";
+        })
+        .filter(Boolean)
+        .join(", ")
+    : "";
+
+  return (
+    "Same person, realistic portrait photo after 6 months of consistent self-improvement. " +
+    "Subtle natural enhancements: clearer skin, slightly sharper jawline, reduced under-eye shadows, " +
+    "better grooming and posture. Keep identical identity, age, ethnicity, hairstyle, and camera angle. " +
+    "Photorealistic, not plastic surgery, not a different person." +
+    (focus ? " Focus areas: " + focus + "." : "")
+  );
+}
+
+function buildRequestBody(modelId, frontPhoto, plan) {
+  if (modelId.indexOf("kontext") !== -1) {
+    return {
+      prompt: buildPreviewPrompt(plan),
+      image_url: frontPhoto,
+      guidance_scale: 3.5,
+      output_format: "jpeg",
+      aspect_ratio: "3:4"
+    };
+  }
+
+  return {
+    image_url: frontPhoto,
+    guidance_scale: 3.8,
+    num_inference_steps: 32,
+    output_format: "jpeg"
+  };
+}
 
 export async function generateSixMonthPreview({ frontPhoto, plan }) {
   const apiKey = process.env.FAL_KEY;
@@ -12,18 +55,14 @@ export async function generateSixMonthPreview({ frontPhoto, plan }) {
     return { error: "Invalid front photo", status: 400 };
   }
 
-  const submitResponse = await fetch("https://queue.fal.run/" + MODEL_ID, {
+  const modelId = getModelId();
+  const submitResponse = await fetch("https://queue.fal.run/" + modelId, {
     method: "POST",
     headers: {
       Authorization: "Key " + apiKey,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      image_url: frontPhoto,
-        guidance_scale: 3.8,
-      num_inference_steps: 32,
-      output_format: "jpeg"
-    })
+    body: JSON.stringify(buildRequestBody(modelId, frontPhoto, plan))
   });
 
   if (!submitResponse.ok) {
@@ -37,8 +76,8 @@ export async function generateSixMonthPreview({ frontPhoto, plan }) {
     return { error: "fal.ai did not return a request id", status: 502 };
   }
 
-  const statusUrl = "https://queue.fal.run/" + MODEL_ID + "/requests/" + requestId + "/status";
-  const resultUrl = "https://queue.fal.run/" + MODEL_ID + "/requests/" + requestId;
+  const statusUrl = "https://queue.fal.run/" + modelId + "/requests/" + requestId + "/status";
+  const resultUrl = "https://queue.fal.run/" + modelId + "/requests/" + requestId;
 
   for (let attempt = 0; attempt < 45; attempt += 1) {
     await sleep(2000);
@@ -66,7 +105,8 @@ export async function generateSixMonthPreview({ frontPhoto, plan }) {
       return {
         previewUrl: typeof imageUrl === "string" ? imageUrl : imageUrl.url,
         generatedAt: new Date().toISOString(),
-        source: "fal"
+        source: "fal",
+        model: modelId
       };
     }
 
