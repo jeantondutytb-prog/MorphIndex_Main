@@ -1895,16 +1895,144 @@ button {
 .onboarding__photo-zone {
   position: relative;
   aspect-ratio: 3 / 4;
-  max-height: 20rem;
+  max-height: 14rem;
   margin: 0 auto 1.25rem;
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   background: #0f1115;
   overflow: hidden;
+  transition:
+    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .onboarding__photo-zone--camera {
   background: #000;
+}
+
+.onboarding__photo-zone.is-scanning {
+  position: fixed;
+  z-index: 30;
+  top: 3.25rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  aspect-ratio: auto;
+  border: none;
+  border-radius: 0;
+}
+
+.onboarding__photo-zone.is-scanning::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.onboarding__photo-zone.is-capturing::after {
+  animation: onboarding-camera-flash 0.35s ease-out forwards;
+}
+
+@keyframes onboarding-camera-flash {
+  0% { opacity: 0; }
+  35% { opacity: 0.82; }
+  100% { opacity: 0; }
+}
+
+body.onboarding-scan-active {
+  overflow: hidden;
+}
+
+body.onboarding-scan-active .auth {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+body.onboarding-scan-active .auth__card {
+  max-width: none;
+  width: 100%;
+  min-height: calc(100dvh - 3.25rem);
+}
+
+body.onboarding-scan-active .auth__logo,
+body.onboarding-scan-active .shell-progress,
+body.onboarding-scan-active .auth__title,
+body.onboarding-scan-active .auth__subtitle,
+body.onboarding-scan-active .onboarding__tips,
+body.onboarding-scan-active #onboarding-continue {
+  display: none;
+}
+
+body.onboarding-scan-active .onboarding__photo-actions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  margin: 0;
+  padding: 0.75rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 38%, rgba(0, 0, 0, 0.92) 100%);
+  gap: 0.5rem;
+}
+
+body.onboarding-scan-active .onboarding__photo-actions .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.onboarding-scan-active .onboarding__photo-actions .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+body.onboarding-scan-active .onboarding__camera-status {
+  bottom: calc(6.75rem + env(safe-area-inset-bottom));
+  font-size: 0.8125rem;
+  padding: 0.55rem 1rem;
+}
+
+body.onboarding-scan-active .onboarding__camera-overlay .onboarding__face-outline {
+  width: min(72vw, 15rem);
+  max-width: 72%;
+}
+
+body.onboarding-scan-active .onboarding__camera-overlay--side .onboarding__face-outline {
+  width: min(68vw, 14rem);
+  max-width: 68%;
+}
+
+body.onboarding-scan-active .onboarding__camera-guide {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .onboarding__photo-zone.is-scanning {
+    top: 3.5rem;
+    left: 50%;
+    right: auto;
+    bottom: 0;
+    width: min(100%, 30rem);
+    transform: translateX(-50%);
+    border-radius: 0;
+  }
+
+  body.onboarding-scan-active .onboarding__photo-actions {
+    left: 50%;
+    right: auto;
+    width: min(100%, 30rem);
+    transform: translateX(-50%);
+  }
 }
 
 .onboarding__camera-video {

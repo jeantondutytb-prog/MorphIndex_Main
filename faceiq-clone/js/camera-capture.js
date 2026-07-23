@@ -273,6 +273,23 @@
       });
   };
 
+  CameraCapture.prototype.setScanMode = function (active) {
+    if (!this.zone) return;
+    if (active) {
+      this.zone.classList.add("is-scanning");
+      this.zone.classList.remove("has-preview");
+      document.body.classList.add("onboarding-scan-active");
+    } else {
+      this.zone.classList.remove("is-scanning", "is-capturing");
+      document.body.classList.remove("onboarding-scan-active");
+    }
+  };
+
+  CameraCapture.prototype.exitScanWithPreview = function () {
+    this.setScanMode(false);
+    if (this.zone) this.zone.classList.add("has-preview");
+  };
+
   CameraCapture.prototype.scheduleDetect = function () {
     if (this.destroyed || this.captured || !this.detecting) return;
     var self = this;
@@ -302,6 +319,7 @@
       ctx.scale(-1, 1);
     }
     ctx.drawImage(video, 0, 0, width, height);
+    if (this.zone) this.zone.classList.add("is-capturing");
     this.stopCamera();
     this.setStatus(
       auto ? "onboarding.camera.capturing" : "onboarding.camera.captured",
@@ -310,29 +328,30 @@
     );
 
     var dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+    var self = this;
     var finalize = function (compressed) {
-      if (this.previewEl) {
-        this.previewEl.src = compressed;
-        this.previewEl.hidden = false;
+      if (self.previewEl) {
+        self.previewEl.src = compressed;
+        self.previewEl.hidden = false;
       }
-      if (this.zone) {
-        this.zone.classList.add("has-preview");
-      }
-      if (this.video) this.video.hidden = true;
-      if (this.overlay) this.overlay.hidden = true;
-      if (this.captureBtn) this.captureBtn.hidden = true;
-      if (this.galleryBtn) this.galleryBtn.hidden = true;
-      if (this.retakeBtn) this.retakeBtn.hidden = false;
-      this.onCapture(compressed);
-    }.bind(this);
+      self.exitScanWithPreview();
+      if (self.video) self.video.hidden = true;
+      if (self.overlay) self.overlay.hidden = true;
+      if (self.captureBtn) self.captureBtn.hidden = true;
+      if (self.galleryBtn) self.galleryBtn.hidden = true;
+      if (self.retakeBtn) self.retakeBtn.hidden = false;
+      self.onCapture(compressed);
+    };
 
-    if (window.ImageCompress) {
-      window.ImageCompress.compressDataUrl(dataUrl).then(finalize).catch(function () {
+    window.setTimeout(function () {
+      if (window.ImageCompress) {
+        window.ImageCompress.compressDataUrl(dataUrl).then(finalize).catch(function () {
+          finalize(dataUrl);
+        });
+      } else {
         finalize(dataUrl);
-      });
-    } else {
-      finalize(dataUrl);
-    }
+      }
+    }, 280);
   };
 
   CameraCapture.prototype.showLive = function () {
@@ -342,7 +361,7 @@
       this.previewEl.hidden = true;
       this.previewEl.src = "";
     }
-    if (this.zone) this.zone.classList.remove("has-preview");
+    this.setScanMode(true);
     if (this.video) this.video.hidden = false;
     if (this.overlay) this.overlay.hidden = false;
     if (this.captureBtn) {
@@ -360,7 +379,7 @@
       this.previewEl.src = dataUrl;
       this.previewEl.hidden = false;
     }
-    if (this.zone) this.zone.classList.add("has-preview");
+    this.exitScanWithPreview();
     if (this.video) this.video.hidden = true;
     if (this.overlay) this.overlay.hidden = true;
     if (this.captureBtn) this.captureBtn.hidden = true;
@@ -437,11 +456,13 @@
     return this.loadModels().then(function () {
       return self.startCamera();
     }).then(function () {
+      self.setScanMode(true);
       self.detecting = true;
       self.onReadyChange(true);
       self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default");
       self.scheduleDetect();
     }).catch(function () {
+      self.setScanMode(false);
       self.onReadyChange(false);
       self.setStatus("onboarding.camera.denied", "Camera unavailable — use gallery instead", "warning");
       if (self.captureBtn) self.captureBtn.disabled = true;
@@ -450,6 +471,7 @@
 
   CameraCapture.prototype.destroy = function () {
     this.destroyed = true;
+    this.setScanMode(false);
     this.stopCamera();
   };
 
