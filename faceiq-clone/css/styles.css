@@ -1,21 +1,28 @@
 /* MorphIndex — clean clinical theme (FaceIQ-inspired, distinct) */
 
 :root {
-  --bg: #ffffff;
-  --bg-muted: #f4f7fc;
+  --bg: #e4ecf9;
+  --bg-muted: rgba(255, 255, 255, 0.48);
   --text: #18181b;
   --text-muted: #a1a1aa;
   --text-subtle: #d4d4d8;
-  --border: #e4e4e7;
-  --border-strong: #d4d4d8;
-  --card: #ffffff;
-  --card-muted: #f4f4f5;
+  --border: rgba(148, 163, 184, 0.32);
+  --border-strong: #c5d3e4;
+  --card: rgba(255, 255, 255, 0.9);
+  --card-muted: rgba(255, 255, 255, 0.55);
   --accent: #18181b;
   --accent-hover: #3f3f46;
   --accent-fg: #ffffff;
-  --accent-soft: rgba(99, 130, 210, 0.12);
+  --accent-soft: rgba(99, 130, 210, 0.14);
   --accent-highlight: #4f6fd8;
-  --hero-gradient: linear-gradient(180deg, #f4f7fc 0%, #eef3fb 35%, #e6edf8 60%, #dee8f6 100%);
+  --hero-gradient: linear-gradient(
+    180deg,
+    #f8fbff 0%,
+    #f0f6fd 28%,
+    #e8f0fa 55%,
+    #e0eaf6 78%,
+    #dce8f6 100%
+  );
   --radius-full: 9999px;
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
@@ -28,21 +35,27 @@
 }
 
 [data-theme="dark"] {
-  --bg: #09090b;
-  --bg-muted: #0f1018;
+  --bg: #0f1a2e;
+  --bg-muted: rgba(255, 255, 255, 0.04);
   --text: #fafafa;
   --text-muted: #71717a;
   --text-subtle: #3f3f46;
-  --border: #27272a;
-  --border-strong: #3f3f46;
-  --card: #18181b;
-  --card-muted: #27272a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: #2a3a52;
+  --card: rgba(20, 28, 42, 0.88);
+  --card-muted: rgba(255, 255, 255, 0.06);
   --accent: #fafafa;
   --accent-hover: #e4e4e7;
   --accent-fg: #18181b;
   --accent-soft: rgba(99, 130, 210, 0.18);
   --accent-highlight: #7b9cf5;
-  --hero-gradient: linear-gradient(180deg, #0c0c14 0%, #0f1018 32%, #111220 58%, #0e0f18 100%);
+  --hero-gradient: linear-gradient(
+    180deg,
+    #0a1018 0%,
+    #0e1624 38%,
+    #111c30 72%,
+    #0f1a2e 100%
+  );
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,13 +65,15 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);
+  background: var(--hero-gradient);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.65;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   min-width: 320px;
+  min-height: 100vh;
 }
 
 img, video { display: block; max-width: 100%; }
@@ -104,13 +119,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: relative;
   overflow: hidden;
   background: var(--bg-muted);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .section--muted::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(197, 215, 255, 0.18), transparent 60%);
+  background: radial-gradient(ellipse at 50% 30%, rgba(197, 215, 255, 0.22), transparent 60%);
   pointer-events: none;
 }
 
@@ -380,7 +397,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   inset-inline: 0;
   bottom: 0;
   height: 16rem;
-  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  background: linear-gradient(
+    to top,
+    var(--bg) 0%,
+    rgba(228, 237, 249, 0.55) 45%,
+    transparent 100%
+  );
 }
 
 .hero__content {
