@@ -31,6 +31,8 @@
     }, remainder);
   }
 
+  window.MorphStats = { refresh: updateStats };
+
   document.addEventListener("DOMContentLoaded", function () {
     updateStats();
     scheduleNextTick();

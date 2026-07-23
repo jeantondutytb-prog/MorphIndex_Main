@@ -294,6 +294,7 @@
     document.querySelectorAll("[data-lang-option]").forEach(function (btn) {
       btn.classList.toggle("is-active", btn.getAttribute("data-lang-option") === lang);
     });
+    if (window.MorphStats) window.MorphStats.refresh();
   }
 
   function applyLang(lang) {
