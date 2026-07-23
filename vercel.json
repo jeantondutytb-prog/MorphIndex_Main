@@ -2,5 +2,13 @@
   "buildCommand": null,
   "outputDirectory": "faceiq-clone",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/analyze-face.js": {
+      "maxDuration": 60
+    },
+    "api/generate-preview.js": {
+      "maxDuration": 120
+    }
+  }
 }

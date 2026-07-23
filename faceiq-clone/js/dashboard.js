@@ -25,6 +25,50 @@
     return t("dashboard.impact." + impact);
   }
 
+  function renderPreview(container, state, analysis, options) {
+    if (!container) return;
+    options = options || {};
+
+    if (!state.frontPhoto && !state.preview6mUrl && !options.loading) {
+      container.hidden = true;
+      return;
+    }
+
+    container.hidden = false;
+    var beforeSrc = state.frontPhoto || "";
+    var afterSrc = state.preview6mUrl || "";
+    var loading = options.loading;
+
+    container.innerHTML =
+      '<section class="dashboard-preview">' +
+        '<div class="dashboard-preview__head">' +
+          '<h2 class="dashboard-section__title">' + t("dashboard.preview.title") + '</h2>' +
+          '<p class="dashboard-section__subtitle">' + t("dashboard.preview.subtitle") + '</p>' +
+        '</div>' +
+        '<div class="dashboard-preview__grid">' +
+          '<figure class="dashboard-preview__card">' +
+            '<img src="' + beforeSrc + '" alt="">' +
+            '<figcaption>' + t("dashboard.preview.before") + '</figcaption>' +
+          '</figure>' +
+          '<figure class="dashboard-preview__card' + (loading ? " is-loading" : "") + '">' +
+            (afterSrc
+              ? '<img src="' + afterSrc + '" alt="">'
+              : '<div class="dashboard-preview__placeholder"><span class="dashboard-preview__spinner" aria-hidden="true"></span><p>' +
+                t("dashboard.preview.generating") +
+                "</p></div>") +
+            '<figcaption>' + t("dashboard.preview.after") + '</figcaption>' +
+          '</figure>' +
+        '</div>' +
+        (analysis && analysis.potential
+          ? '<p class="dashboard-preview__note">' +
+            t("dashboard.preview.scoreNote")
+              .replace("{current}", analysis.scores.overall)
+              .replace("{potential}", analysis.potential.overall) +
+            "</p>"
+          : "") +
+      "</section>";
+  }
+
   function renderScoreHero(container, analysis) {
     var scores = analysis.scores;
     container.innerHTML =
@@ -201,6 +245,7 @@
   }
 
   window.Dashboard = {
+    renderPreview: renderPreview,
     renderScoreHero: renderScoreHero,
     renderPhotos: renderPhotos,
     renderPillarBars: renderPillarBars,

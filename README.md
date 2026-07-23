@@ -66,8 +66,19 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `SUPABASE_URL` | URL du projet Supabase |
 | `SUPABASE_ANON_KEY` | Clé anon public Supabase |
 | `AUTH_REDIRECT_URL` | `/app` (page après connexion) |
+| `ANTHROPIC_API_KEY` | Clé API Anthropic (analyse faciale vision) |
+| `ANTHROPIC_MODEL` | Optionnel — modèle Claude (défaut : `claude-sonnet-4-20250514`) |
+| `FAL_KEY` | Clé API fal.ai (aperçu 6 mois après abonnement) |
+| `APP_ORIGIN` | Optionnel — origine CORS (défaut : `https://www.morphindex.com`) |
 
 Redéploie le projet après avoir ajouté les variables.
+
+#### Analyse IA (Anthropic + fal.ai)
+
+- **Pendant l'onboarding** (`/onboarding/analyzing`) : les photos frontale + profil sont envoyées à `/api/analyze-face` (Claude vision). Sans clé Anthropic, l'app retombe sur des scores simulés.
+- **Après abonnement** : `/api/generate-preview` appelle fal.ai (`face-enhancement`) pour générer un aperçu « dans 6 mois », affiché sur le dashboard `/app`.
+
+Les clés API restent **côté serveur** (variables Vercel) — jamais exposées au navigateur.
 
 #### 5. Test local (optionnel)
 

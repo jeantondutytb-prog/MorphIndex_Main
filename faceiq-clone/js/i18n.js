@@ -142,6 +142,14 @@
         planSubtitle: "Prioritized actions based on your weakest metrics.",
         weeks: "{n} weeks",
         disclaimer: "Scores are for self-improvement guidance only — not medical advice.",
+        preview: {
+          title: "Your 6-month preview",
+          subtitle: "AI projection of your results if you follow your improvement plan.",
+          before: "Today",
+          after: "In 6 months",
+          generating: "Generating your preview…",
+          scoreNote: "Projected overall score: {current} → {potential}/10"
+        },
         status: { good: "On target", average: "Average", focus: "Focus area" },
         impact: { high: "High impact", medium: "Medium impact", low: "Low impact" },
         summary: {
@@ -408,6 +416,14 @@
         planSubtitle: "Actions prioritaires basées sur vos métriques les plus faibles.",
         weeks: "{n} semaines",
         disclaimer: "Les scores sont indicatifs pour l'auto-amélioration — pas un avis médical.",
+        preview: {
+          title: "Votre aperçu à 6 mois",
+          subtitle: "Projection IA de vos résultats si vous suivez votre plan d'amélioration.",
+          before: "Aujourd'hui",
+          after: "Dans 6 mois",
+          generating: "Génération de votre aperçu…",
+          scoreNote: "Score global projeté : {current} → {potential}/10"
+        },
         status: { good: "Dans la cible", average: "Moyen", focus: "À travailler" },
         impact: { high: "Impact élevé", medium: "Impact moyen", low: "Impact faible" },
         summary: {
@@ -674,6 +690,14 @@
         planSubtitle: "Acciones prioritarias según tus métricas más débiles.",
         weeks: "{n} semanas",
         disclaimer: "Las puntuaciones son orientativas para la auto-mejora — no son consejo médico.",
+        preview: {
+          title: "Tu vista previa a 6 meses",
+          subtitle: "Proyección IA de tus resultados si sigues tu plan de mejora.",
+          before: "Hoy",
+          after: "En 6 meses",
+          generating: "Generando tu vista previa…",
+          scoreNote: "Puntuación global proyectada: {current} → {potential}/10"
+        },
         status: { good: "En objetivo", average: "Promedio", focus: "A mejorar" },
         impact: { high: "Alto impacto", medium: "Impacto medio", low: "Bajo impacto" },
         summary: {

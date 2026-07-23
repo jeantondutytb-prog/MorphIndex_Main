@@ -2,6 +2,7 @@
   var emailEl = document.getElementById("app-email");
   var signOutBtn = document.getElementById("app-signout");
   var currentUser = null;
+  var currentSession = null;
 
   function redirectToLogin() {
     window.location.href = "/login";
@@ -39,7 +40,7 @@
     }
   }
 
-  function renderDashboard(user) {
+  function renderDashboard(user, session) {
     var state = window.Onboarding.getState(user.id);
     var analysis = window.AnalysisData.ensureAnalysis(state, user.id);
 
@@ -47,12 +48,35 @@
       window.Onboarding.saveState(user.id, { analysis: analysis });
     }
 
+    window.Dashboard.renderPreview(
+      document.getElementById("dashboard-preview"),
+      state,
+      analysis,
+      { loading: !!state.previewGenerating }
+    );
     window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
     window.Dashboard.renderPhotos(document.getElementById("dashboard-photos"), state);
     window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
     window.Dashboard.renderSummaryGrid(document.getElementById("dashboard-summary"), analysis);
     window.Dashboard.renderMetricsTabs(document.getElementById("dashboard-metrics"), analysis);
     window.Dashboard.renderPlan(document.getElementById("dashboard-plan"), analysis);
+
+    if (!state.preview6mUrl && !state.previewGenerating && session && window.AiApi) {
+      window.Onboarding.saveState(user.id, { previewGenerating: true });
+      renderDashboard(user, session);
+      window.AiApi.generatePreview(session, state.frontPhoto, analysis.plan).then(function (result) {
+        if (result.ok && result.previewUrl) {
+          window.Onboarding.saveState(user.id, {
+            preview6mUrl: result.previewUrl,
+            preview6mAt: result.generatedAt,
+            previewGenerating: false
+          });
+        } else {
+          window.Onboarding.saveState(user.id, { previewGenerating: false });
+        }
+        renderDashboard(user, session);
+      });
+    }
   }
 
   function bootApp() {
@@ -81,12 +105,13 @@
 
       showUser(result.data.session);
       currentUser = user;
-      renderDashboard(user);
+      currentSession = result.data.session;
+      renderDashboard(user, result.data.session);
       setBooting(false);
     });
 
     document.addEventListener("langchange", function () {
-      if (currentUser) renderDashboard(currentUser);
+      if (currentUser) renderDashboard(currentUser, currentSession);
     });
 
     if (signOutBtn) {
