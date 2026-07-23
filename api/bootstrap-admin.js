@@ -47,17 +47,20 @@ export default async function handler(request, response) {
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";
 
-  if (!email || !password) {
-    sendJson(response, 400, { error: "email and password are required" });
+  if (!email) {
+    sendJson(response, 400, { error: "email is required" });
     return;
   }
 
-  if (password.length < 8) {
+  if (password && password.length < 8) {
     sendJson(response, 400, { error: "password must be at least 8 characters" });
     return;
   }
 
-  const result = await createOrUpdateAdminUser({ email: email, password: password });
+  const result = await createOrUpdateAdminUser({
+    email: email,
+    password: password || undefined
+  });
   if (result.error) {
     sendJson(response, result.status || 500, {
       error: result.error,

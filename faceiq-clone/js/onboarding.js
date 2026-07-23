@@ -1,6 +1,7 @@
 (function () {
   var STORAGE_PREFIX = "faceiq_onboarding_";
   var TOTAL_STEPS = 4;
+  var ADMIN_EMAILS = ["jeantondut.ytb@gmail.com"];
 
   var stepRoutes = {
     1: "/onboarding",
@@ -11,6 +12,16 @@
 
   function redirectToLogin() {
     window.location.href = "/login";
+  }
+
+  function normalizeEmail(email) {
+    return typeof email === "string" ? email.trim().toLowerCase() : "";
+  }
+
+  function isAdminUser(user) {
+    if (!user) return false;
+    if (user.user_metadata && user.user_metadata.role === "admin") return true;
+    return ADMIN_EMAILS.indexOf(normalizeEmail(user.email)) !== -1;
   }
 
   function initSupabase() {
@@ -56,6 +67,7 @@
   function hasCompletedScan(user) {
     if (!user) return false;
     if (isRescanPending(user.id)) return false;
+    if (isAdminUser(user)) return true;
     if (user.user_metadata && user.user_metadata.onboarding_complete) return true;
     var state = getState(user.id);
     return !!state.scanComplete;
@@ -63,6 +75,7 @@
 
   function hasActiveSubscription(user) {
     if (!user) return false;
+    if (isAdminUser(user)) return true;
     return !!(user.user_metadata && user.user_metadata.subscription_active);
   }
 
@@ -115,6 +128,11 @@
       var user = session.user;
       var state = getState(user.id);
 
+      if (isAdminUser(user) && !isRescanPending(user.id) && hasActiveSubscription(user)) {
+        window.location.href = "/app";
+        return null;
+      }
+
       if (!hasCompletedScan(user)) {
         if (currentStep > 2 && (!state.frontPhoto || !state.sidePhoto)) {
           window.location.href = stepRoutes[2];
@@ -127,7 +145,7 @@
       }
 
       if (hasCompletedScan(user) && currentStep < 4) {
-        window.location.href = stepRoutes[4];
+        window.location.href = hasActiveSubscription(user) ? "/app" : stepRoutes[4];
         return null;
       }
 
@@ -210,6 +228,7 @@
     stepRoutes: stepRoutes,
     initSupabase: initSupabase,
     redirectToLogin: redirectToLogin,
+    isAdminUser: isAdminUser,
     getState: getState,
     saveState: saveState,
     isRescanPending: isRescanPending,
