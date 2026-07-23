@@ -9,7 +9,7 @@
         description: "Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time."
       },
       a11y: { theme: "Toggle theme", language: "Change language", menu: "Open menu", stars: "5 stars", prev: "Previous", next: "Next", close: "Close" },
-      nav: { celebs: "Celebs", creators: "Creators", login: "Login", cta: "Try Free" },
+      nav: { celebs: "Celebs", creators: "Creators", login: "Login", cta: "Try Free", ctaShort: "Try Free" },
       hero: {
         users: "users", analyses: "analyses",
         title: "Your Looks.<br>Measured. Tracked. Improved.",
@@ -400,7 +400,7 @@
         description: "Analysez votre visage selon plus de 100 métriques, obtenez un plan d'amélioration personnalisé et suivez vos progrès."
       },
       a11y: { theme: "Changer le thème", language: "Changer la langue", menu: "Ouvrir le menu", stars: "5 étoiles", prev: "Précédent", next: "Suivant", close: "Fermer" },
-      nav: { celebs: "Célébrités", creators: "Créateurs", login: "Connexion", cta: "Essayer gratuitement" },
+      nav: { celebs: "Célébrités", creators: "Créateurs", login: "Connexion", cta: "Essayer gratuitement", ctaShort: "Essayer" },
       hero: {
         users: "utilisateurs", analyses: "analyses",
         title: "Votre apparence.<br>Mesurée. Suivie. Améliorée.",
@@ -791,7 +791,7 @@
         description: "Analiza tu rostro según más de 100 métricas, obtén un plan de mejora personalizado y sigue tu progreso."
       },
       a11y: { theme: "Cambiar tema", language: "Cambiar idioma", menu: "Abrir menú", stars: "5 estrellas", prev: "Anterior", next: "Siguiente", close: "Cerrar" },
-      nav: { celebs: "Celebridades", creators: "Creadores", login: "Iniciar sesión", cta: "Probar gratis" },
+      nav: { celebs: "Celebridades", creators: "Creadores", login: "Iniciar sesión", cta: "Probar gratis", ctaShort: "Probar" },
       hero: {
         users: "usuarios", analyses: "análisis",
         title: "Tu apariencia.<br>Medida. Seguida. Mejorada.",
