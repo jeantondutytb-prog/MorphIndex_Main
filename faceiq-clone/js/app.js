@@ -1,7 +1,7 @@
 (function () {
   var emailEl = document.getElementById("app-email");
   var signOutBtn = document.getElementById("app-signout");
-  var startAnalysisEl = document.getElementById("app-start-analysis");
+  var currentUser = null;
 
   function redirectToLogin() {
     window.location.href = "/login";
@@ -21,29 +21,11 @@
   }
 
   function hasCompletedOnboarding(user) {
-    if (!user) return false;
-    if (user.user_metadata && user.user_metadata.onboarding_complete) return true;
-    try {
-      var raw = localStorage.getItem("faceiq_onboarding_" + user.id);
-      if (!raw) return false;
-      var state = JSON.parse(raw);
-      return !!state.scanComplete;
-    } catch (e) {
-      return false;
-    }
+    return window.Onboarding && window.Onboarding.hasCompletedScan(user);
   }
 
   function hasActiveSubscription(user) {
-    if (!user) return false;
-    if (user.user_metadata && user.user_metadata.subscription_active) return true;
-    try {
-      var raw = localStorage.getItem("faceiq_onboarding_" + user.id);
-      if (!raw) return false;
-      var state = JSON.parse(raw);
-      return !!state.subscriptionActive;
-    } catch (e) {
-      return false;
-    }
+    return window.Onboarding && window.Onboarding.hasActiveSubscription(user);
   }
 
   function showUser(session) {
@@ -55,6 +37,22 @@
       emailEl.textContent = session.user.email;
       emailEl.hidden = false;
     }
+  }
+
+  function renderDashboard(user) {
+    var state = window.Onboarding.getState(user.id);
+    var analysis = window.AnalysisData.ensureAnalysis(state, user.id);
+
+    if (!state.analysis) {
+      window.Onboarding.saveState(user.id, { analysis: analysis });
+    }
+
+    window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
+    window.Dashboard.renderPhotos(document.getElementById("dashboard-photos"), state);
+    window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
+    window.Dashboard.renderSummaryGrid(document.getElementById("dashboard-summary"), analysis);
+    window.Dashboard.renderMetricsTabs(document.getElementById("dashboard-metrics"), analysis);
+    window.Dashboard.renderPlan(document.getElementById("dashboard-plan"), analysis);
   }
 
   function bootApp() {
@@ -81,12 +79,14 @@
         return;
       }
 
-      if (startAnalysisEl) {
-        startAnalysisEl.href = "/onboarding/results";
-      }
-
       showUser(result.data.session);
+      currentUser = user;
+      renderDashboard(user);
       setBooting(false);
+    });
+
+    document.addEventListener("langchange", function () {
+      if (currentUser) renderDashboard(currentUser);
     });
 
     if (signOutBtn) {

@@ -116,10 +116,11 @@
             li.classList.remove("is-active");
           });
 
-          var scores = state.scores || window.Onboarding.generateMockScores();
+          var analysis = window.AnalysisData.generateAnalysis(ctx.user.id);
           window.Onboarding.saveState(ctx.user.id, {
             scanComplete: true,
-            scores: scores
+            scores: analysis.scores,
+            analysis: analysis
           });
 
           client.auth.updateUser({

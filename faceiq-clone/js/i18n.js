@@ -125,8 +125,64 @@
         backHome: "Back to home",
         signOut: "Sign out",
         meta: {
-          title: "FaceIQ Labs — Your account",
-          description: "Your FaceIQ Labs account dashboard."
+          title: "FaceIQ Labs — Dashboard",
+          description: "Your full facial analysis dashboard with scores, metrics, and improvement plan."
+        }
+      },
+      dashboard: {
+        eyebrow: "Your analysis",
+        title: "Dashboard",
+        overall: "Overall score",
+        potential: "Potential score",
+        percentile: "Top {n}% of users",
+        photoFront: "Front",
+        photoSide: "Side profile",
+        ideal: "Ideal",
+        planTitle: "Your improvement plan",
+        planSubtitle: "Prioritized actions based on your weakest metrics.",
+        weeks: "{n} weeks",
+        disclaimer: "Scores are for self-improvement guidance only — not medical advice.",
+        status: { good: "On target", average: "Average", focus: "Focus area" },
+        impact: { high: "High impact", medium: "Medium impact", low: "Low impact" },
+        summary: {
+          facialThirds: "Facial thirds ratio",
+          jawAngle: "Jaw angle",
+          symmetryDeviation: "Symmetry deviation",
+          ipdRatio: "IPD ratio"
+        },
+        metrics: {
+          facialThirds: "Facial thirds ratio",
+          facialWidthHeight: "Facial width-to-height",
+          midfaceRatio: "Midface ratio",
+          symmetryDeviation: "Symmetry deviation",
+          ipdRatio: "Interpupillary distance ratio",
+          canthalTilt: "Canthal tilt",
+          noseChinRatio: "Nose-to-chin ratio",
+          jawAngle: "Gonial angle",
+          gonialAngle: "Mandibular angle",
+          jawDefinition: "Jawline definition",
+          cheekboneProminence: "Cheekbone prominence",
+          chinProjection: "Chin projection",
+          mandibleWidth: "Mandible width",
+          browRidge: "Brow ridge prominence",
+          jawRobustness: "Jaw robustness",
+          facialHairline: "Hairline shape",
+          lipFullness: "Lip fullness",
+          noseSize: "Nose size balance",
+          skinClarity: "Skin clarity",
+          underEyeQuality: "Under-eye quality",
+          acneScarring: "Acne & scarring",
+          poreVisibility: "Pore visibility",
+          lipHealth: "Lip health",
+          hairDensity: "Hair density"
+        },
+        plan: {
+          jawlineDefinition: { title: "Improve jawline definition", desc: "Focus on body fat reduction, mewing posture, and masseter training." },
+          midfaceBalance: { title: "Balance midface proportions", desc: "Track cheek volume and midface length with consistent photo angles." },
+          skinRoutine: { title: "Optimize skincare routine", desc: "Target clarity and pore visibility with retinoids and SPF daily." },
+          underEyeCare: { title: "Address under-eye area", desc: "Improve sleep consistency and consider caffeine-based topical care." },
+          postureMewing: { title: "Posture & tongue posture", desc: "Maintain proper oral posture and neck alignment for jaw support." },
+          grooming: { title: "Refine grooming", desc: "Optimize hairstyle and facial hair to enhance dimorphic traits." }
         }
       },
       onboarding: {
@@ -335,8 +391,64 @@
         backHome: "Retour à l'accueil",
         signOut: "Se déconnecter",
         meta: {
-          title: "FaceIQ Labs — Votre compte",
-          description: "Votre espace compte FaceIQ Labs."
+          title: "FaceIQ Labs — Tableau de bord",
+          description: "Votre tableau de bord complet avec scores, métriques et plan d'amélioration."
+        }
+      },
+      dashboard: {
+        eyebrow: "Votre analyse",
+        title: "Tableau de bord",
+        overall: "Score global",
+        potential: "Score potentiel",
+        percentile: "Top {n}% des utilisateurs",
+        photoFront: "Face",
+        photoSide: "Profil",
+        ideal: "Idéal",
+        planTitle: "Votre plan d'amélioration",
+        planSubtitle: "Actions prioritaires basées sur vos métriques les plus faibles.",
+        weeks: "{n} semaines",
+        disclaimer: "Les scores sont indicatifs pour l'auto-amélioration — pas un avis médical.",
+        status: { good: "Dans la cible", average: "Moyen", focus: "À travailler" },
+        impact: { high: "Impact élevé", medium: "Impact moyen", low: "Impact faible" },
+        summary: {
+          facialThirds: "Ratio des tiers faciaux",
+          jawAngle: "Angle de la mâchoire",
+          symmetryDeviation: "Écart de symétrie",
+          ipdRatio: "Ratio IPD"
+        },
+        metrics: {
+          facialThirds: "Ratio des tiers faciaux",
+          facialWidthHeight: "Ratio largeur/hauteur du visage",
+          midfaceRatio: "Ratio du midface",
+          symmetryDeviation: "Écart de symétrie",
+          ipdRatio: "Distance interpupillaire",
+          canthalTilt: "Inclinaison canthale",
+          noseChinRatio: "Ratio nez-menton",
+          jawAngle: "Angle gonial",
+          gonialAngle: "Angle mandibulaire",
+          jawDefinition: "Définition de la mâchoire",
+          cheekboneProminence: "Proéminence des pommettes",
+          chinProjection: "Projection du menton",
+          mandibleWidth: "Largeur mandibulaire",
+          browRidge: "Proéminence de l'arcade sourcilière",
+          jawRobustness: "Robustesse de la mâchoire",
+          facialHairline: "Forme de la ligne capillaire",
+          lipFullness: "Volume des lèvres",
+          noseSize: "Équilibre du nez",
+          skinClarity: "Clarté de la peau",
+          underEyeQuality: "Qualité sous les yeux",
+          acneScarring: "Acné et cicatrices",
+          poreVisibility: "Visibilité des pores",
+          lipHealth: "Santé des lèvres",
+          hairDensity: "Densité capillaire"
+        },
+        plan: {
+          jawlineDefinition: { title: "Améliorer la définition de la mâchoire", desc: "Réduire le gras corporel, posture linguale et entraînement des masséters." },
+          midfaceBalance: { title: "Équilibrer le midface", desc: "Suivre le volume des joues et la longueur du midface avec des photos cohérentes." },
+          skinRoutine: { title: "Optimiser la routine skincare", desc: "Cibler clarté et pores avec rétinoïdes et SPF quotidien." },
+          underEyeCare: { title: "Traiter la zone sous les yeux", desc: "Améliorer le sommeil et envisager des soins à base de caféine." },
+          postureMewing: { title: "Posture et posture linguale", desc: "Maintenir une posture orale et cervicale correcte pour soutenir la mâchoire." },
+          grooming: { title: "Affiner le grooming", desc: "Optimiser coiffure et pilosité faciale pour renforcer les traits dimorphiques." }
         }
       },
       onboarding: {
@@ -545,8 +657,64 @@
         backHome: "Volver al inicio",
         signOut: "Cerrar sesión",
         meta: {
-          title: "FaceIQ Labs — Tu cuenta",
-          description: "Tu panel de cuenta de FaceIQ Labs."
+          title: "FaceIQ Labs — Panel",
+          description: "Tu panel completo con puntuaciones, métricas y plan de mejora."
+        }
+      },
+      dashboard: {
+        eyebrow: "Tu análisis",
+        title: "Panel",
+        overall: "Puntuación global",
+        potential: "Puntuación potencial",
+        percentile: "Top {n}% de usuarios",
+        photoFront: "Frontal",
+        photoSide: "Perfil",
+        ideal: "Ideal",
+        planTitle: "Tu plan de mejora",
+        planSubtitle: "Acciones prioritarias según tus métricas más débiles.",
+        weeks: "{n} semanas",
+        disclaimer: "Las puntuaciones son orientativas para la auto-mejora — no son consejo médico.",
+        status: { good: "En objetivo", average: "Promedio", focus: "A mejorar" },
+        impact: { high: "Alto impacto", medium: "Impacto medio", low: "Bajo impacto" },
+        summary: {
+          facialThirds: "Ratio de tercios faciales",
+          jawAngle: "Ángulo mandibular",
+          symmetryDeviation: "Desviación de simetría",
+          ipdRatio: "Ratio IPD"
+        },
+        metrics: {
+          facialThirds: "Ratio de tercios faciales",
+          facialWidthHeight: "Ratio ancho/alto facial",
+          midfaceRatio: "Ratio del midface",
+          symmetryDeviation: "Desviación de simetría",
+          ipdRatio: "Distancia interpupilar",
+          canthalTilt: "Inclinación cantal",
+          noseChinRatio: "Ratio nariz-mentón",
+          jawAngle: "Ángulo gonial",
+          gonialAngle: "Ángulo mandibular",
+          jawDefinition: "Definición mandibular",
+          cheekboneProminence: "Prominencia de pómulos",
+          chinProjection: "Proyección del mentón",
+          mandibleWidth: "Ancho mandibular",
+          browRidge: "Prominencia del arco supraciliar",
+          jawRobustness: "Robustez mandibular",
+          facialHairline: "Forma de la línea capilar",
+          lipFullness: "Volumen labial",
+          noseSize: "Equilibrio nasal",
+          skinClarity: "Claridad de la piel",
+          underEyeQuality: "Calidad bajo los ojos",
+          acneScarring: "Acné y cicatrices",
+          poreVisibility: "Visibilidad de poros",
+          lipHealth: "Salud labial",
+          hairDensity: "Densidad capilar"
+        },
+        plan: {
+          jawlineDefinition: { title: "Mejorar definición mandibular", desc: "Reducir grasa corporal, postura lingual y entrenamiento de maseteros." },
+          midfaceBalance: { title: "Equilibrar el midface", desc: "Seguir volumen de mejillas y longitud del midface con fotos consistentes." },
+          skinRoutine: { title: "Optimizar rutina de skincare", desc: "Mejorar claridad y poros con retinoides y SPF diario." },
+          underEyeCare: { title: "Tratar zona bajo los ojos", desc: "Mejorar el sueño y considerar cuidados con cafeína." },
+          postureMewing: { title: "Postura y postura lingual", desc: "Mantener postura oral y cervical correcta para apoyar la mandíbula." },
+          grooming: { title: "Refinar el grooming", desc: "Optimizar peinado y vello facial para realzar rasgos dimórficos." }
         }
       },
       onboarding: {
@@ -675,6 +843,7 @@
       document.title = dict.app.meta.title;
       var appMeta = document.querySelector('meta[name="description"]');
       if (appMeta) appMeta.setAttribute("content", dict.app.meta.description);
+      document.dispatchEvent(new CustomEvent("langchange"));
     } else if (isAuthPage && dict.auth) {
       var meta = authPage === "login" ? dict.auth.loginMeta : dict.auth.registerMeta;
       if (meta) {
@@ -736,6 +905,8 @@
       });
     });
   }
+
+  window.I18N_T = T;
 
   document.addEventListener("DOMContentLoaded", function () {
     setLang(getLang());

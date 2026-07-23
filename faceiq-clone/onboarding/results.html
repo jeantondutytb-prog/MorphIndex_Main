@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260723r">
+  <link rel="stylesheet" href="../css/styles.css?v=20260723s">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -61,50 +61,7 @@
       <h1 class="auth__title" data-i18n="onboarding.results.title">Your results are ready</h1>
       <p class="auth__subtitle" data-i18n="onboarding.results.subtitle">Subscribe to unlock your full analysis, personalized plan, and progress tracking.</p>
 
-      <div class="results-dashboard" id="results-dashboard">
-        <div class="results-dashboard__overall">
-          <span class="results-dashboard__label" data-i18n="onboarding.results.overall">Overall score</span>
-          <span class="results-dashboard__score" id="score-overall">—</span>
-        </div>
-
-        <div class="results-dashboard__pillars">
-          <div class="results-dashboard__pillar">
-            <span class="results-dashboard__pillar-name" data-i18n="pillars.p1">Harmony</span>
-            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-harmony"></div></div>
-            <span class="results-dashboard__pillar-score" id="score-harmony">—</span>
-          </div>
-          <div class="results-dashboard__pillar">
-            <span class="results-dashboard__pillar-name" data-i18n="pillars.p2">Angularity</span>
-            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-angularity"></div></div>
-            <span class="results-dashboard__pillar-score" id="score-angularity">—</span>
-          </div>
-          <div class="results-dashboard__pillar">
-            <span class="results-dashboard__pillar-name" data-i18n="pillars.p3">Dimorphism</span>
-            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-dimorphism"></div></div>
-            <span class="results-dashboard__pillar-score" id="score-dimorphism">—</span>
-          </div>
-          <div class="results-dashboard__pillar">
-            <span class="results-dashboard__pillar-name" data-i18n="pillars.p4">Health Indicators</span>
-            <div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" id="bar-features"></div></div>
-            <span class="results-dashboard__pillar-score" id="score-features">—</span>
-          </div>
-        </div>
-
-        <div class="results-dashboard__metrics">
-          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">Facial thirds ratio</span><strong id="metric-1">—</strong></div>
-          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">Jaw angle</span><strong id="metric-2">—</strong></div>
-          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">Symmetry deviation</span><strong id="metric-3">—</strong></div>
-          <div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">IPD ratio</span><strong id="metric-4">—</strong></div>
-        </div>
-
-        <div class="results-dashboard__lock" id="results-lock">
-          <div class="results-dashboard__lock-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <p class="results-dashboard__lock-text" data-i18n="onboarding.results.lock">Subscribe to unlock your full results</p>
-          <button type="button" class="btn btn--full btn--lg" id="unlock-btn" data-i18n="onboarding.results.unlock">Unlock my results</button>
-        </div>
-      </div>
+      <div id="results-dashboard"></div>
     </div>
   </main>
 
@@ -148,21 +105,21 @@
     </div>
   </div>
 
-  <script src="../js/config.js?v=20260723r"></script>
+  <script src="../js/config.js?v=20260723s"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723r"></script>
+  <script src="../js/i18n.js?v=20260723s"></script>
   <script src="../js/theme.js"></script>
-  <script src="../js/onboarding.js?v=20260723r"></script>
+  <script src="../js/analysis-data.js?v=20260723s"></script>
+  <script src="../js/dashboard.js?v=20260723s"></script>
+  <script src="../js/onboarding.js?v=20260723s"></script>
   <script>
     (function () {
       var paywall = document.getElementById("paywall");
-      var unlockBtn = document.getElementById("unlock-btn");
       var subscribeBtn = document.getElementById("paywall-subscribe");
       var closeBtn = document.getElementById("paywall-dismiss");
       var backdrop = document.getElementById("paywall-close");
-      var dashboard = document.getElementById("results-dashboard");
-      var lockOverlay = document.getElementById("results-lock");
+      var dashboardEl = document.getElementById("results-dashboard");
 
       function openPaywall() {
         paywall.hidden = false;
@@ -174,30 +131,10 @@
         document.body.classList.remove("paywall-open");
       }
 
-      function renderScores(scores) {
-        document.getElementById("score-overall").textContent = scores.overall;
-        document.getElementById("score-harmony").textContent = scores.harmony;
-        document.getElementById("score-angularity").textContent = scores.angularity;
-        document.getElementById("score-dimorphism").textContent = scores.dimorphism;
-        document.getElementById("score-features").textContent = scores.features;
-
-        document.getElementById("bar-harmony").style.width = (scores.harmony / 10 * 100) + "%";
-        document.getElementById("bar-angularity").style.width = (scores.angularity / 10 * 100) + "%";
-        document.getElementById("bar-dimorphism").style.width = (scores.dimorphism / 10 * 100) + "%";
-        document.getElementById("bar-features").style.width = (scores.features / 10 * 100) + "%";
-
-        document.getElementById("metric-1").textContent = (1.0 + Math.random() * 0.15).toFixed(2);
-        document.getElementById("metric-2").textContent = Math.round(118 + Math.random() * 14) + "°";
-        document.getElementById("metric-3").textContent = (1.5 + Math.random() * 3).toFixed(1) + "%";
-        document.getElementById("metric-4").textContent = (0.44 + Math.random() * 0.06).toFixed(2);
-      }
-
       function unlockResults() {
-        dashboard.classList.add("is-unlocked");
-        lockOverlay.hidden = true;
+        window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, false);
       }
 
-      unlockBtn.addEventListener("click", openPaywall);
       closeBtn.addEventListener("click", closePaywall);
       backdrop.addEventListener("click", closePaywall);
 
@@ -218,6 +155,8 @@
         return;
       }
 
+      var currentAnalysis = null;
+
       window.Onboarding.requireStep(client, 6, 6).then(function (ctx) {
         if (!ctx) return;
         var state = window.Onboarding.getState(ctx.user.id);
@@ -227,13 +166,20 @@
           return;
         }
 
-        if (state.scores) {
-          renderScores(state.scores);
+        currentAnalysis = window.AnalysisData.ensureAnalysis(state, ctx.user.id);
+        if (!state.analysis) {
+          window.Onboarding.saveState(ctx.user.id, { analysis: currentAnalysis });
         }
 
         if (window.Onboarding.hasActiveSubscription(ctx.user)) {
-          unlockResults();
+          window.location.href = "/app";
           return;
+        }
+
+        window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true);
+        var unlockBtn = document.getElementById("unlock-btn");
+        if (unlockBtn) {
+          unlockBtn.addEventListener("click", openPaywall);
         }
 
         subscribeBtn.addEventListener("click", function () {
@@ -245,7 +191,7 @@
             unlockResults();
             setTimeout(function () {
               window.location.href = "/app";
-            }, 1500);
+            }, 1200);
           });
         });
       });
