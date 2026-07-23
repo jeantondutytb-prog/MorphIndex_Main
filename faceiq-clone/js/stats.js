@@ -1,16 +1,10 @@
 (function () {
-  var ANCHOR_MS = Date.parse("2026-07-23T08:42:00Z");
-  var INTERVAL_MS = 30 * 1000;
-  var BASE_MEMBERS = 12051;
-  var BASE_ANALYSES = 73452;
+  var INTERVAL_MS = 2000;
+  var OFFSET_MS = 1000;
+  var BASE_MEMBERS = 225000;
+  var BASE_ANALYSES = 175000;
 
-  var state = { members: null, analyses: null };
-
-  function tickCount(base) {
-    var elapsed = Date.now() - ANCHOR_MS;
-    if (elapsed < 0) return base;
-    return base + Math.floor(elapsed / INTERVAL_MS);
-  }
+  var counts = { members: BASE_MEMBERS, analyses: BASE_ANALYSES };
 
   function formatCount(value) {
     var lang = document.documentElement.getAttribute("lang") || "en";
@@ -75,36 +69,39 @@
     }
   }
 
-  function updateStats(animate) {
-    var membersEl = document.querySelector("[data-stat-members]");
-    var analysesEl = document.querySelector("[data-stat-analyses]");
-    var members = tickCount(BASE_MEMBERS);
-    var analyses = tickCount(BASE_ANALYSES);
-
-    if (membersEl) renderCounter(membersEl, members, animate);
-    if (analysesEl) renderCounter(analysesEl, analyses, animate);
-
-    state.members = members;
-    state.analyses = analyses;
+  function renderStat(key, animate) {
+    var el = document.querySelector("[data-stat-" + key + "]");
+    if (el) renderCounter(el, counts[key], animate);
   }
 
-  function scheduleNextTick() {
-    var elapsed = Date.now() - ANCHOR_MS;
-    var remainder = INTERVAL_MS - (elapsed % INTERVAL_MS || INTERVAL_MS);
-    setTimeout(function () {
-      updateStats(true);
-      scheduleNextTick();
-    }, remainder);
+  function tickStat(key) {
+    counts[key] += 1;
+    renderStat(key, true);
+  }
+
+  function refreshAll(animate) {
+    renderStat("members", animate);
+    renderStat("analyses", animate);
   }
 
   window.MorphStats = {
     refresh: function () {
-      updateStats(false);
+      refreshAll(false);
     }
   };
 
   document.addEventListener("DOMContentLoaded", function () {
-    updateStats(false);
-    scheduleNextTick();
+    refreshAll(false);
+
+    setInterval(function () {
+      tickStat("members");
+    }, INTERVAL_MS);
+
+    setTimeout(function () {
+      tickStat("analyses");
+      setInterval(function () {
+        tickStat("analyses");
+      }, INTERVAL_MS);
+    }, OFFSET_MS);
   });
 })();
