@@ -27,6 +27,19 @@ Les branches `cursor/*` ou toute autre branche créent un déploiement **Preview
 - Branche `main` → Vercel **Production** (site live)
 - Autre branche → Vercel **Preview** (URL temporaire, pas le site public)
 
+## UI / UX — shell auth (style Patreon)
+
+Toutes les pages app (`/app`, `/onboarding/*`) doivent réutiliser le même shell que `/login` et `/register` :
+
+- `body.auth-page` (+ `data-app-shell="onboarding"` pour l'onboarding)
+- `header.auth-header` avec lien retour à gauche, langue + thème à droite
+- `main.auth` centré verticalement
+- `div.auth__card` (max 24rem, `auth__card--wide` si besoin)
+- Logo centré `auth__logo`, titre `auth__title`, sous-titre `auth__subtitle`
+- Boutons `btn btn--full btn--lg`, mentions légales `auth__legal`
+
+Ne pas créer de headers ou layouts séparés pour l'app.
+
 ## PRs (optionnel)
 
 Tu peux toujours ouvrir une PR pour suivi, mais le déploiement production doit passer par un push sur `main`.
