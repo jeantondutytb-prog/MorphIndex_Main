@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Detailed facial metrics across all analysis pillars.">
-  <title>FaceIQ Labs — Metrics</title>
+  <meta name="description" content="Track your progress with detailed facial metrics and score history.">
+  <title>FaceIQ Labs — Progress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260724h">
+  <link rel="stylesheet" href="../css/styles.css?v=20260724m">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -56,14 +56,16 @@
         </a>
         <div class="dashboard-header__intro">
           <p class="dashboard-header__eyebrow" data-i18n="dashboard.eyebrow">Your analysis</p>
-          <h1 class="dashboard-header__title" id="dashboard-page-title" data-i18n="dashboard.pages.metrics.title">Metrics</h1>
+          <h1 class="dashboard-header__title" id="dashboard-page-title" data-i18n="dashboard.pages.metrics.title">Progress</h1>
           <p class="auth__email dashboard-header__email" id="app-email" hidden></p>
         </div>
         <button type="button" class="btn btn--ghost btn--sm dashboard-header__signout" id="app-signout" data-i18n="app.signOut">Sign out</button>
       </div>
 
       <div id="dashboard-empty" hidden></div>
+      <div id="dashboard-history" hidden></div>
       <div id="dashboard-metrics"></div>
+      <div id="dashboard-progress-actions" hidden></div>
 
       <p class="dashboard-footer" data-i18n="dashboard.disclaimer">Scores are for self-improvement guidance only — not medical advice.</p>
     </div>
@@ -74,13 +76,13 @@
   <script src="../js/config.js?v=20260724e"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260724h"></script>
+  <script src="../js/i18n.js?v=20260724m"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/analysis-data.js?v=20260724e"></script>
-  <script src="../js/onboarding.js?v=20260723a"></script>
-  <script src="../js/dashboard.js?v=20260724h"></script>
+  <script src="../js/onboarding.js?v=20260724k"></script>
+  <script src="../js/dashboard.js?v=20260724m"></script>
   <script src="../js/journey-api.js?v=20260724k"></script>
-  <script src="../js/app-shell.js?v=20260724k"></script>
-  <script src="../js/app.js?v=20260724e"></script>
+  <script src="../js/app-shell.js?v=20260724m"></script>
+  <script src="../js/app.js?v=20260724m"></script>
 </body>
 </html>

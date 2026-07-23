@@ -6,16 +6,26 @@
 
     if (!state.frontPhoto && !state.sidePhoto) {
       window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), state);
+      ["dashboard-hero", "dashboard-next-step", "dashboard-strengths", "dashboard-tools", "dashboard-pillars"].forEach(
+        function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.innerHTML = "";
+          if (id !== "dashboard-hero" && id !== "dashboard-pillars") el.hidden = true;
+        }
+      );
       return;
     }
 
     window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
     window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
-    window.Dashboard.renderScoreHistory(document.getElementById("dashboard-history"), state, analysis);
-    window.Dashboard.renderQuickActions(document.getElementById("dashboard-quick-actions"));
-    window.Dashboard.renderPhotos(document.getElementById("dashboard-photos"), state);
+    window.Dashboard.renderNextStep(document.getElementById("dashboard-next-step"), ctx);
+    window.Dashboard.renderStrengthsWeaknesses(
+      document.getElementById("dashboard-strengths"),
+      analysis
+    );
+    window.Dashboard.renderToolsStrip(document.getElementById("dashboard-tools"));
     window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
-    window.Dashboard.renderSummaryGrid(document.getElementById("dashboard-summary"), analysis);
   }
 
   function renderPreviewPage(ctx) {
@@ -74,10 +84,13 @@
   function renderMetricsPage(ctx) {
     if (!ctx) return;
     if (!ctx.state.frontPhoto) {
-      window.Dashboard.renderEmptyState(document.getElementById("dashboard-metrics"), ctx.state);
+      window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), ctx.state);
       return;
     }
+    window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
+    window.Dashboard.renderScoreHistory(document.getElementById("dashboard-history"), ctx.state, ctx.analysis);
     window.Dashboard.renderMetricsTabs(document.getElementById("dashboard-metrics"), ctx.analysis);
+    window.Dashboard.renderProgressActions(document.getElementById("dashboard-progress-actions"));
   }
 
   function renderPlanPage(ctx) {

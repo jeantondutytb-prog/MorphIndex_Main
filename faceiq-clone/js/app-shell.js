@@ -79,24 +79,29 @@
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3"/><path d="M12 18v3"/><path d="m4.2 4.2 2.1 2.1"/><path d="m17.7 17.7 2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m4.2 19.8 2.1-2.1"/><path d="m17.7 6.3 2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>'
   };
 
+  function resolveNavView(view) {
+    // Preview / Simulate are tools opened from Home — keep Home highlighted.
+    if (view === "preview" || view === "simulate") return "overview";
+    return view || "overview";
+  }
+
   function renderNav(activeView) {
     var nav = document.getElementById("dashboard-nav");
     if (!nav) return;
 
+    var current = resolveNavView(activeView);
     var items = [
       { view: "overview", href: "/app", key: "dashboard.nav.overview" },
-      { view: "preview", href: "/app/preview", key: "dashboard.nav.preview" },
-      { view: "metrics", href: "/app/metrics", key: "dashboard.nav.metrics" },
       { view: "plan", href: "/app/plan", key: "dashboard.nav.plan" },
-      { view: "chat", href: "/app/chat", key: "dashboard.nav.chat" },
-      { view: "simulate", href: "/app/simulate", key: "dashboard.nav.simulate" }
+      { view: "metrics", href: "/app/metrics", key: "dashboard.nav.metrics" },
+      { view: "chat", href: "/app/chat", key: "dashboard.nav.chat" }
     ];
 
     nav.innerHTML =
       '<nav class="dashboard-tabbar" aria-label="' + t("dashboard.nav.label") + '">' +
         '<div class="dashboard-tabbar__inner">' +
           items.map(function (item) {
-            var active = item.view === activeView;
+            var active = item.view === current;
             return (
               '<a href="' + item.href + '" class="dashboard-tabbar__item' + (active ? " is-active" : "") + '"' +
                 (active ? ' aria-current="page"' : "") + ">" +

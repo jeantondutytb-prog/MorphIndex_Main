@@ -133,40 +133,60 @@
         eyebrow: "Your analysis",
         title: "Dashboard",
         nav: {
-          label: "Dashboard sections",
-          backToApp: "Back to dashboard",
+          label: "Main navigation",
+          backToApp: "Back to home",
           overview: "Home",
           preview: "Preview",
-          metrics: "Metrics",
+          metrics: "Progress",
           plan: "Plan",
-          chat: "FaceGPT",
+          chat: "Coach",
           simulate: "Simulate"
         },
         pages: {
           overview: {
-            title: "Overview",
-            description: "Your facial analysis scores, pillars, and key summary metrics."
+            title: "Home",
+            description: "Your score, current focus, and what to do next."
           },
           preview: {
             title: "6-month preview",
             description: "AI projection of your results if you follow your improvement plan."
           },
           metrics: {
-            title: "Metrics",
-            description: "Detailed metrics across harmony, angularity, dimorphism, and features."
+            title: "Progress",
+            description: "Score history and detailed metrics across all pillars."
           },
           plan: {
-            title: "Improvement plan",
-            description: "Prioritized actions based on your weakest metrics."
+            title: "Your plan",
+            description: "This week's actions for your active focus."
           },
           chat: {
-            title: "FaceGPT",
-            description: "Ask your AI facial aesthetics coach about your analysis and improvement plan."
+            title: "Coach",
+            description: "Ask FaceGPT about your analysis and improvement plan."
           },
           simulate: {
             title: "Simulations",
             description: "Preview cosmetic procedure effects on your photo with adjustable intensity."
           }
+        },
+        nextStep: {
+          eyebrow: "Do this next",
+          doNext: "Next action:",
+          cta: "Open my plan",
+          allDone: "All actions done for this phase — keep going or start a new scan."
+        },
+        split: {
+          label: "Strengths and focus areas",
+          strengths: "Strengths",
+          strengthsDesc: "Your strongest pillars right now.",
+          weaknesses: "Focus areas",
+          weaknessesDesc: "Where improvement will move your score most.",
+          focusLabel: "Priority targets"
+        },
+        tools: {
+          label: "Tools",
+          preview: "6-month preview",
+          simulate: "Simulate",
+          rescan: "New scan"
         },
         overall: "Overall score",
         potential: "Potential score",
@@ -768,40 +788,60 @@
         eyebrow: "Votre analyse",
         title: "Tableau de bord",
         nav: {
-          label: "Sections du tableau de bord",
-          backToApp: "Retour au tableau de bord",
+          label: "Navigation principale",
+          backToApp: "Retour à l'accueil",
           overview: "Accueil",
           preview: "6 mois",
-          metrics: "Métriques",
+          metrics: "Progrès",
           plan: "Plan",
-          chat: "FaceGPT",
+          chat: "Coach",
           simulate: "Simuler"
         },
         pages: {
           overview: {
-            title: "Aperçu",
-            description: "Vos scores, piliers et métriques clés de l'analyse faciale."
+            title: "Accueil",
+            description: "Votre score, votre focus actuel et la prochaine action."
           },
           preview: {
             title: "Aperçu à 6 mois",
             description: "Projection IA de vos résultats si vous suivez votre plan d'amélioration."
           },
           metrics: {
-            title: "Métriques",
-            description: "Métriques détaillées sur harmonie, angularité, dimorphisme et traits."
+            title: "Progrès",
+            description: "Historique des scores et métriques détaillées."
           },
           plan: {
-            title: "Plan d'amélioration",
-            description: "Actions prioritaires basées sur vos métriques les plus faibles."
+            title: "Votre plan",
+            description: "Les actions de cette semaine pour votre focus actif."
           },
           chat: {
-            title: "FaceGPT",
-            description: "Posez vos questions à votre coach IA sur votre analyse et votre plan."
+            title: "Coach",
+            description: "Posez vos questions à FaceGPT sur votre analyse et votre plan."
           },
           simulate: {
             title: "Simulations",
             description: "Prévisualisez l'effet de procédures esthétiques sur votre photo."
           }
+        },
+        nextStep: {
+          eyebrow: "À faire ensuite",
+          doNext: "Prochaine action :",
+          cta: "Ouvrir mon plan",
+          allDone: "Toutes les actions de cette phase sont faites — continuez ou lancez un nouveau scan."
+        },
+        split: {
+          label: "Forces et axes de travail",
+          strengths: "Forces",
+          strengthsDesc: "Vos piliers les plus solides actuellement.",
+          weaknesses: "À travailler",
+          weaknessesDesc: "Là où progresser fera le plus monter votre score.",
+          focusLabel: "Priorités"
+        },
+        tools: {
+          label: "Outils",
+          preview: "Aperçu 6 mois",
+          simulate: "Simuler",
+          rescan: "Nouveau scan"
         },
         overall: "Score global",
         potential: "Score potentiel",
@@ -1403,40 +1443,60 @@
         eyebrow: "Tu análisis",
         title: "Panel",
         nav: {
-          label: "Secciones del panel",
-          backToApp: "Volver al panel",
+          label: "Navegación principal",
+          backToApp: "Volver al inicio",
           overview: "Inicio",
           preview: "Vista",
-          metrics: "Métricas",
+          metrics: "Progreso",
           plan: "Plan",
-          chat: "FaceGPT",
+          chat: "Coach",
           simulate: "Simular"
         },
         pages: {
           overview: {
-            title: "Resumen",
-            description: "Tus puntuaciones, pilares y métricas clave del análisis facial."
+            title: "Inicio",
+            description: "Tu puntuación, foco actual y siguiente acción."
           },
           preview: {
             title: "Vista previa a 6 meses",
             description: "Proyección IA de tus resultados si sigues tu plan de mejora."
           },
           metrics: {
-            title: "Métricas",
-            description: "Métricas detalladas de armonía, angularidad, dimorfismo y rasgos."
+            title: "Progreso",
+            description: "Historial de puntuaciones y métricas detalladas."
           },
           plan: {
-            title: "Plan de mejora",
-            description: "Acciones prioritarias según tus métricas más débiles."
+            title: "Tu plan",
+            description: "Las acciones de esta semana para tu foco activo."
           },
           chat: {
-            title: "FaceGPT",
-            description: "Pregunta a tu coach IA sobre tu análisis y plan de mejora."
+            title: "Coach",
+            description: "Pregunta a FaceGPT sobre tu análisis y plan de mejora."
           },
           simulate: {
             title: "Simulaciones",
             description: "Previsualiza efectos de procedimientos estéticos en tu foto."
           }
+        },
+        nextStep: {
+          eyebrow: "Haz esto ahora",
+          doNext: "Siguiente acción:",
+          cta: "Abrir mi plan",
+          allDone: "Todas las acciones de esta fase están hechas — sigue o inicia un nuevo escaneo."
+        },
+        split: {
+          label: "Fortalezas y áreas de foco",
+          strengths: "Fortalezas",
+          strengthsDesc: "Tus pilares más sólidos ahora.",
+          weaknesses: "A mejorar",
+          weaknessesDesc: "Donde progresar subirá más tu puntuación.",
+          focusLabel: "Prioridades"
+        },
+        tools: {
+          label: "Herramientas",
+          preview: "Vista 6 meses",
+          simulate: "Simular",
+          rescan: "Nuevo escaneo"
         },
         overall: "Puntuación global",
         potential: "Puntuación potencial",

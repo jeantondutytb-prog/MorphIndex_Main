@@ -45,52 +45,213 @@
     update(range.value || 50);
   }
 
-  function renderQuickActions(container) {
+  function startRescanFlow() {
+    if (!window.confirm(t("dashboard.rescanConfirm"))) return;
+    if (window.Onboarding && window.Onboarding.startRescan) {
+      window.Onboarding.startRescan();
+    } else {
+      window.location.href = "/onboarding/photos";
+    }
+  }
+
+  function bindRescanButton(btn) {
+    if (!btn) return;
+    btn.addEventListener("click", startRescanFlow);
+  }
+
+  function getNextActionLabel(focusKey, actionKey) {
+    var specific = t("dashboard.protocols." + focusKey + ".actions." + actionKey);
+    if (specific !== "dashboard.protocols." + focusKey + ".actions." + actionKey) {
+      return specific;
+    }
+    var shared = t("dashboard.protocols._shared.actions." + actionKey);
+    if (shared !== "dashboard.protocols._shared.actions." + actionKey) {
+      return shared;
+    }
+    return actionKey;
+  }
+
+  function renderNextStep(container, ctx) {
+    if (!container || !ctx || !ctx.analysis) return;
+    var analysis = ctx.analysis;
+    var userId = ctx.user && ctx.user.id;
+    if (!analysis.plan || !analysis.plan.length) {
+      container.hidden = true;
+      container.innerHTML = "";
+      return;
+    }
+
+    var journey = userId && window.Onboarding ? window.Onboarding.getJourney(userId, analysis) : null;
+    var protocols = window.ImprovementProtocols;
+    var focusKey = journey ? journey.activeFocusKey : analysis.plan[0].key;
+    var focusItem =
+      analysis.plan.find(function (item) {
+        return item.key === focusKey;
+      }) || analysis.plan[0];
+    var protocol = protocols ? protocols.getProtocol(focusKey) : null;
+    var phaseIndex =
+      protocol && journey && protocols ? protocols.resolvePhaseIndex(journey, protocol) : 0;
+    var actionProgress = (journey && journey.actionProgress) || {};
+    var phaseActions =
+      protocol && protocols ? protocols.listPhaseActions(protocol, phaseIndex) : [];
+    var phaseDone = phaseActions.filter(function (key) {
+      return !!actionProgress[key];
+    }).length;
+    var currentWeek =
+      protocol && journey && protocols ? protocols.getCurrentWeek(journey, protocol) : 1;
+    var totalWeeks = protocol ? protocol.totalWeeks : 12;
+    var nextActionKey = phaseActions.find(function (key) {
+      return !actionProgress[key];
+    });
+    var nextActionLabel = nextActionKey
+      ? getNextActionLabel(focusKey, nextActionKey)
+      : t("dashboard.nextStep.allDone");
+    var progressPct = phaseActions.length
+      ? Math.round((phaseDone / phaseActions.length) * 100)
+      : 0;
+
+    container.hidden = false;
+    container.innerHTML =
+      '<section class="dashboard-next-step">' +
+        '<div class="dashboard-next-step__head">' +
+          '<p class="dashboard-next-step__eyebrow">' + t("dashboard.nextStep.eyebrow") + "</p>" +
+          '<span class="dashboard-next-step__week">' +
+            t("dashboard.journey.weekOf")
+              .replace("{current}", currentWeek)
+              .replace("{total}", totalWeeks) +
+          "</span>" +
+        "</div>" +
+        '<h2 class="dashboard-next-step__title">' +
+          t("dashboard.plan." + focusItem.key + ".title") +
+        "</h2>" +
+        '<p class="dashboard-next-step__action">' +
+          '<span class="dashboard-next-step__action-label">' + t("dashboard.nextStep.doNext") + "</span> " +
+          nextActionLabel +
+        "</p>" +
+        '<div class="dashboard-next-step__bar" aria-hidden="true">' +
+          '<span class="dashboard-next-step__bar-fill" style="width:' + progressPct + '%"></span>' +
+        "</div>" +
+        '<p class="dashboard-next-step__progress">' +
+          t("dashboard.journey.phaseProgress")
+            .replace("{done}", phaseDone)
+            .replace("{total}", phaseActions.length || 0) +
+        "</p>" +
+        '<a href="/app/plan" class="btn btn--full btn--lg dashboard-next-step__cta">' +
+          t("dashboard.nextStep.cta") +
+        "</a>" +
+      "</section>";
+  }
+
+  function renderStrengthsWeaknesses(container, analysis) {
+    if (!container || !analysis || !analysis.pillars) return;
+
+    var pillars = ["harmony", "angularity", "dimorphism", "features"]
+      .map(function (key) {
+        return { key: key, score: analysis.pillars[key].score };
+      })
+      .sort(function (a, b) {
+        return b.score - a.score;
+      });
+
+    var strengths = pillars.slice(0, 2);
+    var weaknesses = pillars.slice().reverse().slice(0, 2);
+    var focusAreas = (analysis.plan || []).slice(0, 2);
+
+    function listItems(items, kind) {
+      return items
+        .map(function (item) {
+          return (
+            '<li class="dashboard-split__item dashboard-split__item--' +
+            kind +
+            '">' +
+            '<span class="dashboard-split__name">' +
+            pillarLabel(item.key) +
+            "</span>" +
+            '<strong class="dashboard-split__score">' +
+            item.score +
+            "</strong>" +
+            "</li>"
+          );
+        })
+        .join("");
+    }
+
+    var focusHtml = focusAreas.length
+      ? '<div class="dashboard-split__focus">' +
+        "<p>" +
+        t("dashboard.split.focusLabel") +
+        "</p>" +
+        "<ul>" +
+        focusAreas
+          .map(function (item) {
+            return (
+              "<li>" +
+              t("dashboard.plan." + item.key + ".title") +
+              "</li>"
+            );
+          })
+          .join("") +
+        "</ul>" +
+        "</div>"
+      : "";
+
+    container.hidden = false;
+    container.innerHTML =
+      '<section class="dashboard-split" aria-label="' + t("dashboard.split.label") + '">' +
+        '<div class="dashboard-split__col dashboard-split__col--strengths">' +
+          '<h2 class="dashboard-split__title">' + t("dashboard.split.strengths") + "</h2>" +
+          '<p class="dashboard-split__subtitle">' + t("dashboard.split.strengthsDesc") + "</p>" +
+          "<ul>" +
+          listItems(strengths, "strength") +
+          "</ul>" +
+        "</div>" +
+        '<div class="dashboard-split__col dashboard-split__col--weaknesses">' +
+          '<h2 class="dashboard-split__title">' + t("dashboard.split.weaknesses") + "</h2>" +
+          '<p class="dashboard-split__subtitle">' + t("dashboard.split.weaknessesDesc") + "</p>" +
+          "<ul>" +
+          listItems(weaknesses, "weakness") +
+          "</ul>" +
+          focusHtml +
+        "</div>" +
+      "</section>";
+  }
+
+  function renderToolsStrip(container) {
     if (!container) return;
     container.hidden = false;
     container.innerHTML =
-      '<section class="dashboard-quick-actions" aria-label="' + t("dashboard.quickActions.label") + '">' +
-        '<a href="/app/preview" class="dashboard-quick-actions__card">' +
-          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 1.4 4.3L18 9l-4.6 1.7L12 15l-1.4-4.3L6 9l4.6-1.7L12 3z"/></svg>' +
-          "</span>" +
-          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.preview") + "</span>" +
-          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.previewDesc") + "</span>" +
-        "</a>" +
-        '<a href="/app/metrics" class="dashboard-quick-actions__card">' +
-          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20v-9"/></svg>' +
-          "</span>" +
-          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.metrics") + "</span>" +
-          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.metricsDesc") + "</span>" +
-        "</a>" +
-        '<a href="/app/plan" class="dashboard-quick-actions__card">' +
-          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/></svg>' +
-          "</span>" +
-          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.plan") + "</span>" +
-          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.planDesc") + "</span>" +
-        "</a>" +
-        '<button type="button" class="dashboard-quick-actions__card" id="dashboard-rescan">' +
-          '<span class="dashboard-quick-actions__icon" aria-hidden="true">' +
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 3"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 21"/><path d="M3 21v-5h5"/></svg>' +
-          "</span>" +
-          '<span class="dashboard-quick-actions__title">' + t("dashboard.quickActions.rescan") + "</span>" +
-          '<span class="dashboard-quick-actions__desc">' + t("dashboard.quickActions.rescanDesc") + "</span>" +
-        "</button>" +
+      '<section class="dashboard-tools" aria-label="' + t("dashboard.tools.label") + '">' +
+        '<p class="dashboard-tools__label">' + t("dashboard.tools.label") + "</p>" +
+        '<div class="dashboard-tools__row">' +
+          '<a href="/app/preview" class="dashboard-tools__chip">' +
+            t("dashboard.tools.preview") +
+          "</a>" +
+          '<a href="/app/simulate" class="dashboard-tools__chip">' +
+            t("dashboard.tools.simulate") +
+          "</a>" +
+          '<button type="button" class="dashboard-tools__chip" id="dashboard-rescan">' +
+            t("dashboard.tools.rescan") +
+          "</button>" +
+        "</div>" +
       "</section>";
+    bindRescanButton(container.querySelector("#dashboard-rescan"));
+  }
 
-    var rescanBtn = container.querySelector("#dashboard-rescan");
-    if (rescanBtn) {
-      rescanBtn.addEventListener("click", function () {
-        if (!window.confirm(t("dashboard.rescanConfirm"))) return;
-        if (window.Onboarding && window.Onboarding.startRescan) {
-          window.Onboarding.startRescan();
-        } else {
-          window.location.href = "/onboarding/photos";
-        }
-      });
-    }
+  function renderProgressActions(container) {
+    if (!container) return;
+    container.hidden = false;
+    container.innerHTML =
+      '<section class="dashboard-progress-actions">' +
+        '<button type="button" class="btn btn--full" id="dashboard-progress-rescan">' +
+          t("dashboard.quickActions.rescan") +
+        "</button>" +
+        '<p class="dashboard-progress-actions__hint">' + t("dashboard.quickActions.rescanDesc") + "</p>" +
+      "</section>";
+    bindRescanButton(container.querySelector("#dashboard-progress-rescan"));
+  }
+
+  function renderQuickActions(container) {
+    renderToolsStrip(container);
   }
 
   function renderPreview(container, state, analysis, options) {
@@ -718,6 +879,10 @@
     renderScoreHistory: renderScoreHistory,
     renderPreview: renderPreview,
     renderQuickActions: renderQuickActions,
+    renderNextStep: renderNextStep,
+    renderStrengthsWeaknesses: renderStrengthsWeaknesses,
+    renderToolsStrip: renderToolsStrip,
+    renderProgressActions: renderProgressActions,
     renderEmptyState: renderEmptyState,
     renderScoreHero: renderScoreHero,
     renderPhotos: renderPhotos,
