@@ -153,6 +153,7 @@
     }
 
     function showCameraAccess() {
+      document.body.classList.remove("onboarding-camera-booting");
       if (cameraAccessEl) cameraAccessEl.hidden = false;
       if (captureEl) captureEl.hidden = true;
       if (continueBtn) continueBtn.disabled = true;
