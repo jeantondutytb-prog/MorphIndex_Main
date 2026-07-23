@@ -178,9 +178,31 @@
         statusLabel: "Status",
         howToImprove: "How to improve:",
         planTitle: "Your improvement plan",
-        planSubtitle: "Prioritized actions based on your weakest metrics.",
+        planSubtitle: "Follow one focus at a time with weekly actions you can check off.",
         planProgress: "{done}/{total} done",
         weeks: "{n} weeks",
+        journey: {
+          eyebrow: "Your journey",
+          currentFocus: "Current focus",
+          thisWeek: "This week — your actions",
+          weekOf: "Week {current} of {total}",
+          phaseRange: "Weeks {start}–{end}",
+          phaseProgress: "{done}/{total} actions this phase",
+          overallProgress: "{done}/{total} total",
+          phases: {
+            foundation: "Foundation",
+            training: "Build habits",
+            refinement: "Measure & adjust"
+          },
+          switchFocus: "Set as active focus",
+          activeBadge: "Active",
+          allPriorities: "All priorities",
+          rescanReminder: "You're nearing the end of this focus. Run a new scan to measure progress and unlock your next priority.",
+          rescanCta: "Start a new scan",
+          avoidTitle: "Avoid",
+          consultTitle: "When to consult a professional",
+          disclaimer: "Aesthetic self-improvement guidance only — not medical advice."
+        },
         disclaimer: "Scores are for self-improvement guidance only — not medical advice.",
         rescanConfirm: "Start a new scan? Your current photos will be replaced.",
         empty: {
@@ -375,6 +397,118 @@
           underEyeCare: { title: "Address under-eye area", desc: "Improve sleep consistency and consider caffeine-based topical care." },
           postureMewing: { title: "Posture & tongue posture", desc: "Maintain proper oral posture and neck alignment for jaw support." },
           grooming: { title: "Refine grooming", desc: "Optimize hairstyle and facial hair to enhance dimorphic traits." }
+        },
+        protocols: {
+          _shared: {
+            actions: {
+              baselinePhotos: "Take baseline photos (same angle, lighting, and distance)",
+              weeklyPhotos: "Take weekly progress photos with the same setup",
+              photoCompare: "Compare week-1 and current photos side by side",
+              rescan: "Run a new FaceIQ scan to update your scores",
+              adjustFocus: "Review metrics and decide whether to continue or switch focus"
+            }
+          },
+          jawlineDefinition: {
+            actions: {
+              bodyFat: "Maintain a moderate caloric deficit if body fat may be softening your jawline",
+              tonguePosture: "Practice proper tongue posture for 10 minutes daily",
+              mewingDaily: "Keep consistent tongue-on-palate posture during the day",
+              jawExercises: "Add light jaw/masseter exercises 3× per week",
+              neckPosture: "Do daily neck alignment drills (chin tuck, wall posture)"
+            },
+            avoid: {
+              unsupervisedSurgery: "Booking procedures without a qualified professional",
+              excessiveMewing: "Forceful or painful mewing that strains the jaw"
+            },
+            consultWhen: {
+              tmjPain: "Jaw pain, clicking, or TMJ discomfort",
+              suddenAsymmetry: "Sudden or worsening facial asymmetry"
+            }
+          },
+          midfaceBalance: {
+            actions: {
+              consistentAngles: "Photograph your face from the same front and ¾ angles each week",
+              sleepPosition: "Avoid sleeping face-down to reduce puffiness asymmetry",
+              hydration: "Drink enough water daily to reduce midface bloating",
+              cheekExercises: "Practice gentle cheek lift holds 5 min/day",
+              midfaceAwareness: "Notice posture and facial tension that collapses midface support"
+            },
+            avoid: {
+              fillerWithoutConsult: "DIY fillers or unlicensed injectables",
+              extremeContouring: "Heavy makeup contouring instead of structural habits"
+            },
+            consultWhen: {
+              swelling: "Persistent facial swelling without clear cause",
+              persistentAsymmetry: "Asymmetry that does not improve with basics"
+            }
+          },
+          skinRoutine: {
+            actions: {
+              gentleCleanser: "Use a gentle cleanser morning and night",
+              dailySpf: "Apply SPF 30+ every morning, even indoors",
+              introduceRetinoid: "Introduce a retinoid slowly (2–3 nights/week)",
+              moisturize: "Use a non-comedogenic moisturizer after actives"
+            },
+            avoid: {
+              stackingActives: "Using multiple strong actives on the same night",
+              skippingSpf: "Skipping sunscreen while using retinoids"
+            },
+            consultWhen: {
+              irritation: "Burning, peeling, or persistent redness",
+              acneWorsening: "Acne that worsens after 4+ weeks"
+            }
+          },
+          underEyeCare: {
+            actions: {
+              sleepSchedule: "Target 7–8 hours of sleep with a consistent bedtime",
+              hydration: "Stay hydrated and reduce late-night salt intake",
+              caffeineTopical: "Use a caffeine-based eye product in the morning",
+              coldCompress: "Apply a cool compress for 5–10 min on puffy mornings"
+            },
+            avoid: {
+              harshScrubs: "Aggressive scrubs or strong acids on the under-eye area",
+              allergicProducts: "New products without a patch test"
+            },
+            consultWhen: {
+              persistentDarkCircles: "Dark circles unchanged after 8 weeks of basics",
+              swelling: "Sudden or one-sided under-eye swelling"
+            }
+          },
+          postureMewing: {
+            actions: {
+              learnTechnique: "Learn correct resting tongue posture (tip behind front teeth, whole tongue up)",
+              postureChecks: "Set 3 daily reminders to reset posture",
+              reminderSetup: "Place visual cues (notes) at your desk and mirror",
+              dailyBlocks: "Do two 5-minute focused posture blocks daily",
+              neckAlignment: "Practice chin tucks and neck extension daily",
+              habitReview: "Review which times of day you lose posture and fix triggers"
+            },
+            avoid: {
+              forcefulPressure: "Pressing the tongue with excessive force",
+              ignoringPain: "Continuing if you feel jaw or tooth pain"
+            },
+            consultWhen: {
+              tmjPain: "TMJ pain, headaches, or bite changes",
+              breathingDifficulty: "Difficulty breathing through the nose"
+            }
+          },
+          grooming: {
+            actions: {
+              styleAudit: "Audit your current haircut and facial hair against your face shape",
+              referencePhotos: "Collect 3 reference looks that match your features",
+              haircutUpdate: "Book a haircut that frames your jaw and balances proportions",
+              facialHair: "Shape or grow facial hair to enhance jaw definition",
+              refineLook: "Fine-tune grooming weekly (lines, length, product)"
+            },
+            avoid: {
+              drasticChanges: "Extreme style changes before tracking baseline photos",
+              ignoringFaceShape: "Copying trends that fight your bone structure"
+            },
+            consultWhen: {
+              skinReaction: "Irritation from dyes, bleaches, or products",
+              hairLoss: "Sudden thinning or patchy hair loss"
+            }
+          }
         }
       },
       onboarding: {
@@ -670,9 +804,31 @@
         statusLabel: "Statut",
         howToImprove: "Comment progresser :",
         planTitle: "Votre plan d'amélioration",
-        planSubtitle: "Actions prioritaires basées sur vos métriques les plus faibles.",
+        planSubtitle: "Un focus à la fois, avec des actions hebdomadaires à cocher.",
         planProgress: "{done}/{total} terminées",
         weeks: "{n} semaines",
+        journey: {
+          eyebrow: "Votre parcours",
+          currentFocus: "Focus actuel",
+          thisWeek: "Cette semaine — vos actions",
+          weekOf: "Semaine {current} sur {total}",
+          phaseRange: "Semaines {start}–{end}",
+          phaseProgress: "{done}/{total} actions cette phase",
+          overallProgress: "{done}/{total} au total",
+          phases: {
+            foundation: "Fondations",
+            training: "Installer les habitudes",
+            refinement: "Mesurer et ajuster"
+          },
+          switchFocus: "Définir comme focus actif",
+          activeBadge: "Actif",
+          allPriorities: "Toutes les priorités",
+          rescanReminder: "Vous approchez de la fin de ce focus. Lancez un nouveau scan pour mesurer vos progrès et débloquer la priorité suivante.",
+          rescanCta: "Lancer un nouveau scan",
+          avoidTitle: "À éviter",
+          consultTitle: "Quand consulter un professionnel",
+          disclaimer: "Guidance esthétique d'auto-amélioration — pas un avis médical."
+        },
         disclaimer: "Les scores sont indicatifs pour l'auto-amélioration — pas un avis médical.",
         rescanConfirm: "Lancer un nouveau scan ? Vos photos actuelles seront remplacées.",
         empty: {
@@ -867,6 +1023,118 @@
           underEyeCare: { title: "Traiter la zone sous les yeux", desc: "Améliorer le sommeil et envisager des soins à base de caféine." },
           postureMewing: { title: "Posture et posture linguale", desc: "Maintenir une posture orale et cervicale correcte pour soutenir la mâchoire." },
           grooming: { title: "Affiner le grooming", desc: "Optimiser coiffure et pilosité faciale pour renforcer les traits dimorphiques." }
+        },
+        protocols: {
+          _shared: {
+            actions: {
+              baselinePhotos: "Prendre des photos de référence (même angle, lumière et distance)",
+              weeklyPhotos: "Prendre des photos hebdomadaires avec le même setup",
+              photoCompare: "Comparer les photos semaine 1 et actuelles côte à côte",
+              rescan: "Lancer un nouveau scan FaceIQ pour mettre à jour vos scores",
+              adjustFocus: "Revoir les métriques et décider de continuer ou changer de focus"
+            }
+          },
+          jawlineDefinition: {
+            actions: {
+              bodyFat: "Maintenir un léger déficit calorique si le gras adoucit la mâchoire",
+              tonguePosture: "Pratiquer la posture linguale correcte 10 min/jour",
+              mewingDaily: "Garder la langue au palais de façon constante dans la journée",
+              jawExercises: "Ajouter des exercices légers mâchoire/masséters 3×/semaine",
+              neckPosture: "Faire des exercices d'alignement cervical quotidiens (menton rentré)"
+            },
+            avoid: {
+              unsupervisedSurgery: "Réserver des procédures sans professionnel qualifié",
+              excessiveMewing: "Mewing forcé ou douloureux qui fatigue la mâchoire"
+            },
+            consultWhen: {
+              tmjPain: "Douleur mâchoire, claquements ou inconfort ATM",
+              suddenAsymmetry: "Asymétrie soudaine ou qui s'aggrave"
+            }
+          },
+          midfaceBalance: {
+            actions: {
+              consistentAngles: "Photographier le visage chaque semaine aux mêmes angles face et ¾",
+              sleepPosition: "Éviter de dormir face contre l'oreiller pour limiter les asymétries",
+              hydration: "Boire suffisamment pour réduire les gonflements du midface",
+              cheekExercises: "Pratiquer des légers maintiens des joues 5 min/jour",
+              midfaceAwareness: "Repérer posture et tensions qui affaiblissent le soutien du midface"
+            },
+            avoid: {
+              fillerWithoutConsult: "Fillers en DIY ou injectables non licenciés",
+              extremeContouring: "Contour makeup extrême au lieu d'habitudes structurelles"
+            },
+            consultWhen: {
+              swelling: "Gonflement facial persistant sans cause claire",
+              persistentAsymmetry: "Asymétrie qui ne s'améliore pas avec les bases"
+            }
+          },
+          skinRoutine: {
+            actions: {
+              gentleCleanser: "Utiliser un nettoyant doux matin et soir",
+              dailySpf: "Appliquer un SPF 30+ chaque matin, même en intérieur",
+              introduceRetinoid: "Introduire un rétinoïde progressivement (2–3 soirs/semaine)",
+              moisturize: "Hydrater avec une crème non comédogène après les actifs"
+            },
+            avoid: {
+              stackingActives: "Superposer plusieurs actifs forts le même soir",
+              skippingSpf: "Oublier la protection solaire avec les rétinoïdes"
+            },
+            consultWhen: {
+              irritation: "Brûlures, desquamation ou rougeurs persistantes",
+              acneWorsening: "Acné qui empire après 4+ semaines"
+            }
+          },
+          underEyeCare: {
+            actions: {
+              sleepSchedule: "Viser 7–8 h de sommeil avec une heure de coucher régulière",
+              hydration: "Rester hydraté et réduire le sel le soir",
+              caffeineTopical: "Utiliser un soin yeux à base de caféine le matin",
+              coldCompress: "Appliquer un compress froid 5–10 min les matins gonflés"
+            },
+            avoid: {
+              harshScrubs: "Gommages agressifs ou acides forts sur le contour des yeux",
+              allergicProducts: "Nouveaux produits sans test cutané"
+            },
+            consultWhen: {
+              persistentDarkCircles: "Cernes inchangés après 8 semaines de bases",
+              swelling: "Gonflement soudain ou unilatéral sous les yeux"
+            }
+          },
+          postureMewing: {
+            actions: {
+              learnTechnique: "Apprendre la posture linguale au repos (langue entière au palais)",
+              postureChecks: "Programmer 3 rappels quotidiens pour réinitialiser la posture",
+              reminderSetup: "Placer des rappels visuels au bureau et devant le miroir",
+              dailyBlocks: "Faire deux blocs de 5 min de posture ciblée par jour",
+              neckAlignment: "Pratiquer menton rentré et extension cervicale quotidiennement",
+              habitReview: "Identifier les moments où la posture se dégrade et corriger les déclencheurs"
+            },
+            avoid: {
+              forcefulPressure: "Appuyer la langue avec une force excessive",
+              ignoringPain: "Continuer en cas de douleur mâchoire ou dentaire"
+            },
+            consultWhen: {
+              tmjPain: "Douleur ATM, maux de tête ou changement de morsure",
+              breathingDifficulty: "Difficulté à respirer par le nez"
+            }
+          },
+          grooming: {
+            actions: {
+              styleAudit: "Auditer coiffure et pilosité par rapport à la forme du visage",
+              referencePhotos: "Collecter 3 références adaptées à vos traits",
+              haircutUpdate: "Prendre rendez-vous pour une coupe qui cadre la mâchoire",
+              facialHair: "Tailler ou laisser pousser la barbe pour renforcer la mâchoire",
+              refineLook: "Affiner le grooming chaque semaine (lignes, longueur, produits)"
+            },
+            avoid: {
+              drasticChanges: "Changements extrêmes avant les photos de référence",
+              ignoringFaceShape: "Copier des tendances qui contredisent votre structure osseuse"
+            },
+            consultWhen: {
+              skinReaction: "Irritation due aux colorations ou produits",
+              hairLoss: "Éclaircissement soudain ou perte de cheveux en plaques"
+            }
+          }
         }
       },
       onboarding: {
@@ -1162,9 +1430,31 @@
         statusLabel: "Estado",
         howToImprove: "Cómo mejorar:",
         planTitle: "Tu plan de mejora",
-        planSubtitle: "Acciones prioritarias según tus métricas más débiles.",
+        planSubtitle: "Un foco a la vez, con acciones semanales que puedes marcar.",
         planProgress: "{done}/{total} completadas",
         weeks: "{n} semanas",
+        journey: {
+          eyebrow: "Tu recorrido",
+          currentFocus: "Foco actual",
+          thisWeek: "Esta semana — tus acciones",
+          weekOf: "Semana {current} de {total}",
+          phaseRange: "Semanas {start}–{end}",
+          phaseProgress: "{done}/{total} acciones en esta fase",
+          overallProgress: "{done}/{total} en total",
+          phases: {
+            foundation: "Fundamentos",
+            training: "Crear hábitos",
+            refinement: "Medir y ajustar"
+          },
+          switchFocus: "Establecer como foco activo",
+          activeBadge: "Activo",
+          allPriorities: "Todas las prioridades",
+          rescanReminder: "Te acercas al final de este foco. Haz un nuevo escaneo para medir el progreso y desbloquear la siguiente prioridad.",
+          rescanCta: "Iniciar nuevo escaneo",
+          avoidTitle: "Evitar",
+          consultTitle: "Cuándo consultar a un profesional",
+          disclaimer: "Orientación estética de auto-mejora — no es consejo médico."
+        },
         disclaimer: "Las puntuaciones son orientativas para la auto-mejora — no son consejo médico.",
         rescanConfirm: "¿Iniciar un nuevo escaneo? Tus fotos actuales serán reemplazadas.",
         empty: {
@@ -1359,6 +1649,118 @@
           underEyeCare: { title: "Tratar zona bajo los ojos", desc: "Mejorar el sueño y considerar cuidados con cafeína." },
           postureMewing: { title: "Postura y postura lingual", desc: "Mantener postura oral y cervical correcta para apoyar la mandíbula." },
           grooming: { title: "Refinar el grooming", desc: "Optimizar peinado y vello facial para realzar rasgos dimórficos." }
+        },
+        protocols: {
+          _shared: {
+            actions: {
+              baselinePhotos: "Tomar fotos de referencia (mismo ángulo, luz y distancia)",
+              weeklyPhotos: "Tomar fotos semanales con la misma configuración",
+              photoCompare: "Comparar fotos de la semana 1 y actuales lado a lado",
+              rescan: "Hacer un nuevo escaneo FaceIQ para actualizar tus puntuaciones",
+              adjustFocus: "Revisar métricas y decidir si continuar o cambiar de foco"
+            }
+          },
+          jawlineDefinition: {
+            actions: {
+              bodyFat: "Mantener un déficit calórico moderado si la grasa suaviza la mandíbula",
+              tonguePosture: "Practicar postura lingual correcta 10 min/día",
+              mewingDaily: "Mantener la lengua en el paladar de forma constante",
+              jawExercises: "Añadir ejercicios ligeros de mandíbula/maseteros 3×/semana",
+              neckPosture: "Hacer ejercicios diarios de alineación cervical (mentón retraído)"
+            },
+            avoid: {
+              unsupervisedSurgery: "Reservar procedimientos sin un profesional cualificado",
+              excessiveMewing: "Mewing forzado o doloroso que tensiona la mandíbula"
+            },
+            consultWhen: {
+              tmjPain: "Dolor mandibular, chasquidos o molestia ATM",
+              suddenAsymmetry: "Asimetría súbita o que empeora"
+            }
+          },
+          midfaceBalance: {
+            actions: {
+              consistentAngles: "Fotografiar el rostro cada semana en los mismos ángulos frontal y ¾",
+              sleepPosition: "Evitar dormir boca abajo para reducir asimetrías por hinchazón",
+              hydration: "Beber suficiente agua para reducir hinchazón del midface",
+              cheekExercises: "Practicar suaves mantenimientos de mejillas 5 min/día",
+              midfaceAwareness: "Notar postura y tensión que colapsan el soporte del midface"
+            },
+            avoid: {
+              fillerWithoutConsult: "Rellenos caseros o inyectables sin licencia",
+              extremeContouring: "Contorno de maquillaje extremo en lugar de hábitos estructurales"
+            },
+            consultWhen: {
+              swelling: "Hinchazón facial persistente sin causa clara",
+              persistentAsymmetry: "Asimetría que no mejora con lo básico"
+            }
+          },
+          skinRoutine: {
+            actions: {
+              gentleCleanser: "Usar limpiador suave mañana y noche",
+              dailySpf: "Aplicar SPF 30+ cada mañana, incluso en interior",
+              introduceRetinoid: "Introducir retinoide lentamente (2–3 noches/semana)",
+              moisturize: "Hidratar con crema no comedogénica tras los activos"
+            },
+            avoid: {
+              stackingActives: "Combinar varios activos fuertes la misma noche",
+              skippingSpf: "Omitir protector solar con retinoides"
+            },
+            consultWhen: {
+              irritation: "Ardor, descamación o enrojecimiento persistente",
+              acneWorsening: "Acné que empeora tras 4+ semanas"
+            }
+          },
+          underEyeCare: {
+            actions: {
+              sleepSchedule: "Apuntar a 7–8 h de sueño con hora fija de acostarse",
+              hydration: "Mantenerse hidratado y reducir sal por la noche",
+              caffeineTopical: "Usar producto ocular con cafeína por la mañana",
+              coldCompress: "Aplicar compresa fría 5–10 min en mañanas hinchadas"
+            },
+            avoid: {
+              harshScrubs: "Exfoliantes agresivos o ácidos fuertes en el contorno de ojos",
+              allergicProducts: "Productos nuevos sin prueba de parche"
+            },
+            consultWhen: {
+              persistentDarkCircles: "Ojeras sin cambio tras 8 semanas de lo básico",
+              swelling: "Hinchazón súbita o unilateral bajo los ojos"
+            }
+          },
+          postureMewing: {
+            actions: {
+              learnTechnique: "Aprender postura lingual en reposo (lengua completa en el paladar)",
+              postureChecks: "Programar 3 recordatorios diarios para resetear postura",
+              reminderSetup: "Colocar recordatorios visuales en el escritorio y el espejo",
+              dailyBlocks: "Hacer dos bloques de 5 min de postura enfocada al día",
+              neckAlignment: "Practicar mentón retraído y extensión cervical a diario",
+              habitReview: "Identificar cuándo pierdes postura y corregir los detonantes"
+            },
+            avoid: {
+              forcefulPressure: "Presionar la lengua con fuerza excesiva",
+              ignoringPain: "Continuar si hay dolor mandibular o dental"
+            },
+            consultWhen: {
+              tmjPain: "Dolor ATM, dolores de cabeza o cambios en la mordida",
+              breathingDifficulty: "Dificultad para respirar por la nariz"
+            }
+          },
+          grooming: {
+            actions: {
+              styleAudit: "Auditar corte y vello facial según la forma de tu rostro",
+              referencePhotos: "Recopilar 3 referencias que encajen con tus rasgos",
+              haircutUpdate: "Reservar corte que enmarque la mandíbula y equilibre proporciones",
+              facialHair: "Perfilar o dejar crecer vello facial para realzar la mandíbula",
+              refineLook: "Refinar el grooming semanalmente (líneas, longitud, producto)"
+            },
+            avoid: {
+              drasticChanges: "Cambios extremos antes de las fotos de referencia",
+              ignoringFaceShape: "Copiar tendencias que contradicen tu estructura ósea"
+            },
+            consultWhen: {
+              skinReaction: "Irritación por tintes, decolorantes o productos",
+              hairLoss: "Adelgazamiento súbito o pérdida de cabello en parches"
+            }
+          }
         }
       },
       onboarding: {

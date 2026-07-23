@@ -311,50 +311,276 @@
     });
   }
 
-  function renderPlan(container, analysis, userId, onToggle) {
-    var progress = userId && window.Onboarding ? window.Onboarding.getPlanProgress(userId) : {};
-    var doneCount = 0;
-    analysis.plan.forEach(function (item) {
-      if (progress[item.key]) doneCount += 1;
-    });
+  function protocolText(focusKey, section, id) {
+    var specific = t("dashboard.protocols." + focusKey + "." + section + "." + id);
+    if (specific !== "dashboard.protocols." + focusKey + "." + section + "." + id) {
+      return specific;
+    }
+    return t("dashboard.protocols._shared." + section + "." + id);
+  }
 
-    var html = '<div class="dashboard-plan">';
+  function escapeAttr(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;");
+  }
+
+  function renderPlan(container, analysis, userId, callbacks) {
+    if (!container || !analysis || !analysis.plan || !analysis.plan.length) return;
+
+    callbacks = callbacks || {};
+    var journey =
+      userId && window.Onboarding ? window.Onboarding.getJourney(userId, analysis) : null;
+    var protocols = window.ImprovementProtocols;
+    var focusKey = journey ? journey.activeFocusKey : analysis.plan[0].key;
+    var protocol = protocols ? protocols.getProtocol(focusKey) : null;
+    var phaseIndex =
+      protocol && journey && protocols
+        ? protocols.resolvePhaseIndex(journey, protocol)
+        : 0;
+    var currentPhase = protocol && protocol.phases ? protocol.phases[phaseIndex] : null;
+    var actionProgress = (journey && journey.actionProgress) || {};
+    var currentWeek =
+      protocol && journey && protocols ? protocols.getCurrentWeek(journey, protocol) : 1;
+    var totalWeeks = protocol ? protocol.totalWeeks : 12;
+    var phaseActions =
+      protocol && protocols ? protocols.listPhaseActions(protocol, phaseIndex) : [];
+    var phaseDone = phaseActions.filter(function (key) {
+      return !!actionProgress[key];
+    }).length;
+    var totalActions = protocol && protocols ? protocols.countTotalActions(protocol) : 0;
+    var totalDone =
+      protocol && protocols ? protocols.countCompletedActions(protocol, actionProgress) : 0;
+
+    var focusItem = analysis.plan.find(function (item) {
+      return item.key === focusKey;
+    }) || analysis.plan[0];
+
+    var html = '<div class="dashboard-plan dashboard-plan--journey">';
+
     html += '<div class="dashboard-plan__head">';
-    html += '<h2 class="dashboard-section__title">' + t("dashboard.planTitle") + '</h2>';
-    html += '<p class="dashboard-plan__progress">' + t("dashboard.planProgress").replace("{done}", doneCount).replace("{total}", analysis.plan.length) + '</p>';
-    html += '</div>';
-    html += '<p class="dashboard-section__subtitle">' + t("dashboard.planSubtitle") + '</p>';
+    html += '<div>';
+    html += '<p class="dashboard-journey__eyebrow">' + t("dashboard.journey.eyebrow") + "</p>";
+    html += '<h2 class="dashboard-section__title">' + t("dashboard.journey.currentFocus") + "</h2>";
+    html += "</div>";
+    html +=
+      '<p class="dashboard-plan__progress">' +
+      t("dashboard.journey.overallProgress")
+        .replace("{done}", totalDone)
+        .replace("{total}", totalActions) +
+      "</p>";
+    html += "</div>";
+
+    html += '<article class="dashboard-journey__focus">';
+    html +=
+      '<div class="dashboard-journey__focus-head">' +
+      "<div>" +
+      '<strong class="dashboard-journey__focus-title">' +
+      t("dashboard.plan." + focusItem.key + ".title") +
+      "</strong>" +
+      '<p class="dashboard-journey__focus-desc">' +
+      t("dashboard.plan." + focusItem.key + ".desc") +
+      "</p>" +
+      "</div>" +
+      '<span class="dashboard-journey__badge">' +
+      t("dashboard.journey.activeBadge") +
+      "</span>" +
+      "</div>";
+    html += '<div class="dashboard-journey__meta">';
+    html +=
+      '<span class="dashboard-plan__pillar">' + pillarLabel(focusItem.pillar) + "</span>";
+    html +=
+      '<span class="dashboard-plan__impact dashboard-plan__impact--' +
+      focusItem.impact +
+      '">' +
+      impactLabel(focusItem.impact) +
+      "</span>";
+    html +=
+      '<span class="dashboard-plan__weeks">' +
+      t("dashboard.journey.weekOf")
+        .replace("{current}", currentWeek)
+        .replace("{total}", totalWeeks) +
+      "</span>";
+    html += "</div>";
+
+    if (protocol && protocol.phases) {
+      html += '<ol class="dashboard-journey__phases">';
+      protocol.phases.forEach(function (phase, index) {
+        var stateClass =
+          index < phaseIndex ? " is-done" : index === phaseIndex ? " is-active" : "";
+        html +=
+          '<li class="dashboard-journey__phase' +
+          stateClass +
+          '">' +
+          '<span class="dashboard-journey__phase-dot" aria-hidden="true"></span>' +
+          '<div class="dashboard-journey__phase-body">' +
+          "<strong>" +
+          t("dashboard.journey.phases." + phase.id) +
+          "</strong>" +
+          "<span>" +
+          t("dashboard.journey.phaseRange")
+            .replace("{start}", phase.weekStart)
+            .replace("{end}", phase.weekEnd) +
+          "</span>" +
+          "</div>" +
+          "</li>";
+      });
+      html += "</ol>";
+    }
+
+    if (currentPhase) {
+      html += '<section class="dashboard-journey__week">';
+      html += '<div class="dashboard-journey__week-head">';
+      html += "<h3>" + t("dashboard.journey.thisWeek") + "</h3>";
+      html +=
+        "<p>" +
+        t("dashboard.journey.phaseProgress")
+          .replace("{done}", phaseDone)
+          .replace("{total}", phaseActions.length) +
+        "</p>";
+      html += "</div>";
+      html += '<ul class="dashboard-journey__actions">';
+      phaseActions.forEach(function (actionKey) {
+        var checked = !!actionProgress[actionKey];
+        html +=
+          '<li class="dashboard-journey__action' +
+          (checked ? " is-done" : "") +
+          '">' +
+          '<label class="dashboard-journey__action-label">' +
+          '<input type="checkbox" class="dashboard-journey__action-checkbox" data-action-key="' +
+          escapeAttr(actionKey) +
+          '"' +
+          (checked ? " checked" : "") +
+          ">" +
+          '<span class="dashboard-journey__action-text">' +
+          protocolText(focusKey, "actions", actionKey) +
+          "</span>" +
+          "</label>" +
+          "</li>";
+      });
+      html += "</ul>";
+      html += '<div class="dashboard-journey__bar" aria-hidden="true">';
+      html +=
+        '<span class="dashboard-journey__bar-fill" style="width:' +
+        (phaseActions.length ? Math.round((phaseDone / phaseActions.length) * 100) : 0) +
+        '%"></span>';
+      html += "</div>";
+      html += "</section>";
+    }
+
+    if (protocol && (protocol.avoid || protocol.consultWhen)) {
+      html += '<div class="dashboard-journey__notes">';
+      if (protocol.avoid && protocol.avoid.length) {
+        html += '<div class="dashboard-journey__note">';
+        html += "<h4>" + t("dashboard.journey.avoidTitle") + "</h4><ul>";
+        protocol.avoid.forEach(function (key) {
+          html += "<li>" + protocolText(focusKey, "avoid", key) + "</li>";
+        });
+        html += "</ul></div>";
+      }
+      if (protocol.consultWhen && protocol.consultWhen.length) {
+        html += '<div class="dashboard-journey__note">';
+        html += "<h4>" + t("dashboard.journey.consultTitle") + "</h4><ul>";
+        protocol.consultWhen.forEach(function (key) {
+          html += "<li>" + protocolText(focusKey, "consultWhen", key) + "</li>";
+        });
+        html += "</ul></div>";
+      }
+      html += "</div>";
+    }
+
+    if (phaseIndex >= (protocol && protocol.phases ? protocol.phases.length - 1 : 0)) {
+      html += '<div class="dashboard-journey__rescan">';
+      html += "<p>" + t("dashboard.journey.rescanReminder") + "</p>";
+      html +=
+        '<button type="button" class="btn btn--sm" id="dashboard-journey-rescan">' +
+        t("dashboard.journey.rescanCta") +
+        "</button>";
+      html += "</div>";
+    }
+
+    html += '<section class="dashboard-journey__priorities">';
+    html += "<h3>" + t("dashboard.journey.allPriorities") + "</h3>";
     html += '<ol class="dashboard-plan__list">';
     analysis.plan.forEach(function (item, i) {
-      var checked = !!progress[item.key];
+      var isActive = item.key === focusKey;
       html +=
-        '<li class="dashboard-plan__item' + (checked ? " is-done" : "") + '">' +
-          '<label class="dashboard-plan__check">' +
-            '<input type="checkbox" class="dashboard-plan__checkbox" data-plan-key="' + item.key + '"' + (checked ? " checked" : "") + ">" +
-            '<span class="dashboard-plan__rank">' + (i + 1) + '</span>' +
-          '</label>' +
-          '<div class="dashboard-plan__body">' +
-            '<strong>' + t("dashboard.plan." + item.key + ".title") + '</strong>' +
-            '<p>' + t("dashboard.plan." + item.key + ".desc") + '</p>' +
-            '<div class="dashboard-plan__meta">' +
-              '<span class="dashboard-plan__pillar">' + pillarLabel(item.pillar) + '</span>' +
-              '<span class="dashboard-plan__impact dashboard-plan__impact--' + item.impact + '">' + impactLabel(item.impact) + '</span>' +
-              '<span class="dashboard-plan__weeks">' + t("dashboard.weeks").replace("{n}", item.weeks) + '</span>' +
-            '</div>' +
-          '</div>' +
-        '</li>';
+        '<li class="dashboard-plan__item' +
+        (isActive ? " is-active" : "") +
+        '">' +
+        '<span class="dashboard-plan__rank">' +
+        (i + 1) +
+        "</span>" +
+        '<div class="dashboard-plan__body">' +
+        "<strong>" +
+        t("dashboard.plan." + item.key + ".title") +
+        "</strong>" +
+        "<p>" +
+        t("dashboard.plan." + item.key + ".desc") +
+        "</p>" +
+        '<div class="dashboard-plan__meta">' +
+        '<span class="dashboard-plan__pillar">' +
+        pillarLabel(item.pillar) +
+        "</span>" +
+        '<span class="dashboard-plan__impact dashboard-plan__impact--' +
+        item.impact +
+        '">' +
+        impactLabel(item.impact) +
+        "</span>" +
+        '<span class="dashboard-plan__weeks">' +
+        t("dashboard.weeks").replace("{n}", item.weeks) +
+        "</span>" +
+        "</div>" +
+        (!isActive
+          ? '<button type="button" class="btn btn--ghost btn--sm dashboard-journey__switch" data-focus-key="' +
+            escapeAttr(item.key) +
+            '">' +
+            t("dashboard.journey.switchFocus") +
+            "</button>"
+          : '<span class="dashboard-journey__active-label">' +
+            t("dashboard.journey.activeBadge") +
+            "</span>") +
+        "</div>" +
+        "</li>";
     });
-    html += '</ol></div>';
+    html += "</ol></section>";
+
+    html +=
+      '<p class="dashboard-journey__disclaimer">' + t("dashboard.journey.disclaimer") + "</p>";
+    html += "</div>";
+
     container.innerHTML = html;
 
-    container.querySelectorAll(".dashboard-plan__checkbox").forEach(function (input) {
+    container.querySelectorAll(".dashboard-journey__action-checkbox").forEach(function (input) {
       input.addEventListener("change", function () {
-        var key = input.getAttribute("data-plan-key");
-        if (typeof onToggle === "function") {
-          onToggle(key, input.checked);
+        var key = input.getAttribute("data-action-key");
+        if (typeof callbacks.onActionToggle === "function") {
+          callbacks.onActionToggle(key, input.checked);
         }
       });
     });
+
+    container.querySelectorAll(".dashboard-journey__switch").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var key = button.getAttribute("data-focus-key");
+        if (typeof callbacks.onFocusChange === "function") {
+          callbacks.onFocusChange(key);
+        }
+      });
+    });
+
+    var rescanBtn = container.querySelector("#dashboard-journey-rescan");
+    if (rescanBtn) {
+      rescanBtn.addEventListener("click", function () {
+        if (!window.confirm(t("dashboard.rescanConfirm"))) return;
+        if (window.Onboarding && window.Onboarding.startRescan) {
+          window.Onboarding.startRescan();
+        } else {
+          window.location.href = "/onboarding/photos";
+        }
+      });
+    }
   }
 
   function renderScoreHistory(container, state, currentAnalysis) {

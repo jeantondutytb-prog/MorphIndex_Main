@@ -104,6 +104,87 @@
     return progress;
   }
 
+  function defaultJourneyForAnalysis(analysis) {
+    var firstKey =
+      analysis && analysis.plan && analysis.plan[0] ? analysis.plan[0].key : "skinRoutine";
+    return {
+      activeFocusKey: firstKey,
+      phaseIndex: 0,
+      actionProgress: {},
+      startedAt: new Date().toISOString()
+    };
+  }
+
+  function getJourney(userId, analysis) {
+    var state = getState(userId);
+    var journey = state.journey;
+    if (!journey || !journey.activeFocusKey) {
+      journey = defaultJourneyForAnalysis(analysis);
+      saveState(userId, { journey: journey });
+      return journey;
+    }
+    if (analysis && Array.isArray(analysis.plan) && analysis.plan.length) {
+      var keys = analysis.plan.map(function (item) {
+        return item.key;
+      });
+      if (keys.indexOf(journey.activeFocusKey) === -1) {
+        journey.activeFocusKey = keys[0];
+        saveState(userId, { journey: journey });
+      }
+    }
+    return journey;
+  }
+
+  function toggleJourneyAction(userId, actionKey, done, analysis) {
+    var state = getState(userId);
+    var journey = state.journey || defaultJourneyForAnalysis(analysis);
+    journey.actionProgress = journey.actionProgress || {};
+    journey.actionProgress[actionKey] = !!done;
+
+    if (window.ImprovementProtocols) {
+      var protocol = window.ImprovementProtocols.getProtocol(journey.activeFocusKey);
+      if (protocol) {
+        var phaseIndex = window.ImprovementProtocols.resolvePhaseIndex(journey, protocol);
+        if (
+          window.ImprovementProtocols.isPhaseComplete(protocol, phaseIndex, journey.actionProgress) &&
+          phaseIndex < protocol.phases.length - 1
+        ) {
+          journey.phaseIndex = phaseIndex + 1;
+        } else {
+          journey.phaseIndex = phaseIndex;
+        }
+      }
+    }
+
+    saveState(userId, { journey: journey });
+    return journey;
+  }
+
+  function setActiveFocus(userId, focusKey, analysis) {
+    var state = getState(userId);
+    var journey = state.journey || {};
+    if (journey.activeFocusKey === focusKey) {
+      return journey;
+    }
+    journey = {
+      activeFocusKey: focusKey,
+      phaseIndex: 0,
+      actionProgress: {},
+      startedAt: new Date().toISOString()
+    };
+    saveState(userId, { journey: journey });
+    if (analysis && analysis.plan) {
+      var progress = getPlanProgress(userId);
+      analysis.plan.forEach(function (item) {
+        if (item.key !== focusKey) {
+          progress[item.key] = false;
+        }
+      });
+      saveState(userId, { planProgress: progress });
+    }
+    return journey;
+  }
+
   function updateProgress(step) {
     document.querySelectorAll("[data-onboarding-step-current]").forEach(function (el) {
       el.textContent = step;
@@ -192,6 +273,7 @@
       var preserved = {
         scoreHistory: getState(userId).scoreHistory,
         planProgress: current.planProgress || {},
+        journey: current.journey || null,
         procedureSimulations: current.procedureSimulations || {},
         chatHistory: current.chatHistory || []
       };
@@ -237,6 +319,9 @@
     appendScoreHistory: appendScoreHistory,
     getPlanProgress: getPlanProgress,
     togglePlanItem: togglePlanItem,
+    getJourney: getJourney,
+    toggleJourneyAction: toggleJourneyAction,
+    setActiveFocus: setActiveFocus,
     updateProgress: updateProgress,
     requireStep: requireStep,
     bindContinue: bindContinue,

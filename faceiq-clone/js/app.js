@@ -90,9 +90,15 @@
       document.getElementById("dashboard-plan"),
       ctx.analysis,
       ctx.user.id,
-      function (key, done) {
-        window.Onboarding.togglePlanItem(ctx.user.id, key, done);
-        renderPlanPage(window.AppShell.getAppContext());
+      {
+        onActionToggle: function (actionKey, done) {
+          window.Onboarding.toggleJourneyAction(ctx.user.id, actionKey, done, ctx.analysis);
+          renderPlanPage(window.AppShell.getAppContext());
+        },
+        onFocusChange: function (focusKey) {
+          window.Onboarding.setActiveFocus(ctx.user.id, focusKey, ctx.analysis);
+          renderPlanPage(window.AppShell.getAppContext());
+        }
       }
     );
   }
