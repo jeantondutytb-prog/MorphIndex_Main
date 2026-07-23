@@ -633,7 +633,7 @@
   };
 
   function get(obj, path) {
-    return path.split(".").reduce(function (o, k) { return o && o[k]; }, o);
+    return path.split(".").reduce(function (o, k) { return o && o[k]; }, obj);
   }
 
   function getLang() {
