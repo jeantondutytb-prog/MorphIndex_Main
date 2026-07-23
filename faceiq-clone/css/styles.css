@@ -447,8 +447,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .stat-digit__reel {
   display: block;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+  transition: transform 0.45s ease-out;
 }
 
 .stat-digit__reel span {

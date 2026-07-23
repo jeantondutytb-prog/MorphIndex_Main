@@ -66,14 +66,6 @@
             reel.classList.add("is-spinning");
           });
         });
-        reel.addEventListener("transitionend", function onEnd() {
-          reel.removeEventListener("transitionend", onEnd);
-          var finalDigit = reel.lastElementChild;
-          if (!finalDigit) return;
-          reel.classList.remove("stat-digit__reel--spin", "is-spinning");
-          reel.style.transform = "";
-          reel.innerHTML = "<span>" + finalDigit.textContent + "</span>";
-        });
       });
     }
   }
