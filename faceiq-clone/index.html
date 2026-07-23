@@ -7,7 +7,7 @@
   <title>MorphIndex — Morphology Analytics Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="assets/logos/logo-submark.svg" type="image/svg+xml">
   <script>
@@ -21,8 +21,8 @@
 </head>
 <body>
 
-  <header class="nav nav--bar">
-    <div class="nav__inner container">
+  <nav class="nav">
+    <div class="nav__inner">
       <a href="#" class="nav__brand">
         <img src="assets/logos/logo-primary.svg" alt="MorphIndex" class="logo logo--primary">
         <img src="assets/logos/logo-submark.svg" alt="MorphIndex" class="logo logo--submark">
@@ -67,11 +67,12 @@
         <a href="#" class="btn" data-i18n="nav.cta">Open dashboard</a>
       </div>
     </div>
-  </header>
+  </nav>
 
   <main>
 
     <section class="hero hero--split">
+      <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__grid">
         <div class="hero__content">
           <p class="hero__badge" data-i18n="hero.badge">Morphology analytics</p>
@@ -82,7 +83,7 @@
               <span data-i18n="hero.cta">Generate my report</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
-            <a href="#how-it-works" class="btn btn--outline" data-i18n="hero.link">View workflow</a>
+            <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">View workflow</a>
           </div>
           <dl class="hero__stats">
             <div>
