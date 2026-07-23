@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Start your FaceIQ Labs facial analysis.">
-  <title>FaceIQ Labs — Welcome</title>
+  <meta name="description" content="Allow camera access for your FaceIQ Labs face scan.">
+  <title>FaceIQ Labs — Camera access</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260723u">
+  <link rel="stylesheet" href="../css/styles.css?v=20260724b">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -22,7 +22,7 @@
 <body class="auth-page" data-app-shell="onboarding">
 
   <header class="auth-header">
-    <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
+    <a href="/onboarding" class="auth-header__back" data-i18n="onboarding.back">Back</a>
     <div class="auth-header__actions">
       <div class="lang-switcher">
         <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
@@ -54,49 +54,100 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>1</span>/<span data-onboarding-total>6</span>
+          <span data-onboarding-step-current>2</span>/<span data-onboarding-total>6</span>
         </p>
       </div>
 
-      <h1 class="auth__title" data-i18n="onboarding.welcome.title">Welcome to FaceIQ Labs</h1>
-      <p class="auth__subtitle" data-i18n="onboarding.welcome.subtitle">Let's analyze your face across 100+ metrics and build your personalized improvement plan.</p>
+      <div class="onboarding__camera-access-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="18" width="44" height="32" rx="6"/>
+          <circle cx="32" cy="34" r="10"/>
+          <path d="M24 18l4-6h8l4 6"/>
+        </svg>
+      </div>
 
-      <ul class="onboarding__list">
-        <li>
-          <span class="onboarding__list-icon" aria-hidden="true">1</span>
-          <span data-i18n="onboarding.welcome.item1">Take a front and side photo</span>
-        </li>
-        <li>
-          <span class="onboarding__list-icon" aria-hidden="true">2</span>
-          <span data-i18n="onboarding.welcome.item2">Get your analysis across 4 pillars</span>
-        </li>
-        <li>
-          <span class="onboarding__list-icon" aria-hidden="true">3</span>
-          <span data-i18n="onboarding.welcome.item3">Unlock your full results and personalized plan</span>
-        </li>
+      <h1 class="auth__title" data-i18n="onboarding.cameraAccess.title">Enable your camera</h1>
+      <p class="auth__subtitle" data-i18n="onboarding.cameraAccess.subtitle">We only scan your face — not your body or background. Your photos stay private on your device until analysis.</p>
+
+      <ul class="onboarding__tips">
+        <li data-i18n="onboarding.cameraAccess.tip1">Hold the phone at eye level</li>
+        <li data-i18n="onboarding.cameraAccess.tip2">Move close enough so your head fills the oval</li>
+        <li data-i18n="onboarding.cameraAccess.tip3">Use good, even lighting</li>
       </ul>
 
-      <button type="button" class="btn btn--full btn--lg" id="onboarding-continue" data-i18n="onboarding.continue">Continue</button>
-      <p class="auth__legal" data-i18n="onboarding.welcome.note">Takes about 2 minutes. Your photos stay private.</p>
+      <p class="auth__error" id="camera-access-error" hidden></p>
+
+      <button type="button" class="btn btn--full btn--lg" id="camera-access-grant" data-i18n="onboarding.cameraAccess.grant">Allow camera access</button>
+      <button type="button" class="btn btn--full btn--ghost" id="camera-access-skip" data-i18n="onboarding.cameraAccess.skip">Use gallery instead</button>
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.14/dist/face-api.js"></script>
   <script src="../js/config.js?v=20260723r"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723r"></script>
+  <script src="../js/i18n.js?v=20260724b"></script>
   <script src="../js/theme.js"></script>
+  <script src="../js/camera-prep.js?v=20260724b"></script>
   <script src="../js/onboarding.js?v=20260724b"></script>
   <script>
     (function () {
+      var grantBtn = document.getElementById("camera-access-grant");
+      var skipBtn = document.getElementById("camera-access-skip");
+      var errorEl = document.getElementById("camera-access-error");
+      var userId = null;
+      var busy = false;
+
+      function showError(message) {
+        if (!errorEl) return;
+        errorEl.textContent = message;
+        errorEl.hidden = !message;
+      }
+
+      function setBusy(state) {
+        busy = state;
+        grantBtn.disabled = state;
+        skipBtn.disabled = state;
+      }
+
       var client = window.Onboarding.initSupabase();
       if (!client) {
         window.Onboarding.redirectToLogin();
         return;
       }
-      window.Onboarding.requireStep(client, 1, 1).then(function (ctx) {
+
+      window.Onboarding.requireStep(client, 2, 2).then(function (ctx) {
         if (!ctx) return;
-        window.Onboarding.bindContinue("#onboarding-continue", "/onboarding/camera");
+        userId = ctx.user.id;
+        var state = window.Onboarding.getState(userId);
+        if (state.cameraReady) {
+          window.location.href = "/onboarding/front";
+          return;
+        }
+
+        grantBtn.addEventListener("click", function () {
+          if (busy) return;
+          showError("");
+          setBusy(true);
+          window.CameraPrep.requestAccess().then(function () {
+            window.Onboarding.saveState(userId, { cameraReady: true, cameraSkipped: false });
+            window.location.href = "/onboarding/front";
+          }).catch(function () {
+            var lang = localStorage.getItem("lang") || "en";
+            var dict = (window.I18N_T && window.I18N_T[lang]) || window.I18N_T.en;
+            var denied = dict && dict.onboarding && dict.onboarding.cameraAccess
+              ? dict.onboarding.cameraAccess.denied
+              : "Camera access was denied. You can still use the gallery.";
+            showError(denied);
+            setBusy(false);
+          });
+        });
+
+        skipBtn.addEventListener("click", function () {
+          if (busy) return;
+          window.Onboarding.saveState(userId, { cameraSkipped: true, cameraReady: false });
+          window.location.href = "/onboarding/front";
+        });
       });
     })();
   </script>

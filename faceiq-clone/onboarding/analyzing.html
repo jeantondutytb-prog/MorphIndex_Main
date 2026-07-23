@@ -54,7 +54,7 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>4</span>/<span data-onboarding-total>5</span>
+          <span data-onboarding-step-current>5</span>/<span data-onboarding-total>6</span>
         </p>
       </div>
 
@@ -116,7 +116,7 @@
         return;
       }
 
-      window.Onboarding.requireStep(client, 4, 4).then(function (ctx) {
+      window.Onboarding.requireStep(client, 5, 5).then(function (ctx) {
         if (!ctx) return;
         var state = window.Onboarding.getState(ctx.user.id);
         if (!state.frontPhoto || !state.sidePhoto) {

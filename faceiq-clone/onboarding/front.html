@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260724a">
+  <link rel="stylesheet" href="../css/styles.css?v=20260724b">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -19,10 +19,10 @@
     })();
   </script>
 </head>
-<body class="auth-page" data-app-shell="onboarding">
+<body class="auth-page onboarding-photo-page onboarding-camera-booting" data-app-shell="onboarding">
 
   <header class="auth-header">
-    <a href="/onboarding" class="auth-header__back" data-i18n="onboarding.back">Back</a>
+    <a href="/onboarding/camera" class="auth-header__back" data-i18n="onboarding.back">Back</a>
     <div class="auth-header__actions">
       <div class="lang-switcher">
         <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
@@ -43,7 +43,7 @@
   </header>
 
   <main class="auth">
-    <div class="auth__card auth__card--wide">
+    <div class="auth__card auth__card--wide onboarding-photo-card">
       <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
         <img src="../assets/logo.svg" alt="">
       </a>
@@ -54,7 +54,7 @@
         </div>
         <p class="shell-progress__label">
           <span data-i18n="onboarding.step">Step</span>
-          <span data-onboarding-step-current>2</span>/<span data-onboarding-total>5</span>
+          <span data-onboarding-step-current>3</span>/<span data-onboarding-total>6</span>
         </p>
       </div>
 
@@ -84,10 +84,12 @@
       </ul>
 
       <input type="file" id="photo-input" accept="image/*" hidden>
-      <div class="onboarding__photo-actions">
-        <button type="button" class="btn btn--full btn--lg" id="photo-capture" data-i18n="onboarding.capturePhoto">Capture photo</button>
-        <button type="button" class="btn btn--ghost" id="photo-gallery" data-i18n="onboarding.useGallery">Choose from gallery</button>
-        <button type="button" class="btn btn--ghost" id="photo-retake" hidden data-i18n="onboarding.retake">Retake</button>
+      <div class="onboarding__photo-actions onboarding__photo-actions--scan" id="photo-actions">
+        <button type="button" class="onboarding__scan-shutter" id="photo-capture" aria-label="Capture photo">
+          <span class="onboarding__scan-shutter-core" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="onboarding__scan-chip" id="photo-gallery" data-i18n="onboarding.useGallery">Gallery</button>
+        <button type="button" class="onboarding__scan-chip" id="photo-retake" hidden data-i18n="onboarding.retake">Retake</button>
       </div>
 
       <button type="button" class="btn btn--full btn--lg" id="onboarding-continue" disabled data-i18n="onboarding.continue">Continue</button>
@@ -98,18 +100,19 @@
   <script src="../js/config.js?v=20260723r"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260723x"></script>
+  <script src="../js/i18n.js?v=20260724b"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/image-compress.js?v=20260723v"></script>
-  <script src="../js/camera-capture.js?v=20260724a"></script>
-  <script src="../js/photo-step.js?v=20260724a"></script>
-  <script src="../js/onboarding.js?v=20260723w"></script>
+  <script src="../js/camera-prep.js?v=20260724b"></script>
+  <script src="../js/camera-capture.js?v=20260724b"></script>
+  <script src="../js/photo-step.js?v=20260724b"></script>
+  <script src="../js/onboarding.js?v=20260724b"></script>
   <script>
     window.PhotoStep.init({
       mode: "front",
       photoKey: "frontPhoto",
-      minStep: 2,
-      currentStep: 2,
+      minStep: 3,
+      currentStep: 3,
       nextUrl: "/onboarding/side"
     });
   </script>

@@ -2002,54 +2002,127 @@ body.onboarding-scan-active #onboarding-continue {
   display: none;
 }
 
-body.onboarding-scan-active .onboarding__photo-actions {
+body.onboarding-camera-booting {
+  background: #000;
+}
+
+body.onboarding-camera-booting .onboarding-photo-card {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.onboarding-camera-booting .auth-header {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.onboarding__camera-access-icon {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1.25rem;
+  background: var(--card-muted);
+  color: var(--text);
+}
+
+.onboarding__camera-access-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: auto;
+}
+
+body.onboarding-scan-active .onboarding__photo-actions--scan {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 50%;
+  bottom: calc(0.85rem + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
   z-index: 40;
+  width: auto;
   margin: 0;
-  padding: 0.85rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
-  background: rgba(10, 10, 12, 0.94);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  gap: 0.55rem;
-}
-
-body.onboarding-scan-active .onboarding__photo-actions .btn--full {
-  background: #fff;
-  color: #101012;
-  border: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-}
-
-body.onboarding-scan-active .onboarding__photo-actions .btn--full:hover {
-  background: #f3f3f3;
-  color: #101012;
-}
-
-body.onboarding-scan-active .onboarding__photo-actions .btn--full:disabled {
-  background: rgba(255, 255, 255, 0.45);
-  color: rgba(16, 16, 18, 0.55);
-}
-
-body.onboarding-scan-active .onboarding__photo-actions .btn--ghost {
+  padding: 0;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.78);
-  padding: 0.35rem 0.5rem;
-  min-height: auto;
-  font-size: 0.875rem;
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.35);
-  text-underline-offset: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
 }
 
-body.onboarding-scan-active .onboarding__photo-actions .btn--ghost:hover {
-  background: transparent;
+.onboarding__scan-shutter {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.onboarding__scan-shutter:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.onboarding__scan-shutter:active {
+  transform: scale(0.96);
+}
+
+.onboarding__scan-shutter-core {
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.onboarding__scan-chip {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.38);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.onboarding__scan-chip:hover {
+  background: rgba(0, 0, 0, 0.52);
+  border-color: rgba(255, 255, 255, 0.45);
   color: #fff;
-  text-decoration-color: rgba(255, 255, 255, 0.8);
+}
+
+body:not(.onboarding-scan-active) .onboarding__photo-actions--scan {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+body:not(.onboarding-scan-active) .onboarding__scan-shutter,
+body:not(.onboarding-scan-active) #photo-gallery {
+  display: none;
+}
+
+body:not(.onboarding-scan-active) .onboarding__scan-chip#photo-retake {
+  border-color: var(--border-strong);
+  background: var(--card);
+  color: var(--text);
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+
+body.onboarding-scan-active .onboarding__photo-actions--scan .btn--full,
+body.onboarding-scan-active .onboarding__photo-actions--scan .btn--ghost {
+  display: none;
 }
 
 .onboarding__scan-hud {
@@ -2063,11 +2136,11 @@ body.onboarding-scan-active .onboarding__scan-hud {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(7.4rem + env(safe-area-inset-bottom));
+  bottom: calc(6.2rem + env(safe-area-inset-bottom));
   z-index: 45;
   width: min(calc(100% - 1.5rem), 24rem);
   padding: 0.7rem 1rem;
-  border-radius: 1rem;
+  border-radius: 999px;
   background: rgba(8, 8, 10, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);

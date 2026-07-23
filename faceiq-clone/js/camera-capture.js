@@ -6,19 +6,23 @@
   var GUIDES = {
     front: {
       cx: 0.5,
-      cy: 0.44,
-      width: 0.52,
-      height: 0.62,
+      cy: 0.46,
+      width: 0.4,
+      height: 0.52,
       minYaw: -0.18,
-      maxYaw: 0.18
+      maxYaw: 0.18,
+      minSize: 0.58,
+      maxSize: 0.9
     },
     side: {
       cx: 0.54,
-      cy: 0.44,
-      width: 0.48,
-      height: 0.62,
+      cy: 0.46,
+      width: 0.38,
+      height: 0.52,
       minYaw: 0.22,
-      maxYaw: 1
+      maxYaw: 1,
+      minSize: 0.55,
+      maxSize: 0.9
     }
   };
 
@@ -72,6 +76,7 @@
     this.detectTimer = null;
     this.alignedFrames = 0;
     this.lastStatus = "";
+    this.lastDetection = null;
     this.destroyed = false;
 
     this.zone = options.zone;
@@ -121,6 +126,9 @@
   };
 
   CameraCapture.prototype.loadModels = function () {
+    if (window.CameraPrep && window.CameraPrep.loadModels) {
+      return window.CameraPrep.loadModels();
+    }
     if (!window.faceapi) {
       return Promise.reject(new Error("face-api unavailable"));
     }
@@ -217,10 +225,10 @@
     var dy = Math.abs(faceCenterY - guide.centerY) / guide.height;
     var sizeRatio = faceWidth / guide.width;
 
-    if (sizeRatio < 0.42) {
+    if (sizeRatio < this.guide.minSize) {
       return { aligned: false, reason: "closer" };
     }
-    if (sizeRatio > 0.95) {
+    if (sizeRatio > this.guide.maxSize) {
       return { aligned: false, reason: "farther" };
     }
     if (dx > 0.22 || dy > 0.24) {
@@ -271,6 +279,7 @@
       .withFaceLandmarks(true)
       .then(function (detection) {
         if (self.destroyed || self.captured) return;
+        if (detection) self.lastDetection = detection;
         var result = self.evaluateAlignment(detection);
         self.updateStatusForReason(result.reason);
 
@@ -297,12 +306,101 @@
       this.zone.classList.add("is-scanning");
       this.zone.classList.remove("has-preview");
       document.body.classList.add("onboarding-scan-active");
+      document.body.classList.remove("onboarding-camera-booting");
       if (this.hudEl) this.hudEl.hidden = false;
     } else {
       this.zone.classList.remove("is-scanning", "is-capturing");
       document.body.classList.remove("onboarding-scan-active");
+      document.body.classList.remove("onboarding-camera-booting");
       if (this.hudEl) this.hudEl.hidden = true;
     }
+  };
+
+  CameraCapture.prototype.getHeadCropRect = function (video, detection) {
+    var vw = video.videoWidth;
+    var vh = video.videoHeight;
+    var box = detection && detection.detection ? detection.detection.box : null;
+    var x;
+    var y;
+    var w;
+    var h;
+
+    if (box) {
+      x = box.x;
+      y = box.y;
+      w = box.width;
+      h = box.height;
+      x -= w * 0.42;
+      y -= h * 0.62;
+      w += w * 0.84;
+      h += h * 1.05;
+    } else {
+      var size = Math.min(vw, vh) * 0.72;
+      w = size;
+      h = size * 1.28;
+      x = (vw - w) / 2;
+      y = (vh - h) * 0.42;
+    }
+
+    x = clamp(x, 0, vw - 1);
+    y = clamp(y, 0, vh - 1);
+    w = clamp(w, 1, vw - x);
+    h = clamp(h, 1, vh - y);
+
+    var centerX = x + w / 2;
+    var centerY = y + h / 2;
+    var targetRatio = 3 / 4;
+    var currentRatio = w / h;
+    if (currentRatio > targetRatio) {
+      w = h * targetRatio;
+    } else {
+      h = w / targetRatio;
+    }
+    x = centerX - w / 2;
+    y = centerY - h / 2;
+    w = clamp(w, 1, vw - x);
+    h = clamp(h, 1, vh - y);
+
+    return { x: x, y: y, width: w, height: h };
+  };
+
+  CameraCapture.prototype.drawHeadCapture = function (video, detection) {
+    var crop = this.getHeadCropRect(video, detection);
+    var canvas = document.createElement("canvas");
+    canvas.width = Math.round(crop.width);
+    canvas.height = Math.round(crop.height);
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+
+    if (this.mirror) {
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(
+        video,
+        crop.x,
+        crop.y,
+        crop.width,
+        crop.height,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+    } else {
+      ctx.drawImage(
+        video,
+        crop.x,
+        crop.y,
+        crop.width,
+        crop.height,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+    }
+
+    return canvas;
   };
 
   CameraCapture.prototype.exitScanWithPreview = function () {
@@ -326,19 +424,8 @@
     this.captured = true;
     this.detecting = false;
 
-    var width = video.videoWidth;
-    var height = video.videoHeight;
-    var canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    if (this.mirror) {
-      ctx.translate(width, 0);
-      ctx.scale(-1, 1);
-    }
-    ctx.drawImage(video, 0, 0, width, height);
+    var canvas = this.drawHeadCapture(video, this.lastDetection);
+    if (!canvas) return;
     if (this.zone) this.zone.classList.add("is-capturing");
     this.stopCamera();
     this.setStatus(
@@ -471,9 +558,11 @@
     var self = this;
     this.bindEvents();
     this.zone.classList.add("onboarding__photo-zone--camera");
+    document.body.classList.add("onboarding-camera-booting");
     this.setStatus("onboarding.camera.loading", "Starting camera…", "default", "searching");
 
     return this.loadModels().then(function () {
+      self.modelsReady = true;
       return self.startCamera();
     }).then(function () {
       self.setScanMode(true);
@@ -482,6 +571,7 @@
       self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default", "searching");
       self.scheduleDetect();
     }).catch(function () {
+      document.body.classList.remove("onboarding-camera-booting");
       self.setScanMode(false);
       self.onReadyChange(false);
       self.setStatus("onboarding.camera.denied", "Camera unavailable — use gallery instead", "warning");

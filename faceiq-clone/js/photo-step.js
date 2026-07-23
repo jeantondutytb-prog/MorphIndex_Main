@@ -56,11 +56,18 @@
         return;
       }
 
+      if (!state[config.photoKey] && !state.cameraReady && !state.cameraSkipped && config.mode === "front") {
+        window.location.href = "/onboarding/camera";
+        return;
+      }
+
       if (state[config.photoKey]) {
+        document.body.classList.remove("onboarding-camera-booting");
         camera.showPreview(state[config.photoKey]);
         photoData = state[config.photoKey];
         if (continueBtn) continueBtn.disabled = false;
       } else {
+        document.body.classList.add("onboarding-camera-booting");
         camera.init();
       }
 
