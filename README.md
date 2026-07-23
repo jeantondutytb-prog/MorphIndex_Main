@@ -28,3 +28,45 @@ Puis ouvrez **http://localhost:8080** dans votre navigateur.
 3. Clique **Deploy** — tu obtiens une URL du type `morphindex-main.vercel.app`
 4. Dans le projet Vercel : **Settings → Domains** → ajoute ton nom de domaine
 5. Chez ton registrar (OVH, Namecheap, etc.), configure les DNS indiqués par Vercel (souvent un CNAME `www` → `cname.vercel-dns.com`, ou les nameservers Vercel)
+
+### Configurer la connexion Google (Supabase)
+
+L'authentification passe par **Supabase** (gratuit). Sans cette config, le bouton Google ne pourra pas fonctionner.
+
+#### 1. Créer le projet Supabase
+
+1. Va sur [supabase.com](https://supabase.com) → **New project**
+2. Note l'**URL du projet** et la clé **anon public** (Settings → API)
+
+#### 2. Activer Google dans Supabase
+
+1. Supabase → **Authentication** → **Providers** → **Google** → activer
+2. Crée un client OAuth dans [Google Cloud Console](https://console.cloud.google.com/apis/credentials) (type **Web application**)
+3. Dans Google, ajoute l'URI de redirection Supabase :
+   - `https://<ton-projet>.supabase.co/auth/v1/callback`
+4. Copie le **Client ID** et le **Client Secret** Google dans Supabase
+
+#### 3. Configurer les URLs Supabase
+
+Dans **Authentication → URL Configuration** :
+
+| Champ | Valeur |
+|-------|--------|
+| Site URL | `https://www.morphindex.com` |
+| Redirect URLs | `https://www.morphindex.com/register`, `http://localhost:8080/register` |
+
+#### 4. Variables d'environnement Vercel
+
+Dans le projet Vercel → **Settings → Environment Variables** :
+
+| Variable | Valeur |
+|----------|--------|
+| `SUPABASE_URL` | URL du projet Supabase |
+| `SUPABASE_ANON_KEY` | Clé anon public Supabase |
+| `AUTH_REDIRECT_URL` | `/` (optionnel, page après connexion) |
+
+Redéploie le projet après avoir ajouté les variables.
+
+#### 5. Test local (optionnel)
+
+Pour tester en local avec `serve.sh`, remplis temporairement `faceiq-clone/js/config.js` avec tes clés Supabase (ne commite pas les vraies clés).
