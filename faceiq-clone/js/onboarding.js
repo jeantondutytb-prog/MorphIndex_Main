@@ -92,10 +92,6 @@
       }
 
       var user = session.user;
-      if (hasActiveSubscription(user) && hasCompletedScan(user)) {
-        window.location.href = "/app";
-        return null;
-      }
 
       if (currentStep > 1 && !hasCompletedScan(user) && currentStep > 5) {
         var state = getState(user.id);
