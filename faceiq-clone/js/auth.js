@@ -1,14 +1,14 @@
 (function () {
   var form = document.getElementById("auth-form");
   var emailInput = document.getElementById("auth-email");
+  var passwordInput = document.getElementById("auth-password");
   var clearBtn = document.getElementById("auth-clear");
 
-  if (!form || !emailInput) return;
+  if (!form || !emailInput || !passwordInput) return;
 
   function toggleClear() {
     if (!clearBtn) return;
-    var hasValue = emailInput.value.length > 0;
-    clearBtn.hidden = !hasValue;
+    clearBtn.hidden = emailInput.value.length === 0;
   }
 
   emailInput.addEventListener("input", toggleClear);
@@ -27,7 +27,12 @@
       emailInput.reportValidity();
       return;
     }
+    if (!passwordInput.checkValidity()) {
+      passwordInput.reportValidity();
+      return;
+    }
     emailInput.blur();
+    passwordInput.blur();
   });
 
   document.querySelectorAll(".auth__social").forEach(function (btn) {

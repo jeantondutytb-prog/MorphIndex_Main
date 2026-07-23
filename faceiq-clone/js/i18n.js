@@ -92,11 +92,11 @@
       footer: { join: "Join Us", privacy: "Privacy", terms: "Terms", copy: "© 2026 FaceIQ Labs" },
       auth: {
         title: "Log in or sign up",
-        emailPlaceholder: "Email",
+        emailPlaceholder: "name@example.com",
+        passwordPlaceholder: "*********",
         continue: "Continue",
         or: "or",
         google: "Continue with Google",
-        apple: "Continue with Apple",
         legal: "By continuing, you agree to our Terms of Service and Privacy Policy.",
         back: "Back to home",
         meta: {
@@ -194,11 +194,11 @@
       footer: { join: "Nous rejoindre", privacy: "Confidentialité", terms: "Conditions", copy: "© 2026 FaceIQ Labs" },
       auth: {
         title: "Se connecter ou s'inscrire",
-        emailPlaceholder: "E-mail",
+        emailPlaceholder: "nom@exemple.com",
+        passwordPlaceholder: "*********",
         continue: "Continuer",
         or: "ou",
         google: "Continuer avec Google",
-        apple: "Continuer avec Apple",
         legal: "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
         back: "Retour à l'accueil",
         meta: {
@@ -296,11 +296,11 @@
       footer: { join: "Únete", privacy: "Privacidad", terms: "Términos", copy: "© 2026 FaceIQ Labs" },
       auth: {
         title: "Iniciar sesión o registrarse",
-        emailPlaceholder: "Correo electrónico",
+        emailPlaceholder: "nombre@ejemplo.com",
+        passwordPlaceholder: "*********",
         continue: "Continuar",
         or: "o",
         google: "Continuar con Google",
-        apple: "Continuar con Apple",
         legal: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
         back: "Volver al inicio",
         meta: {
