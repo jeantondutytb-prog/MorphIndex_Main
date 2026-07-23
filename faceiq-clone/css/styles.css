@@ -1382,7 +1382,11 @@ button {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 8%, transparent);
 }
 
-.auth__clear {
+.auth__input--plain {
+  padding-right: 1rem;
+}
+
+.auth__toggle {
   position: absolute;
   right: 0.75rem;
   top: 50%;
@@ -1390,21 +1394,33 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: var(--radius-full);
   color: var(--text-muted);
   transition: color 0.2s, background 0.2s;
 }
 
-.auth__clear:hover {
+.auth__toggle:hover {
   color: var(--text);
   background: var(--border);
 }
 
-.auth__clear svg {
-  width: 0.875rem;
-  height: 0.875rem;
+.auth__toggle-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.auth__toggle-icon--hide {
+  display: none;
+}
+
+.auth__toggle[aria-pressed="true"] .auth__toggle-icon--show {
+  display: none;
+}
+
+.auth__toggle[aria-pressed="true"] .auth__toggle-icon--hide {
+  display: block;
 }
 
 .btn--full {

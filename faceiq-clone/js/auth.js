@@ -2,23 +2,28 @@
   var form = document.getElementById("auth-form");
   var emailInput = document.getElementById("auth-email");
   var passwordInput = document.getElementById("auth-password");
-  var clearBtn = document.getElementById("auth-clear");
+  var toggleBtn = document.getElementById("auth-password-toggle");
 
   if (!form || !emailInput || !passwordInput) return;
 
-  function toggleClear() {
-    if (!clearBtn) return;
-    clearBtn.hidden = emailInput.value.length === 0;
+  function updateToggleLabel() {
+    if (!toggleBtn) return;
+    var showLabel = document.body.dataset.showPassword;
+    var hideLabel = document.body.dataset.hidePassword;
+    var visible = toggleBtn.getAttribute("aria-pressed") === "true";
+    toggleBtn.setAttribute("aria-label", visible ? hideLabel : showLabel);
   }
 
-  emailInput.addEventListener("input", toggleClear);
-
-  if (clearBtn) {
-    clearBtn.addEventListener("click", function () {
-      emailInput.value = "";
-      emailInput.focus();
-      toggleClear();
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", function () {
+      var visible = toggleBtn.getAttribute("aria-pressed") === "true";
+      toggleBtn.setAttribute("aria-pressed", visible ? "false" : "true");
+      passwordInput.type = visible ? "password" : "text";
+      updateToggleLabel();
     });
+
+    document.addEventListener("langchange", updateToggleLabel);
+    updateToggleLabel();
   }
 
   form.addEventListener("submit", function (e) {

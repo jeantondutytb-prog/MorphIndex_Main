@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260723f">
+  <link rel="stylesheet" href="css/styles.css?v=20260723g">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -56,16 +56,13 @@
             type="email"
             id="auth-email"
             name="email"
-            class="auth__input"
+            class="auth__input auth__input--plain"
             autocomplete="email"
             inputmode="email"
             required
             data-i18n-placeholder="auth.emailPlaceholder"
             placeholder="name@example.com"
           >
-          <button type="button" class="auth__clear" id="auth-clear" hidden aria-label="Clear email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
         </div>
         <div class="auth__field">
           <input
@@ -79,6 +76,10 @@
             data-i18n-placeholder="auth.passwordPlaceholder"
             placeholder="*********"
           >
+          <button type="button" class="auth__toggle" id="auth-password-toggle" aria-pressed="false" data-i18n-aria="auth.showPassword">
+            <svg class="auth__toggle-icon auth__toggle-icon--show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="auth__toggle-icon auth__toggle-icon--hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+          </button>
         </div>
         <button type="submit" class="btn btn--full btn--lg" data-i18n="auth.continue">Continue</button>
       </form>
@@ -103,8 +104,8 @@
     </div>
   </main>
 
-  <script src="js/i18n.js?v=20260723f"></script>
+  <script src="js/i18n.js?v=20260723g"></script>
   <script src="js/theme.js"></script>
-  <script src="js/auth.js?v=20260723f"></script>
+  <script src="js/auth.js?v=20260723g"></script>
 </body>
 </html>

@@ -97,6 +97,8 @@
         continue: "Continue",
         or: "or",
         google: "Continue with Google",
+        showPassword: "Show password",
+        hidePassword: "Hide password",
         legal: "By continuing, you agree to our Terms of Service and Privacy Policy.",
         back: "Back to home",
         meta: {
@@ -199,6 +201,8 @@
         continue: "Continuer",
         or: "ou",
         google: "Continuer avec Google",
+        showPassword: "Afficher le mot de passe",
+        hidePassword: "Masquer le mot de passe",
         legal: "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
         back: "Retour à l'accueil",
         meta: {
@@ -301,6 +305,8 @@
         continue: "Continuar",
         or: "o",
         google: "Continuar con Google",
+        showPassword: "Mostrar contraseña",
+        hidePassword: "Ocultar contraseña",
         legal: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
         back: "Volver al inicio",
         meta: {
@@ -367,6 +373,11 @@
       var val = get(dict, el.getAttribute("data-i18n-placeholder"));
       if (val != null) el.setAttribute("placeholder", val);
     });
+    if (dict.auth) {
+      document.body.dataset.showPassword = dict.auth.showPassword || "";
+      document.body.dataset.hidePassword = dict.auth.hidePassword || "";
+      document.dispatchEvent(new CustomEvent("langchange"));
+    }
   }
 
   function initLangSwitcher() {
