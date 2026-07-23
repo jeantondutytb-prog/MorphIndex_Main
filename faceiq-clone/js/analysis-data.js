@@ -153,6 +153,9 @@
       var analysis = generateAnalysis(userId);
       analysis.scores = state.scores;
       analysis.potential.overall = round1(Math.min(9.4, state.scores.overall + 0.8));
+      ["harmony", "angularity", "dimorphism", "features"].forEach(function (pillar) {
+        analysis.pillars[pillar].score = state.scores[pillar];
+      });
       return analysis;
     }
     return generateAnalysis(userId);
