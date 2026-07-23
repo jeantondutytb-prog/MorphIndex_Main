@@ -413,11 +413,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   align-items: baseline;
   gap: 0.05em;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .stat-counter__value {
   display: inline-flex;
   align-items: baseline;
+  letter-spacing: 0.04em;
 }
 
 .stat-counter__plus {
@@ -431,7 +434,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   height: 1em;
   line-height: 1;
   overflow: hidden;
-  vertical-align: baseline;
+  vertical-align: top;
+  min-width: 0.6em;
+  text-align: center;
 }
 
 .stat-digit--sep {
@@ -457,7 +462,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .stat-digit__reel--spin.is-spinning {
-  transform: translateY(-100%);
+  transform: translateY(-50%);
 }
 
 .hero__stars {

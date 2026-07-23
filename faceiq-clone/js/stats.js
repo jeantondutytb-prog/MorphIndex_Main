@@ -1,6 +1,6 @@
 (function () {
-  var INTERVAL_MS = 2000;
-  var OFFSET_MS = 1000;
+  var INTERVAL_MS = 5000;
+  var OFFSET_MS = 2500;
   var BASE_MEMBERS = 225000;
   var BASE_ANALYSES = 175000;
 
@@ -35,11 +35,12 @@
         continue;
       }
 
-      if (shouldAnimate && prevChar !== nextChar && prevChar.trim() !== "") {
+      if (shouldAnimate && prevChar !== nextChar) {
+        var fromChar = prevChar.trim() !== "" ? prevChar : nextChar;
         digitsHtml +=
           '<span class="stat-digit">' +
           '<span class="stat-digit__reel stat-digit__reel--spin">' +
-          "<span>" + prevChar + "</span>" +
+          "<span>" + fromChar + "</span>" +
           "<span>" + nextChar + "</span>" +
           "</span></span>";
       } else {
@@ -64,6 +65,14 @@
           requestAnimationFrame(function () {
             reel.classList.add("is-spinning");
           });
+        });
+        reel.addEventListener("transitionend", function onEnd() {
+          reel.removeEventListener("transitionend", onEnd);
+          var finalDigit = reel.lastElementChild;
+          if (!finalDigit) return;
+          reel.classList.remove("stat-digit__reel--spin", "is-spinning");
+          reel.style.transform = "";
+          reel.innerHTML = "<span>" + finalDigit.textContent + "</span>";
         });
       });
     }
