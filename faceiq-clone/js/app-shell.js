@@ -154,6 +154,9 @@
         onReady(getAppContext());
       }
       setBooting(false);
+    }).catch(function () {
+      setBooting(false);
+      redirectToLogin();
     });
 
     document.addEventListener("langchange", function () {

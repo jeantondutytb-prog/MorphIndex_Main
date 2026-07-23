@@ -100,7 +100,8 @@
         window.Onboarding.saveState(ctx.user.id, {
           scanComplete: true,
           scores: analysis.scores,
-          analysis: analysis
+          analysis: analysis,
+          rescanPending: false
         });
 
         ctx.client.auth.updateUser({
@@ -151,6 +152,15 @@
 
             finishAnalysis(ctx, state, analysis);
           }, waitMs);
+        }).catch(function () {
+          clearInterval(interval);
+          steps.forEach(function (li) {
+            li.classList.add("is-done");
+            li.classList.remove("is-active");
+          });
+          var analysis = window.AnalysisData.generateAnalysis(ctx.user.id);
+          analysis.source = "mock";
+          finishAnalysis(ctx, state, analysis);
         });
       });
     })();

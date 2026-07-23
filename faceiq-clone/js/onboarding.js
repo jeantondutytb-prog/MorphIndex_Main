@@ -27,6 +27,10 @@
     return STORAGE_PREFIX + userId;
   }
 
+  function backupKey(userId) {
+    return storageKey(userId) + "_backup";
+  }
+
   function getState(userId) {
     try {
       var raw = localStorage.getItem(storageKey(userId));
@@ -37,14 +41,23 @@
   }
 
   function saveState(userId, patch) {
-    var current = getState(userId);
-    var next = Object.assign({}, current, patch);
-    localStorage.setItem(storageKey(userId), JSON.stringify(next));
-    return next;
+    try {
+      var current = getState(userId);
+      var next = Object.assign({}, current, patch);
+      localStorage.setItem(storageKey(userId), JSON.stringify(next));
+      return { ok: true, state: next };
+    } catch (e) {
+      return { ok: false, error: e && e.name === "QuotaExceededError" ? "quota" : "storage" };
+    }
+  }
+
+  function isRescanPending(userId) {
+    return !!getState(userId).rescanPending;
   }
 
   function hasCompletedScan(user) {
     if (!user) return false;
+    if (isRescanPending(user.id)) return false;
     if (user.user_metadata && user.user_metadata.onboarding_complete) return true;
     var state = getState(user.id);
     return !!state.scanComplete;
@@ -90,9 +103,9 @@
       }
 
       var user = session.user;
+      var state = getState(user.id);
 
       if (currentStep > 1 && !hasCompletedScan(user) && currentStep > 5) {
-        var state = getState(user.id);
         if (!state.cameraReady && !state.cameraSkipped && !state.frontPhoto && currentStep > 2) {
           window.location.href = stepRoutes[2];
           return null;
@@ -113,7 +126,7 @@
       }
 
       updateProgress(currentStep);
-      return { client: client, session: session, user: user };
+      return { client: client, session: session, user: user, state: state };
     });
   }
 
@@ -131,16 +144,43 @@
       redirectToLogin();
       return;
     }
+
     client.auth.getSession().then(function (result) {
       var session = result.data.session;
       if (!session) {
         redirectToLogin();
         return;
       }
-      localStorage.removeItem(storageKey(session.user.id));
+
+      var userId = session.user.id;
+      var current = getState(userId);
+
+      try {
+        localStorage.setItem(backupKey(userId), JSON.stringify(current));
+      } catch (e) {
+        /* backup best-effort */
+      }
+
+      saveState(userId, {
+        rescanPending: true,
+        rescanStartedAt: Date.now(),
+        frontPhoto: null,
+        sidePhoto: null,
+        scanComplete: false,
+        analysis: null,
+        scores: null,
+        preview6mUrl: null,
+        previewGenerating: false,
+        previewError: false
+      });
+
       client.auth.updateUser({
         data: { onboarding_complete: false }
-      }).finally(function () {
+      }).then(function () {
+        return client.auth.refreshSession();
+      }).then(function () {
+        window.location.href = stepRoutes[2];
+      }).catch(function () {
         window.location.href = stepRoutes[2];
       });
     });
@@ -153,6 +193,7 @@
     redirectToLogin: redirectToLogin,
     getState: getState,
     saveState: saveState,
+    isRescanPending: isRescanPending,
     hasCompletedScan: hasCompletedScan,
     hasActiveSubscription: hasActiveSubscription,
     generateMockScores: generateMockScores,

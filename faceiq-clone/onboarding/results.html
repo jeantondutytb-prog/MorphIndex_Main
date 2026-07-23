@@ -66,9 +66,8 @@
   </main>
 
   <div class="paywall" id="paywall" hidden>
-    <div class="paywall__backdrop" id="paywall-close"></div>
+    <div class="paywall__backdrop" aria-hidden="true"></div>
     <div class="paywall__panel auth__card" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
-      <button type="button" class="paywall__close" id="paywall-dismiss" aria-label="Close">&times;</button>
       <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
         <img src="../assets/logo.svg" alt="">
       </a>
@@ -122,8 +121,6 @@
       var paywall = document.getElementById("paywall");
       var subscribeBtn = document.getElementById("paywall-subscribe");
       var paywallError = document.getElementById("paywall-error");
-      var closeBtn = document.getElementById("paywall-dismiss");
-      var backdrop = document.getElementById("paywall-close");
       var dashboardEl = document.getElementById("results-dashboard");
       var subtitleEl = document.querySelector(".auth__subtitle");
 
@@ -136,12 +133,6 @@
         if (!paywallError) return;
         paywallError.textContent = message;
         paywallError.hidden = !message;
-      }
-
-      function closePaywall() {
-        paywall.hidden = true;
-        document.body.classList.remove("paywall-open");
-        showPaywallError("");
       }
 
       function unlockResults() {
@@ -179,16 +170,12 @@
         return client.auth.refreshSession().then(function () {
           return startPreviewGeneration(client, ctx, state);
         }).finally(function () {
-          closePaywall();
           unlockResults();
           setTimeout(function () {
             window.location.href = "/app";
           }, 1200);
         });
       }
-
-      closeBtn.addEventListener("click", closePaywall);
-      backdrop.addEventListener("click", closePaywall);
 
       document.querySelectorAll(".paywall__plan").forEach(function (plan) {
         plan.addEventListener("click", function () {
@@ -244,10 +231,7 @@
           if (subtitleEl && message) {
             subtitleEl.textContent = message;
           }
-          var unlockBtn = document.getElementById("unlock-btn");
-          if (unlockBtn) {
-            unlockBtn.addEventListener("click", openPaywall);
-          }
+          openPaywall();
         }
 
         function handleActiveSubscription() {
@@ -271,6 +255,9 @@
               return finishSubscriptionFlow(client, ctx, state);
             }
             renderLockedResults(t("onboarding.paywall.checkoutError"));
+          }).catch(function () {
+            window.history.replaceState({}, "", "/onboarding/results");
+            renderLockedResults(t("onboarding.paywall.checkoutError"));
           });
           return;
         }
@@ -289,7 +276,7 @@
             return;
           }
 
-          setSubscribeLoading(true, t("dashboard.preview.generating"));
+          setSubscribeLoading(true, t("onboarding.paywall.checkoutLoading"));
           window.BillingApi.createCheckoutSession(ctx.session, getSelectedPlan()).then(function (result) {
             if (result.ok && result.url) {
               window.location.href = result.url;

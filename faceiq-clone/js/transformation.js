@@ -17,6 +17,8 @@
   var timelineItems = root.querySelectorAll("[data-transform-phase]");
   var beforeBtn = root.querySelector('[data-transform-view="before"]');
   var afterBtn = root.querySelector('[data-transform-view="after"]');
+  var scoreStartEl = root.querySelector("[data-transform-score-start]");
+  var scoreEndEl = root.querySelector("[data-transform-score-end]");
   var prevBtn = root.querySelector("[data-transform-prev]");
   var nextBtn = root.querySelector("[data-transform-next]");
 
@@ -26,6 +28,9 @@
     if (scoreEl) {
       scoreEl.innerHTML = slide.score + "<small>/10</small>";
     }
+
+    if (scoreStartEl) scoreStartEl.textContent = SLIDES[0].score;
+    if (scoreEndEl) scoreEndEl.textContent = SLIDES[SLIDES.length - 1].score;
 
     if (image) {
       image.style.transform = "scale(" + slide.scale + ")";

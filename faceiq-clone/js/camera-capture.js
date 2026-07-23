@@ -554,6 +554,19 @@
     }
   };
 
+  CameraCapture.prototype.initGalleryOnly = function () {
+    this.bindEvents();
+    document.body.classList.remove("onboarding-camera-booting");
+    this.setScanMode(false);
+    this.onReadyChange(true);
+    if (this.captureBtn) this.captureBtn.hidden = true;
+    if (this.galleryBtn) this.galleryBtn.hidden = false;
+    if (this.retakeBtn) this.retakeBtn.hidden = true;
+    if (this.video) this.video.hidden = true;
+    if (this.overlay) this.overlay.hidden = true;
+    this.setStatus("onboarding.camera.denied", "Camera unavailable — use gallery instead", "warning");
+  };
+
   CameraCapture.prototype.init = function () {
     var self = this;
     this.bindEvents();

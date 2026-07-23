@@ -8,7 +8,7 @@
         title: "FaceIQ Labs — The Self-Improvement System for Your Appearance",
         description: "Analyze your face across 100+ metrics, get a personalized improvement plan, and track your progress over time."
       },
-      a11y: { theme: "Toggle theme", language: "Change language", menu: "Open menu", stars: "5 stars", prev: "Previous", next: "Next" },
+      a11y: { theme: "Toggle theme", language: "Change language", menu: "Open menu", stars: "5 stars", prev: "Previous", next: "Next", close: "Close" },
       nav: { celebs: "Celebs", creators: "Creators", login: "Login", cta: "Try Free" },
       hero: {
         users: "users", analyses: "analyses",
@@ -169,6 +169,11 @@
         weeks: "{n} weeks",
         disclaimer: "Scores are for self-improvement guidance only — not medical advice.",
         rescanConfirm: "Start a new scan? Your current photos will be replaced.",
+        empty: {
+          title: "Scan data missing",
+          desc: "Your photos aren't available on this device. Run a new scan to restore your dashboard.",
+          cta: "Start a new scan"
+        },
         quickActions: {
           label: "Quick navigation",
           preview: "6-month preview",
@@ -241,6 +246,7 @@
         capturePhoto: "Capture photo",
         useGallery: "Gallery",
         retake: "Retake",
+        storageError: "Unable to save your photo on this device. Try a smaller image or clear browser storage.",
         camera: {
           loading: "Starting camera…",
           searching: "Position your face in the oval",
@@ -337,6 +343,7 @@
           legal: "Cancel anytime. Secure payment via Stripe.",
           verifying: "Confirming your payment…",
           checkoutError: "Unable to start checkout. Please try again.",
+          checkoutLoading: "Redirecting to checkout…",
           cancelled: "Payment cancelled. Subscribe to unlock your full results."
         },
         meta: {
@@ -350,7 +357,7 @@
         title: "FaceIQ Labs — Le système d'auto-amélioration pour votre apparence",
         description: "Analysez votre visage selon plus de 100 métriques, obtenez un plan d'amélioration personnalisé et suivez vos progrès."
       },
-      a11y: { theme: "Changer le thème", language: "Changer la langue", menu: "Ouvrir le menu", stars: "5 étoiles", prev: "Précédent", next: "Suivant" },
+      a11y: { theme: "Changer le thème", language: "Changer la langue", menu: "Ouvrir le menu", stars: "5 étoiles", prev: "Précédent", next: "Suivant", close: "Fermer" },
       nav: { celebs: "Célébrités", creators: "Créateurs", login: "Connexion", cta: "Essayer gratuitement" },
       hero: {
         users: "utilisateurs", analyses: "analyses",
@@ -511,6 +518,11 @@
         weeks: "{n} semaines",
         disclaimer: "Les scores sont indicatifs pour l'auto-amélioration — pas un avis médical.",
         rescanConfirm: "Lancer un nouveau scan ? Vos photos actuelles seront remplacées.",
+        empty: {
+          title: "Données de scan manquantes",
+          desc: "Vos photos ne sont pas disponibles sur cet appareil. Lancez un nouveau scan pour restaurer votre tableau de bord.",
+          cta: "Lancer un nouveau scan"
+        },
         quickActions: {
           label: "Navigation rapide",
           preview: "Aperçu 6 mois",
@@ -583,6 +595,7 @@
         capturePhoto: "Prendre la photo",
         useGallery: "Galerie",
         retake: "Reprendre",
+        storageError: "Impossible d'enregistrer votre photo sur cet appareil. Essayez une image plus petite ou libérez de l'espace.",
         camera: {
           loading: "Démarrage de la caméra…",
           searching: "Placez votre tête dans l'ovale",
@@ -679,6 +692,7 @@
           legal: "Annulation à tout moment. Paiement sécurisé via Stripe.",
           verifying: "Confirmation de votre paiement…",
           checkoutError: "Impossible de démarrer le paiement. Réessayez.",
+          checkoutLoading: "Redirection vers le paiement…",
           cancelled: "Paiement annulé. Abonnez-vous pour débloquer vos résultats."
         },
         meta: {
@@ -692,7 +706,7 @@
         title: "FaceIQ Labs — El sistema de auto-mejora para tu apariencia",
         description: "Analiza tu rostro según más de 100 métricas, obtén un plan de mejora personalizado y sigue tu progreso."
       },
-      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", menu: "Abrir menú", stars: "5 estrellas", prev: "Anterior", next: "Siguiente" },
+      a11y: { theme: "Cambiar tema", language: "Cambiar idioma", menu: "Abrir menú", stars: "5 estrellas", prev: "Anterior", next: "Siguiente", close: "Cerrar" },
       nav: { celebs: "Celebridades", creators: "Creadores", login: "Iniciar sesión", cta: "Probar gratis" },
       hero: {
         users: "usuarios", analyses: "análisis",
@@ -853,6 +867,11 @@
         weeks: "{n} semanas",
         disclaimer: "Las puntuaciones son orientativas para la auto-mejora — no son consejo médico.",
         rescanConfirm: "¿Iniciar un nuevo escaneo? Tus fotos actuales serán reemplazadas.",
+        empty: {
+          title: "Faltan datos del escaneo",
+          desc: "Tus fotos no están disponibles en este dispositivo. Haz un nuevo escaneo para restaurar tu panel.",
+          cta: "Iniciar nuevo escaneo"
+        },
         quickActions: {
           label: "Navegación rápida",
           preview: "Vista previa 6 meses",
@@ -925,6 +944,7 @@
         capturePhoto: "Capturar foto",
         useGallery: "Galería",
         retake: "Repetir",
+        storageError: "No se pudo guardar tu foto en este dispositivo. Prueba con una imagen más pequeña o libera espacio.",
         camera: {
           loading: "Iniciando cámara…",
           searching: "Coloca tu cabeza en el óvalo",
@@ -1021,6 +1041,7 @@
           legal: "Cancela cuando quieras. Pago seguro con Stripe.",
           verifying: "Confirmando tu pago…",
           checkoutError: "No se pudo iniciar el pago. Inténtalo de nuevo.",
+          checkoutLoading: "Redirigiendo al pago…",
           cancelled: "Pago cancelado. Suscríbete para desbloquear tus resultados."
         },
         meta: {
