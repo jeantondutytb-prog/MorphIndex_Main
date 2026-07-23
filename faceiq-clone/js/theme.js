@@ -17,4 +17,11 @@
   document.querySelectorAll("[data-theme-toggle]").forEach(function (button) {
     button.addEventListener("click", toggleTheme);
   });
+
+  var nav = document.querySelector(".nav");
+  if (nav) {
+    window.addEventListener("scroll", function () {
+      nav.classList.toggle("is-scrolled", window.scrollY > 24);
+    }, { passive: true });
+  }
 })();
