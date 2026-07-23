@@ -22,3 +22,14 @@ PORT=8080 ./serve.sh
 
 ### Lint / test / build
 There is **no** lint, test, or build tooling in this repo (no `package.json`, no test runner, `vercel.json` sets `buildCommand: null`). Verification is manual: serve the site and load `index.html` / `register.html`.
+
+### Deploying to production (Vercel) — standing instruction
+The owner wants every code change deployed to **Vercel production**. After pushing your branch, deploy the working tree straight to production (this does not merge any PR):
+
+```bash
+npx vercel deploy --prod --yes --token="$VERCEL_TOKEN"
+```
+
+- Requires a `VERCEL_TOKEN` secret in the environment. If it is missing, the deploy cannot run — surface this to the user instead of skipping the deploy.
+- The first deploy on a fresh VM links the project. To target the existing project non-interactively, either provide `VERCEL_ORG_ID` + `VERCEL_PROJECT_ID` secrets, or link once with `npx vercel link --yes --project <existing-project-name> --token="$VERCEL_TOKEN"` (find the name via `npx vercel projects ls --token="$VERCEL_TOKEN"`).
+- `vercel.json` at the repo root already sets `outputDirectory: faceiq-clone`, `buildCommand: null`, and `cleanUrls: true`, so no build config is needed — deploy from the repo root.
