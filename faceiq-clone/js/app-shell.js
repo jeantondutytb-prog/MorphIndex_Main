@@ -152,14 +152,26 @@
       currentUser = user;
       currentSession = result.data.session;
 
+      if (window.JourneyApi) {
+        window.JourneyApi.setSession(currentSession);
+      }
+
       var view = document.body.getAttribute("data-app-view") || "overview";
       renderNav(view);
       applyPageMeta(view);
 
-      if (typeof onReady === "function") {
-        onReady(getAppContext());
-      }
-      setBooting(false);
+      var hydratePromise =
+        window.JourneyApi && window.JourneyApi.hydrate
+          ? window.JourneyApi.hydrate(currentSession, currentUser.id)
+          : Promise.resolve();
+
+      hydratePromise
+        .finally(function () {
+          if (typeof onReady === "function") {
+            onReady(getAppContext());
+          }
+          setBooting(false);
+        });
     }).catch(function () {
       setBooting(false);
       redirectToLogin();

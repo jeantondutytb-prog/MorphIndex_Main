@@ -226,11 +226,20 @@
           subtitle: "Track how your overall score changes across scans."
         },
         chat: {
-          subtitle: "Ask FaceGPT anything about your scores, metrics, or improvement plan.",
+          subtitle: "Ask FaceGPT about your scores, metrics, or improvement plan — answers follow your active protocol.",
           placeholder: "Ask about your analysis…",
           send: "Send",
           empty: "Start a conversation — ask about your scores or what to focus on first.",
-          error: "FaceGPT is unavailable right now. Please try again."
+          error: "FaceGPT is unavailable right now. Please try again.",
+          limitReached: "You've reached today's FaceGPT message limit. Check your Plan page for this week's actions and try again tomorrow.",
+          promptThisWeek: "What should I do this week?",
+          promptWhyFocus: "Why is this my current focus?",
+          promptNextStep: "What is my next step?",
+          prompts: {
+            thisWeek: "Based on my current journey phase, what should I focus on this week? List the checklist actions I should complete.",
+            whyFocus: "Why is my current active focus the right priority given my analysis scores?",
+            nextStep: "Looking at my journey progress, what is the single most important next step I should take?"
+          }
         },
         simulate: {
           subtitle: "Preview how a cosmetic adjustment might look on your photo.",
@@ -852,11 +861,20 @@
           subtitle: "Suivez l'évolution de votre score global entre les scans."
         },
         chat: {
-          subtitle: "Posez à FaceGPT vos questions sur vos scores, métriques ou plan.",
+          subtitle: "Posez à FaceGPT vos questions — les réponses suivent votre protocole actif.",
           placeholder: "Posez une question sur votre analyse…",
           send: "Envoyer",
           empty: "Commencez la conversation — demandez par quoi commencer.",
-          error: "FaceGPT est indisponible pour le moment. Réessayez."
+          error: "FaceGPT est indisponible pour le moment. Réessayez.",
+          limitReached: "Vous avez atteint la limite de messages FaceGPT pour aujourd'hui. Consultez votre Plan pour les actions de la semaine et réessayez demain.",
+          promptThisWeek: "Que faire cette semaine ?",
+          promptWhyFocus: "Pourquoi ce focus ?",
+          promptNextStep: "Quelle est ma prochaine étape ?",
+          prompts: {
+            thisWeek: "Selon ma phase actuelle du parcours, sur quoi dois-je me concentrer cette semaine ? Liste les actions à cocher.",
+            whyFocus: "Pourquoi mon focus actif est-il la bonne priorité compte tenu de mes scores ?",
+            nextStep: "En regardant ma progression, quelle est la prochaine étape la plus importante ?"
+          }
         },
         simulate: {
           subtitle: "Prévisualisez l'effet d'un ajustement esthétique sur votre photo.",
@@ -1478,11 +1496,20 @@
           subtitle: "Sigue cómo cambia tu puntuación global entre escaneos."
         },
         chat: {
-          subtitle: "Pregunta a FaceGPT sobre tus puntuaciones, métricas o plan.",
+          subtitle: "Pregunta a FaceGPT — las respuestas siguen tu protocolo activo.",
           placeholder: "Pregunta sobre tu análisis…",
           send: "Enviar",
           empty: "Empieza la conversación — pregunta por dónde empezar.",
-          error: "FaceGPT no está disponible ahora. Inténtalo de nuevo."
+          error: "FaceGPT no está disponible ahora. Inténtalo de nuevo.",
+          limitReached: "Has alcanzado el límite diario de mensajes de FaceGPT. Revisa tu Plan para las acciones de esta semana e inténtalo mañana.",
+          promptThisWeek: "¿Qué debo hacer esta semana?",
+          promptWhyFocus: "¿Por qué este foco?",
+          promptNextStep: "¿Cuál es mi siguiente paso?",
+          prompts: {
+            thisWeek: "Según mi fase actual del recorrido, ¿en qué debo centrarme esta semana? Lista las acciones de la checklist.",
+            whyFocus: "¿Por qué mi foco activo es la prioridad correcta según mis puntuaciones?",
+            nextStep: "Mirando mi progreso, ¿cuál es el siguiente paso más importante?"
+          }
         },
         simulate: {
           subtitle: "Previsualiza cómo podría verse un ajuste estético en tu foto.",

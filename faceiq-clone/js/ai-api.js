@@ -96,7 +96,7 @@
     });
   }
 
-  function chat(session, messages, analysis) {
+  function chat(session, messages, analysis, journey) {
     var token = getAccessToken(session);
     if (!token) {
       return Promise.resolve({ ok: false, error: "Not authenticated" });
@@ -104,16 +104,23 @@
 
     return postJson("/api/chat", token, {
       messages: messages,
-      analysis: analysis
+      analysis: analysis,
+      journey: journey || null
     }).then(function (result) {
       if (!result.ok) {
         return {
           ok: false,
           error: (result.data && result.data.error) || "Chat failed",
-          status: result.status
+          status: result.status,
+          limit: result.data && result.data.limit,
+          remaining: result.data && result.data.remaining
         };
       }
-      return { ok: true, reply: result.data.reply };
+      return {
+        ok: true,
+        reply: result.data.reply,
+        remaining: result.data.remaining
+      };
     }).catch(function () {
       return { ok: false, error: "Network error" };
     });

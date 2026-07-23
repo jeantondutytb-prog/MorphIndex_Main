@@ -90,6 +90,7 @@
     });
     if (history.length > 12) history = history.slice(-12);
     saveState(userId, { scoreHistory: history });
+    queueAppStateSync(userId);
   }
 
   function getPlanProgress(userId) {
@@ -102,6 +103,12 @@
     progress[key] = !!done;
     saveState(userId, { planProgress: progress });
     return progress;
+  }
+
+  function queueAppStateSync(userId) {
+    if (window.JourneyApi && window.JourneyApi.sync) {
+      window.JourneyApi.sync(userId);
+    }
   }
 
   function defaultJourneyForAnalysis(analysis) {
@@ -157,6 +164,7 @@
     }
 
     saveState(userId, { journey: journey });
+    queueAppStateSync(userId);
     return journey;
   }
 
@@ -182,6 +190,7 @@
       });
       saveState(userId, { planProgress: progress });
     }
+    queueAppStateSync(userId);
     return journey;
   }
 

@@ -3918,6 +3918,36 @@ body.paywall-open {
   border-bottom-left-radius: 0.25rem;
 }
 
+.facegpt__prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.facegpt__prompt {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--card-muted);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.facegpt__prompt:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--card-muted));
+}
+
+.facegpt__prompt:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .facegpt__form {
   display: flex;
   gap: 0.5rem;

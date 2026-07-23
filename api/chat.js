@@ -1,6 +1,7 @@
 import { chatWithAnthropic } from "../lib/chat.js";
 import { requireUser } from "../lib/auth.js";
 import { applyCors, readJsonBody, sendJson } from "../lib/http.js";
+import { checkAndIncrementChatUsage } from "../lib/user-app-data.js";
 
 export default async function handler(request, response) {
   applyCors(request, response);
@@ -19,10 +20,20 @@ export default async function handler(request, response) {
   }
 
   try {
+    const usage = await checkAndIncrementChatUsage(auth.user.id);
+    if (usage.error) {
+      return sendJson(response, usage.status || 429, {
+        error: usage.error,
+        limit: usage.limit || null,
+        remaining: usage.remaining != null ? usage.remaining : 0
+      });
+    }
+
     const body = await readJsonBody(request);
     const result = await chatWithAnthropic({
       messages: body.messages || [],
-      analysis: body.analysis || null
+      analysis: body.analysis || null,
+      journey: body.journey || null
     });
 
     if (result.error) {
@@ -34,7 +45,8 @@ export default async function handler(request, response) {
 
     return sendJson(response, 200, {
       reply: result.reply,
-      model: result.model
+      model: result.model,
+      remaining: usage.remaining
     });
   } catch (error) {
     return sendJson(response, 500, {

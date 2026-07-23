@@ -30,6 +30,7 @@
     "api/generate-preview.js": { "maxDuration": 120 },
     "api/simulate-procedure.js": { "maxDuration": 120 },
     "api/chat.js": { "maxDuration": 60 },
+    "api/journey.js": { "maxDuration": 30 },
     "api/stripe.js": { "maxDuration": 30 }
   }
 }

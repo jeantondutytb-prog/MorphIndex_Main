@@ -77,6 +77,11 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `STRIPE_PRICE_YEARLY` | ID du prix Stripe annuel (ex. `price_...`, 59,99 €/an) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clé **service_role** Supabase (Settings → API) — active l'abonnement après paiement |
 
+**Parcours utilisateur (Phase 2)** : la progression du plan (`journey`, `scoreHistory`, `planProgress`) est synchronisée dans `user_metadata.app_state` via `/api/journey`. Aucune table SQL supplémentaire n'est requise — `SUPABASE_SERVICE_ROLE_KEY` doit être configurée.
+
+| `FACEGPT_DAILY_LIMIT` | Optionnel — limite de messages FaceGPT par jour et par utilisateur (défaut : `25`) |
+| `FACEGPT_MAX_HISTORY` | Optionnel — nombre de messages renvoyés à Anthropic par requête (défaut : `6`) |
+
 Redéploie le projet après avoir ajouté les variables.
 
 #### Paiement Stripe (abonnement)
