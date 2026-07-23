@@ -174,6 +174,9 @@
         photoFront: "Front",
         photoSide: "Side profile",
         ideal: "Ideal",
+        yourResult: "Your result",
+        statusLabel: "Status",
+        howToImprove: "How to improve:",
         planTitle: "Your improvement plan",
         planSubtitle: "Prioritized actions based on your weakest metrics.",
         planProgress: "{done}/{total} done",
@@ -266,6 +269,104 @@
           poreVisibility: "Pore visibility",
           lipHealth: "Lip health",
           hairDensity: "Hair density"
+        },
+        metricDetails: {
+          facialThirds: {
+            desc: "Compares the upper, middle, and lower thirds of your face. Balanced thirds create a more harmonious vertical structure.",
+            tip: "Track front photos at the same angle; posture and chin position can improve perceived balance over time."
+          },
+          facialWidthHeight: {
+            desc: "Measures face width relative to height. This ratio strongly influences how compact or elongated your face appears.",
+            tip: "Hairstyle length and facial hair can visually adjust width/height balance while you work on body fat and posture."
+          },
+          midfaceRatio: {
+            desc: "Evaluates midface length and proportions between the eyes and upper lip area.",
+            tip: "Keep photo distance consistent and focus on cheek support through sleep, training, and body composition."
+          },
+          symmetryDeviation: {
+            desc: "Estimates left/right facial asymmetry. Small deviations are normal; larger ones affect overall harmony.",
+            tip: "Use even lighting and a true front-facing angle in scans; posture and habitual chewing side can also play a role."
+          },
+          ipdRatio: {
+            desc: "Interpupillary distance relative to facial width — a key cue for eye spacing balance.",
+            tip: "This is largely structural; framing with brows/hair and eyewear choice can improve perceived balance."
+          },
+          canthalTilt: {
+            desc: "The angle of the eye axis from inner to outer corner. A slight positive tilt is often preferred.",
+            tip: "Brow grooming and sleep quality can subtly influence eye appearance; structural change is limited without procedures."
+          },
+          noseChinRatio: {
+            desc: "Balance between nose length and chin projection in the lower facial third.",
+            tip: "Improve chin support with posture and body fat reduction; avoid extreme camera angles that distort this ratio."
+          },
+          jawAngle: {
+            desc: "The visible jaw angle at the mandibular corner. Cleaner angles read as more defined and angular.",
+            tip: "Lower body fat, train masseters carefully, and maintain tongue/neck posture to sharpen the jaw contour."
+          },
+          gonialAngle: {
+            desc: "The mandibular corner angle that shapes lower-face geometry and jaw presence.",
+            tip: "Consistency with mewing posture and leaner facial fat often improves how this angle photographs."
+          },
+          jawDefinition: {
+            desc: "How clearly the jawline separates from the neck and cheeks.",
+            tip: "Prioritize fat loss, hydration, and posture; track progress with consistent side-profile photos."
+          },
+          cheekboneProminence: {
+            desc: "How projected and structured the cheekbones appear relative to soft tissue.",
+            tip: "Reduce facial bloating (sleep, sodium, alcohol) and keep lighting consistent when comparing scans."
+          },
+          chinProjection: {
+            desc: "Forward projection of the chin relative to ideal facial balance.",
+            tip: "Neck posture and lower-face fat reduction can improve chin presence in profile views."
+          },
+          mandibleWidth: {
+            desc: "Lower jaw width relative to overall facial width — contributes to a stronger or narrower base.",
+            tip: "Facial hair styling can widen or soften the base; structural width changes slowly without intervention."
+          },
+          browRidge: {
+            desc: "Prominence of the brow bone — a classic masculine dimorphism cue.",
+            tip: "Brow shape and fringe length can emphasize or soften ridge visibility in photos."
+          },
+          jawRobustness: {
+            desc: "Overall strength and density impression of the jaw structure.",
+            tip: "Lean body composition and masseter tone make robustness read more clearly on camera."
+          },
+          facialHairline: {
+            desc: "Hairline shape and framing of the upper face.",
+            tip: "A tailored cut/part and scalp care can improve framing while you monitor density over time."
+          },
+          lipFullness: {
+            desc: "Perceived upper/lower lip volume relative to balanced facial aesthetics.",
+            tip: "Hydration and lip care improve appearance; avoid dehydrated photos that understate volume."
+          },
+          noseSize: {
+            desc: "Nose size and projection relative to surrounding facial features.",
+            tip: "Camera distance matters — compare only same-angle scans; grooming around the midface can refine balance."
+          },
+          skinClarity: {
+            desc: "Overall evenness and clarity of skin tone and texture.",
+            tip: "Daily SPF, gentle cleansing, and a simple retinoid routine usually deliver the biggest clarity gains."
+          },
+          underEyeQuality: {
+            desc: "Dark circles, hollowness, and puffiness under the eyes.",
+            tip: "Prioritize sleep consistency, reduce salt/alcohol before scans, and consider caffeine-based topical care."
+          },
+          acneScarring: {
+            desc: "Visible acne activity and residual scarring impact on skin quality.",
+            tip: "Keep a consistent acne-safe routine and avoid picking; professional treatments can help persistent marks."
+          },
+          poreVisibility: {
+            desc: "How visible pores appear in the T-zone and cheeks.",
+            tip: "Use niacinamide/retinoids and non-comedogenic moisturizers; photograph in diffuse light for fair comparisons."
+          },
+          lipHealth: {
+            desc: "Lip texture, dryness, and overall healthy appearance.",
+            tip: "Daily balm + SPF lip protection and hydration keep lips smoother between scans."
+          },
+          hairDensity: {
+            desc: "Perceived density and coverage of hair at the scalp and hairline.",
+            tip: "Track with consistent top-down photos; consider proven density routines early if thinning is progressive."
+          }
         },
         plan: {
           jawlineDefinition: { title: "Improve jawline definition", desc: "Focus on body fat reduction, mewing posture, and masseter training." },
@@ -565,6 +666,9 @@
         photoFront: "Face",
         photoSide: "Profil",
         ideal: "Idéal",
+        yourResult: "Votre résultat",
+        statusLabel: "Statut",
+        howToImprove: "Comment progresser :",
         planTitle: "Votre plan d'amélioration",
         planSubtitle: "Actions prioritaires basées sur vos métriques les plus faibles.",
         planProgress: "{done}/{total} terminées",
@@ -657,6 +761,104 @@
           poreVisibility: "Visibilité des pores",
           lipHealth: "Santé des lèvres",
           hairDensity: "Densité capillaire"
+        },
+        metricDetails: {
+          facialThirds: {
+            desc: "Compare les tiers supérieur, médian et inférieur du visage. Des tiers équilibrés renforcent l'harmonie verticale.",
+            tip: "Comparez des photos de face au même angle ; la posture et la position du menton influencent l'équilibre perçu."
+          },
+          facialWidthHeight: {
+            desc: "Mesure la largeur du visage par rapport à sa hauteur. Ce ratio change l'impression de visage compact ou allongé.",
+            tip: "Coiffure et pilosité peuvent ajuster visuellement le ratio pendant que vous travaillez gras corporel et posture."
+          },
+          midfaceRatio: {
+            desc: "Évalue la longueur et les proportions du midface entre les yeux et la lèvre supérieure.",
+            tip: "Gardez une distance photo constante et soutenez les joues via sommeil, entraînement et composition corporelle."
+          },
+          symmetryDeviation: {
+            desc: "Estime l'asymétrie gauche/droite. De petits écarts sont normaux ; les plus grands affectent l'harmonie.",
+            tip: "Utilisez un éclairage uniforme et un angle parfaitement de face ; posture et mastication unilatérale comptent aussi."
+          },
+          ipdRatio: {
+            desc: "Distance interpupillaire par rapport à la largeur du visage — indicateur clé de l'écartement des yeux.",
+            tip: "C'est surtout structurel ; sourcils, cheveux et lunettes peuvent améliorer l'équilibre perçu."
+          },
+          canthalTilt: {
+            desc: "Angle de l'axe des yeux du coin interne au coin externe. Une légère inclinaison positive est souvent préférée.",
+            tip: "Le grooming des sourcils et le sommeil influencent l'apparence ; les changements structurels restent limités."
+          },
+          noseChinRatio: {
+            desc: "Équilibre entre la longueur du nez et la projection du menton dans le tiers inférieur.",
+            tip: "Améliorez le soutien du menton via posture et réduction de gras ; évitez les angles caméra extrêmes."
+          },
+          jawAngle: {
+            desc: "Angle visible de la mâchoire au coin mandibulaire. Un angle net se lit comme plus défini.",
+            tip: "Réduisez le gras facial, entraînez prudemment les masséters et maintenez posture linguale/cervicale."
+          },
+          gonialAngle: {
+            desc: "Angle du coin mandibulaire qui structure le bas du visage et la présence de la mâchoire.",
+            tip: "Posture linguale régulière et visage plus sec améliorent souvent le rendu photo de cet angle."
+          },
+          jawDefinition: {
+            desc: "Clarté de la séparation entre mâchoire, cou et joues.",
+            tip: "Priorisez perte de gras, hydratation et posture ; suivez avec des photos de profil cohérentes."
+          },
+          cheekboneProminence: {
+            desc: "Projection et structure des pommettes par rapport aux tissus mous.",
+            tip: "Réduisez le gonflement facial (sommeil, sel, alcool) et comparez sous un éclairage constant."
+          },
+          chinProjection: {
+            desc: "Projection avant du menton par rapport à l'équilibre facial idéal.",
+            tip: "Posture du cou et réduction du gras du bas du visage renforcent la présence du menton de profil."
+          },
+          mandibleWidth: {
+            desc: "Largeur de la mâchoire inférieure par rapport à la largeur totale du visage.",
+            tip: "La barbe peut élargir ou adoucir la base ; la largeur osseuse évolue peu sans intervention."
+          },
+          browRidge: {
+            desc: "Proéminence de l'os sourcilier — signal classique de dimorphisme masculin.",
+            tip: "Forme des sourcils et longueur de frange peuvent accentuer ou adoucir l'arcade en photo."
+          },
+          jawRobustness: {
+            desc: "Impression de force et de densité de la structure mandibulaire.",
+            tip: "Composition corporelle sèche et tonus des masséters rendent cette robustesse plus lisible."
+          },
+          facialHairline: {
+            desc: "Forme de la ligne capillaire et cadrage du haut du visage.",
+            tip: "Une coupe/raie adaptée et le soin du cuir chevelu améliorent le cadrage tout en suivant la densité."
+          },
+          lipFullness: {
+            desc: "Volume perçu des lèvres par rapport à une esthétique faciale équilibrée.",
+            tip: "Hydratation et soins des lèvres aident ; évitez les photos déshydratées qui sous-estiment le volume."
+          },
+          noseSize: {
+            desc: "Taille et projection du nez par rapport aux traits voisins.",
+            tip: "La distance caméra compte — comparez seulement des scans au même angle ; le grooming midface affine l'équilibre."
+          },
+          skinClarity: {
+            desc: "Uniformité et clarté globale du teint et de la texture.",
+            tip: "SPF quotidien, nettoyage doux et rétinoïde simple offrent souvent les meilleurs gains de clarté."
+          },
+          underEyeQuality: {
+            desc: "Cernes, creux et poches sous les yeux.",
+            tip: "Priorisez un sommeil régulier, réduisez sel/alcool avant les scans, et envisagez des soins à la caféine."
+          },
+          acneScarring: {
+            desc: "Impact de l'acné active et des cicatrices résiduelles sur la qualité de peau.",
+            tip: "Routine anti-acné constante et pas de grattage ; des soins pro peuvent aider les marques persistantes."
+          },
+          poreVisibility: {
+            desc: "Visibilité des pores sur la zone T et les joues.",
+            tip: "Niacinamide/rétinoïdes et hydratants non comédogènes ; photographiez en lumière diffuse pour comparer."
+          },
+          lipHealth: {
+            desc: "Texture, sécheresse et aspect sain des lèvres.",
+            tip: "Baume + SPF lèvres au quotidien et bonne hydratation pour des lèvres plus lisses entre les scans."
+          },
+          hairDensity: {
+            desc: "Densité et couverture perçues des cheveux au niveau du cuir chevelu et de la ligne.",
+            tip: "Suivez avec des photos dessus-tête constantes ; agissez tôt si l'éclaircissement progresse."
+          }
         },
         plan: {
           jawlineDefinition: { title: "Améliorer la définition de la mâchoire", desc: "Réduire le gras corporel, posture linguale et entraînement des masséters." },
@@ -956,6 +1158,9 @@
         photoFront: "Frontal",
         photoSide: "Perfil",
         ideal: "Ideal",
+        yourResult: "Tu resultado",
+        statusLabel: "Estado",
+        howToImprove: "Cómo mejorar:",
         planTitle: "Tu plan de mejora",
         planSubtitle: "Acciones prioritarias según tus métricas más débiles.",
         planProgress: "{done}/{total} completadas",
@@ -1048,6 +1253,104 @@
           poreVisibility: "Visibilidad de poros",
           lipHealth: "Salud labial",
           hairDensity: "Densidad capilar"
+        },
+        metricDetails: {
+          facialThirds: {
+            desc: "Compara los tercios superior, medio e inferior del rostro. Tercios equilibrados mejoran la armonía vertical.",
+            tip: "Compara fotos frontales con el mismo ángulo; la postura y la posición del mentón influyen en el equilibrio percibido."
+          },
+          facialWidthHeight: {
+            desc: "Mide el ancho facial respecto a la altura. Este ratio cambia si el rostro se ve compacto o alargado.",
+            tip: "Peinado y vello facial pueden ajustar visualmente el ratio mientras trabajas grasa corporal y postura."
+          },
+          midfaceRatio: {
+            desc: "Evalúa la longitud y proporciones del midface entre los ojos y el labio superior.",
+            tip: "Mantén distancia fotográfica constante y apoya las mejillas con sueño, entrenamiento y composición corporal."
+          },
+          symmetryDeviation: {
+            desc: "Estima la asimetría izquierda/derecha. Pequeñas desviaciones son normales; las mayores afectan la armonía.",
+            tip: "Usa luz uniforme y un ángulo frontal real; la postura y masticar de un solo lado también influyen."
+          },
+          ipdRatio: {
+            desc: "Distancia interpupilar respecto al ancho facial: clave para el equilibrio del espaciado ocular.",
+            tip: "Es sobre todo estructural; cejas, cabello y gafas pueden mejorar el equilibrio percibido."
+          },
+          canthalTilt: {
+            desc: "Ángulo del eje ocular del lagrimal al extremo externo. Una ligera inclinación positiva suele preferirse.",
+            tip: "El grooming de cejas y el sueño influyen en la apariencia; el cambio estructural es limitado."
+          },
+          noseChinRatio: {
+            desc: "Equilibrio entre longitud nasal y proyección del mentón en el tercio inferior.",
+            tip: "Mejora el soporte del mentón con postura y menos grasa facial; evita ángulos de cámara extremos."
+          },
+          jawAngle: {
+            desc: "Ángulo visible de la mandíbula en la esquina mandibular. Un ángulo limpio se lee más definido.",
+            tip: "Baja grasa facial, entrena maseteros con cuidado y mantén postura lingual/cervical."
+          },
+          gonialAngle: {
+            desc: "Ángulo de la esquina mandibular que define la geometría del tercio inferior.",
+            tip: "Postura lingual constante y un rostro más seco suelen mejorar cómo se ve este ángulo en fotos."
+          },
+          jawDefinition: {
+            desc: "Qué tan clara es la separación entre mandíbula, cuello y mejillas.",
+            tip: "Prioriza pérdida de grasa, hidratación y postura; sigue el progreso con perfiles consistentes."
+          },
+          cheekboneProminence: {
+            desc: "Proyección y estructura de los pómulos respecto al tejido blando.",
+            tip: "Reduce hinchazón facial (sueño, sal, alcohol) y compara con la misma iluminación."
+          },
+          chinProjection: {
+            desc: "Proyección hacia adelante del mentón respecto al equilibrio facial ideal.",
+            tip: "La postura del cuello y menos grasa en el tercio inferior refuerzan la presencia del mentón de perfil."
+          },
+          mandibleWidth: {
+            desc: "Ancho de la mandíbula inferior respecto al ancho total del rostro.",
+            tip: "El vello facial puede ensanchar o suavizar la base; el ancho óseo cambia poco sin intervención."
+          },
+          browRidge: {
+            desc: "Prominencia del hueso superciliar: señal clásica de dimorfismo masculino.",
+            tip: "Forma de cejas y flequillo pueden enfatizar o suavizar el arco en las fotos."
+          },
+          jawRobustness: {
+            desc: "Impresión de fuerza y densidad de la estructura mandibular.",
+            tip: "Composición corporal magra y tono de maseteros hacen más legible esta robustez."
+          },
+          facialHairline: {
+            desc: "Forma de la línea capilar y encuadre de la parte superior del rostro.",
+            tip: "Un corte/partido adecuado y cuidado del cuero cabelludo mejoran el encuadre mientras sigues la densidad."
+          },
+          lipFullness: {
+            desc: "Volumen percibido de los labios respecto a una estética facial equilibrada.",
+            tip: "Hidratación y cuidado labial ayudan; evita fotos deshidratadas que restan volumen."
+          },
+          noseSize: {
+            desc: "Tamaño y proyección de la nariz respecto a los rasgos vecinos.",
+            tip: "La distancia de cámara importa: compara solo escaneos al mismo ángulo; el grooming midface afina el equilibrio."
+          },
+          skinClarity: {
+            desc: "Uniformidad y claridad general del tono y la textura de la piel.",
+            tip: "SPF diario, limpieza suave y un retinoide simple suelen dar las mayores mejoras de claridad."
+          },
+          underEyeQuality: {
+            desc: "Ojeras, hundimiento e hinchazón bajo los ojos.",
+            tip: "Prioriza sueño constante, reduce sal/alcohol antes de escanear y considera cuidados con cafeína."
+          },
+          acneScarring: {
+            desc: "Impacto del acné activo y las cicatrices residuales en la calidad de piel.",
+            tip: "Rutina antiacné constante y no manipular granos; tratamientos profesionales ayudan en marcas persistentes."
+          },
+          poreVisibility: {
+            desc: "Qué tan visibles son los poros en la zona T y las mejillas.",
+            tip: "Niacinamida/retinoides e hidratantes no comedogénicos; fotografía con luz difusa para comparar."
+          },
+          lipHealth: {
+            desc: "Textura, sequedad y aspecto saludable de los labios.",
+            tip: "Bálsamo + SPF labial diario e hidratación para labios más suaves entre escaneos."
+          },
+          hairDensity: {
+            desc: "Densidad y cobertura percibida del cabello en cuero cabelludo y línea capilar.",
+            tip: "Sigue con fotos cenitales consistentes; actúa pronto si el adelgazamiento progresa."
+          }
         },
         plan: {
           jawlineDefinition: { title: "Mejorar definición mandibular", desc: "Reducir grasa corporal, postura lingual y entrenamiento de maseteros." },

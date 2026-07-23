@@ -224,6 +224,8 @@
 
   function renderMetricsTabs(container, analysis) {
     var pillars = ["harmony", "angularity", "dimorphism", "features"];
+    var chevron =
+      '<svg class="dashboard-metrics__chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
     var html = '<div class="dashboard-tabs">';
     html += '<div class="dashboard-tabs__nav" role="tablist">';
     pillars.forEach(function (pillar, i) {
@@ -235,16 +237,34 @@
       var data = analysis.pillars[pillar];
       html += '<div class="dashboard-tabs__panel' + (i === 0 ? ' is-active' : '') + '" role="tabpanel" data-panel="' + pillar + '"' + (i === 0 ? '' : ' hidden') + '>';
       html += '<div class="dashboard-metrics">';
-      data.metrics.forEach(function (metric) {
+      data.metrics.forEach(function (metric, metricIndex) {
+        var name = t("dashboard.metrics." + metric.key);
+        var desc = t("dashboard.metricDetails." + metric.key + ".desc");
+        var tip = t("dashboard.metricDetails." + metric.key + ".tip");
+        var panelId = "metric-detail-" + pillar + "-" + metricIndex;
         html +=
-          '<div class="dashboard-metrics__row dashboard-metrics__row--' + metric.status + '">' +
-            '<div class="dashboard-metrics__info">' +
-              '<span class="dashboard-metrics__name">' + t("dashboard.metrics." + metric.key) + '</span>' +
-              '<span class="dashboard-metrics__ideal">' + t("dashboard.ideal") + ': ' + metric.ideal + '</span>' +
-            '</div>' +
-            '<div class="dashboard-metrics__value-wrap">' +
-              '<strong class="dashboard-metrics__value">' + metric.value + '</strong>' +
-              '<span class="dashboard-metrics__badge">' + statusLabel(metric.status) + '</span>' +
+          '<div class="dashboard-metrics__card dashboard-metrics__card--' + metric.status + '">' +
+            '<button type="button" class="dashboard-metrics__toggle" aria-expanded="false" aria-controls="' + panelId + '">' +
+              '<span class="dashboard-metrics__summary">' +
+                '<span class="dashboard-metrics__info">' +
+                  '<span class="dashboard-metrics__name">' + name + '</span>' +
+                  '<span class="dashboard-metrics__ideal">' + t("dashboard.ideal") + ': ' + metric.ideal + '</span>' +
+                '</span>' +
+                '<span class="dashboard-metrics__value-wrap">' +
+                  '<strong class="dashboard-metrics__value">' + metric.value + '</strong>' +
+                  '<span class="dashboard-metrics__badge">' + statusLabel(metric.status) + '</span>' +
+                '</span>' +
+                chevron +
+              '</span>' +
+            '</button>' +
+            '<div class="dashboard-metrics__detail" id="' + panelId + '" hidden>' +
+              '<p class="dashboard-metrics__desc">' + desc + '</p>' +
+              '<dl class="dashboard-metrics__stats">' +
+                '<div><dt>' + t("dashboard.yourResult") + '</dt><dd>' + metric.value + '</dd></div>' +
+                '<div><dt>' + t("dashboard.ideal") + '</dt><dd>' + metric.ideal + '</dd></div>' +
+                '<div><dt>' + t("dashboard.statusLabel") + '</dt><dd>' + statusLabel(metric.status) + '</dd></div>' +
+              '</dl>' +
+              '<p class="dashboard-metrics__tip"><span>' + t("dashboard.howToImprove") + '</span> ' + tip + '</p>' +
             '</div>' +
           '</div>';
       });
@@ -266,6 +286,27 @@
           panel.classList.toggle("is-active", active);
           panel.hidden = !active;
         });
+      });
+    });
+
+    container.querySelectorAll(".dashboard-metrics__toggle").forEach(function (toggle) {
+      toggle.addEventListener("click", function () {
+        var card = toggle.closest(".dashboard-metrics__card");
+        var detail = card.querySelector(".dashboard-metrics__detail");
+        var willOpen = toggle.getAttribute("aria-expanded") !== "true";
+
+        container.querySelectorAll(".dashboard-metrics__card.is-open").forEach(function (openCard) {
+          if (openCard === card) return;
+          openCard.classList.remove("is-open");
+          var openToggle = openCard.querySelector(".dashboard-metrics__toggle");
+          var openDetail = openCard.querySelector(".dashboard-metrics__detail");
+          if (openToggle) openToggle.setAttribute("aria-expanded", "false");
+          if (openDetail) openDetail.hidden = true;
+        });
+
+        card.classList.toggle("is-open", willOpen);
+        toggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        detail.hidden = !willOpen;
       });
     });
   }
