@@ -78,6 +78,9 @@
     this.video = options.video;
     this.overlay = options.overlay;
     this.statusEl = options.statusEl;
+    this.hudEl = options.hudEl;
+    this.hudIconEl = options.hudIconEl;
+    this.guideEl = options.guideEl;
     this.previewEl = options.previewEl;
     this.captureBtn = options.captureBtn;
     this.galleryBtn = options.galleryBtn;
@@ -88,19 +91,33 @@
     this.onReadyChange = options.onReadyChange || function () {};
   }
 
-  CameraCapture.prototype.setStatus = function (key, fallback, state) {
+  CameraCapture.prototype.setStatus = function (key, fallback, state, reason) {
     this.lastStatusKey = key;
     this.lastStatusFallback = fallback;
+    this.lastReason = reason || this.lastReason || "searching";
     var text = t(key, fallback);
     if (this.statusEl) {
       this.statusEl.textContent = text;
       this.statusEl.setAttribute("data-camera-status", state || "default");
     }
-    this.lastStatus = state || "default";
+    if (this.guideEl) {
+      this.guideEl.textContent = text;
+    }
     if (this.overlay) {
       this.overlay.classList.toggle("is-aligned", state === "aligned");
       this.overlay.classList.toggle("is-warning", state === "warning");
+      if (reason) {
+        this.overlay.setAttribute("data-hint", reason);
+      }
     }
+    if (this.hudEl) {
+      this.hudEl.hidden = false;
+      this.hudEl.setAttribute("data-hint", this.lastReason);
+    }
+    if (this.hudIconEl) {
+      this.hudIconEl.setAttribute("data-hint", this.lastReason);
+    }
+    this.lastStatus = state || "default";
   };
 
   CameraCapture.prototype.loadModels = function () {
@@ -236,7 +253,7 @@
       capturing: ["onboarding.camera.capturing", "Capturing…", "aligned"]
     };
     var entry = map[reason] || map.searching;
-    this.setStatus(entry[0], entry[1], entry[2]);
+    this.setStatus(entry[0], entry[1], entry[2], reason);
   };
 
   CameraCapture.prototype.detectOnce = function () {
@@ -269,6 +286,7 @@
         self.scheduleDetect();
       })
       .catch(function () {
+        self.updateStatusForReason("searching");
         self.scheduleDetect();
       });
   };
@@ -279,9 +297,11 @@
       this.zone.classList.add("is-scanning");
       this.zone.classList.remove("has-preview");
       document.body.classList.add("onboarding-scan-active");
+      if (this.hudEl) this.hudEl.hidden = false;
     } else {
       this.zone.classList.remove("is-scanning", "is-capturing");
       document.body.classList.remove("onboarding-scan-active");
+      if (this.hudEl) this.hudEl.hidden = true;
     }
   };
 
@@ -394,7 +414,7 @@
     var self = this;
     this.startCamera().then(function () {
       self.detecting = true;
-      self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default");
+      self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default", "searching");
       self.scheduleDetect();
     }).catch(function () {
       self.setStatus("onboarding.camera.denied", "Camera unavailable — use gallery instead", "warning");
@@ -405,7 +425,7 @@
     var self = this;
     document.addEventListener("langchange", function () {
       if (self.lastStatusKey) {
-        self.setStatus(self.lastStatusKey, self.lastStatusFallback, self.lastStatus);
+        self.setStatus(self.lastStatusKey, self.lastStatusFallback, self.lastStatus, self.lastReason);
       }
     });
     if (this.captureBtn) {
@@ -451,7 +471,7 @@
     var self = this;
     this.bindEvents();
     this.zone.classList.add("onboarding__photo-zone--camera");
-    this.setStatus("onboarding.camera.loading", "Starting camera…", "default");
+    this.setStatus("onboarding.camera.loading", "Starting camera…", "default", "searching");
 
     return this.loadModels().then(function () {
       return self.startCamera();
@@ -459,7 +479,7 @@
       self.setScanMode(true);
       self.detecting = true;
       self.onReadyChange(true);
-      self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default");
+      self.setStatus("onboarding.camera.searching", "Position your face in the frame", "default", "searching");
       self.scheduleDetect();
     }).catch(function () {
       self.setScanMode(false);

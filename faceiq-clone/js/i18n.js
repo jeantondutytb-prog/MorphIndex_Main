@@ -204,8 +204,8 @@
         camera: {
           loading: "Starting camera…",
           searching: "Position your face in the frame",
-          closer: "Move a little closer",
-          farther: "Move back slightly",
+          closer: "Move closer",
+          farther: "Move back",
           center: "Center your face in the oval",
           angleFront: "Look straight at the camera",
           angleSide: "Turn your head to show your profile",
@@ -493,8 +493,8 @@
         camera: {
           loading: "Démarrage de la caméra…",
           searching: "Placez votre visage dans le cadre",
-          closer: "Rapprochez-vous un peu",
-          farther: "Éloignez-vous légèrement",
+          closer: "Avancez-vous",
+          farther: "Reculez",
           center: "Centrez votre visage dans l'ovale",
           angleFront: "Regardez droit la caméra",
           angleSide: "Tournez la tête pour montrer votre profil",
@@ -782,8 +782,8 @@
         camera: {
           loading: "Iniciando cámara…",
           searching: "Coloca tu rostro en el marco",
-          closer: "Acércate un poco",
-          farther: "Aléjate un poco",
+          closer: "Acércate",
+          farther: "Aléjate",
           center: "Centra tu rostro en el óvalo",
           angleFront: "Mira directamente a la cámara",
           angleSide: "Gira la cabeza para mostrar tu perfil",
