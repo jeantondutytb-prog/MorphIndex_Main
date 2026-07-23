@@ -1915,11 +1915,9 @@ button {
 .onboarding__photo-zone.is-scanning {
   position: fixed;
   z-index: 30;
-  top: 3.25rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
   max-width: none;
   max-height: none;
   margin: 0;
@@ -1952,6 +1950,37 @@ body.onboarding-scan-active {
   overflow: hidden;
 }
 
+body.onboarding-scan-active .auth-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-top: calc(0.85rem + env(safe-area-inset-top));
+  padding-bottom: 2.5rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.28) 55%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+body.onboarding-scan-active .auth-header > * {
+  pointer-events: auto;
+}
+
+body.onboarding-scan-active .auth-header__back {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+body.onboarding-scan-active .auth-header__back:hover {
+  color: #fff;
+}
+
+body.onboarding-scan-active .theme-toggle,
+body.onboarding-scan-active .lang-switcher__toggle {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 body.onboarding-scan-active .auth {
   align-items: stretch;
   justify-content: flex-start;
@@ -1961,7 +1990,7 @@ body.onboarding-scan-active .auth {
 body.onboarding-scan-active .auth__card {
   max-width: none;
   width: 100%;
-  min-height: calc(100dvh - 3.25rem);
+  min-height: 100dvh;
 }
 
 body.onboarding-scan-active .auth__logo,
@@ -1980,9 +2009,9 @@ body.onboarding-scan-active .onboarding__photo-actions {
   bottom: 0;
   z-index: 40;
   margin: 0;
-  padding: 0.75rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 38%, rgba(0, 0, 0, 0.92) 100%);
-  gap: 0.5rem;
+  padding: 0.5rem 0.85rem calc(0.55rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 30%, rgba(0, 0, 0, 0.88) 100%);
+  gap: 0.4rem;
 }
 
 body.onboarding-scan-active .onboarding__photo-actions .btn--ghost {
@@ -1997,42 +2026,27 @@ body.onboarding-scan-active .onboarding__photo-actions .btn--ghost:hover {
 }
 
 body.onboarding-scan-active .onboarding__camera-status {
-  bottom: calc(6.75rem + env(safe-area-inset-bottom));
+  bottom: calc(5.35rem + env(safe-area-inset-bottom));
   font-size: 0.8125rem;
   padding: 0.55rem 1rem;
 }
 
+body.onboarding-scan-active .onboarding__camera-overlay {
+  padding: calc(3.5rem + env(safe-area-inset-top)) 1rem 5.5rem;
+}
+
 body.onboarding-scan-active .onboarding__camera-overlay .onboarding__face-outline {
-  width: min(72vw, 15rem);
-  max-width: 72%;
+  width: min(84vw, 24rem);
+  max-width: 84%;
 }
 
 body.onboarding-scan-active .onboarding__camera-overlay--side .onboarding__face-outline {
-  width: min(68vw, 14rem);
-  max-width: 68%;
+  width: min(80vw, 22rem);
+  max-width: 80%;
 }
 
 body.onboarding-scan-active .onboarding__camera-guide {
-  font-size: 0.875rem;
-}
-
-@media (min-width: 768px) {
-  .onboarding__photo-zone.is-scanning {
-    top: 3.5rem;
-    left: 50%;
-    right: auto;
-    bottom: 0;
-    width: min(100%, 30rem);
-    transform: translateX(-50%);
-    border-radius: 0;
-  }
-
-  body.onboarding-scan-active .onboarding__photo-actions {
-    left: 50%;
-    right: auto;
-    width: min(100%, 30rem);
-    transform: translateX(-50%);
-  }
+  font-size: 0.9rem;
 }
 
 .onboarding__camera-video {
