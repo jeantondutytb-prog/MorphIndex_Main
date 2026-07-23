@@ -121,6 +121,7 @@
         welcome: "Welcome back",
         subtitle: "You're signed in. Your analysis dashboard will be available here soon.",
         startAnalysis: "Start your analysis",
+        viewResults: "View my results",
         backHome: "Back to home",
         signOut: "Sign out",
         meta: {
@@ -330,6 +331,7 @@
         welcome: "Bon retour",
         subtitle: "Vous êtes connecté. Votre tableau de bord d'analyse sera bientôt disponible ici.",
         startAnalysis: "Commencer votre analyse",
+        viewResults: "Voir mes résultats",
         backHome: "Retour à l'accueil",
         signOut: "Se déconnecter",
         meta: {
@@ -539,6 +541,7 @@
         welcome: "Bienvenido de nuevo",
         subtitle: "Has iniciado sesión. Tu panel de análisis estará disponible aquí pronto.",
         startAnalysis: "Comenzar tu análisis",
+        viewResults: "Ver mis resultados",
         backHome: "Volver al inicio",
         signOut: "Cerrar sesión",
         meta: {

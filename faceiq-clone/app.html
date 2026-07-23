@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260723p">
+  <link rel="stylesheet" href="css/styles.css?v=20260723q">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -19,7 +19,7 @@
     })();
   </script>
 </head>
-<body class="auth-page app-page" data-auth-page="app">
+<body class="auth-page app-page app-page--booting" data-auth-page="app">
 
   <header class="auth-header">
     <a href="/" class="auth-header__back" data-i18n="auth.back">Back to home</a>
@@ -53,17 +53,17 @@
       <p class="auth__subtitle" data-i18n="app.subtitle">You're signed in. Your analysis dashboard will be available here soon.</p>
 
       <div class="auth__actions">
-        <a href="/onboarding" class="btn btn--full btn--lg" data-i18n="app.startAnalysis">Start your analysis</a>
+        <a href="/onboarding/results" class="btn btn--full btn--lg" id="app-start-analysis" data-i18n="app.viewResults">View my results</a>
         <button type="button" class="btn btn--ghost btn--full" id="app-signout" data-i18n="app.signOut">Sign out</button>
       </div>
     </div>
   </main>
 
-  <script src="js/config.js?v=20260723p"></script>
+  <script src="js/config.js?v=20260723q"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="js/i18n.js?v=20260723p"></script>
+  <script src="js/i18n.js?v=20260723q"></script>
   <script src="js/theme.js"></script>
-  <script src="js/app.js?v=20260723p"></script>
+  <script src="js/app.js?v=20260723q"></script>
 </body>
 </html>

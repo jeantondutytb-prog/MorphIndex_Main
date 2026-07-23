@@ -92,7 +92,7 @@
       }
 
       var user = session.user;
-      if (hasActiveSubscription(user)) {
+      if (hasActiveSubscription(user) && hasCompletedScan(user)) {
         window.location.href = "/app";
         return null;
       }

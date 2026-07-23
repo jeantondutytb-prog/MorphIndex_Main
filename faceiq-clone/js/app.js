@@ -1,9 +1,14 @@
 (function () {
   var emailEl = document.getElementById("app-email");
   var signOutBtn = document.getElementById("app-signout");
+  var startAnalysisEl = document.getElementById("app-start-analysis");
 
   function redirectToLogin() {
     window.location.href = "/login";
+  }
+
+  function setBooting(isBooting) {
+    document.body.classList.toggle("app-page--booting", isBooting);
   }
 
   function initSupabase() {
@@ -53,8 +58,12 @@
   }
 
   function bootApp() {
+    setBooting(true);
     var client = initSupabase();
-    if (!client) return;
+    if (!client) {
+      setBooting(false);
+      return;
+    }
 
     client.auth.getSession().then(function (result) {
       if (!result.data.session) {
@@ -72,7 +81,12 @@
         return;
       }
 
+      if (startAnalysisEl) {
+        startAnalysisEl.href = "/onboarding/results";
+      }
+
       showUser(result.data.session);
+      setBooting(false);
     });
 
     if (signOutBtn) {
