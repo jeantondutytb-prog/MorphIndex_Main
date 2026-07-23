@@ -13,10 +13,10 @@ cd faceiq-clone
 PORT=8080 ./serve.sh
 ```
 
-`serve.sh` prefers `python3 -m http.server`, falling back to `python` then `npx serve`. See `README.md` for the full documented flow.
+`serve.sh` runs `serve.py` (a `SimpleHTTPRequestHandler` subclass) under `python3`/`python`, falling back to `npx serve`. See `README.md` for the full documented flow.
 
 ### Non-obvious caveats
-- The local static server (`python -m http.server`) does **not** do clean-URL rewrites. In-page CTAs link to `/register` (no extension), which returns **404 locally**. Navigate to `http://localhost:8080/register.html` explicitly when testing. Production (Vercel) handles the clean URL, so this is a local-only quirk — not a bug to fix.
+- In-page CTAs link to clean URLs (e.g. `/register`, no extension) because `vercel.json` sets `cleanUrls: true`. `serve.py` emulates this locally by serving `register.html` for `/register`, so clean URLs work both locally and on Vercel. (A plain `python -m http.server` would 404 on `/register` — always run via `serve.sh`/`serve.py`.)
 - The register form and social-login buttons are UI-only (client-side validation via `js/auth.js`); submitting does not hit any backend, so "Continue" simply stays on the page.
 - Theme (`js/theme.js`) and i18n (`js/i18n.js`) run entirely client-side and persist via `localStorage`. Toggling dark mode may briefly show a loading/transition spinner before the dark page renders.
 
