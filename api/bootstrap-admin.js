@@ -1,5 +1,5 @@
-import { createOrUpdateAdminUser } from "./lib/supabase-admin.js";
-import { applyCors, readJsonBody, sendJson } from "./lib/http.js";
+import { createOrUpdateAdminUser } from "../lib/supabase-admin.js";
+import { applyCors, readJsonBody, sendJson } from "../lib/http.js";
 
 export const config = {
   api: {
