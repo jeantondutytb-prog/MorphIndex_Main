@@ -28,5 +28,3 @@ Puis ouvrez **http://localhost:8080** dans votre navigateur.
 3. Clique **Deploy** — tu obtiens une URL du type `morphindex-main.vercel.app`
 4. Dans le projet Vercel : **Settings → Domains** → ajoute ton nom de domaine
 5. Chez ton registrar (OVH, Namecheap, etc.), configure les DNS indiqués par Vercel (souvent un CNAME `www` → `cname.vercel-dns.com`, ou les nameservers Vercel)
-
-GitHub Pages reste en place en secours ; une fois Vercel actif avec ton domaine, c'est Vercel qui servira le site.
