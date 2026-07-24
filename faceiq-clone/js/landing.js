@@ -1,14 +1,14 @@
 (function () {
-  var header = document.querySelector(".landing-page .nav");
+  var header = document.querySelector(".marketing .nav");
   if (header) {
     var lastY = 0;
     var ticking = false;
 
     function onScroll() {
       var y = window.scrollY || document.documentElement.scrollTop;
-      if (y > 80 && y > lastY + 6) {
+      if (y > 100 && y > lastY + 8) {
         header.classList.add("is-hidden");
-      } else if (y < lastY - 6 || y <= 80) {
+      } else if (y < lastY - 8 || y <= 100) {
         header.classList.remove("is-hidden");
       }
       lastY = y;
