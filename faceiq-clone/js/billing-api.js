@@ -67,9 +67,38 @@
     });
   }
 
+  function syncSubscription(session) {
+    var token = getAccessToken(session);
+    if (!token) {
+      return Promise.resolve({ ok: false, error: "Not authenticated" });
+    }
+
+    return fetch("/api/stripe?sync=1", {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }).then(function (response) {
+      return response.json().then(function (data) {
+        return { ok: response.ok, status: response.status, data: data };
+      });
+    }).then(function (result) {
+      if (!result.ok) {
+        return {
+          ok: false,
+          error: (result.data && result.data.error) || "Sync failed",
+          status: result.status
+        };
+      }
+      return { ok: true, active: !!result.data.active };
+    }).catch(function () {
+      return { ok: false, error: "Network error" };
+    });
+  }
+
   window.BillingApi = {
     createCheckoutSession: createCheckoutSession,
     verifyCheckout: verifyCheckout,
+    syncSubscription: syncSubscription,
     getPaymentLink: function (plan, options) {
       options = options || {};
       var base = plan === "monthly" ? PAYMENT_LINKS.monthly : PAYMENT_LINKS.yearly;

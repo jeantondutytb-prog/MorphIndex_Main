@@ -98,7 +98,7 @@
   <script src="../js/dashboard.js?v=20260725u"></script>
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
-  <script src="../js/billing-api.js?v=20260725v"></script>
+  <script src="../js/billing-api.js?v=20260726b"></script>
   <script src="../js/onboarding.js?v=20260725s"></script>
   <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
@@ -197,13 +197,37 @@
         });
       }
 
+      function syncAndWaitForSubscription(client, ctx) {
+        var syncPromise =
+          window.BillingApi && window.BillingApi.syncSubscription
+            ? window.BillingApi.syncSubscription(ctx.session)
+            : Promise.resolve({ ok: false });
+
+        return syncPromise.then(function (syncResult) {
+          if (syncResult.ok && syncResult.active) {
+            return true;
+          }
+          return waitForActiveSubscription(client).then(function (active) {
+            if (active) {
+              return true;
+            }
+            if (!window.BillingApi || !window.BillingApi.syncSubscription) {
+              return false;
+            }
+            return window.BillingApi.syncSubscription(ctx.session).then(function (retry) {
+              return !!(retry.ok && retry.active);
+            });
+          });
+        });
+      }
+
       function handlePaymentLinkReturn(client, ctx, state) {
         if (subtitleEl) {
           subtitleEl.textContent = t("onboarding.paywall.verifyingSubscription");
         }
         paywall.hidden = true;
 
-        return waitForActiveSubscription(client).then(function (active) {
+        return syncAndWaitForSubscription(client, ctx).then(function (active) {
           window.history.replaceState({}, "", "/onboarding/results");
           try {
             sessionStorage.removeItem("morphindex-checkout-pending");
@@ -306,20 +330,25 @@
         }
 
         if (checkoutStatus === "success") {
-          if (checkoutSessionId && window.BillingApi) {
-            if (subtitleEl) {
-              subtitleEl.textContent = t("onboarding.paywall.verifying");
-            }
-            window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true, {
-              compact: true,
-              frontPhoto: state.frontPhoto
-            });
+          if (subtitleEl) {
+            subtitleEl.textContent = t("onboarding.paywall.verifying");
+          }
+          window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true, {
+            compact: true,
+            frontPhoto: state.frontPhoto
+          });
 
+          if (checkoutSessionId && window.BillingApi) {
             window.BillingApi.verifyCheckout(ctx.session, checkoutSessionId).then(function (result) {
               if (result.ok && result.active) {
                 return finishSubscriptionFlow(client, ctx, state);
               }
-              renderLockedResults(t("onboarding.paywall.checkoutError"));
+              return syncAndWaitForSubscription(client, ctx).then(function (active) {
+                if (active) {
+                  return finishSubscriptionFlow(client, ctx, state);
+                }
+                renderLockedResults(t("onboarding.paywall.checkoutError"));
+              });
             }).catch(function () {
               renderLockedResults(t("onboarding.paywall.checkoutError"));
             });
@@ -358,23 +387,36 @@
             return;
           }
 
-          var paymentUrl = window.BillingApi.getPaymentLink(getSelectedPlan(), {
-            email: checkoutCtx.user.email,
-            userId: checkoutCtx.user.id
-          });
+          subscribeBtn.disabled = true;
+          showPaywallError("");
+          if (subtitleEl) {
+            subtitleEl.textContent = t("onboarding.paywall.checkoutLoading");
+          }
 
-          if (!paymentUrl) {
+          window.BillingApi.createCheckoutSession(checkoutCtx.session, getSelectedPlan()).then(function (result) {
+            if (!result.ok || !result.url) {
+              subscribeBtn.disabled = false;
+              showPaywallError(result.error || t("onboarding.paywall.checkoutError"));
+              if (subtitleEl) {
+                subtitleEl.textContent = t("onboarding.results.subtitle");
+              }
+              return;
+            }
+
+            markWelcomePending();
+            try {
+              sessionStorage.setItem("morphindex-checkout-pending", "1");
+            } catch (e) {
+              // Ignore.
+            }
+            window.location.href = result.url;
+          }).catch(function () {
+            subscribeBtn.disabled = false;
             showPaywallError(t("onboarding.paywall.checkoutError"));
-            return;
-          }
-
-          markWelcomePending();
-          try {
-            sessionStorage.setItem("morphindex-checkout-pending", "1");
-          } catch (e) {
-            // Ignore.
-          }
-          window.location.href = paymentUrl;
+            if (subtitleEl) {
+              subtitleEl.textContent = t("onboarding.results.subtitle");
+            }
+          });
         });
         });
       });

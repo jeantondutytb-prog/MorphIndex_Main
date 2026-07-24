@@ -187,6 +187,105 @@ async function handleWebhook(request, response) {
   }
 }
 
+async function handleSyncSubscription(request, response) {
+  const auth = await requireUser(request);
+  if (auth.error) {
+    return sendJson(response, auth.status, { error: auth.error });
+  }
+
+  const stripe = getStripe();
+  if (!stripe) {
+    return sendJson(response, 503, { error: "Stripe is not configured" });
+  }
+
+  try {
+    const userId = auth.user.id;
+    const email = auth.user.email || "";
+
+    let matchedSession = null;
+    try {
+      const search = await stripe.checkout.sessions.search({
+        query: "client_reference_id:'" + userId + "' AND status:'complete'",
+        limit: 5
+      });
+      matchedSession =
+        search.data.find(function (session) {
+          return session.payment_status === "paid" || session.status === "complete";
+        }) || null;
+    } catch (searchError) {
+      // Search API may be unavailable; fall back to customer lookup below.
+    }
+
+    if (matchedSession) {
+      const subscriptionId =
+        typeof matchedSession.subscription === "string"
+          ? matchedSession.subscription
+          : matchedSession.subscription && matchedSession.subscription.id;
+
+      let subscription = null;
+      if (subscriptionId) {
+        subscription = await stripe.subscriptions.retrieve(subscriptionId);
+      }
+
+      const status = subscription ? subscription.status : "active";
+      if (!subscription || isSubscriptionActive(status)) {
+        const update = await activateSubscription(userId, {
+          customerId:
+            typeof matchedSession.customer === "string"
+              ? matchedSession.customer
+              : matchedSession.customer && matchedSession.customer.id,
+          subscriptionId: subscriptionId,
+          status: status,
+          plan: matchedSession.metadata && matchedSession.metadata.plan ? matchedSession.metadata.plan : null
+        });
+
+        if (update.error) {
+          return sendJson(response, update.status || 500, { error: update.error });
+        }
+
+        return sendJson(response, 200, { active: true, status: status });
+      }
+    }
+
+    if (email) {
+      const customers = await stripe.customers.list({ email: email, limit: 3 });
+      for (const customer of customers.data) {
+        const subscriptions = await stripe.subscriptions.list({
+          customer: customer.id,
+          status: "all",
+          limit: 5
+        });
+
+        const activeSub = subscriptions.data.find(function (sub) {
+          return isSubscriptionActive(sub.status);
+        });
+
+        if (activeSub) {
+          const update = await activateSubscription(userId, {
+            customerId: customer.id,
+            subscriptionId: activeSub.id,
+            status: activeSub.status,
+            plan: activeSub.metadata && activeSub.metadata.plan ? activeSub.metadata.plan : null
+          });
+
+          if (update.error) {
+            return sendJson(response, update.status || 500, { error: update.error });
+          }
+
+          return sendJson(response, 200, { active: true, status: activeSub.status });
+        }
+      }
+    }
+
+    return sendJson(response, 200, { active: false });
+  } catch (error) {
+    return sendJson(response, 500, {
+      error: "Failed to sync subscription",
+      detail: error && error.message ? error.message : null
+    });
+  }
+}
+
 async function handleVerifyCheckout(request, response) {
   const auth = await requireUser(request);
   if (auth.error) {
@@ -324,6 +423,9 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "GET") {
+    if (getQueryParam(request, "sync") === "1") {
+      return handleSyncSubscription(request, response);
+    }
     return handleVerifyCheckout(request, response);
   }
 
