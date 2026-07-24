@@ -652,8 +652,9 @@
         results: {
           eyebrow: "Analysis complete",
           title: "Your results are ready",
-          subtitle: "Subscribe to unlock your full analysis, personalized plan, and progress tracking.",
+          subtitle: "Here's a preview — subscribe to unlock the full breakdown and your plan.",
           overall: "Overall score",
+          teaser: "Your detailed breakdown is below",
           metric1: "Facial thirds ratio",
           metric2: "Jaw angle",
           metric3: "Symmetry deviation",
@@ -1336,8 +1337,9 @@
         results: {
           eyebrow: "Analyse terminée",
           title: "Vos résultats sont prêts",
-          subtitle: "Abonnez-vous pour débloquer votre analyse complète, votre plan personnalisé et le suivi de vos progrès.",
+          subtitle: "Voici un aperçu — abonnez-vous pour débloquer l'analyse complète et votre plan.",
           overall: "Score global",
+          teaser: "Votre analyse détaillée est ci-dessous",
           metric1: "Ratio des tiers faciaux",
           metric2: "Angle de la mâchoire",
           metric3: "Déviation de symétrie",
@@ -2020,8 +2022,9 @@
         results: {
           eyebrow: "Análisis completo",
           title: "Tus resultados están listos",
-          subtitle: "Suscríbete para desbloquear tu análisis completo, plan personalizado y seguimiento.",
+          subtitle: "Aquí tienes un adelanto — suscríbete para desbloquear el análisis completo y tu plan.",
           overall: "Puntuación global",
+          teaser: "Tu desglose detallado está abajo",
           metric1: "Ratio de tercios faciales",
           metric2: "Ángulo de mandíbula",
           metric3: "Desviación de simetría",

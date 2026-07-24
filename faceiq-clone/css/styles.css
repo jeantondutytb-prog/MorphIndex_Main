@@ -2720,6 +2720,7 @@ body.onboarding-scan-active .onboarding__camera-guide {
   padding: 1.5rem;
   background: var(--card-muted);
   overflow: hidden;
+  margin-bottom: 0.25rem;
 }
 
 .results-dashboard__locked-content {
