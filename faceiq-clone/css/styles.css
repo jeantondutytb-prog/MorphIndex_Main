@@ -1576,8 +1576,14 @@ button {
   opacity: 0.9;
 }
 
+.footer__brand .logo--footer {
+  width: auto;
+  height: 4.5rem;
+  opacity: 1;
+}
+
 [data-theme="dark"] {
-  .footer__brand img {
+  .footer__brand img:not(.logo--footer) {
     filter: invert(1);
   }
 }
