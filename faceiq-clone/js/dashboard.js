@@ -71,7 +71,25 @@
     return actionKey;
   }
 
+  function findMetric(analysis, key) {
+    var pillars = ["harmony", "angularity", "dimorphism", "features"];
+    for (var i = 0; i < pillars.length; i++) {
+      var data = analysis.pillars[pillars[i]];
+      if (!data || !data.metrics) continue;
+      for (var j = 0; j < data.metrics.length; j++) {
+        if (data.metrics[j].key === key) {
+          return { pillar: pillars[i], metric: data.metrics[j] };
+        }
+      }
+    }
+    return null;
+  }
+
   function renderNextStep(container, ctx) {
+    renderFocusCard(container, ctx);
+  }
+
+  function renderFocusCard(container, ctx) {
     if (!container || !ctx || !ctx.analysis) return;
     var analysis = ctx.analysis;
     var userId = ctx.user && ctx.user.id;
@@ -94,51 +112,20 @@
     var actionProgress = (journey && journey.actionProgress) || {};
     var phaseActions =
       protocol && protocols ? protocols.listPhaseActions(protocol, phaseIndex) : [];
-    var phaseDone = phaseActions.filter(function (key) {
-      return !!actionProgress[key];
-    }).length;
-    var currentWeek =
-      protocol && journey && protocols ? protocols.getCurrentWeek(journey, protocol) : 1;
-    var totalWeeks = protocol ? protocol.totalWeeks : 12;
     var nextActionKey = phaseActions.find(function (key) {
       return !actionProgress[key];
     });
     var nextActionLabel = nextActionKey
       ? getNextActionLabel(focusKey, nextActionKey)
       : t("dashboard.nextStep.allDone");
-    var progressPct = phaseActions.length
-      ? Math.round((phaseDone / phaseActions.length) * 100)
-      : 0;
 
     container.hidden = false;
     container.innerHTML =
-      '<section class="dashboard-next-step">' +
-        '<div class="dashboard-next-step__head">' +
-          '<p class="dashboard-next-step__eyebrow">' + t("dashboard.nextStep.eyebrow") + "</p>" +
-          '<span class="dashboard-next-step__week">' +
-            t("dashboard.journey.weekOf")
-              .replace("{current}", currentWeek)
-              .replace("{total}", totalWeeks) +
-          "</span>" +
-        "</div>" +
-        '<h2 class="dashboard-next-step__title">' +
-          t("dashboard.plan." + focusItem.key + ".title") +
-        "</h2>" +
-        '<p class="dashboard-next-step__action">' +
-          '<span class="dashboard-next-step__action-label">' + t("dashboard.nextStep.doNext") + "</span> " +
-          nextActionLabel +
-        "</p>" +
-        '<div class="dashboard-next-step__bar" aria-hidden="true">' +
-          '<span class="dashboard-next-step__bar-fill" style="width:' + progressPct + '%"></span>' +
-        "</div>" +
-        '<p class="dashboard-next-step__progress">' +
-          t("dashboard.journey.phaseProgress")
-            .replace("{done}", phaseDone)
-            .replace("{total}", phaseActions.length || 0) +
-        "</p>" +
-        '<a href="/app/plan" class="btn btn--full btn--lg dashboard-next-step__cta">' +
-          t("dashboard.nextStep.cta") +
-        "</a>" +
+      '<section class="focus-card">' +
+        '<p class="focus-card__label">' + t("dashboard.focus.recommended") + "</p>" +
+        '<h2 class="focus-card__title">' + t("dashboard.plan." + focusItem.key + ".title") + "</h2>" +
+        '<p class="focus-card__action">' + nextActionLabel + "</p>" +
+        '<a href="/app/plan" class="focus-card__link">' + t("dashboard.focus.viewPlan") + "</a>" +
       "</section>";
   }
 
@@ -217,12 +204,29 @@
   }
 
   function renderHomeLink(container) {
+    renderQuickNav(container);
+  }
+
+  function renderQuickNav(container) {
     if (!container) return;
     container.hidden = false;
     container.innerHTML =
-      '<section class="dashboard-tools" aria-label="' + t("dashboard.tools.label") + '">' +
-        '<a href="/app/potential" class="btn btn--full dashboard-tools__potential">' +
-          t("dashboard.tools.potential") +
+      '<section class="quick-nav" aria-label="' + t("dashboard.quickNav.label") + '">' +
+        '<a href="/app/metrics" class="quick-nav__item">' +
+          '<span class="quick-nav__title">' + t("dashboard.quickNav.metrics") + "</span>" +
+          '<span class="quick-nav__desc">' + t("dashboard.quickNav.metricsDesc") + "</span>" +
+        "</a>" +
+        '<a href="/app/plan" class="quick-nav__item">' +
+          '<span class="quick-nav__title">' + t("dashboard.quickNav.plan") + "</span>" +
+          '<span class="quick-nav__desc">' + t("dashboard.quickNav.planDesc") + "</span>" +
+        "</a>" +
+        '<a href="/app/potential" class="quick-nav__item">' +
+          '<span class="quick-nav__title">' + t("dashboard.quickNav.potential") + "</span>" +
+          '<span class="quick-nav__desc">' + t("dashboard.quickNav.potentialDesc") + "</span>" +
+        "</a>" +
+        '<a href="/app/chat" class="quick-nav__item">' +
+          '<span class="quick-nav__title">' + t("dashboard.quickNav.coach") + "</span>" +
+          '<span class="quick-nav__desc">' + t("dashboard.quickNav.coachDesc") + "</span>" +
         "</a>" +
       "</section>";
   }
@@ -325,21 +329,126 @@
       "</section>";
   }
 
-  function renderScoreHero(container, analysis) {
+  function renderScoreHero(container, analysis, state) {
+    renderScanSummary(container, analysis, state);
+  }
+
+  function renderScanSummary(container, analysis, state) {
+    if (!container || !analysis) return;
+    state = state || {};
     var scores = analysis.scores;
+    var gain = roundScore(analysis.potential.overall - scores.overall);
+    var photoHtml = state.frontPhoto
+      ? '<div class="scan-summary__photo">' +
+          '<img src="' + state.frontPhoto + '" alt="">' +
+          '<span class="scan-summary__photo-label">' + t("dashboard.photoFront") + "</span>" +
+        "</div>"
+      : "";
+
     container.innerHTML =
-      '<div class="dashboard-hero">' +
-        '<div class="dashboard-hero__main">' +
-          '<span class="dashboard-hero__label" data-i18n="dashboard.overall">' + t("dashboard.overall") + '</span>' +
-          '<div class="dashboard-hero__score">' + scores.overall + '<small>/10</small></div>' +
-          '<span class="dashboard-hero__percentile">' + t("dashboard.percentile").replace("{n}", analysis.percentile) + '</span>' +
-        '</div>' +
-        '<div class="dashboard-hero__potential">' +
-          '<span class="dashboard-hero__label" data-i18n="dashboard.potential">' + t("dashboard.potential") + '</span>' +
-          '<div class="dashboard-hero__potential-value">' + scores.overall + ' <span>→</span> ' + analysis.potential.overall + '</div>' +
-          '<div class="dashboard-hero__potential-bar"><div class="dashboard-hero__potential-fill" style="width:' + (analysis.potential.overall / 10 * 100) + '%"></div></div>' +
-        '</div>' +
-      '</div>';
+      '<section class="scan-summary">' +
+        photoHtml +
+        '<div class="scan-summary__scores">' +
+          '<div class="scan-summary__score-block">' +
+            '<span class="scan-summary__label">' + t("dashboard.scan.overall") + "</span>" +
+            '<div class="scan-summary__value-row">' +
+              '<span class="scan-summary__value">' + scores.overall + "</span>" +
+              '<span class="scan-summary__unit">/ 10</span>' +
+            "</div>" +
+          "</div>" +
+          '<div class="scan-summary__score-block scan-summary__score-block--potential">' +
+            '<span class="scan-summary__label">' + t("dashboard.scan.potential") + "</span>" +
+            '<div class="scan-summary__value-row">' +
+              '<span class="scan-summary__value">' + analysis.potential.overall + "</span>" +
+              '<span class="scan-summary__gain">' +
+                t("dashboard.scan.gain").replace("{n}", gain) +
+              "</span>" +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+      "</section>";
+  }
+
+  function roundScore(value) {
+    return Math.round(value * 10) / 10;
+  }
+
+  function renderMetricPreview(container, analysis) {
+    if (!container || !analysis) return;
+    var keys = ["jawDefinition", "canthalTilt", "skinClarity", "jawAngle", "symmetryDeviation", "cheekboneProminence"];
+    var items = [];
+    keys.forEach(function (key) {
+      var found = findMetric(analysis, key);
+      if (found) items.push(found);
+    });
+
+    if (!items.length) {
+      container.hidden = true;
+      return;
+    }
+
+    container.hidden = false;
+    container.innerHTML =
+      '<section class="metric-preview">' +
+        '<div class="metric-preview__head">' +
+          '<h2 class="metric-preview__title">' + t("dashboard.breakdown.metricsTitle") + "</h2>" +
+          '<a href="/app/metrics" class="metric-preview__link">' + t("dashboard.breakdown.viewAll") + "</a>" +
+        "</div>" +
+        '<ul class="metric-preview__list">' +
+          items
+            .map(function (item) {
+              return (
+                '<li class="metric-preview__item">' +
+                  '<span class="metric-preview__name">' + t("dashboard.metrics." + item.metric.key) + "</span>" +
+                  '<span class="metric-preview__value">' + item.metric.value + "</span>" +
+                "</li>"
+              );
+            })
+            .join("") +
+        "</ul>" +
+        '<div class="metric-preview__breakdown">' +
+          '<h3 class="metric-preview__breakdown-title">' + t("dashboard.breakdown.title") + "</h3>" +
+          '<ul class="score-breakdown__list score-breakdown__list--compact">' +
+            ["harmony", "angularity", "dimorphism", "features"]
+              .map(function (pillar) {
+                var data = analysis.pillars[pillar];
+                return (
+                  '<li class="score-breakdown__item">' +
+                    '<span class="score-breakdown__name">' + pillarLabel(pillar) + "</span>" +
+                    '<span class="score-breakdown__score">' + data.score + "</span>" +
+                  "</li>"
+                );
+              })
+              .join("") +
+          "</ul>" +
+        "</div>" +
+      "</section>";
+  }
+
+  function renderScoreBreakdown(container, analysis) {
+    if (!container || !analysis) return;
+    var pillars = ["harmony", "angularity", "dimorphism", "features"];
+
+    container.innerHTML =
+      '<section class="score-breakdown">' +
+        '<div class="score-breakdown__head">' +
+          '<h2 class="score-breakdown__title">' + t("dashboard.breakdown.title") + "</h2>" +
+          '<a href="/app/metrics" class="score-breakdown__link">' + t("dashboard.breakdown.viewAll") + "</a>" +
+        "</div>" +
+        '<ul class="score-breakdown__list">' +
+          pillars
+            .map(function (pillar) {
+              var data = analysis.pillars[pillar];
+              return (
+                '<li class="score-breakdown__item">' +
+                  '<span class="score-breakdown__name">' + pillarLabel(pillar) + "</span>" +
+                  '<span class="score-breakdown__score">' + data.score + "</span>" +
+                "</li>"
+              );
+            })
+            .join("") +
+        "</ul>" +
+      "</section>";
   }
 
   function renderPhotos(container, state) {
@@ -360,21 +469,7 @@
   }
 
   function renderPillarBars(container, analysis) {
-    var pillars = ["harmony", "angularity", "dimorphism", "features"];
-    var html = '<div class="dashboard-pillars">';
-    pillars.forEach(function (pillar) {
-      var data = analysis.pillars[pillar];
-      html +=
-        '<div class="dashboard-pillars__item">' +
-          '<div class="dashboard-pillars__head">' +
-            '<span>' + pillarLabel(pillar) + '</span>' +
-            '<strong>' + data.score + '</strong>' +
-          '</div>' +
-          '<div class="dashboard-pillars__bar"><div class="dashboard-pillars__fill" style="width:' + (data.score / 10 * 100) + '%"></div></div>' +
-        '</div>';
-    });
-    html += '</div>';
-    container.innerHTML = html;
+    renderMetricPreview(container, analysis);
   }
 
   function renderMetricsTabs(container, analysis) {
@@ -952,7 +1047,9 @@
               "</span>" +
               '<span class="dashboard-metrics__value-wrap">' +
                 '<strong class="dashboard-metrics__value">' + metric.value + "</strong>" +
-                '<span class="dashboard-metrics__badge">' + statusLabel(metric.status) + "</span>" +
+                '<span class="dashboard-metrics__status dashboard-metrics__status--' + metric.status + '">' +
+                  statusLabel(metric.status) +
+                "</span>" +
               "</span>" +
             "</div>" +
           "</div>";
@@ -1006,18 +1103,14 @@
         '<p class="dashboard-section__subtitle">' + t("dashboard.planSubtitle") + "</p>" +
         '<ol class="dashboard-plan__list">';
 
-    analysis.plan.forEach(function (item, i) {
+    analysis.plan.forEach(function (item) {
       html +=
         '<li class="dashboard-plan__item' + (item.key === focusKey ? " is-active" : "") + '">' +
-          '<span class="dashboard-plan__rank">' + (i + 1) + "</span>" +
           '<div class="dashboard-plan__body">' +
             "<strong>" + t("dashboard.plan." + item.key + ".title") + "</strong>" +
             "<p>" + t("dashboard.plan." + item.key + ".desc") + "</p>" +
             '<div class="dashboard-plan__meta">' +
               '<span class="dashboard-plan__pillar">' + pillarLabel(item.pillar) + "</span>" +
-              '<span class="dashboard-plan__impact dashboard-plan__impact--' + item.impact + '">' +
-                impactLabel(item.impact) +
-              "</span>" +
             "</div>" +
           "</div>" +
         "</li>";
@@ -1217,14 +1310,19 @@
     renderPreview: renderPreview,
     renderQuickActions: renderQuickActions,
     renderNextStep: renderNextStep,
+    renderFocusCard: renderFocusCard,
     renderStrengthsWeaknesses: renderStrengthsWeaknesses,
     renderHomeLink: renderHomeLink,
+    renderQuickNav: renderQuickNav,
     renderToolsStrip: renderToolsStrip,
     renderProgressActions: renderProgressActions,
     renderEmptyState: renderEmptyState,
     renderScoreHero: renderScoreHero,
+    renderScanSummary: renderScanSummary,
     renderPhotos: renderPhotos,
     renderPillarBars: renderPillarBars,
+    renderMetricPreview: renderMetricPreview,
+    renderScoreBreakdown: renderScoreBreakdown,
     renderMetricsTabs: renderMetricsTabs,
     renderMetricsTop5: renderMetricsTop5,
     renderSimplePlan: renderSimplePlan,

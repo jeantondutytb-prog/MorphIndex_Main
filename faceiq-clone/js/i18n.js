@@ -239,6 +239,31 @@
           potential: "See my potential",
           rescan: "New scan"
         },
+        scan: {
+          overall: "Overall",
+          potential: "Potential",
+          gain: "+{n} possible"
+        },
+        breakdown: {
+          title: "Category scores",
+          metricsTitle: "Key metrics",
+          viewAll: "View all"
+        },
+        focus: {
+          recommended: "Recommended focus",
+          viewPlan: "View improvement plan"
+        },
+        quickNav: {
+          label: "Explore",
+          metrics: "Metrics",
+          metricsDesc: "Detailed facial analysis",
+          plan: "Plan",
+          planDesc: "Your improvement protocol",
+          potential: "Potential",
+          potentialDesc: "6-month projection",
+          coach: "Coach",
+          coachDesc: "Ask AI about your results"
+        },
         metricsView: {
           top5Title: "Top 5 to improve",
           top5Subtitle: "Start here — these areas will move your score the most.",
@@ -971,6 +996,31 @@
           potential: "Voir mon potentiel",
           rescan: "Nouveau scan"
         },
+        scan: {
+          overall: "Global",
+          potential: "Potentiel",
+          gain: "+{n} possible"
+        },
+        breakdown: {
+          title: "Scores par catégorie",
+          metricsTitle: "Métriques clés",
+          viewAll: "Tout voir"
+        },
+        focus: {
+          recommended: "Focus recommandé",
+          viewPlan: "Voir mon plan"
+        },
+        quickNav: {
+          label: "Explorer",
+          metrics: "Métriques",
+          metricsDesc: "Analyse faciale détaillée",
+          plan: "Plan",
+          planDesc: "Votre protocole d'amélioration",
+          potential: "Potentiel",
+          potentialDesc: "Projection à 6 mois",
+          coach: "Coach",
+          coachDesc: "Posez vos questions à l'IA"
+        },
         metricsView: {
           top5Title: "Top 5 à améliorer",
           top5Subtitle: "Commencez ici — ces points feront le plus monter votre score.",
@@ -1702,6 +1752,31 @@
           label: "Herramientas",
           potential: "Ver mi potencial",
           rescan: "Nuevo escaneo"
+        },
+        scan: {
+          overall: "Global",
+          potential: "Potencial",
+          gain: "+{n} posible"
+        },
+        breakdown: {
+          title: "Puntuación por categoría",
+          metricsTitle: "Métricas clave",
+          viewAll: "Ver todo"
+        },
+        focus: {
+          recommended: "Enfoque recomendado",
+          viewPlan: "Ver plan de mejora"
+        },
+        quickNav: {
+          label: "Explorar",
+          metrics: "Métricas",
+          metricsDesc: "Análisis facial detallado",
+          plan: "Plan",
+          planDesc: "Tu protocolo de mejora",
+          potential: "Potencial",
+          potentialDesc: "Proyección a 6 meses",
+          coach: "Coach",
+          coachDesc: "Pregunta a la IA sobre tus resultados"
         },
         metricsView: {
           top5Title: "Top 5 a mejorar",

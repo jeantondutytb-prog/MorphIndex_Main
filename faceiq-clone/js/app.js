@@ -20,10 +20,10 @@
     }
 
     window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
-    window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
+    window.Dashboard.renderScanSummary(document.getElementById("dashboard-hero"), analysis, state);
     window.Dashboard.renderNextStep(document.getElementById("dashboard-next-step"), ctx);
-    window.Dashboard.renderHomeLink(document.getElementById("dashboard-tools"));
-    window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
+    window.Dashboard.renderQuickNav(document.getElementById("dashboard-tools"));
+    window.Dashboard.renderMetricPreview(document.getElementById("dashboard-pillars"), analysis);
   }
 
   function renderPreviewSection(ctx) {
