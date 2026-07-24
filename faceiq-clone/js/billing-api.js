@@ -70,9 +70,23 @@
   window.BillingApi = {
     createCheckoutSession: createCheckoutSession,
     verifyCheckout: verifyCheckout,
-    getPaymentLink: function (plan) {
-      return plan === "monthly" ? PAYMENT_LINKS.monthly : PAYMENT_LINKS.yearly;
+    getPaymentLink: function (plan, options) {
+      options = options || {};
+      var base = plan === "monthly" ? PAYMENT_LINKS.monthly : PAYMENT_LINKS.yearly;
+      try {
+        var url = new URL(base);
+        if (options.email) {
+          url.searchParams.set("prefilled_email", options.email);
+        }
+        if (options.userId) {
+          url.searchParams.set("client_reference_id", options.userId);
+        }
+        return url.toString();
+      } catch (e) {
+        return base;
+      }
     },
-    PAYMENT_LINKS: PAYMENT_LINKS
+    PAYMENT_LINKS: PAYMENT_LINKS,
+    PAYMENT_SUCCESS_PATH: "/onboarding/results?checkout=success"
   };
 })();

@@ -282,6 +282,11 @@
             onReady(getAppContext());
           }
           setBooting(false);
+          if (window.WelcomeTour && window.WelcomeTour.shouldShow()) {
+            window.setTimeout(function () {
+              window.WelcomeTour.show();
+            }, 350);
+          }
         });
     }).catch(function () {
       setBooting(false);

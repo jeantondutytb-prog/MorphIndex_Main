@@ -279,6 +279,7 @@ async function handleCreateCheckout(request, response) {
     const origin = getAppOrigin();
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
+      allow_promotion_codes: true,
       customer_email: auth.user.email || undefined,
       client_reference_id: auth.user.id,
       line_items: [{ price: priceId, quantity: 1 }],

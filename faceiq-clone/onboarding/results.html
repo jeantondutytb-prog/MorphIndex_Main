@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260725u">
+  <link rel="stylesheet" href="../css/styles.css?v=20260725v">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -98,7 +98,7 @@
   <script src="../js/dashboard.js?v=20260725u"></script>
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
-  <script src="../js/billing-api.js?v=20260725u"></script>
+  <script src="../js/billing-api.js?v=20260725v"></script>
   <script src="../js/onboarding.js?v=20260725s"></script>
   <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
@@ -126,23 +126,28 @@
         paywallError.hidden = !message;
       }
 
-      function unlockResults() {
-        window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, false, {
-          compact: true,
-          frontPhoto: currentFrontPhoto
-        });
+      var currentFrontPhoto = null;
+      var checkoutCtx = null;
+
+      function markWelcomePending() {
+        if (window.WelcomeTour && window.WelcomeTour.markPending) {
+          window.WelcomeTour.markPending();
+          return;
+        }
+        try {
+          sessionStorage.setItem("morphindex-welcome-pending", "1");
+        } catch (e) {
+          // Ignore.
+        }
       }
 
-      var currentFrontPhoto = null;
+      function redirectToApp(welcome) {
+        window.location.href = welcome ? "/app?welcome=1" : "/app";
+      }
 
       function getSelectedPlan() {
         var selected = document.querySelector('.paywall__plan input[type="radio"]:checked');
         return selected && selected.value === "monthly" ? "monthly" : "yearly";
-      }
-
-      function setSubscribeLoading(isLoading, label) {
-        subscribeBtn.disabled = isLoading;
-        subscribeBtn.textContent = label || t("onboarding.paywall.subscribe");
       }
 
       function startPreviewGeneration(client, ctx, state) {
@@ -169,10 +174,46 @@
         return client.auth.refreshSession().then(function () {
           return startPreviewGeneration(client, ctx, state);
         }).finally(function () {
-          unlockResults();
-          setTimeout(function () {
-            window.location.href = "/app";
-          }, 1200);
+          markWelcomePending();
+          redirectToApp(true);
+        });
+      }
+
+      function waitForActiveSubscription(client, attempts) {
+        attempts = attempts || 0;
+        if (attempts > 20) {
+          return Promise.resolve(false);
+        }
+        return client.auth.refreshSession().then(function (result) {
+          var user = result.data.session && result.data.session.user;
+          if (user && window.Onboarding.hasActiveSubscription(user)) {
+            return true;
+          }
+          return new Promise(function (resolve) {
+            window.setTimeout(function () {
+              waitForActiveSubscription(client, attempts + 1).then(resolve);
+            }, 1500);
+          });
+        });
+      }
+
+      function handlePaymentLinkReturn(client, ctx, state) {
+        if (subtitleEl) {
+          subtitleEl.textContent = t("onboarding.paywall.verifyingSubscription");
+        }
+        paywall.hidden = true;
+
+        return waitForActiveSubscription(client).then(function (active) {
+          window.history.replaceState({}, "", "/onboarding/results");
+          try {
+            sessionStorage.removeItem("morphindex-checkout-pending");
+          } catch (e) {
+            // Ignore.
+          }
+          if (active) {
+            return finishSubscriptionFlow(client, ctx, state);
+          }
+          renderLockedResults(t("onboarding.paywall.checkoutError"));
         });
       }
 
@@ -248,54 +289,91 @@
         }
 
         function handleActiveSubscription() {
-          window.location.href = "/app";
+          var welcome = false;
+          try {
+            welcome = sessionStorage.getItem("morphindex-welcome-pending") === "1";
+          } catch (e) {
+            // Ignore.
+          }
+          redirectToApp(welcome);
         }
+
+        checkoutCtx = ctx;
 
         if (window.Onboarding.hasActiveSubscription(ctx.user)) {
           handleActiveSubscription();
           return;
         }
 
-        if (checkoutStatus === "success" && checkoutSessionId && window.BillingApi) {
-          if (subtitleEl) {
-            subtitleEl.textContent = t("onboarding.paywall.verifying");
-          }
-          window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true, {
-            compact: true,
-            frontPhoto: state.frontPhoto
-          });
-
-          window.BillingApi.verifyCheckout(ctx.session, checkoutSessionId).then(function (result) {
-            window.history.replaceState({}, "", "/onboarding/results");
-            if (result.ok && result.active) {
-              return finishSubscriptionFlow(client, ctx, state);
+        if (checkoutStatus === "success") {
+          if (checkoutSessionId && window.BillingApi) {
+            if (subtitleEl) {
+              subtitleEl.textContent = t("onboarding.paywall.verifying");
             }
-            renderLockedResults(t("onboarding.paywall.checkoutError"));
-          }).catch(function () {
-            window.history.replaceState({}, "", "/onboarding/results");
-            renderLockedResults(t("onboarding.paywall.checkoutError"));
-          });
+            window.Dashboard.renderResultsPreview(dashboardEl, currentAnalysis, true, {
+              compact: true,
+              frontPhoto: state.frontPhoto
+            });
+
+            window.BillingApi.verifyCheckout(ctx.session, checkoutSessionId).then(function (result) {
+              if (result.ok && result.active) {
+                return finishSubscriptionFlow(client, ctx, state);
+              }
+              renderLockedResults(t("onboarding.paywall.checkoutError"));
+            }).catch(function () {
+              renderLockedResults(t("onboarding.paywall.checkoutError"));
+            });
+            return;
+          }
+
+          handlePaymentLinkReturn(client, ctx, state);
           return;
         }
 
         if (checkoutStatus === "cancelled") {
           window.history.replaceState({}, "", "/onboarding/results");
+          try {
+            sessionStorage.removeItem("morphindex-checkout-pending");
+          } catch (e) {
+            // Ignore.
+          }
           renderLockedResults(t("onboarding.paywall.cancelled"));
           return;
+        }
+
+        try {
+          if (sessionStorage.getItem("morphindex-checkout-pending") === "1") {
+            handlePaymentLinkReturn(client, ctx, state);
+            return;
+          }
+        } catch (e) {
+          // Ignore.
         }
 
         renderLockedResults();
 
         subscribeBtn.addEventListener("click", function () {
-          var paymentUrl = window.BillingApi && window.BillingApi.getPaymentLink
-            ? window.BillingApi.getPaymentLink(getSelectedPlan())
-            : null;
+          if (!window.BillingApi || !checkoutCtx) {
+            showPaywallError(t("onboarding.paywall.checkoutError"));
+            return;
+          }
+
+          var paymentUrl = window.BillingApi.getPaymentLink(getSelectedPlan(), {
+            email: checkoutCtx.user.email,
+            userId: checkoutCtx.user.id
+          });
 
           if (!paymentUrl) {
             showPaywallError(t("onboarding.paywall.checkoutError"));
             return;
           }
 
+          markWelcomePending();
+          try {
+            sessionStorage.setItem("morphindex-checkout-pending", "1");
+          } catch (e) {
+            // Ignore.
+          }
           window.location.href = paymentUrl;
         });
         });

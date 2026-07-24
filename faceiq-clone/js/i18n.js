@@ -125,6 +125,31 @@
         viewResults: "View my results",
         backHome: "Back to home",
         signOut: "Sign out",
+        welcomeTour: {
+          aria: "Welcome tour",
+          skip: "Skip tour",
+          stepOf: "Step {current} of {total}",
+          step0: {
+            title: "Welcome to MorphIndex!",
+            body: "Your analysis is unlocked. Here's a quick tour of your dashboard."
+          },
+          step1: {
+            title: "Home",
+            body: "Your global score, next action, and a snapshot of your progress."
+          },
+          step2: {
+            title: "Plan",
+            body: "Your personalized week-by-week improvement plan with actions to check off."
+          },
+          step3: {
+            title: "Progress",
+            body: "Track your metrics over time and see what moves your score."
+          },
+          step4: {
+            title: "AI Coach",
+            body: "Ask questions anytime — your coach knows your analysis and plan."
+          }
+        },
         meta: {
           title: "MorphIndex — Dashboard",
           description: "Your full facial analysis dashboard with scores, metrics, and improvement plan."
@@ -678,6 +703,7 @@
           subscribe: "Subscribe now",
           legal: "Cancel anytime. Secure payment via Stripe.",
           verifying: "Confirming your payment…",
+          verifyingSubscription: "Activating your subscription…",
           checkoutError: "Unable to start checkout. Please try again.",
           checkoutLoading: "Redirecting to checkout…",
           cancelled: "Payment cancelled. Subscribe to unlock your full results."
@@ -810,6 +836,31 @@
         viewResults: "Voir mes résultats",
         backHome: "Retour à l'accueil",
         signOut: "Se déconnecter",
+        welcomeTour: {
+          aria: "Visite guidée",
+          skip: "Passer la visite",
+          stepOf: "Étape {current} sur {total}",
+          step0: {
+            title: "Bienvenue sur MorphIndex !",
+            body: "Votre analyse est débloquée. Voici un tour rapide de votre espace."
+          },
+          step1: {
+            title: "Accueil",
+            body: "Votre score global, la prochaine action et un aperçu de vos progrès."
+          },
+          step2: {
+            title: "Plan",
+            body: "Votre plan personnalisé semaine par semaine, avec des actions à cocher."
+          },
+          step3: {
+            title: "Progrès",
+            body: "Suivez vos métriques dans le temps et voyez ce qui fait monter votre score."
+          },
+          step4: {
+            title: "Coach IA",
+            body: "Posez vos questions à tout moment — le coach connaît votre analyse et votre plan."
+          }
+        },
         meta: {
           title: "MorphIndex — Tableau de bord",
           description: "Votre tableau de bord complet avec scores, métriques et plan d'amélioration."
@@ -1363,6 +1414,7 @@
           subscribe: "S'abonner maintenant",
           legal: "Annulation à tout moment. Paiement sécurisé via Stripe.",
           verifying: "Confirmation de votre paiement…",
+          verifyingSubscription: "Activation de votre abonnement…",
           checkoutError: "Impossible de démarrer le paiement. Réessayez.",
           checkoutLoading: "Redirection vers le paiement…",
           cancelled: "Paiement annulé. Abonnez-vous pour débloquer vos résultats."
@@ -1495,6 +1547,31 @@
         viewResults: "Ver mis resultados",
         backHome: "Volver al inicio",
         signOut: "Cerrar sesión",
+        welcomeTour: {
+          aria: "Tour de bienvenida",
+          skip: "Saltar tour",
+          stepOf: "Paso {current} de {total}",
+          step0: {
+            title: "¡Bienvenido a MorphIndex!",
+            body: "Tu análisis está desbloqueado. Aquí tienes un tour rápido de tu panel."
+          },
+          step1: {
+            title: "Inicio",
+            body: "Tu puntuación global, la siguiente acción y un resumen de tu progreso."
+          },
+          step2: {
+            title: "Plan",
+            body: "Tu plan personalizado semana a semana con acciones para marcar."
+          },
+          step3: {
+            title: "Progreso",
+            body: "Sigue tus métricas en el tiempo y mira qué sube tu puntuación."
+          },
+          step4: {
+            title: "Coach IA",
+            body: "Pregunta cuando quieras — el coach conoce tu análisis y tu plan."
+          }
+        },
         meta: {
           title: "MorphIndex — Panel",
           description: "Tu panel completo con puntuaciones, métricas y plan de mejora."
@@ -2048,6 +2125,7 @@
           subscribe: "Suscribirse ahora",
           legal: "Cancela cuando quieras. Pago seguro con Stripe.",
           verifying: "Confirmando tu pago…",
+          verifyingSubscription: "Activando tu suscripción…",
           checkoutError: "No se pudo iniciar el pago. Inténtalo de nuevo.",
           checkoutLoading: "Redirigiendo al pago…",
           cancelled: "Pago cancelado. Suscríbete para desbloquear tus resultados."
