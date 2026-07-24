@@ -23,6 +23,16 @@
       "source": "/onboarding/side",
       "destination": "/onboarding/photos",
       "permanent": false
+    },
+    {
+      "source": "/app/preview",
+      "destination": "/app/potential",
+      "permanent": false
+    },
+    {
+      "source": "/app/simulate",
+      "destination": "/app/potential",
+      "permanent": false
     }
   ],
   "functions": {

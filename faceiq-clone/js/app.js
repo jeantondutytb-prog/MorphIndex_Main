@@ -1,4 +1,6 @@
 (function () {
+  var metricsShowAll = false;
+
   function renderOverview(ctx) {
     if (!ctx) return;
     var state = ctx.state;
@@ -6,7 +8,7 @@
 
     if (!state.frontPhoto && !state.sidePhoto) {
       window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), state);
-      ["dashboard-hero", "dashboard-next-step", "dashboard-strengths", "dashboard-tools", "dashboard-pillars"].forEach(
+      ["dashboard-hero", "dashboard-next-step", "dashboard-tools", "dashboard-pillars"].forEach(
         function (id) {
           var el = document.getElementById(id);
           if (!el) return;
@@ -20,15 +22,11 @@
     window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
     window.Dashboard.renderScoreHero(document.getElementById("dashboard-hero"), analysis);
     window.Dashboard.renderNextStep(document.getElementById("dashboard-next-step"), ctx);
-    window.Dashboard.renderStrengthsWeaknesses(
-      document.getElementById("dashboard-strengths"),
-      analysis
-    );
-    window.Dashboard.renderToolsStrip(document.getElementById("dashboard-tools"));
+    window.Dashboard.renderHomeLink(document.getElementById("dashboard-tools"));
     window.Dashboard.renderPillarBars(document.getElementById("dashboard-pillars"), analysis);
   }
 
-  function renderPreviewPage(ctx) {
+  function renderPreviewSection(ctx) {
     if (!ctx) return;
     var state = ctx.state;
     var analysis = ctx.analysis;
@@ -61,7 +59,7 @@
         previewGeneratingAt: Date.now(),
         previewError: false
       });
-      renderPreviewPage(window.AppShell.getAppContext());
+      renderPreviewSection(window.AppShell.getAppContext());
       window.AiApi.generatePreview(session, state.frontPhoto, analysis.plan).then(function (result) {
         if (result.ok && result.previewUrl) {
           window.Onboarding.saveState(user.id, {
@@ -76,11 +74,23 @@
         } else {
           window.Onboarding.saveState(user.id, { previewGenerating: false, previewError: true });
         }
-        renderPreviewPage(window.AppShell.getAppContext());
+        renderPreviewSection(window.AppShell.getAppContext());
       }).catch(function () {
         window.Onboarding.saveState(user.id, { previewGenerating: false, previewError: true });
-        renderPreviewPage(window.AppShell.getAppContext());
+        renderPreviewSection(window.AppShell.getAppContext());
       });
+    }
+  }
+
+  function renderPotentialPage(ctx) {
+    if (!ctx) return;
+    if (!ctx.state.frontPhoto) {
+      window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), ctx.state);
+      return;
+    }
+    renderPreviewSection(ctx);
+    if (window.Simulate) {
+      window.Simulate.mount(document.getElementById("simulate-root"), ctx);
     }
   }
 
@@ -92,7 +102,17 @@
     }
     window.Dashboard.renderEmptyState(document.getElementById("dashboard-empty"), null);
     window.Dashboard.renderScoreHistory(document.getElementById("dashboard-history"), ctx.state, ctx.analysis);
-    window.Dashboard.renderMetricsTabs(document.getElementById("dashboard-metrics"), ctx.analysis);
+    window.Dashboard.renderMetricsTop5(document.getElementById("dashboard-metrics"), ctx.analysis, {
+      showAll: metricsShowAll,
+      onShowAll: function () {
+        metricsShowAll = true;
+        renderMetricsPage(window.AppShell.getAppContext());
+      },
+      onShowTop: function () {
+        metricsShowAll = false;
+        renderMetricsPage(window.AppShell.getAppContext());
+      }
+    });
     window.Dashboard.renderProgressActions(document.getElementById("dashboard-progress-actions"));
   }
 
@@ -102,17 +122,13 @@
       window.Dashboard.renderEmptyState(document.getElementById("dashboard-plan"), ctx.state);
       return;
     }
-    window.Dashboard.renderPlan(
+    window.Dashboard.renderSimplePlan(
       document.getElementById("dashboard-plan"),
       ctx.analysis,
       ctx.user.id,
       {
         onActionToggle: function (actionKey, done) {
           window.Onboarding.toggleJourneyAction(ctx.user.id, actionKey, done, ctx.analysis);
-          renderPlanPage(window.AppShell.getAppContext());
-        },
-        onFocusChange: function (focusKey) {
-          window.Onboarding.setActiveFocus(ctx.user.id, focusKey, ctx.analysis);
           renderPlanPage(window.AppShell.getAppContext());
         }
       }
@@ -126,26 +142,16 @@
     }
   }
 
-  function renderSimulatePage(ctx) {
-    if (!ctx) return;
-    if (!ctx.state.frontPhoto) {
-      window.Dashboard.renderEmptyState(document.getElementById("simulate-root"), ctx.state);
-      return;
-    }
-    if (window.Simulate) {
-      window.Simulate.mount(document.getElementById("simulate-root"), ctx);
-    }
-  }
-
   function bootPage() {
     var currentView = document.body.getAttribute("data-app-view") || "overview";
     var renderers = {
       overview: renderOverview,
-      preview: renderPreviewPage,
+      preview: renderPotentialPage,
+      simulate: renderPotentialPage,
+      potential: renderPotentialPage,
       metrics: renderMetricsPage,
       plan: renderPlanPage,
-      chat: renderChatPage,
-      simulate: renderSimulatePage
+      chat: renderChatPage
     };
 
     function renderCurrent(ctx) {

@@ -31,12 +31,12 @@
         q2: "Members who gain the most treat every scan as a checkpoint, not a verdict. MorphIndex keeps that rhythm alive."
       },
       pillars: {
-        eyebrow: "Scoring model", title: "Four dimensions, one composite index",
-        subtitle: "Every scan scores you across independent layers of facial morphology.",
-        axis1: "Dimension A", p1: "Vitality", p1d: "Skin tone, feature clarity, and overall facial freshness", p1m: "signals",
-        axis2: "Dimension B", p2: "Proportions", p2d: "Thirds, spacing, and symmetry across the face", p2m: "ratios",
-        axis3: "Dimension C", p3: "Definition", p3d: "Jaw contour, cheek structure, and bone visibility", p3m: "criteria",
-        axis4: "Dimension D", p4: "Traits", p4d: "Masculine and feminine morphological signatures", p4m: "markers"
+        eyebrow: "Scoring model", title: "Four scores, one overall rating",
+        subtitle: "Every scan rates you on harmony, jawline, traits, and skin.",
+        p1: "Harmony", p1d: "Symmetry, proportions, and facial balance", p1m: "ratios",
+        p2: "Jawline", p2d: "Jaw definition, angles, and bone structure", p2m: "structure",
+        p3: "Traits", p3d: "Masculine or feminine facial character", p3m: "character",
+        p4: "Skin", p4d: "Complexion, under-eyes, pores, and hair health", p4m: "quality"
       },
       banner: "Built on quantitative facial research — for anyone who treats appearance improvement as a measurable discipline.",
       testimonials: {
@@ -51,17 +51,16 @@
       },
       platform: {
         title: "One workspace for the full picture",
-        subtitle: "Beyond the initial scan: trends, simulations, guidance, and community benchmarks — unified.",
-        f1t: "Composite Index", f1d: "A single score synthesizing 70+ anatomical ratios across all four dimensions.",
-        f2t: "MorphAI", f2d: "Conversational guidance about your face — ask anything, get structured answers.",
-        f3t: "Outcome Simulator", f3d: "Visualize potential changes before committing to any intervention.",
-        f4t: "Action Plan", f4d: "A step-by-step roadmap built from your unique morphology profile.",
-        f5t: "Progress Tracker", f5d: "Line up scans side by side and watch individual metrics shift over time.",
-        f6t: "Community Rank", f6d: "See where you stand among members and track your climb over time.",
+        subtitle: "Beyond the initial scan: your score, plan, progress, and AI coach — in one place.",
+        f1t: "Your score", f1d: "One overall rating from your scan — easy to track over time.",
+        f2t: "Coach", f2d: "Ask questions about your face and get clear, actionable answers.",
+        f3t: "See your potential", f3d: "Preview your look in 6 months or simulate cosmetic changes.",
+        f4t: "Action plan", f4d: "A simple checklist ranked by what will move your score most.",
+        f5t: "Progress tracker", f5d: "Re-scan over time and watch your score climb.",
         new: "New"
       },
       showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulator",
+        tag1: "AI Coach", tag2: "Simulator",
         title: "Inside the analysis engine",
         subtitle: "Each scan surfaces granular detail — from skin vitality to zone-by-zone proportional ratios.",
         highlight: "100+ tracked variables per session"
@@ -71,9 +70,9 @@
         title: "From photo to progress in four moves",
         subtitle: "Scan, understand, plan, repeat — each cycle sharpens your index.",
         s1t: "Upload", s1d: "Add a front photo and a side profile — that's all MorphIndex needs to start.",
-        s2t: "Analyze", s2d: "Get a full breakdown across vitality, proportions, definition, and traits.",
-        s3t: "Prioritize", s3d: "Receive lifestyle and clinical options ranked by expected impact on your profile.",
-        s4t: "Iterate", s4d: "Execute your plan, simulate outcomes with MorphAI, and re-scan to confirm gains.",
+        s2t: "Analyze",         s2d: "Get your scores across harmony, jawline, traits, and skin.",
+        s3t: "Prioritize", s3d: "Receive simple tips ranked by what will improve your score most.",
+        s4t: "Iterate", s4d: "Follow your plan, preview your potential, and re-scan to track progress.",
         note: "Side-profile analysis included with every scan."
       },
       projection: {
@@ -110,12 +109,12 @@
         legal: "By continuing, you agree to our Terms of Service and Privacy Policy.",
         back: "Back to home",
         loginMeta: {
-          title: "FaceIQ Labs — Log in",
-          description: "Log in to your FaceIQ Labs account."
+          title: "MorphIndex — Log in",
+          description: "Log in to your MorphIndex account."
         },
         registerMeta: {
-          title: "FaceIQ Labs — Create your account",
-          description: "Create your FaceIQ Labs account and start your transformation journey."
+          title: "MorphIndex — Create your account",
+          description: "Create your MorphIndex account and start your transformation journey."
         }
       },
       app: {
@@ -127,7 +126,7 @@
         backHome: "Back to home",
         signOut: "Sign out",
         meta: {
-          title: "FaceIQ Labs — Dashboard",
+          title: "MorphIndex — Dashboard",
           description: "Your full facial analysis dashboard with scores, metrics, and improvement plan."
         }
       },
@@ -163,11 +162,17 @@
           },
           chat: {
             title: "Coach",
-            description: "Ask FaceGPT about your analysis and improvement plan."
+            description: "Ask Coach about your analysis and improvement plan."
           },
           simulate: {
             title: "Simulations",
             description: "Preview cosmetic procedure effects on your photo with adjustable intensity."
+          },
+          potential: {
+            title: "Your potential",
+            description: "6-month preview and procedure simulations in one place.",
+            tabPreview: "6-month preview",
+            tabSimulate: "Simulate changes"
           }
         },
         nextStep: {
@@ -186,9 +191,18 @@
         },
         tools: {
           label: "Tools",
-          preview: "6-month preview",
-          simulate: "Simulate",
+          potential: "See my potential",
           rescan: "New scan"
+        },
+        metricsView: {
+          top5Title: "Top 5 to improve",
+          top5Subtitle: "Start here — these areas will move your score the most.",
+          showAll: "Show all metrics",
+          showTop: "Show top 5 only"
+        },
+        coachFab: {
+          label: "Ask Coach",
+          aria: "Open AI coach"
         },
         overall: "Overall score",
         potential: "Potential score",
@@ -248,12 +262,12 @@
           subtitle: "Track how your overall score changes across scans."
         },
         chat: {
-          subtitle: "Ask FaceGPT about your scores, metrics, or improvement plan — answers follow your active protocol.",
+          subtitle: "Ask Coach about your scores, metrics, or improvement plan — answers follow your active protocol.",
           placeholder: "Ask about your analysis…",
           send: "Send",
           empty: "Start a conversation — ask about your scores or what to focus on first.",
-          error: "FaceGPT is unavailable right now. Please try again.",
-          limitReached: "You've reached today's FaceGPT message limit. Check your Plan page for this week's actions and try again tomorrow.",
+          error: "Coach is unavailable right now. Please try again.",
+          limitReached: "You've reached today's Coach message limit. Check your Plan page for this week's actions and try again tomorrow.",
           promptThisWeek: "What should I do this week?",
           promptWhyFocus: "Why is this my current focus?",
           promptNextStep: "What is my next step?",
@@ -435,7 +449,7 @@
               baselinePhotos: "Take baseline photos (same angle, lighting, and distance)",
               weeklyPhotos: "Take weekly progress photos with the same setup",
               photoCompare: "Compare week-1 and current photos side by side",
-              rescan: "Run a new FaceIQ scan to update your scores",
+              rescan: "Run a new MorphIndex scan to update your scores",
               adjustFocus: "Review metrics and decide whether to continue or switch focus"
             }
           },
@@ -589,10 +603,10 @@
         },
         welcome: {
           eyebrow: "Getting started",
-          title: "Welcome to FaceIQ Labs",
+          title: "Welcome to MorphIndex",
           subtitle: "Let's analyze your face across 100+ metrics and build your personalized improvement plan.",
           item1: "Take a front and side photo",
-          item2: "Get your analysis across 4 pillars",
+          item2: "Get your scores across harmony, jawline, traits, and skin",
           item3: "Unlock your full results and personalized plan",
           note: "Takes about 2 minutes. Your photos stay private."
         },
@@ -648,12 +662,12 @@
           unlock: "Unlock my results"
         },
         paywall: {
-          eyebrow: "FaceIQ Pro",
+          eyebrow: "MorphIndex Pro",
           title: "Unlock your full analysis",
           subtitle: "Get access to your complete results, personalized plan, and progress tracking.",
           f1: "Full analysis across 100+ metrics",
           f2: "Personalized improvement plan",
-          f3: "FaceGPT — AI expert guidance",
+          f3: "Coach — AI expert guidance",
           f4: "Progress tracking & re-scans",
           yearly: "Yearly",
           yearlyPrice: "€59.99/year",
@@ -668,8 +682,8 @@
           cancelled: "Payment cancelled. Subscribe to unlock your full results."
         },
         meta: {
-          title: "FaceIQ Labs — Onboarding",
-          description: "Complete your first facial analysis with FaceIQ Labs."
+          title: "MorphIndex — Onboarding",
+          description: "Complete your first facial analysis with MorphIndex."
         }
       }
     },
@@ -701,12 +715,12 @@
         q2: "Les membres qui progressent le plus traitent chaque scan comme un point de contrôle, pas un jugement. MorphIndex entretient ce rythme."
       },
       pillars: {
-        eyebrow: "Modèle de notation", title: "Quatre dimensions, un index composite",
-        subtitle: "Chaque scan vous évalue sur des couches indépendantes de morphologie faciale.",
-        axis1: "Dimension A", p1: "Vitalité", p1d: "Teint, clarté des traits et fraîcheur globale du visage", p1m: "signaux",
-        axis2: "Dimension B", p2: "Proportions", p2d: "Tiers, espacements et symétrie du visage", p2m: "ratios",
-        axis3: "Dimension C", p3: "Définition", p3d: "Contour de mâchoire, structure des pommettes et visibilité osseuse", p3m: "critères",
-        axis4: "Dimension D", p4: "Traits", p4d: "Signatures morphologiques masculines et féminines", p4m: "marqueurs"
+        eyebrow: "Modèle de notation", title: "Quatre scores, une note globale",
+        subtitle: "Chaque scan évalue harmonie, mâchoire, traits et peau.",
+        p1: "Harmonie", p1d: "Symétrie, proportions et équilibre du visage", p1m: "ratios",
+        p2: "Mâchoire", p2d: "Définition de la mâchoire, angles et structure osseuse", p2m: "structure",
+        p3: "Traits", p3d: "Caractère masculin ou féminin du visage", p3m: "caractère",
+        p4: "Peau", p4d: "Teint, cernes, pores et santé des cheveux", p4m: "qualité"
       },
       banner: "Fondé sur la recherche faciale quantitative — pour tous ceux qui abordent l'amélioration de l'apparence comme une discipline mesurable.",
       testimonials: {
@@ -721,17 +735,16 @@
       },
       platform: {
         title: "Un espace de travail pour la vue d'ensemble",
-        subtitle: "Au-delà du scan initial : tendances, simulations, conseils et benchmarks communautaires — réunis.",
-        f1t: "Index composite", f1d: "Un score unique synthétisant plus de 70 ratios anatomiques sur les quatre dimensions.",
-        f2t: "MorphAI", f2d: "Guidance conversationnelle sur votre visage — posez n'importe quelle question, obtenez des réponses structurées.",
-        f3t: "Simulateur de résultats", f3d: "Visualisez les changements potentiels avant tout engagement.",
-        f4t: "Plan d'action", f4d: "Une feuille de route étape par étape construite à partir de votre profil morphologique unique.",
-        f5t: "Suivi de progression", f5d: "Alignez vos scans côte à côte et observez l'évolution de chaque métrique.",
-        f6t: "Classement communautaire", f6d: "Voyez votre position parmi les membres et suivez votre progression.",
+        subtitle: "Au-delà du scan : score, plan, progrès et coach IA — au même endroit.",
+        f1t: "Votre score", f1d: "Une note globale facile à suivre dans le temps.",
+        f2t: "Coach", f2d: "Posez vos questions et obtenez des réponses claires.",
+        f3t: "Voir votre potentiel", f3d: "Aperçu à 6 mois et simulations de changements.",
+        f4t: "Plan d'action", f4d: "Une checklist simple classée par impact.",
+        f5t: "Suivi de progression", f5d: "Re-scannez et voyez votre score évoluer.",
         new: "Nouveau"
       },
       showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulateur",
+        tag1: "Coach IA", tag2: "Simulateur",
         title: "Au cœur du moteur d'analyse",
         subtitle: "Chaque scan révèle des détails granulaires — de la vitalité de la peau aux ratios proportionnels zone par zone.",
         highlight: "Plus de 100 variables suivies par session"
@@ -741,9 +754,9 @@
         title: "De la photo à la progression en quatre étapes",
         subtitle: "Scanner, comprendre, planifier, recommencer — chaque cycle affine votre index.",
         s1t: "Importer", s1d: "Ajoutez une photo de face et une de profil — c'est tout ce dont MorphIndex a besoin.",
-        s2t: "Analyser", s2d: "Recevez une analyse complète sur vitalité, proportions, définition et traits.",
-        s3t: "Prioriser", s3d: "Obtenez des options lifestyle et cliniques classées par impact attendu sur votre profil.",
-        s4t: "Itérer", s4d: "Suivez votre plan, simulez les résultats avec MorphAI et re-scannez pour confirmer vos gains.",
+        s2t: "Analyser",         s2d: "Recevez vos scores harmonie, mâchoire, traits et peau.",
+        s3t: "Prioriser", s3d: "Obtenez des conseils simples classés par impact sur votre score.",
+        s4t: "Itérer", s4d: "Suivez votre plan, visualisez votre potentiel et re-scannez pour suivre vos progrès.",
         note: "L'analyse de profil est incluse à chaque scan."
       },
       projection: {
@@ -780,12 +793,12 @@
         legal: "En continuant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.",
         back: "Retour à l'accueil",
         loginMeta: {
-          title: "FaceIQ Labs — Connexion",
-          description: "Connectez-vous à votre compte FaceIQ Labs."
+          title: "MorphIndex — Connexion",
+          description: "Connectez-vous à votre compte MorphIndex."
         },
         registerMeta: {
-          title: "FaceIQ Labs — Créer votre compte",
-          description: "Créez votre compte FaceIQ Labs et commencez votre parcours de transformation."
+          title: "MorphIndex — Créer votre compte",
+          description: "Créez votre compte MorphIndex et commencez votre parcours de transformation."
         }
       },
       app: {
@@ -797,7 +810,7 @@
         backHome: "Retour à l'accueil",
         signOut: "Se déconnecter",
         meta: {
-          title: "FaceIQ Labs — Tableau de bord",
+          title: "MorphIndex — Tableau de bord",
           description: "Votre tableau de bord complet avec scores, métriques et plan d'amélioration."
         }
       },
@@ -833,11 +846,17 @@
           },
           chat: {
             title: "Coach",
-            description: "Posez vos questions à FaceGPT sur votre analyse et votre plan."
+            description: "Posez vos questions à Coach sur votre analyse et votre plan."
           },
           simulate: {
             title: "Simulations",
             description: "Prévisualisez l'effet de procédures esthétiques sur votre photo."
+          },
+          potential: {
+            title: "Votre potentiel",
+            description: "Aperçu à 6 mois et simulations au même endroit.",
+            tabPreview: "Aperçu 6 mois",
+            tabSimulate: "Simuler des changements"
           }
         },
         nextStep: {
@@ -856,9 +875,18 @@
         },
         tools: {
           label: "Outils",
-          preview: "Aperçu 6 mois",
-          simulate: "Simuler",
+          potential: "Voir mon potentiel",
           rescan: "Nouveau scan"
+        },
+        metricsView: {
+          top5Title: "Top 5 à améliorer",
+          top5Subtitle: "Commencez ici — ces points feront le plus monter votre score.",
+          showAll: "Voir toutes les métriques",
+          showTop: "Voir le top 5 seulement"
+        },
+        coachFab: {
+          label: "Demander au Coach",
+          aria: "Ouvrir le coach IA"
         },
         overall: "Score global",
         potential: "Score potentiel",
@@ -918,12 +946,12 @@
           subtitle: "Suivez l'évolution de votre score global entre les scans."
         },
         chat: {
-          subtitle: "Posez à FaceGPT vos questions — les réponses suivent votre protocole actif.",
+          subtitle: "Posez à Coach vos questions — les réponses suivent votre protocole actif.",
           placeholder: "Posez une question sur votre analyse…",
           send: "Envoyer",
           empty: "Commencez la conversation — demandez par quoi commencer.",
-          error: "FaceGPT est indisponible pour le moment. Réessayez.",
-          limitReached: "Vous avez atteint la limite de messages FaceGPT pour aujourd'hui. Consultez votre Plan pour les actions de la semaine et réessayez demain.",
+          error: "Coach est indisponible pour le moment. Réessayez.",
+          limitReached: "Vous avez atteint la limite de messages Coach pour aujourd'hui. Consultez votre Plan pour les actions de la semaine et réessayez demain.",
           promptThisWeek: "Que faire cette semaine ?",
           promptWhyFocus: "Pourquoi ce focus ?",
           promptNextStep: "Quelle est ma prochaine étape ?",
@@ -1105,7 +1133,7 @@
               baselinePhotos: "Prendre des photos de référence (même angle, lumière et distance)",
               weeklyPhotos: "Prendre des photos hebdomadaires avec le même setup",
               photoCompare: "Comparer les photos semaine 1 et actuelles côte à côte",
-              rescan: "Lancer un nouveau scan FaceIQ pour mettre à jour vos scores",
+              rescan: "Lancer un nouveau scan MorphIndex pour mettre à jour vos scores",
               adjustFocus: "Revoir les métriques et décider de continuer ou changer de focus"
             }
           },
@@ -1259,10 +1287,10 @@
         },
         welcome: {
           eyebrow: "Premiers pas",
-          title: "Bienvenue sur FaceIQ Labs",
+          title: "Bienvenue sur MorphIndex",
           subtitle: "Analysons votre visage selon plus de 100 métriques et construisons votre plan d'amélioration personnalisé.",
           item1: "Prenez une photo de face et de profil",
-          item2: "Obtenez votre analyse sur 4 piliers",
+          item2: "Obtenez vos scores harmonie, mâchoire, traits et peau",
           item3: "Débloquez vos résultats complets et votre plan personnalisé",
           note: "Environ 2 minutes. Vos photos restent privées."
         },
@@ -1318,12 +1346,12 @@
           unlock: "Débloquer mes résultats"
         },
         paywall: {
-          eyebrow: "FaceIQ Pro",
+          eyebrow: "MorphIndex Pro",
           title: "Débloquez votre analyse complète",
           subtitle: "Accédez à vos résultats complets, votre plan personnalisé et le suivi de vos progrès.",
           f1: "Analyse complète sur plus de 100 métriques",
           f2: "Plan d'amélioration personnalisé",
-          f3: "FaceGPT — conseils d'expert par IA",
+          f3: "Coach — conseils d'expert par IA",
           f4: "Suivi des progrès et re-scans",
           yearly: "Annuel",
           yearlyPrice: "59,99 €/an",
@@ -1338,8 +1366,8 @@
           cancelled: "Paiement annulé. Abonnez-vous pour débloquer vos résultats."
         },
         meta: {
-          title: "FaceIQ Labs — Onboarding",
-          description: "Complétez votre première analyse faciale avec FaceIQ Labs."
+          title: "MorphIndex — Onboarding",
+          description: "Complétez votre première analyse faciale avec MorphIndex."
         }
       }
     },
@@ -1371,12 +1399,12 @@
         q2: "Los miembros que más avanzan tratan cada escaneo como un punto de control, no un veredicto. MorphIndex mantiene ese ritmo."
       },
       pillars: {
-        eyebrow: "Modelo de puntuación", title: "Cuatro dimensiones, un índice compuesto",
-        subtitle: "Cada escaneo te evalúa en capas independientes de morfología facial.",
-        axis1: "Dimensión A", p1: "Vitalidad", p1d: "Tono de piel, claridad de rasgos y frescura facial general", p1m: "señales",
-        axis2: "Dimensión B", p2: "Proporciones", p2d: "Tercios, espaciado y simetría del rostro", p2m: "ratios",
-        axis3: "Dimensión C", p3: "Definición", p3d: "Contorno mandibular, estructura de pómulos y visibilidad ósea", p3m: "criterios",
-        axis4: "Dimensión D", p4: "Rasgos", p4d: "Firmas morfológicas masculinas y femeninas", p4m: "marcadores"
+        eyebrow: "Modelo de puntuación", title: "Cuatro puntuaciones, una nota global",
+        subtitle: "Cada escaneo evalúa armonía, mandíbula, rasgos y piel.",
+        p1: "Armonía", p1d: "Simetría, proporciones y equilibrio facial", p1m: "ratios",
+        p2: "Mandíbula", p2d: "Definición mandibular, ángulos y estructura ósea", p2m: "estructura",
+        p3: "Rasgos", p3d: "Carácter masculino o femenino del rostro", p3m: "carácter",
+        p4: "Piel", p4d: "Tez, ojeras, poros y salud del cabello", p4m: "calidad"
       },
       banner: "Basado en investigación facial cuantitativa — para quienes tratan la mejora de apariencia como una disciplina medible.",
       testimonials: {
@@ -1391,17 +1419,16 @@
       },
       platform: {
         title: "Un espacio de trabajo para el panorama completo",
-        subtitle: "Más allá del escaneo inicial: tendencias, simulaciones, orientación y benchmarks comunitarios — unificados.",
-        f1t: "Índice compuesto", f1d: "Una puntuación única que sintetiza más de 70 ratios anatómicos en las cuatro dimensiones.",
-        f2t: "MorphAI", f2d: "Orientación conversacional sobre tu rostro — pregunta lo que quieras, obtén respuestas estructuradas.",
-        f3t: "Simulador de resultados", f3d: "Visualiza cambios potenciales antes de comprometerte con cualquier intervención.",
-        f4t: "Plan de acción", f4d: "Una hoja de ruta paso a paso construida desde tu perfil morfológico único.",
-        f5t: "Seguimiento de progreso", f5d: "Alinea escaneos lado a lado y observa cómo cambian las métricas individuales.",
-        f6t: "Ranking comunitario", f6d: "Mira dónde estás entre los miembros y sigue tu ascenso.",
+        subtitle: "Más allá del escaneo: puntuación, plan, progreso y coach IA — en un solo lugar.",
+        f1t: "Tu puntuación", f1d: "Una nota global fácil de seguir en el tiempo.",
+        f2t: "Coach", f2d: "Haz preguntas y obtén respuestas claras.",
+        f3t: "Ver tu potencial", f3d: "Vista previa a 6 meses y simulaciones de cambios.",
+        f4t: "Plan de acción", f4d: "Una checklist simple clasificada por impacto.",
+        f5t: "Seguimiento de progreso", f5d: "Vuelve a escanear y observa tu evolución.",
         new: "Nuevo"
       },
       showcase: {
-        tag1: "MorphAI 2.0", tag2: "Simulador",
+        tag1: "Coach IA", tag2: "Simulador",
         title: "Dentro del motor de análisis",
         subtitle: "Cada escaneo revela detalle granular — desde vitalidad de piel hasta ratios proporcionales por zona.",
         highlight: "Más de 100 variables rastreadas por sesión"
@@ -1413,7 +1440,7 @@
         s1t: "Subir", s1d: "Añade una foto frontal y una de perfil — eso es todo lo que MorphIndex necesita.",
         s2t: "Analizar", s2d: "Recibe un desglose completo en vitalidad, proporciones, definición y rasgos.",
         s3t: "Priorizar", s3d: "Obtén opciones de estilo de vida y clínicas clasificadas por impacto esperado en tu perfil.",
-        s4t: "Iterar", s4d: "Ejecuta tu plan, simula resultados con MorphAI y vuelve a escanear para confirmar ganancias.",
+        s4t: "Iterar", s4d: "Ejecuta tu plan, simula resultados con Coach y vuelve a escanear para confirmar ganancias.",
         note: "El análisis de perfil está incluido en cada escaneo."
       },
       projection: {
@@ -1450,12 +1477,12 @@
         legal: "Al continuar, aceptas nuestros Términos de servicio y Política de privacidad.",
         back: "Volver al inicio",
         loginMeta: {
-          title: "FaceIQ Labs — Iniciar sesión",
-          description: "Inicia sesión en tu cuenta de FaceIQ Labs."
+          title: "MorphIndex — Iniciar sesión",
+          description: "Inicia sesión en tu cuenta de MorphIndex."
         },
         registerMeta: {
-          title: "FaceIQ Labs — Crear tu cuenta",
-          description: "Crea tu cuenta de FaceIQ Labs y comienza tu viaje de transformación."
+          title: "MorphIndex — Crear tu cuenta",
+          description: "Crea tu cuenta de MorphIndex y comienza tu viaje de transformación."
         }
       },
       app: {
@@ -1467,7 +1494,7 @@
         backHome: "Volver al inicio",
         signOut: "Cerrar sesión",
         meta: {
-          title: "FaceIQ Labs — Panel",
+          title: "MorphIndex — Panel",
           description: "Tu panel completo con puntuaciones, métricas y plan de mejora."
         }
       },
@@ -1503,11 +1530,17 @@
           },
           chat: {
             title: "Coach",
-            description: "Pregunta a FaceGPT sobre tu análisis y plan de mejora."
+            description: "Pregunta a Coach sobre tu análisis y plan de mejora."
           },
           simulate: {
             title: "Simulaciones",
             description: "Previsualiza efectos de procedimientos estéticos en tu foto."
+          },
+          potential: {
+            title: "Tu potencial",
+            description: "Vista previa a 6 meses y simulaciones en un solo lugar.",
+            tabPreview: "Vista previa 6 meses",
+            tabSimulate: "Simular cambios"
           }
         },
         nextStep: {
@@ -1526,9 +1559,18 @@
         },
         tools: {
           label: "Herramientas",
-          preview: "Vista 6 meses",
-          simulate: "Simular",
+          potential: "Ver mi potencial",
           rescan: "Nuevo escaneo"
+        },
+        metricsView: {
+          top5Title: "Top 5 a mejorar",
+          top5Subtitle: "Empieza aquí — estas áreas moverán más tu puntuación.",
+          showAll: "Ver todas las métricas",
+          showTop: "Ver solo el top 5"
+        },
+        coachFab: {
+          label: "Preguntar al Coach",
+          aria: "Abrir coach IA"
         },
         overall: "Puntuación global",
         potential: "Puntuación potencial",
@@ -1588,12 +1630,12 @@
           subtitle: "Sigue cómo cambia tu puntuación global entre escaneos."
         },
         chat: {
-          subtitle: "Pregunta a FaceGPT — las respuestas siguen tu protocolo activo.",
+          subtitle: "Pregunta a Coach — las respuestas siguen tu protocolo activo.",
           placeholder: "Pregunta sobre tu análisis…",
           send: "Enviar",
           empty: "Empieza la conversación — pregunta por dónde empezar.",
-          error: "FaceGPT no está disponible ahora. Inténtalo de nuevo.",
-          limitReached: "Has alcanzado el límite diario de mensajes de FaceGPT. Revisa tu Plan para las acciones de esta semana e inténtalo mañana.",
+          error: "Coach no está disponible ahora. Inténtalo de nuevo.",
+          limitReached: "Has alcanzado el límite diario de mensajes de Coach. Revisa tu Plan para las acciones de esta semana e inténtalo mañana.",
           promptThisWeek: "¿Qué debo hacer esta semana?",
           promptWhyFocus: "¿Por qué este foco?",
           promptNextStep: "¿Cuál es mi siguiente paso?",
@@ -1775,7 +1817,7 @@
               baselinePhotos: "Tomar fotos de referencia (mismo ángulo, luz y distancia)",
               weeklyPhotos: "Tomar fotos semanales con la misma configuración",
               photoCompare: "Comparar fotos de la semana 1 y actuales lado a lado",
-              rescan: "Hacer un nuevo escaneo FaceIQ para actualizar tus puntuaciones",
+              rescan: "Hacer un nuevo escaneo MorphIndex para actualizar tus puntuaciones",
               adjustFocus: "Revisar métricas y decidir si continuar o cambiar de foco"
             }
           },
@@ -1929,10 +1971,10 @@
         },
         welcome: {
           eyebrow: "Primeros pasos",
-          title: "Bienvenido a FaceIQ Labs",
+          title: "Bienvenido a MorphIndex",
           subtitle: "Analicemos tu rostro según más de 100 métricas y construyamos tu plan de mejora personalizado.",
           item1: "Toma una foto frontal y lateral",
-          item2: "Obtén tu análisis en 4 pilares",
+          item2: "Obtén tus puntuaciones de armonía, mandíbula, rasgos y piel",
           item3: "Desbloquea tus resultados completos y tu plan personalizado",
           note: "Toma unos 2 minutos. Tus fotos son privadas."
         },
@@ -1988,12 +2030,12 @@
           unlock: "Desbloquear mis resultados"
         },
         paywall: {
-          eyebrow: "FaceIQ Pro",
+          eyebrow: "MorphIndex Pro",
           title: "Desbloquea tu análisis completo",
           subtitle: "Accede a tus resultados completos, plan personalizado y seguimiento de progreso.",
           f1: "Análisis completo en más de 100 métricas",
           f2: "Plan de mejora personalizado",
-          f3: "FaceGPT — orientación experta con IA",
+          f3: "Coach — orientación experta con IA",
           f4: "Seguimiento de progreso y re-escaneos",
           yearly: "Anual",
           yearlyPrice: "59,99 €/año",
@@ -2008,8 +2050,8 @@
           cancelled: "Pago cancelado. Suscríbete para desbloquear tus resultados."
         },
         meta: {
-          title: "FaceIQ Labs — Onboarding",
-          description: "Completa tu primer análisis facial con FaceIQ Labs."
+          title: "MorphIndex — Onboarding",
+          description: "Completa tu primer análisis facial con MorphIndex."
         }
       }
     }

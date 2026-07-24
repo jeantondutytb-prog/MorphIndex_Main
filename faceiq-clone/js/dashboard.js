@@ -216,25 +216,19 @@
       "</section>";
   }
 
-  function renderToolsStrip(container) {
+  function renderHomeLink(container) {
     if (!container) return;
     container.hidden = false;
     container.innerHTML =
       '<section class="dashboard-tools" aria-label="' + t("dashboard.tools.label") + '">' +
-        '<p class="dashboard-tools__label">' + t("dashboard.tools.label") + "</p>" +
-        '<div class="dashboard-tools__row">' +
-          '<a href="/app/preview" class="dashboard-tools__chip">' +
-            t("dashboard.tools.preview") +
-          "</a>" +
-          '<a href="/app/simulate" class="dashboard-tools__chip">' +
-            t("dashboard.tools.simulate") +
-          "</a>" +
-          '<button type="button" class="dashboard-tools__chip" id="dashboard-rescan">' +
-            t("dashboard.tools.rescan") +
-          "</button>" +
-        "</div>" +
+        '<a href="/app/potential" class="btn btn--full dashboard-tools__potential">' +
+          t("dashboard.tools.potential") +
+        "</a>" +
       "</section>";
-    bindRescanButton(container.querySelector("#dashboard-rescan"));
+  }
+
+  function renderToolsStrip(container) {
+    renderHomeLink(container);
   }
 
   function renderProgressActions(container) {
@@ -912,6 +906,161 @@
     }
   }
 
+  function metricStatusRank(status) {
+    if (status === "focus") return 0;
+    if (status === "average") return 1;
+    return 2;
+  }
+
+  function renderMetricsTop5(container, analysis, callbacks) {
+    callbacks = callbacks || {};
+    var showAll = !!callbacks.showAll;
+    if (!container || !analysis) return;
+
+    var pillars = ["harmony", "angularity", "dimorphism", "features"];
+    var all = [];
+    pillars.forEach(function (pillar) {
+      var data = analysis.pillars[pillar];
+      if (!data || !data.metrics) return;
+      data.metrics.forEach(function (metric) {
+        all.push({ pillar: pillar, metric: metric });
+      });
+    });
+    all.sort(function (a, b) {
+      var diff = metricStatusRank(a.metric.status) - metricStatusRank(b.metric.status);
+      if (diff !== 0) return diff;
+      return Number(a.metric.value) - Number(b.metric.value);
+    });
+
+    var html =
+      '<section class="dashboard-metrics-top">' +
+        '<div class="dashboard-metrics-top__head">' +
+          '<h2 class="dashboard-section__title">' + t("dashboard.metricsView.top5Title") + "</h2>" +
+          '<p class="dashboard-section__subtitle">' + t("dashboard.metricsView.top5Subtitle") + "</p>" +
+        "</div>";
+
+    if (!showAll) {
+      html += '<div class="dashboard-metrics">';
+      all.slice(0, 5).forEach(function (item) {
+        var metric = item.metric;
+        html +=
+          '<div class="dashboard-metrics__card dashboard-metrics__card--' + metric.status + '">' +
+            '<div class="dashboard-metrics__summary dashboard-metrics__summary--flat">' +
+              '<span class="dashboard-metrics__info">' +
+                '<span class="dashboard-metrics__name">' + t("dashboard.metrics." + metric.key) + "</span>" +
+                '<span class="dashboard-metrics__pillar">' + pillarLabel(item.pillar) + "</span>" +
+              "</span>" +
+              '<span class="dashboard-metrics__value-wrap">' +
+                '<strong class="dashboard-metrics__value">' + metric.value + "</strong>" +
+                '<span class="dashboard-metrics__badge">' + statusLabel(metric.status) + "</span>" +
+              "</span>" +
+            "</div>" +
+          "</div>";
+      });
+      html += "</div>";
+      html +=
+        '<button type="button" class="btn btn--full dashboard-metrics-top__toggle" data-metrics-show-all>' +
+          t("dashboard.metricsView.showAll") +
+        "</button>";
+    } else {
+      html += '<div id="dashboard-metrics-all"></div>';
+      html +=
+        '<button type="button" class="btn btn--ghost btn--full dashboard-metrics-top__toggle" data-metrics-show-top>' +
+          t("dashboard.metricsView.showTop") +
+        "</button>";
+    }
+
+    html += "</section>";
+    container.innerHTML = html;
+
+    var showAllBtn = container.querySelector("[data-metrics-show-all]");
+    if (showAllBtn && typeof callbacks.onShowAll === "function") {
+      showAllBtn.addEventListener("click", callbacks.onShowAll);
+    }
+    var showTopBtn = container.querySelector("[data-metrics-show-top]");
+    if (showTopBtn && typeof callbacks.onShowTop === "function") {
+      showTopBtn.addEventListener("click", callbacks.onShowTop);
+    }
+    if (showAll) {
+      renderMetricsTabs(container.querySelector("#dashboard-metrics-all"), analysis);
+    }
+  }
+
+  function renderSimplePlan(container, analysis, userId, callbacks) {
+    if (!container || !analysis || !analysis.plan || !analysis.plan.length) return;
+
+    callbacks = callbacks || {};
+    var journey =
+      userId && window.Onboarding ? window.Onboarding.getJourney(userId, analysis) : null;
+    var protocols = window.ImprovementProtocols;
+    var focusKey = journey ? journey.activeFocusKey : analysis.plan[0].key;
+    var protocol = protocols ? protocols.getProtocol(focusKey) : null;
+    var phaseIndex =
+      protocol && journey && protocols ? protocols.resolvePhaseIndex(journey, protocol) : 0;
+    var actionProgress = (journey && journey.actionProgress) || {};
+    var phaseActions =
+      protocol && protocols ? protocols.listPhaseActions(protocol, phaseIndex) : [];
+
+    var html =
+      '<div class="dashboard-plan dashboard-plan--simple">' +
+        '<p class="dashboard-section__subtitle">' + t("dashboard.planSubtitle") + "</p>" +
+        '<ol class="dashboard-plan__list">';
+
+    analysis.plan.forEach(function (item, i) {
+      html +=
+        '<li class="dashboard-plan__item' + (item.key === focusKey ? " is-active" : "") + '">' +
+          '<span class="dashboard-plan__rank">' + (i + 1) + "</span>" +
+          '<div class="dashboard-plan__body">' +
+            "<strong>" + t("dashboard.plan." + item.key + ".title") + "</strong>" +
+            "<p>" + t("dashboard.plan." + item.key + ".desc") + "</p>" +
+            '<div class="dashboard-plan__meta">' +
+              '<span class="dashboard-plan__pillar">' + pillarLabel(item.pillar) + "</span>" +
+              '<span class="dashboard-plan__impact dashboard-plan__impact--' + item.impact + '">' +
+                impactLabel(item.impact) +
+              "</span>" +
+            "</div>" +
+          "</div>" +
+        "</li>";
+    });
+
+    html += "</ol>";
+
+    if (phaseActions.length) {
+      html += '<section class="dashboard-journey__week">';
+      html += "<h3>" + t("dashboard.journey.thisWeek") + "</h3>";
+      html += '<ul class="dashboard-journey__actions">';
+      phaseActions.forEach(function (actionKey) {
+        var checked = !!actionProgress[actionKey];
+        html +=
+          '<li class="dashboard-journey__action' + (checked ? " is-done" : "") + '">' +
+            '<label class="dashboard-journey__action-label">' +
+              '<input type="checkbox" class="dashboard-journey__action-checkbox" data-action-key="' +
+              actionKey +
+              '"' +
+              (checked ? " checked" : "") +
+              ">" +
+              '<span class="dashboard-journey__action-text">' +
+              getNextActionLabel(focusKey, actionKey) +
+              "</span>" +
+            "</label>" +
+          "</li>";
+      });
+      html += "</ul></section>";
+    }
+
+    html += "</div>";
+    container.innerHTML = html;
+
+    container.querySelectorAll(".dashboard-journey__action-checkbox").forEach(function (input) {
+      input.addEventListener("change", function () {
+        var key = input.getAttribute("data-action-key");
+        if (typeof callbacks.onActionToggle === "function") {
+          callbacks.onActionToggle(key, input.checked);
+        }
+      });
+    });
+  }
+
   function renderScoreHistory(container, state, currentAnalysis) {
     if (!container) return;
     var history = (state && state.scoreHistory) || [];
@@ -1049,6 +1198,7 @@
     renderQuickActions: renderQuickActions,
     renderNextStep: renderNextStep,
     renderStrengthsWeaknesses: renderStrengthsWeaknesses,
+    renderHomeLink: renderHomeLink,
     renderToolsStrip: renderToolsStrip,
     renderProgressActions: renderProgressActions,
     renderEmptyState: renderEmptyState,
@@ -1056,6 +1206,8 @@
     renderPhotos: renderPhotos,
     renderPillarBars: renderPillarBars,
     renderMetricsTabs: renderMetricsTabs,
+    renderMetricsTop5: renderMetricsTop5,
+    renderSimplePlan: renderSimplePlan,
     renderPlan: renderPlan,
     renderSummaryGrid: renderSummaryGrid,
     renderResultsPreview: renderResultsPreview

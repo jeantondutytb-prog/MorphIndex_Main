@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Your FaceIQ Labs analysis results.">
-  <title>FaceIQ Labs — Your results</title>
+  <meta name="description" content="Your MorphIndex analysis results.">
+  <title>MorphIndex — Your results</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css?v=20260724q">
+  <link rel="stylesheet" href="../css/styles.css?v=20260725s">
   <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
   <script>
     (function () {
@@ -44,7 +44,7 @@
 
   <main class="auth">
     <div class="auth__card auth__card--wide">
-      <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
+      <a href="/" class="auth__logo" aria-label="MorphIndex">
         <img src="../assets/logo.svg" alt="">
       </a>
 
@@ -68,7 +68,7 @@
   <div class="paywall" id="paywall" hidden>
     <div class="paywall__backdrop" aria-hidden="true"></div>
     <div class="paywall__panel auth__card" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
-      <a href="/" class="auth__logo" aria-label="FaceIQ Labs">
+      <a href="/" class="auth__logo" aria-label="MorphIndex">
         <img src="../assets/logo.svg" alt="">
       </a>
       <h2 class="auth__title" id="paywall-title" data-i18n="onboarding.paywall.title">Unlock your full analysis</h2>
@@ -108,14 +108,14 @@
   <script src="../js/config.js?v=20260724e"></script>
   <script src="/api/config.js" onerror="void 0"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
-  <script src="../js/i18n.js?v=20260724e"></script>
+  <script src="../js/i18n.js?v=20260725s"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/analysis-data.js?v=20260724e"></script>
-  <script src="../js/dashboard.js?v=20260724e"></script>
+  <script src="../js/dashboard.js?v=20260725s"></script>
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
   <script src="../js/billing-api.js?v=20260724e"></script>
-  <script src="../js/onboarding.js?v=20260725a"></script>
+  <script src="../js/onboarding.js?v=20260725s"></script>
   <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
     (function () {
@@ -216,7 +216,7 @@
         return val != null ? val : key;
       }
 
-      window.Onboarding.requireStep(client, 4, 4).then(function (ctx) {
+      window.Onboarding.requireStep(client, 3, 3).then(function (ctx) {
         if (!ctx) return;
 
         if (window.ScanApi) {

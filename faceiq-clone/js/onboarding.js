@@ -1,13 +1,12 @@
 (function () {
   var STORAGE_PREFIX = "faceiq_onboarding_";
-  var TOTAL_STEPS = 4;
+  var TOTAL_STEPS = 3;
   var ADMIN_EMAILS = ["jeantondut.ytb@gmail.com"];
 
   var stepRoutes = {
     1: "/onboarding",
     2: "/onboarding/photos",
-    3: "/onboarding/analyzing",
-    4: "/onboarding/results"
+    3: "/onboarding/results"
   };
 
   function redirectToLogin() {
@@ -238,14 +237,10 @@
           window.location.href = stepRoutes[2];
           return null;
         }
-        if (currentStep > 3 && (!state.frontPhoto || !state.sidePhoto)) {
-          window.location.href = stepRoutes[2];
-          return null;
-        }
       }
 
-      if (hasCompletedScan(user) && currentStep < 4) {
-        window.location.href = hasActiveSubscription(user) ? "/app" : stepRoutes[4];
+      if (hasCompletedScan(user) && currentStep < 3) {
+        window.location.href = hasActiveSubscription(user) ? "/app" : stepRoutes[3];
         return null;
       }
 

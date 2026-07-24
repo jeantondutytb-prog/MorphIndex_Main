@@ -30,7 +30,6 @@
     } catch (err) {
       // Ignore.
     }
-    // Landing page — avoid /login which auto-bounces back to /app if a session remains.
     window.location.replace("/");
   }
 
@@ -75,16 +74,13 @@
       currentUser = null;
       currentSession = null;
       markSignedOut();
-      // Clear again in case a concurrent token refresh rewrote storage.
       clearAuthStorage();
       redirectAfterSignOut();
     }
 
-    // Mark + wipe local session first so /login or /register cannot bounce back to /app.
     markSignedOut();
     clearAuthStorage();
 
-    // Supabase signOut({ scope: "global" }) can hang on the network revoke call.
     var timeoutId = window.setTimeout(finish, 800);
     var signOutPromise =
       client && client.auth
@@ -151,21 +147,16 @@
   var NAV_ICONS = {
     overview:
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>',
-    preview:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.4 4.3L18 9l-4.6 1.7L12 15l-1.4-4.3L6 9l4.6-1.7L12 3z"/><path d="M19 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg>',
-    metrics:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20v-9"/></svg>',
     plan:
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4.5 6.5 6 8l1.5-1.5"/><path d="M4.5 12.5 6 14l1.5-1.5"/><path d="M4.5 18.5 6 20l1.5-1.5"/></svg>',
-    chat:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-4.4 0-8 2.7-8 6 0 1.8.9 3.4 2.4 4.6L5 21l4.8-2.2c.7.1 1.4.2 2.2.2 4.4 0 8-2.7 8-6s-3.6-6-8-6z"/></svg>',
-    simulate:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3"/><path d="M12 18v3"/><path d="m4.2 4.2 2.1 2.1"/><path d="m17.7 17.7 2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m4.2 19.8 2.1-2.1"/><path d="m17.7 6.3 2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>'
+    metrics:
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20v-9"/></svg>'
   };
 
   function resolveNavView(view) {
-    // Preview / Simulate are tools opened from Home — keep Home highlighted.
-    if (view === "preview" || view === "simulate") return "overview";
+    if (view === "preview" || view === "simulate" || view === "potential" || view === "chat") {
+      return "overview";
+    }
     return view || "overview";
   }
 
@@ -177,8 +168,7 @@
     var items = [
       { view: "overview", href: "/app", key: "dashboard.nav.overview" },
       { view: "plan", href: "/app/plan", key: "dashboard.nav.plan" },
-      { view: "metrics", href: "/app/metrics", key: "dashboard.nav.metrics" },
-      { view: "chat", href: "/app/chat", key: "dashboard.nav.chat" }
+      { view: "metrics", href: "/app/metrics", key: "dashboard.nav.metrics" }
     ];
 
     nav.innerHTML =
@@ -198,12 +188,28 @@
       "</nav>";
   }
 
+  function renderCoachFab(activeView) {
+    var existing = document.getElementById("coach-fab");
+    if (existing) existing.remove();
+    if (activeView === "chat") return;
+
+    var fab = document.createElement("a");
+    fab.id = "coach-fab";
+    fab.className = "coach-fab";
+    fab.href = "/app/chat";
+    fab.setAttribute("aria-label", t("dashboard.coachFab.aria"));
+    fab.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-4.4 0-8 2.7-8 6 0 1.8.9 3.4 2.4 4.6L5 21l4.8-2.2c.7.1 1.4.2 2.2.2 4.4 0 8-2.7 8-6s-3.6-6-8-6z"/></svg>' +
+      '<span>' + t("dashboard.coachFab.label") + "</span>";
+    document.body.appendChild(fab);
+  }
+
   function applyPageMeta(view) {
     var key = "dashboard.pages." + view;
     var title = t(key + ".title");
     var description = t(key + ".description");
     if (title && title.indexOf("dashboard.pages.") !== 0) {
-      document.title = "FaceIQ Labs — " + title;
+      document.title = "MorphIndex — " + title;
     }
     var meta = document.querySelector('meta[name="description"]');
     if (meta && description && description.indexOf("dashboard.pages.") !== 0) {
@@ -250,6 +256,7 @@
 
       var view = document.body.getAttribute("data-app-view") || "overview";
       renderNav(view);
+      renderCoachFab(view);
       applyPageMeta(view);
 
       var scanHydrate =
@@ -261,7 +268,6 @@
           ? window.JourneyApi.hydrate(currentSession, currentUser.id)
           : Promise.resolve();
 
-      // Restore cloud scan first so the dashboard is not empty on a new device.
       scanHydrate
         .catch(function () {
           return null;
@@ -285,6 +291,7 @@
     document.addEventListener("langchange", function () {
       var view = document.body.getAttribute("data-app-view") || "overview";
       renderNav(view);
+      renderCoachFab(view);
       applyPageMeta(view);
       if (typeof onReady === "function" && currentUser) {
         onReady(getAppContext());
@@ -303,6 +310,7 @@
     boot: boot,
     getAppContext: getAppContext,
     renderNav: renderNav,
+    renderCoachFab: renderCoachFab,
     applyPageMeta: applyPageMeta
   };
 })();
