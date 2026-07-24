@@ -1140,8 +1140,11 @@
     container.innerHTML =
       '<div class="results-dashboard__overall">' +
         '<span class="results-dashboard__label" data-i18n="onboarding.results.overall">' + t("onboarding.results.overall") + '</span>' +
-        '<span class="results-dashboard__score">' + scores.overall + '</span>' +
-      '</div>' +
+        '<span class="results-dashboard__score">' + scores.overall + '<small>/10</small></span>' +
+        (locked
+          ? '<p class="results-dashboard__teaser" data-i18n="onboarding.results.teaser">' + t("onboarding.results.teaser") + "</p>"
+          : "") +
+      "</div>" +
       '<div class="results-dashboard__locked-content">' +
         '<div class="results-dashboard__pillars">' +
           ["harmony", "angularity", "dimorphism", "features"].map(function (pillar) {
@@ -1150,18 +1153,18 @@
             return '<div class="results-dashboard__pillar">' +
               '<span class="results-dashboard__pillar-name">' + label + '</span>' +
               '<div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" style="width:' + (val / 10 * 100) + '%"></div></div>' +
-              '<span class="results-dashboard__pillar-score">' + val + '</span>' +
-            '</div>';
+              '<span class="results-dashboard__pillar-score">' + val + "</span>" +
+            "</div>";
           }).join("") +
-        '</div>' +
+        "</div>" +
         '<div class="results-dashboard__metrics">' +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + '</strong></div>' +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + '</strong></div>' +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + '</strong></div>' +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + '</strong></div>' +
-        '</div>' +
-      '</div>' +
-      lockHtml;
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + "</strong></div>" +
+        "</div>" +
+        lockHtml +
+      "</div>";
   }
 
   function renderEmptyState(container, state) {
