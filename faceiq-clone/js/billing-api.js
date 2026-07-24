@@ -1,4 +1,9 @@
 (function () {
+  var PAYMENT_LINKS = {
+    monthly: "https://buy.stripe.com/00w8wOenI0D45v82pL6J201",
+    yearly: "https://buy.stripe.com/fZu5kCgvQadE7Dgd4p6J200"
+  };
+
   function getAccessToken(session) {
     return session && session.access_token ? session.access_token : "";
   }
@@ -64,6 +69,10 @@
 
   window.BillingApi = {
     createCheckoutSession: createCheckoutSession,
-    verifyCheckout: verifyCheckout
+    verifyCheckout: verifyCheckout,
+    getPaymentLink: function (plan) {
+      return plan === "monthly" ? PAYMENT_LINKS.monthly : PAYMENT_LINKS.yearly;
+    },
+    PAYMENT_LINKS: PAYMENT_LINKS
   };
 })();

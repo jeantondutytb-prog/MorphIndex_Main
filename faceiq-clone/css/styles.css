@@ -2725,10 +2725,32 @@ body.onboarding-scan-active .onboarding__camera-guide {
 
 .results-dashboard__locked-content {
   position: relative;
-  filter: blur(7px);
+}
+
+.results-dashboard:not(.is-unlocked) .results-dashboard__value {
+  filter: blur(4px);
   user-select: none;
   pointer-events: none;
-  transition: filter 0.4s ease;
+}
+
+.results-dashboard__selfie-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.625rem;
+}
+
+.results-dashboard__selfie {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.results-dashboard--compact .results-dashboard__selfie {
+  width: 3.75rem;
+  height: 3.75rem;
 }
 
 .results-dashboard__score small {
@@ -2743,7 +2765,7 @@ body.onboarding-scan-active .onboarding__camera-guide {
   color: var(--text-muted);
 }
 
-.results-dashboard.is-unlocked .results-dashboard__locked-content {
+.results-dashboard.is-unlocked .results-dashboard__value {
   filter: none;
   user-select: auto;
   pointer-events: auto;
@@ -2912,20 +2934,6 @@ body.onboarding-scan-active .onboarding__camera-guide {
   height: 4px;
 }
 
-.results-dashboard--compact .results-dashboard__locked-content {
-  filter: blur(5px);
-}
-
-.results-dashboard--compact .results-dashboard__lock {
-  gap: 0;
-  padding: 0.75rem;
-}
-
-.results-dashboard--compact .results-dashboard__lock-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 /* Results page — fit selfie, preview & paywall without scroll */
 .results-page {
   min-height: 100dvh;
@@ -2952,25 +2960,6 @@ body.onboarding-scan-active .onboarding__camera-guide {
   display: flex;
   flex-direction: column;
   gap: 0;
-}
-
-.results-selfie-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0.625rem;
-}
-
-.results-selfie-wrap[hidden] {
-  display: none;
-}
-
-.results-selfie {
-  width: 4.25rem;
-  height: 4.25rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2.5px solid var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 
 .results-page .shell-progress--compact {
@@ -3045,9 +3034,10 @@ body.onboarding-scan-active .onboarding__camera-guide {
 }
 
 @media (max-height: 700px) {
-  .results-selfie {
-    width: 3.5rem;
-    height: 3.5rem;
+  .results-dashboard__selfie,
+  .results-dashboard--compact .results-dashboard__selfie {
+    width: 3.25rem;
+    height: 3.25rem;
   }
 
   .results-page .auth__title--compact {
