@@ -1,31 +1,56 @@
 ---
-description: Deploy every push to Vercel Production (not Preview)
+description: Déploiement Vercel Production — push intelligent (quota GitHub)
 alwaysApply: true
 ---
 
-# Vercel — toujours déployer en Production
+# Vercel — déploiement Production & push intelligent
 
-Ce projet est connecté à Vercel. **Seuls les pushes sur `main` déclenchent un déploiement Production.**
+Ce projet est connecté à Vercel. **Seuls les pushes sur `main` déclenchent un déploiement Production via Git.**
 
-Les branches `cursor/*` ou toute autre branche créent un déploiement **Preview** — ce n'est pas le comportement souhaité.
+Quota GitHub limité (~100 pushes/jour) : **ne pas pousser à chaque itération**.
 
-## Règle obligatoire pour tous les agents
+## Pendant le développement
 
-1. **Travaille sur `main`** (ou merge vers `main` avant de terminer).
-2. **Push toujours sur `main`** à la fin de chaque itération :
-   ```bash
-   git checkout main
-   git pull origin main
-   # ... commits ...
-   git push -u origin main
-   ```
-3. Si tu as créé une branche `cursor/*` pour le travail, **merge-la dans `main` puis push `main`** avant de conclure.
-4. Ne considère pas le travail terminé tant que `main` n'a pas été poussé sur `origin`.
+1. Travailler sur une branche `cursor/*` (ou `main` en local sans push).
+2. **Commits locaux** au fil de l'eau — c'est normal et souhaité.
+3. **Ne pas `git push`** après chaque commit, test ou itération agent.
+4. Tester en local : `cd faceiq-clone && PORT=8080 ./serve.sh`.
 
-## Pourquoi
+## Quand pousser ?
 
-- Branche `main` → Vercel **Production** (site live)
-- Autre branche → Vercel **Preview** (URL temporaire, pas le site public)
+**Un seul push** quand le travail est **terminé, testé et prêt** :
+
+- Push de la branche feature **une fois** (pour PR ou sauvegarde distante).
+- Merge vers `main` + **un** `git push origin main` si le déploiement doit passer par Git.
+
+### Exceptions (push immédiat autorisé)
+
+- Correctif critique en production.
+- Demande explicite de l'utilisateur (« push », « déploie maintenant »).
+
+## Déploiement production (préféré sans push)
+
+Pour mettre en prod **sans consommer un push GitHub** :
+
+```bash
+npx vercel deploy --prod --yes --token="$VERCEL_TOKEN"
+```
+
+- Déploie l'arbre de travail local directement en Production.
+- Ne nécessite pas de push sur `main`.
+- Utiliser `VERCEL_TOKEN` (et `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` si besoin).
+
+**Ordre recommandé** : finir + tester localement → `vercel deploy --prod` → push `main` **seulement si** l'historique Git distant doit être à jour (optionnel, pas à chaque feature).
+
+## Règle de fin de tâche
+
+- Travail **terminé** = testé localement + déployé en prod (`vercel deploy --prod`) **ou** merge + push `main` si demandé.
+- Ne pas enchaîner push intermédiaires « pour vérifier » ou « pour sauvegarder ».
+
+## Branches & Preview
+
+- Branche `main` → Vercel **Production** (via push Git).
+- Branches `cursor/*` → **Preview** uniquement (éviter si l'objectif est la prod).
 
 ## UI / UX — shell auth (style Patreon)
 
@@ -42,4 +67,4 @@ Ne pas créer de headers ou layouts séparés pour l'app.
 
 ## PRs (optionnel)
 
-Tu peux toujours ouvrir une PR pour suivi, mais le déploiement production doit passer par un push sur `main`.
+Ouvrir une PR pour le suivi si utile. Le déploiement prod ne dépend pas d'un push à chaque commit.
