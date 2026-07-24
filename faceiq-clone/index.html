@@ -4,22 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="MorphIndex turns facial photos into structured metrics, a personalized roadmap, and measurable progress over time.">
+  <meta name="theme-color" content="#080808">
   <title>MorphIndex — Your Morphology, Quantified</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20260725s">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20260725t">
+  <link rel="stylesheet" href="css/landing.css?v=20260725t">
   <link rel="icon" href="assets/logos/logo-submark.svg" type="image/svg+xml">
   <script>
     (function () {
       var stored = localStorage.getItem("theme");
-      document.documentElement.setAttribute("data-theme", stored || "light");
+      document.documentElement.setAttribute("data-theme", stored || "dark");
       var lang = localStorage.getItem("lang");
       if (lang) document.documentElement.setAttribute("lang", lang);
     })();
   </script>
 </head>
-<body>
+<body class="landing-page">
 
   <nav class="nav">
     <div class="nav__inner">
@@ -28,6 +30,8 @@
         <img src="assets/logos/logo-submark.svg" alt="MorphIndex" class="logo logo--submark">
       </a>
       <div class="nav__links">
+        <a href="#how-it-works" class="nav__link" data-i18n="nav.how">How it works</a>
+        <a href="#faq" class="nav__link" data-i18n="nav.faq">FAQ</a>
         <a href="/login" class="nav__link" data-i18n="nav.login">Login</a>
         <div class="lang-switcher">
           <button type="button" class="lang-switcher__toggle" data-lang-toggle aria-expanded="false" data-i18n-aria="a11y.language">
@@ -59,6 +63,8 @@
       </div>
     </div>
     <div class="nav__drawer" id="nav-drawer" data-nav-drawer>
+      <a href="#how-it-works" class="nav__drawer-link" data-i18n="nav.how">How it works</a>
+      <a href="#faq" class="nav__drawer-link" data-i18n="nav.faq">FAQ</a>
       <a href="/login" class="nav__drawer-link" data-i18n="nav.login">Login</a>
       <a href="/register" class="btn" data-i18n="nav.cta">Try MorphIndex</a>
     </div>
@@ -67,33 +73,138 @@
 
   <main>
 
-    <section class="hero">
-      <div class="hero__bg" aria-hidden="true"></div>
-      <div class="hero__content">
-        <h1 class="hero__title" data-i18n-html="hero.title">Decode your structure.<br>Track what changes.</h1>
-        <p class="hero__subtitle" data-i18n="hero.subtitle">MorphIndex turns your facial photos into a living scorecard — structured metrics, a prioritized roadmap, and proof of progress as you go.</p>
-        <div class="hero__actions">
-          <a href="/register" class="btn btn--lg">
-            <span data-i18n="hero.cta">Run my first scan</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">See how it works</a>
-        </div>
-        <p class="hero__note" data-i18n="hero.note">For people who prefer data over opinions.</p>
-        <div class="hero__stats hero__stats--bottom">
-          <div class="hero__stars" data-i18n-aria="a11y.stars">
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+    <section class="landing-hero">
+      <div class="landing-hero__decos" aria-hidden="true">
+        <div class="landing-hero__deco-phone">
+          <div class="lp-phone">
+            <div class="lp-phone__bar"></div>
+            <div class="lp-phone__screen">
+              <div class="lp-phone__score">7.4<small>/10</small></div>
+              <div class="lp-phone__label" data-i18n="landing.decoScore">Overall index</div>
+              <div class="lp-phone__bars">
+                <span class="lp-phone__bar is-hi" style="--h: 72%"></span>
+                <span class="lp-phone__bar is-hi" style="--h: 58%"></span>
+                <span class="lp-phone__bar" style="--h: 44%"></span>
+                <span class="lp-phone__bar is-hi" style="--h: 65%"></span>
+              </div>
+            </div>
           </div>
-          <span><strong>120,000+</strong> <span data-i18n="hero.users">active users</span></span>
-          <span class="hero__divider">·</span>
-          <span><strong>2,400,000+</strong> <span data-i18n="hero.analyses">scans completed</span></span>
+        </div>
+        <div class="landing-hero__deco-stats">
+          <div class="lp-stat">
+            <div class="lp-stat__kicker" data-i18n="landing.decoViews">Scans · 30 days</div>
+            <div class="lp-stat__row">
+              <span class="lp-stat__num">+28%</span>
+              <span class="lp-stat__up" data-i18n="landing.decoUp">index</span>
+            </div>
+          </div>
+          <div class="lp-notif">
+            <div class="lp-notif__avatar">MJ</div>
+            <div>
+              <div class="lp-notif__title" data-i18n="landing.decoNotifTitle">New scan completed</div>
+              <div class="lp-notif__sub" data-i18n="landing.decoNotifSub">just now · Harmony +0.3</div>
+            </div>
+            <span class="lp-notif__dot"></span>
+          </div>
         </div>
       </div>
 
+      <p class="landing-hero__pill">
+        <span class="landing-hero__pill-dot"></span>
+        <span data-i18n="landing.pill">Facial analysis · Live metrics</span>
+      </p>
+      <h1 class="landing-hero__title" data-i18n-html="landing.heroTitle">Decode your morphology<br><em>in under 2 minutes.</em></h1>
+      <p class="landing-hero__subtitle" data-i18n="landing.heroSubtitle">Two photos. A structured scorecard. A prioritized roadmap — and proof of progress every time you re-scan.</p>
+      <div class="landing-hero__actions">
+        <a href="/register" class="landing-hero__cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <span data-i18n="hero.cta">Run my first scan</span>
+        </a>
+        <a href="#how-it-works" class="btn btn--ghost" data-i18n="hero.link">See how it works</a>
+      </div>
+      <p class="landing-hero__note" data-i18n="hero.note">For people who prefer data over opinions.</p>
+      <div class="landing-hero__stats">
+        <div class="hero__stars landing-hero__stars" data-i18n-aria="a11y.stars">
+          <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+        </div>
+        <span><strong>120,000+</strong> <span data-i18n="hero.users">active users</span></span>
+        <span class="hero__divider">·</span>
+        <span><strong>2,400,000+</strong> <span data-i18n="hero.analyses">scans completed</span></span>
+      </div>
+    </section>
+
+    <section class="landing-features" aria-label="Key benefits">
+      <article class="landing-feat">
+        <div class="landing-feat__visual">
+          <div class="lp-mock-scan">
+            <span class="lp-mock-scan__ring"></span>
+            <span class="lp-mock-scan__ring"></span>
+            <span class="lp-mock-scan__ring"></span>
+            <div class="lp-mock-scan__core">1<span data-i18n="landing.feat1tag">scan</span></div>
+          </div>
+        </div>
+        <div class="landing-feat__body">
+          <span class="landing-feat__tag" data-i18n="landing.feat1tag">1 scan</span>
+          <h3 data-i18n="landing.feat1t">One scan. Your index in seconds</h3>
+          <p data-i18n="landing.feat1d">Upload a front and side photo — MorphIndex maps 100+ variables into a single composite score you can act on.</p>
+        </div>
+      </article>
+      <article class="landing-feat">
+        <div class="landing-feat__visual">
+          <div class="lp-mock-card">
+            <div class="lp-mock-card__avatar">MI</div>
+            <div class="lp-mock-card__name">Harmony</div>
+            <div class="lp-mock-card__score">8.2</div>
+            <div class="lp-mock-card__pillars">
+              <span class="is-hi"></span><span class="is-hi"></span><span></span><span class="is-hi"></span>
+            </div>
+          </div>
+        </div>
+        <div class="landing-feat__body">
+          <span class="landing-feat__tag" data-i18n="landing.feat2tag">Structure</span>
+          <h3 data-i18n="landing.feat2t">Your metrics tell the full story</h3>
+          <p data-i18n="landing.feat2d">Harmony, jawline, traits, skin — each dimension scored independently so you know exactly where to focus.</p>
+        </div>
+      </article>
+      <article class="landing-feat">
+        <div class="landing-feat__visual">
+          <div class="lp-mock-chart">
+            <div class="lp-mock-chart__label" data-i18n="landing.feat3tag">Progress</div>
+            <div class="lp-mock-chart__num">+18%</div>
+            <div class="lp-mock-chart__bars">
+              <span style="--h: 35%"></span>
+              <span style="--h: 48%"></span>
+              <span class="is-hi" style="--h: 62%"></span>
+              <span class="is-hi" style="--h: 78%"></span>
+              <span class="is-hi" style="--h: 92%"></span>
+            </div>
+          </div>
+        </div>
+        <div class="landing-feat__body">
+          <span class="landing-feat__tag" data-i18n="landing.feat3tag">Progress</span>
+          <h3 data-i18n="landing.feat3t">Full traceability of your gains</h3>
+          <p data-i18n="landing.feat3d">Re-scan over time and watch your index climb. Every session is logged — you see what moves the needle.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="landing-strip">
+      <p class="landing-strip__label" data-i18n-html="landing.strip">MorphIndex covers <strong>harmony, structure, traits &amp; skin</strong> in one workflow</p>
+      <div class="landing-strip__track">
+        <span class="landing-strip__item">Harmony</span>
+        <span class="landing-strip__item">Jawline</span>
+        <span class="landing-strip__item">Traits</span>
+        <span class="landing-strip__item">Skin</span>
+        <span class="landing-strip__item">AI Coach</span>
+        <span class="landing-strip__item">Simulator</span>
+      </div>
+    </section>
+
+    <section class="landing-demo">
       <div class="browser">
         <div class="browser__chrome">
           <div class="browser__dots"><span></span><span></span><span></span></div>
@@ -107,6 +218,11 @@
         <span class="browser__tab" data-i18n="hero.tabFront">Front scan</span>
         <span class="browser__tab browser__tab--inactive" data-i18n="hero.tabSide">Side scan</span>
       </div>
+    </section>
+
+    <section class="landing-problem">
+      <h2 data-i18n="landing.problemTitle">In 2026, guessing your weak spots doesn't cut it.</h2>
+      <p data-i18n-html="landing.problemText"><strong>88%</strong> of appearance advice is subjective — MorphIndex replaces opinions with measurable structure.</p>
     </section>
 
     <section class="section section--muted" id="how-it-works">
@@ -144,12 +260,38 @@
 
     <section class="section">
       <div class="container">
+        <div class="section__header">
+          <p class="eyebrow" data-i18n="landing.membersEyebrow">Community</p>
+          <h2 class="section-title" data-i18n="landing.membersTitle">They already track their morphology</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="landing.membersSubtitle">Members who scan regularly — sharing their index growth.</p>
+        </div>
+        <div class="landing-carousel">
+          <div class="landing-carousel__track">
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">SR</div><div><div class="lp-profile-card__name">Sarah R.</div><div class="lp-profile-card__role">Harmony 8.1</div></div></div><div class="lp-profile-card__score">7.6</div><div class="lp-profile-card__tags"><span>Harmony</span><span>Skin</span><span>Jaw</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">TM</div><div><div class="lp-profile-card__name">Thomas M.</div><div class="lp-profile-card__role">Jawline 7.8</div></div></div><div class="lp-profile-card__score">7.2</div><div class="lp-profile-card__tags"><span>Structure</span><span>Traits</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">LB</div><div><div class="lp-profile-card__name">Léa B.</div><div class="lp-profile-card__role">Skin 8.4</div></div></div><div class="lp-profile-card__score">7.9</div><div class="lp-profile-card__tags"><span>Skin</span><span>Harmony</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">AD</div><div><div class="lp-profile-card__name">Alexandre D.</div><div class="lp-profile-card__role">Traits 7.5</div></div></div><div class="lp-profile-card__score">6.8</div><div class="lp-profile-card__tags"><span>Traits</span><span>Jaw</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">NC</div><div><div class="lp-profile-card__name">Nicolas C.</div><div class="lp-profile-card__role">+0.9 in 90d</div></div></div><div class="lp-profile-card__score">7.4</div><div class="lp-profile-card__tags"><span>Progress</span><span>Plan</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">SR</div><div><div class="lp-profile-card__name">Sarah R.</div><div class="lp-profile-card__role">Harmony 8.1</div></div></div><div class="lp-profile-card__score">7.6</div><div class="lp-profile-card__tags"><span>Harmony</span><span>Skin</span><span>Jaw</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">TM</div><div><div class="lp-profile-card__name">Thomas M.</div><div class="lp-profile-card__role">Jawline 7.8</div></div></div><div class="lp-profile-card__score">7.2</div><div class="lp-profile-card__tags"><span>Structure</span><span>Traits</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">LB</div><div><div class="lp-profile-card__name">Léa B.</div><div class="lp-profile-card__role">Skin 8.4</div></div></div><div class="lp-profile-card__score">7.9</div><div class="lp-profile-card__tags"><span>Skin</span><span>Harmony</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">AD</div><div><div class="lp-profile-card__name">Alexandre D.</div><div class="lp-profile-card__role">Traits 7.5</div></div></div><div class="lp-profile-card__score">6.8</div><div class="lp-profile-card__tags"><span>Traits</span><span>Jaw</span></div></article>
+            <article class="lp-profile-card"><div class="lp-profile-card__head"><div class="lp-profile-card__avatar">NC</div><div><div class="lp-profile-card__name">Nicolas C.</div><div class="lp-profile-card__role">+0.9 in 90d</div></div></div><div class="lp-profile-card__score">7.4</div><div class="lp-profile-card__tags"><span>Progress</span><span>Plan</span></div></article>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem;">
+          <a href="/register" class="btn" data-i18n="landing.membersCta">Start my scan</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container">
         <div class="section__header section__header--left">
           <p class="eyebrow mono" data-i18n="pillars.eyebrow">Scoring model</p>
           <h2 class="section-title" data-i18n="pillars.title">Four dimensions, one composite index</h2>
           <p class="section-subtitle" data-i18n="pillars.subtitle">Every scan scores you across independent layers of facial morphology.</p>
         </div>
-
         <div class="pillars__grid pillars__grid--quad">
           <article class="pillar-card">
             <div class="pillar-card__visual">
@@ -199,7 +341,7 @@
       </div>
     </section>
 
-    <section class="section section--muted">
+    <section class="section">
       <div class="container">
         <div class="section__header section__header--left">
           <h2 class="section-title" data-i18n="platform.title">One workspace for the full picture</h2>
@@ -231,6 +373,38 @@
             <h3><span data-i18n="platform.f3t">See your potential</span> <span class="badge" data-i18n="platform.new">New</span></h3>
             <p data-i18n="platform.f3d">Preview your look in 6 months or simulate cosmetic changes.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted landing-analytics" id="analytics">
+      <div class="container">
+        <div class="section__header">
+          <p class="eyebrow" data-i18n="landing.analyticsEyebrow">Dashboard</p>
+          <h2 class="section-title" data-i18n="landing.analyticsTitle">Measure what your scans actually produce</h2>
+          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="landing.analyticsSubtitle">Index shifts, pillar breakdowns, plan completion — every session tracked so you know what converts.</p>
+        </div>
+        <div class="landing-analytics__grid">
+          <div class="landing-analytics__card">
+            <span data-i18n="landing.stat1l">Overall index</span>
+            <strong>7.42</strong>
+            <small data-i18n="landing.stat1s">+18% over 90 days</small>
+          </div>
+          <div class="landing-analytics__card">
+            <span data-i18n="landing.stat2l">Harmony score</span>
+            <strong>8.1</strong>
+            <small data-i18n="landing.stat2s">Top pillar this month</small>
+          </div>
+          <div class="landing-analytics__card">
+            <span data-i18n="landing.stat3l">Plan actions</span>
+            <strong>73%</strong>
+            <small data-i18n="landing.stat3s">Completed this week</small>
+          </div>
+          <div class="landing-analytics__card">
+            <span data-i18n="landing.stat4l">Re-scans</span>
+            <strong>12</strong>
+            <small data-i18n="landing.stat4s">Logged in 6 months</small>
+          </div>
         </div>
       </div>
     </section>
@@ -331,42 +505,10 @@
 
     <section class="section">
       <div class="container">
-        <div class="projection">
-          <p class="eyebrow" data-i18n="projection.eyebrow">Growth model</p>
-          <h2 class="section-title" data-i18n="projection.title">Small gains compound</h2>
-          <p class="section-subtitle" style="margin-inline: auto;" data-i18n="projection.subtitle">MorphIndex models where your score could land if you follow the recommended path.</p>
-          <div class="projection__scores">
-            <div class="projection__score">
-              <span data-i18n="projection.today">Today</span>
-              <strong>5.10</strong>
-            </div>
-            <span class="projection__arrow">→</span>
-            <div class="projection__score">
-              <span data-i18n="projection.potential">Potential</span>
-              <strong>7.42</strong>
-            </div>
-          </div>
-          <a href="/register" class="btn" data-i18n="projection.btn">Explore my trajectory</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--muted">
-      <div class="container" style="max-width: 40rem; text-align: center;">
-        <p class="eyebrow" data-i18n="audience.eyebrow">Built for</p>
-        <h2 class="section-title" style="margin-bottom: 1rem;" data-i18n="audience.title">The committed, not the curious</h2>
-        <p class="section-subtitle" style="margin-inline: auto; margin-bottom: 1rem;" data-i18n="audience.p1">A score alone changes nothing. The members who transform treat MorphIndex as a starting line — then do the work between scans.</p>
-        <p style="font-weight: 500;" data-i18n="audience.p2">If that sounds like you, you're in the right place.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
         <div class="section__header">
           <h2 class="section-title" data-i18n="testimonials.title">What members say</h2>
           <p class="section-subtitle" style="margin-inline: auto;" data-i18n="testimonials.subtitle">Unfiltered feedback from people who scan regularly.</p>
         </div>
-
         <div class="testimonials-grid">
           <article class="testimonial">
             <div class="testimonial__stars">
@@ -379,7 +521,6 @@
             <blockquote data-i18n="testimonials.t1">"No hype, just numbers I can act on. Whether I'm optimizing or simply understanding my structure, MorphIndex is the most consistent tool I've used."</blockquote>
             <div class="testimonial__author">H. J.</div>
           </article>
-
           <article class="testimonial">
             <div class="testimonial__stars">
               <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
@@ -391,7 +532,6 @@
             <blockquote data-i18n="testimonials.t2">"I knew my weak spots vaguely — MorphIndex quantified them. Replacing guesswork with metrics completely changed how I approach improvement."</blockquote>
             <div class="testimonial__author">Katie L.</div>
           </article>
-
           <article class="testimonial">
             <div class="testimonial__stars">
               <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
@@ -403,44 +543,55 @@
             <blockquote data-i18n="testimonials.t3">"My composite score looked fine, but I needed detail on texture and under-eye volume. MorphIndex was the first app to give me specifics I could actually use."</blockquote>
             <div class="testimonial__author">Ryan T.</div>
           </article>
-
-          <article class="testimonial">
-            <div class="testimonial__stars">
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            </div>
-            <blockquote data-i18n="testimonials.t4">"Strengths, gaps, priorities — laid out clearly. That alone justified signing up."</blockquote>
-            <div class="testimonial__author">Marcus D.</div>
-          </article>
-
-          <article class="testimonial">
-            <div class="testimonial__stars">
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            </div>
-            <blockquote data-i18n="testimonials.t5">"Every re-scan surfaces something I missed. The personalized plans keep me accountable without feeling generic."</blockquote>
-            <div class="testimonial__author">Aisha N.</div>
-          </article>
-
-          <article class="testimonial">
-            <div class="testimonial__stars">
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-              <svg viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-            </div>
-            <blockquote data-i18n="testimonials.t6">"Clinical options plus daily habits — all ranked by impact. I haven't found anything else this precise."</blockquote>
-            <div class="testimonial__author">E. M.</div>
-          </article>
         </div>
       </div>
+    </section>
+
+    <section class="landing-faq" id="faq">
+      <div class="landing-faq__header">
+        <h2 data-i18n-html="landing.faqTitle">Still have questions?<span>We've got answers.</span></h2>
+      </div>
+      <div class="landing-faq__list">
+        <article class="landing-faq__item" data-faq-item>
+          <button type="button" class="landing-faq__q" data-faq-toggle aria-expanded="false">
+            <span data-i18n="landing.faq1q">What is MorphIndex?</span>
+            <svg class="landing-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="landing-faq__a"><p data-i18n="landing.faq1a">MorphIndex turns your facial photos into structured metrics — harmony, jawline, traits, and skin — plus a personalized improvement plan you can track over time.</p></div>
+        </article>
+        <article class="landing-faq__item" data-faq-item>
+          <button type="button" class="landing-faq__q" data-faq-toggle aria-expanded="false">
+            <span data-i18n="landing.faq2q">How do I get started?</span>
+            <svg class="landing-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="landing-faq__a"><p data-i18n="landing.faq2a">Create an account, upload a front photo and a side profile, and your full analysis is generated in minutes. Re-scan anytime to measure progress.</p></div>
+        </article>
+        <article class="landing-faq__item" data-faq-item>
+          <button type="button" class="landing-faq__q" data-faq-toggle aria-expanded="false">
+            <span data-i18n="landing.faq3q">Is MorphIndex a replacement for professional advice?</span>
+            <svg class="landing-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="landing-faq__a"><p data-i18n="landing.faq3a">MorphIndex is a measurement and planning tool — not medical advice. It helps you understand your structure and prioritize next steps; always consult a qualified professional for clinical decisions.</p></div>
+        </article>
+        <article class="landing-faq__item" data-faq-item>
+          <button type="button" class="landing-faq__q" data-faq-toggle aria-expanded="false">
+            <span data-i18n="landing.faq4q">Can I track progress over time?</span>
+            <svg class="landing-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="landing-faq__a"><p data-i18n="landing.faq4a">Yes. Every re-scan is logged against your history. You see index shifts, pillar breakdowns, and whether your plan is moving the numbers.</p></div>
+        </article>
+        <article class="landing-faq__item" data-faq-item>
+          <button type="button" class="landing-faq__q" data-faq-toggle aria-expanded="false">
+            <span data-i18n="landing.faq5q">Is MorphIndex free to try?</span>
+            <svg class="landing-faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          </button>
+          <div class="landing-faq__a"><p data-i18n="landing.faq5a">You can create an account and run your first scan to explore the platform. Premium features unlock your full roadmap, coach, and progress tracking.</p></div>
+        </article>
+      </div>
+      <p class="landing-faq__cta">
+        <span data-i18n="landing.faqCta">Didn't find what you need?</span>
+        <a href="/register" data-i18n="landing.faqCtaLink">Start your first scan</a>
+      </p>
     </section>
 
     <section class="cta">
@@ -470,9 +621,10 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260725s"></script>
+  <script src="js/i18n.js?v=20260725t"></script>
   <script src="js/theme.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/landing.js"></script>
   <script src="js/transformation.js"></script>
 </body>
 </html>
