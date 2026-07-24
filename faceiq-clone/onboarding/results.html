@@ -98,7 +98,7 @@
   <script src="../js/dashboard.js?v=20260725u"></script>
   <script src="../js/image-compress.js?v=20260724e"></script>
   <script src="../js/ai-api.js?v=20260724e"></script>
-    <script src="../js/billing-api.js?v=20260726c"></script>
+    <script src="../js/billing-api.js?v=20260726e"></script>
   <script src="../js/onboarding.js?v=20260725s"></script>
   <script src="../js/scan-api.js?v=20260725a"></script>
   <script>
@@ -167,14 +167,72 @@
           if (patch.preview6mUrl && window.Onboarding.queueScanSync) {
             window.Onboarding.queueScanSync(ctx.user.id, { includePhotos: false });
           }
+        }).catch(function () {
+          window.Onboarding.saveState(ctx.user.id, { previewGenerating: false });
         });
       }
 
+      function ensureSubscriptionActive(client, ctx, maxAttempts) {
+        maxAttempts = maxAttempts == null ? 12 : maxAttempts;
+
+        function hasActiveSession(session) {
+          var user = session && session.user;
+          return !!(user && window.Onboarding.hasActiveSubscription(user));
+        }
+
+        function poll(attempt) {
+          return client.auth.refreshSession().then(function (result) {
+            if (hasActiveSession(result.data.session)) {
+              return true;
+            }
+            if (attempt >= maxAttempts) {
+              return false;
+            }
+            return new Promise(function (resolve) {
+              window.setTimeout(resolve, 1000);
+            }).then(function () {
+              return poll(attempt + 1);
+            });
+          });
+        }
+
+        if (window.BillingApi && window.BillingApi.syncSubscription) {
+          return window.BillingApi.syncSubscription(ctx.session).then(function (syncResult) {
+            if (syncResult.ok && syncResult.active) {
+              return client.auth.refreshSession().then(function (result) {
+                return hasActiveSession(result.data.session);
+              });
+            }
+            return poll(0);
+          }).catch(function () {
+            return poll(0);
+          });
+        }
+
+        return poll(0);
+      }
+
       function finishSubscriptionFlow(client, ctx, state) {
-        return client.auth.refreshSession().then(function () {
-          return startPreviewGeneration(client, ctx, state);
-        }).finally(function () {
+        if (subtitleEl) {
+          subtitleEl.textContent = t("onboarding.paywall.verifyingSubscription");
+        }
+        paywall.hidden = true;
+
+        return ensureSubscriptionActive(client, ctx).then(function (active) {
+          window.history.replaceState({}, "", "/onboarding/results");
+          try {
+            sessionStorage.removeItem("morphindex-checkout-pending");
+          } catch (e) {
+            // Ignore.
+          }
+
+          if (!active) {
+            renderLockedResults(t("onboarding.paywall.activationError"));
+            return;
+          }
+
           markWelcomePending();
+          startPreviewGeneration(client, ctx, state);
           redirectToApp(true);
         });
       }
@@ -347,10 +405,15 @@
                 if (active) {
                   return finishSubscriptionFlow(client, ctx, state);
                 }
-                renderLockedResults(t("onboarding.paywall.checkoutError"));
+                renderLockedResults(t("onboarding.paywall.activationError"));
               });
             }).catch(function () {
-              renderLockedResults(t("onboarding.paywall.checkoutError"));
+              return syncAndWaitForSubscription(client, ctx).then(function (active) {
+                if (active) {
+                  return finishSubscriptionFlow(client, ctx, state);
+                }
+                renderLockedResults(t("onboarding.paywall.activationError"));
+              });
             });
             return;
           }

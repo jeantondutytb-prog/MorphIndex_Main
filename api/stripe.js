@@ -378,13 +378,17 @@ async function handleVerifyCheckout(request, response) {
         plan: session.metadata && session.metadata.plan ? session.metadata.plan : null
       });
 
-      if (update.error) {
-        return sendJson(response, update.status || 500, { error: update.error });
-      }
+      return sendJson(response, 200, {
+        active: true,
+        status: status,
+        plan: session.metadata && session.metadata.plan ? session.metadata.plan : null,
+        metadataSynced: !update.error,
+        syncError: update.error || null
+      });
     }
 
     return sendJson(response, 200, {
-      active: active,
+      active: false,
       status: status,
       plan: session.metadata && session.metadata.plan ? session.metadata.plan : null
     });

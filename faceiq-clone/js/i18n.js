@@ -725,6 +725,7 @@
           verifying: "Confirming your payment…",
           verifyingSubscription: "Activating your subscription…",
           checkoutError: "Unable to start checkout. Please try again.",
+          activationError: "Payment received but activation is still pending. Please refresh this page in a moment.",
           checkoutLoading: "Redirecting to checkout…",
           cancelled: "Payment cancelled. Subscribe to unlock your full results."
         },
@@ -1456,6 +1457,7 @@
           verifying: "Confirmation de votre paiement…",
           verifyingSubscription: "Activation de votre abonnement…",
           checkoutError: "Impossible de démarrer le paiement. Réessayez.",
+          activationError: "Paiement reçu, activation en cours. Actualisez cette page dans un instant.",
           checkoutLoading: "Redirection vers le paiement…",
           cancelled: "Paiement annulé. Abonnez-vous pour débloquer vos résultats."
         },
@@ -2187,6 +2189,7 @@
           verifying: "Confirmando tu pago…",
           verifyingSubscription: "Activando tu suscripción…",
           checkoutError: "No se pudo iniciar el pago. Inténtalo de nuevo.",
+          activationError: "Pago recibido, activación en curso. Actualiza esta página en un momento.",
           checkoutLoading: "Redirigiendo al pago…",
           cancelled: "Pago cancelado. Suscríbete para desbloquear tus resultados."
         },
