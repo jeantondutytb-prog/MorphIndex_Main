@@ -219,6 +219,46 @@
     if (titleEl) titleEl.textContent = title;
   }
 
+  function renderBillingLink() {
+    if (!signOutBtn || document.getElementById("app-billing")) {
+      return;
+    }
+
+    var actions = signOutBtn.closest(".dashboard-header__actions");
+    if (!actions) {
+      actions = document.createElement("div");
+      actions.className = "dashboard-header__actions";
+      signOutBtn.parentNode.insertBefore(actions, signOutBtn);
+      actions.appendChild(signOutBtn);
+    }
+
+    var billingBtn = document.createElement("button");
+    billingBtn.type = "button";
+    billingBtn.id = "app-billing";
+    billingBtn.className = "btn btn--ghost btn--sm dashboard-header__signout";
+    billingBtn.setAttribute("data-i18n", "app.manageBilling");
+    billingBtn.textContent = t("app.manageBilling");
+    actions.insertBefore(billingBtn, signOutBtn);
+
+    billingBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (!window.BillingApi || !currentSession) {
+        return;
+      }
+
+      billingBtn.disabled = true;
+      window.BillingApi.createPortalSession(currentSession).then(function (result) {
+        if (result.ok && result.url) {
+          window.location.href = result.url;
+          return;
+        }
+        billingBtn.disabled = false;
+      }).catch(function () {
+        billingBtn.disabled = false;
+      });
+    });
+  }
+
   function boot(onReady) {
     setBooting(true);
     client = initSupabase();
@@ -258,6 +298,7 @@
       renderNav(view);
       renderCoachFab(view);
       applyPageMeta(view);
+      renderBillingLink();
 
       var scanHydrate =
         window.ScanApi && window.ScanApi.hydrate
@@ -298,6 +339,7 @@
       renderNav(view);
       renderCoachFab(view);
       applyPageMeta(view);
+      renderBillingLink();
       if (typeof onReady === "function" && currentUser) {
         onReady(getAppContext());
       }

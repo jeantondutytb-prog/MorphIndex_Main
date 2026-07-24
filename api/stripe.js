@@ -1,7 +1,7 @@
 import { requireUser } from "../lib/auth.js";
 import { applyCors, readJsonBody, sendJson } from "../lib/http.js";
 import { activateSubscription, deactivateSubscription } from "../lib/subscription.js";
-import { getAppOrigin, getPriceId, getStripe, isSubscriptionActive } from "../lib/stripe.js";
+import { getAppOrigin, getPriceId, getStripe, isSubscriptionActive, resolveStripeCustomerId } from "../lib/stripe.js";
 
 export const config = {
   api: {
@@ -171,6 +171,46 @@ async function handleWebhook(request, response) {
           subscriptionId: subscription.id,
           status: subscription.status
         });
+        break;
+      }
+
+      case "invoice.payment_failed": {
+        const invoice = event.data.object;
+        const subscriptionId =
+          typeof invoice.subscription === "string"
+            ? invoice.subscription
+            : invoice.subscription && invoice.subscription.id;
+
+        if (!subscriptionId) {
+          break;
+        }
+
+        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+        const userId = await resolveUserIdFromSubscription(stripe, subscription);
+        if (!userId) {
+          break;
+        }
+
+        if (isSubscriptionActive(subscription.status)) {
+          await activateSubscription(userId, {
+            customerId:
+              typeof subscription.customer === "string"
+                ? subscription.customer
+                : subscription.customer && subscription.customer.id,
+            subscriptionId: subscription.id,
+            status: subscription.status,
+            plan: subscription.metadata && subscription.metadata.plan ? subscription.metadata.plan : null
+          });
+        } else {
+          await deactivateSubscription(userId, {
+            customerId:
+              typeof subscription.customer === "string"
+                ? subscription.customer
+                : subscription.customer && subscription.customer.id,
+            subscriptionId: subscription.id,
+            status: subscription.status
+          });
+        }
         break;
       }
 
@@ -356,7 +396,7 @@ async function handleVerifyCheckout(request, response) {
   }
 }
 
-async function handleCreateCheckout(request, response) {
+async function handleCreateCheckout(request, response, body) {
   const auth = await requireUser(request);
   if (auth.error) {
     return sendJson(response, auth.status, { error: auth.error });
@@ -368,18 +408,18 @@ async function handleCreateCheckout(request, response) {
   }
 
   try {
-    const body = await readJsonBody(request);
-    const plan = body.plan === "yearly" ? "yearly" : "monthly";
+    const payload = body || (await readJsonBody(request));
+    const plan = payload.plan === "yearly" ? "yearly" : "monthly";
     const priceId = getPriceId(plan);
     if (!priceId) {
       return sendJson(response, 503, { error: "Stripe price is not configured" });
     }
 
     const origin = getAppOrigin();
-    const session = await stripe.checkout.sessions.create({
+    const customerId = await resolveStripeCustomerId(stripe, auth.user);
+    const sessionParams = {
       mode: "subscription",
       allow_promotion_codes: true,
-      customer_email: auth.user.email || undefined,
       client_reference_id: auth.user.id,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url:
@@ -396,7 +436,15 @@ async function handleCreateCheckout(request, response) {
           plan: plan
         }
       }
-    });
+    };
+
+    if (customerId) {
+      sessionParams.customer = customerId;
+    } else if (auth.user.email) {
+      sessionParams.customer_email = auth.user.email;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     if (!session.url) {
       return sendJson(response, 500, { error: "Failed to create checkout session" });
@@ -411,15 +459,60 @@ async function handleCreateCheckout(request, response) {
   }
 }
 
+async function handleCustomerPortal(request, response) {
+  const auth = await requireUser(request);
+  if (auth.error) {
+    return sendJson(response, auth.status, { error: auth.error });
+  }
+
+  const stripe = getStripe();
+  if (!stripe) {
+    return sendJson(response, 503, { error: "Stripe is not configured" });
+  }
+
+  try {
+    const customerId = await resolveStripeCustomerId(stripe, auth.user);
+    if (!customerId) {
+      return sendJson(response, 400, { error: "No billing account found" });
+    }
+
+    const origin = getAppOrigin();
+    const portal = await stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: origin + "/app"
+    });
+
+    if (!portal.url) {
+      return sendJson(response, 500, { error: "Failed to create portal session" });
+    }
+
+    return sendJson(response, 200, { url: portal.url });
+  } catch (error) {
+    return sendJson(response, 500, {
+      error: "Failed to create portal session",
+      detail: error && error.message ? error.message : null
+    });
+  }
+}
+
+async function handlePost(request, response) {
+  if (request.headers["stripe-signature"]) {
+    return handleWebhook(request, response);
+  }
+
+  const body = await readJsonBody(request);
+  if (body && body.action === "portal") {
+    return handleCustomerPortal(request, response);
+  }
+
+  return handleCreateCheckout(request, response, body);
+}
+
 export default async function handler(request, response) {
   applyCors(request, response);
 
   if (request.method === "OPTIONS") {
     return response.status(204).end();
-  }
-
-  if (request.method === "POST" && request.headers["stripe-signature"]) {
-    return handleWebhook(request, response);
   }
 
   if (request.method === "GET") {
@@ -430,7 +523,7 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "POST") {
-    return handleCreateCheckout(request, response);
+    return handlePost(request, response);
   }
 
   return sendJson(response, 405, { error: "Method not allowed" });

@@ -3389,6 +3389,14 @@ body.paywall-open {
   font-size: 0.75rem;
 }
 
+.dashboard-header__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
 .dashboard-tabbar {
   position: fixed;
   left: 0;

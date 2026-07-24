@@ -90,7 +90,7 @@ Dans le projet Vercel → **Settings → Environment Variables** :
 | `FAL_MODEL` | Optionnel — voir recommandations ci-dessous (défaut : `fal-ai/image-editing/face-enhancement`) |
 | `APP_ORIGIN` | Optionnel — origine CORS (défaut : `https://www.morphindex.com`) |
 | `STRIPE_SECRET_KEY` | Clé secrète Stripe (Dashboard → Developers → API keys) |
-| `STRIPE_WEBHOOK_SECRET` | Secret du webhook Stripe (`checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`) |
+| `STRIPE_WEBHOOK_SECRET` | Secret du webhook Stripe (`checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`) |
 | `STRIPE_PRICE_MONTHLY` | ID du prix Stripe mensuel (ex. `price_...`, 9,99 €/mois) |
 | `STRIPE_PRICE_YEARLY` | ID du prix Stripe annuel (ex. `price_...`, 59,99 €/an) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clé **service_role** Supabase (Settings → API) — active l'abonnement après paiement |
@@ -113,8 +113,10 @@ Sans Stripe configuré, le bouton **S'abonner** affiche une erreur — il n'est 
    - `checkout.session.completed`
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
+   - `invoice.payment_failed`
 3. Copie le **Signing secret** dans `STRIPE_WEBHOOK_SECRET`.
-4. Le flux : l'utilisateur clique **Débloquer mes résultats** → Stripe Checkout → retour sur `/onboarding/results` → vérification serveur → accès `/app`. Le webhook met à jour `subscription_active` dans les métadonnées Supabase.
+4. **Settings → Billing → Customer portal** : active le portail client (annulation, changement de carte, factures). Les utilisateurs y accèdent via **Gérer l'abonnement** dans `/app`.
+5. Le flux : l'utilisateur clique **Débloquer mes résultats** → Checkout Session Stripe (client réutilisé si déjà connu) → retour sur `/onboarding/results?session_id=...` → vérification serveur immédiate → accès `/app`. Le webhook et `GET /api/stripe?sync=1` servent de filet de sécurité.
 
 #### Analyse IA (Anthropic + fal.ai)
 

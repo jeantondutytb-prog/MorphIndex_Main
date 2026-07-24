@@ -144,6 +144,7 @@
         viewResults: "View my results",
         backHome: "Back to home",
         signOut: "Sign out",
+        manageBilling: "Manage billing",
         welcomeTour: {
           aria: "Welcome tour",
           skip: "Skip tour",
@@ -874,6 +875,7 @@
         viewResults: "Voir mes résultats",
         backHome: "Retour à l'accueil",
         signOut: "Se déconnecter",
+        manageBilling: "Gérer l'abonnement",
         welcomeTour: {
           aria: "Visite guidée",
           skip: "Passer la visite",
@@ -1604,6 +1606,7 @@
         viewResults: "Ver mis resultados",
         backHome: "Volver al inicio",
         signOut: "Cerrar sesión",
+        manageBilling: "Gestionar facturación",
         welcomeTour: {
           aria: "Tour de bienvenida",
           skip: "Saltar tour",

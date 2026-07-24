@@ -1,14 +1,9 @@
 (function () {
-  var PAYMENT_LINKS = {
-    monthly: "https://buy.stripe.com/00w8wOenI0D45v82pL6J201",
-    yearly: "https://buy.stripe.com/fZu5kCgvQadE7Dgd4p6J200"
-  };
-
   function getAccessToken(session) {
     return session && session.access_token ? session.access_token : "";
   }
 
-  function createCheckoutSession(session, plan) {
+  function postStripe(session, body) {
     var token = getAccessToken(session);
     if (!token) {
       return Promise.resolve({ ok: false, error: "Not authenticated" });
@@ -20,16 +15,35 @@
         "Content-Type": "application/json",
         Authorization: "Bearer " + token
       },
-      body: JSON.stringify({ plan: plan || "yearly" })
+      body: JSON.stringify(body || {})
     }).then(function (response) {
       return response.json().then(function (data) {
         return { ok: response.ok, status: response.status, data: data };
       });
-    }).then(function (result) {
+    });
+  }
+
+  function createCheckoutSession(session, plan) {
+    return postStripe(session, { plan: plan || "yearly" }).then(function (result) {
       if (!result.ok) {
         return {
           ok: false,
           error: (result.data && result.data.error) || "Checkout failed",
+          status: result.status
+        };
+      }
+      return { ok: true, url: result.data.url, sessionId: result.data.sessionId };
+    }).catch(function () {
+      return { ok: false, error: "Network error" };
+    });
+  }
+
+  function createPortalSession(session) {
+    return postStripe(session, { action: "portal" }).then(function (result) {
+      if (!result.ok) {
+        return {
+          ok: false,
+          error: (result.data && result.data.error) || "Portal failed",
           status: result.status
         };
       }
@@ -97,25 +111,8 @@
 
   window.BillingApi = {
     createCheckoutSession: createCheckoutSession,
+    createPortalSession: createPortalSession,
     verifyCheckout: verifyCheckout,
-    syncSubscription: syncSubscription,
-    getPaymentLink: function (plan, options) {
-      options = options || {};
-      var base = plan === "monthly" ? PAYMENT_LINKS.monthly : PAYMENT_LINKS.yearly;
-      try {
-        var url = new URL(base);
-        if (options.email) {
-          url.searchParams.set("prefilled_email", options.email);
-        }
-        if (options.userId) {
-          url.searchParams.set("client_reference_id", options.userId);
-        }
-        return url.toString();
-      } catch (e) {
-        return base;
-      }
-    },
-    PAYMENT_LINKS: PAYMENT_LINKS,
-    PAYMENT_SUCCESS_PATH: "/onboarding/results?checkout=success"
+    syncSubscription: syncSubscription
   };
 })();
