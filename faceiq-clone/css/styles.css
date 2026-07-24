@@ -2863,6 +2863,207 @@ body.onboarding-scan-active .onboarding__camera-guide {
   text-align: center;
 }
 
+.results-dashboard--compact {
+  padding: 0.75rem 0.875rem;
+  margin-bottom: 0;
+}
+
+.results-dashboard--compact .results-dashboard__overall {
+  margin-bottom: 0.625rem;
+}
+
+.results-dashboard--compact .results-dashboard__score {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.results-dashboard--compact .results-dashboard__score small {
+  font-size: 0.875rem;
+}
+
+.results-dashboard--compact .results-dashboard__pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 0.625rem;
+  margin-bottom: 0;
+}
+
+.results-dashboard--compact .results-dashboard__pillar {
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0.125rem 0.375rem;
+  font-size: 0.6875rem;
+}
+
+.results-dashboard--compact .results-dashboard__pillar-name {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.results-dashboard--compact .results-dashboard__pillar-score {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.6875rem;
+}
+
+.results-dashboard--compact .results-dashboard__pillar-bar {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  height: 4px;
+}
+
+.results-dashboard--compact .results-dashboard__locked-content {
+  filter: blur(5px);
+}
+
+.results-dashboard--compact .results-dashboard__lock {
+  gap: 0;
+  padding: 0.75rem;
+}
+
+.results-dashboard--compact .results-dashboard__lock-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Results page — fit selfie, preview & paywall without scroll */
+.results-page {
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+.results-page .auth-header {
+  flex-shrink: 0;
+  padding: 0.625rem 1rem;
+}
+
+.results-page .auth--results {
+  flex: 1;
+  min-height: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 1rem 0.75rem;
+  overflow: hidden;
+}
+
+.results-page .auth__card--results {
+  max-width: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.results-selfie-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.625rem;
+}
+
+.results-selfie-wrap[hidden] {
+  display: none;
+}
+
+.results-selfie {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.results-page .shell-progress--compact {
+  margin-bottom: 0.625rem;
+}
+
+.results-page .shell-progress--compact .shell-progress__label {
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
+}
+
+.results-page .auth__title--compact {
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.results-page .auth__subtitle--compact {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  margin-bottom: 0.625rem;
+}
+
+.results-page .paywall--inline.paywall--compact {
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.results-page .paywall--compact .paywall__panel--flat {
+  padding-top: 0.625rem;
+  border-top: 1px solid var(--border);
+}
+
+.results-page .paywall__compact-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.results-page .paywall__plans--compact {
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-page .paywall__plans--compact .paywall__plan {
+  padding: 0.5rem 0.625rem;
+}
+
+.results-page .paywall__plans--compact .paywall__plan-info strong {
+  font-size: 0.8125rem;
+}
+
+.results-page .paywall__plans--compact .paywall__plan-info span {
+  font-size: 0.75rem;
+}
+
+.results-page .paywall__plans--compact .paywall__plan-badge {
+  font-size: 0.625rem;
+  padding: 0.1875rem 0.375rem;
+}
+
+.results-page .paywall--compact .btn {
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+}
+
+.results-page .auth__legal--compact {
+  margin-top: 0.375rem;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+}
+
+@media (max-height: 700px) {
+  .results-selfie {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .results-page .auth__title--compact {
+    font-size: 1rem;
+  }
+
+  .results-page .auth__subtitle--compact {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .results-dashboard--compact .results-dashboard__score {
+    font-size: 1.75rem;
+  }
+}
+
 /* Paywall */
 .paywall {
   position: fixed;

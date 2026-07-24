@@ -1125,23 +1125,39 @@
     container.innerHTML = html;
   }
 
-  function renderResultsPreview(container, analysis, locked) {
+  function renderResultsPreview(container, analysis, locked, options) {
+    options = options || {};
+    var compact = !!options.compact;
     var scores = analysis.scores;
     var lockHtml = locked
-      ? '<div class="results-dashboard__lock" id="results-lock">' +
+      ? '<div class="results-dashboard__lock' + (compact ? " results-dashboard__lock--compact" : "") + '" id="results-lock">' +
           '<div class="results-dashboard__lock-icon" aria-hidden="true">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' +
           '</div>' +
-          '<p class="results-dashboard__lock-text" data-i18n="onboarding.results.lock">' + t("onboarding.results.lock") + '</p>' +
-        '</div>'
-      : '';
+          (compact
+            ? ""
+            : '<p class="results-dashboard__lock-text" data-i18n="onboarding.results.lock">' + t("onboarding.results.lock") + "</p>") +
+        "</div>"
+      : "";
 
-    container.className = "results-dashboard" + (locked ? "" : " is-unlocked");
+    var metricsHtml = compact
+      ? ""
+      : '<div class="results-dashboard__metrics">' +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + "</strong></div>" +
+          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + "</strong></div>" +
+        "</div>";
+
+    container.className =
+      "results-dashboard" +
+      (locked ? "" : " is-unlocked") +
+      (compact ? " results-dashboard--compact" : "");
     container.innerHTML =
       '<div class="results-dashboard__overall">' +
-        '<span class="results-dashboard__label" data-i18n="onboarding.results.overall">' + t("onboarding.results.overall") + '</span>' +
-        '<span class="results-dashboard__score">' + scores.overall + '<small>/10</small></span>' +
-        (locked
+        '<span class="results-dashboard__label" data-i18n="onboarding.results.overall">' + t("onboarding.results.overall") + "</span>" +
+        '<span class="results-dashboard__score">' + scores.overall + "<small>/10</small></span>" +
+        (locked && !compact
           ? '<p class="results-dashboard__teaser" data-i18n="onboarding.results.teaser">' + t("onboarding.results.teaser") + "</p>"
           : "") +
       "</div>" +
@@ -1151,18 +1167,13 @@
             var label = pillarLabel(pillar);
             var val = scores[pillar];
             return '<div class="results-dashboard__pillar">' +
-              '<span class="results-dashboard__pillar-name">' + label + '</span>' +
+              '<span class="results-dashboard__pillar-name">' + label + "</span>" +
               '<div class="results-dashboard__pillar-bar"><div class="results-dashboard__pillar-fill" style="width:' + (val / 10 * 100) + '%"></div></div>' +
               '<span class="results-dashboard__pillar-score">' + val + "</span>" +
             "</div>";
           }).join("") +
         "</div>" +
-        '<div class="results-dashboard__metrics">' +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric1">' + t("onboarding.results.metric1") + '</span><strong>' + analysis.summary.facialThirds + "</strong></div>" +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric2">' + t("onboarding.results.metric2") + '</span><strong>' + analysis.summary.jawAngle + "</strong></div>" +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric3">' + t("onboarding.results.metric3") + '</span><strong>' + analysis.summary.symmetryDeviation + "</strong></div>" +
-          '<div class="results-dashboard__metric"><span data-i18n="onboarding.results.metric4">' + t("onboarding.results.metric4") + '</span><strong>' + analysis.summary.ipdRatio + "</strong></div>" +
-        "</div>" +
+        metricsHtml +
         lockHtml +
       "</div>";
   }
