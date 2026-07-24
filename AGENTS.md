@@ -24,12 +24,19 @@ PORT=8080 ./serve.sh
 There is **no** lint, test, or build tooling in this repo (no `package.json`, no test runner, `vercel.json` sets `buildCommand: null`). Verification is manual: serve the site and load `index.html` / `register.html`.
 
 ### Deploying to production (Vercel) — standing instruction
-The owner wants every code change deployed to **Vercel production**. After pushing your branch, deploy the working tree straight to production (this does not merge any PR):
 
-```bash
-npx vercel deploy --prod --yes --token="$VERCEL_TOKEN"
-```
+Vercel deploys **Production automatically** when `main` is pushed. **Do not run extra deploy commands** — each action below consumes a deployment from the daily Hobby limit:
 
-- Requires a `VERCEL_TOKEN` secret in the environment. If it is missing, the deploy cannot run — surface this to the user instead of skipping the deploy.
-- The first deploy on a fresh VM links the project. To target the existing project non-interactively, either provide `VERCEL_ORG_ID` + `VERCEL_PROJECT_ID` secrets, or link once with `npx vercel link --yes --project <existing-project-name> --token="$VERCEL_TOKEN"` (find the name via `npx vercel projects ls --token="$VERCEL_TOKEN"`).
-- `vercel.json` at the repo root already sets `outputDirectory: faceiq-clone`, `buildCommand: null`, and `cleanUrls: true`, so no build config is needed — deploy from the repo root.
+| Action | Deployment triggered |
+|--------|----------------------|
+| `git push` on a `cursor/*` branch | Preview (avoid) |
+| `git push origin main` | Production |
+| `npx vercel deploy --prod` | Production (duplicate — **never** after a `main` push) |
+
+**Required workflow (one deployment per change):**
+
+1. Work and commit on `main` locally (or merge a local `cursor/*` branch into `main` **without** pushing the feature branch).
+2. Run a single `git push origin main` at the end.
+3. **Do not** run `npx vercel deploy --prod` — the git push already deploys production.
+
+Only use `npx vercel deploy --prod --yes --token="$VERCEL_TOKEN"` if you cannot push to `main` at all (rare). If `VERCEL_TOKEN` is missing in that edge case, tell the user instead of skipping.

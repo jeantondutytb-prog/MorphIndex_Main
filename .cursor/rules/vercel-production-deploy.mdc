@@ -3,29 +3,36 @@ description: Deploy every push to Vercel Production (not Preview)
 alwaysApply: true
 ---
 
-# Vercel — toujours déployer en Production
+# Vercel — un seul déploiement par changement
 
 Ce projet est connecté à Vercel. **Seuls les pushes sur `main` déclenchent un déploiement Production.**
 
-Les branches `cursor/*` ou toute autre branche créent un déploiement **Preview** — ce n'est pas le comportement souhaité.
+Chaque push ou commande CLI consomme un slot du quota journalier Hobby. **Ne jamais enchaîner 3 actions pour un seul changement.**
+
+| Action | Déploiement |
+|--------|-------------|
+| `git push` sur `cursor/*` | Preview (à éviter) |
+| `git push origin main` | Production |
+| `npx vercel deploy --prod` | Production en double — **interdit** après un push `main` |
 
 ## Règle obligatoire pour tous les agents
 
-1. **Travaille sur `main`** (ou merge vers `main` avant de terminer).
-2. **Push toujours sur `main`** à la fin de chaque itération :
+1. **Travaille directement sur `main`** (checkout `main`, commit, un seul push à la fin).
+2. Si tu utilises une branche `cursor/*` en local, **merge-la dans `main` sans pousser la branche** sur `origin` :
    ```bash
    git checkout main
    git pull origin main
-   # ... commits ...
-   git push -u origin main
+   # ... commits sur main, ou merge local ...
+   git push origin main   # ← seul push autorisé
    ```
-3. Si tu as créé une branche `cursor/*` pour le travail, **merge-la dans `main` puis push `main`** avant de conclure.
+3. **Ne jamais** exécuter `npx vercel deploy --prod` après un push sur `main` — Vercel déploie déjà automatiquement.
 4. Ne considère pas le travail terminé tant que `main` n'a pas été poussé sur `origin`.
 
 ## Pourquoi
 
-- Branche `main` → Vercel **Production** (site live)
-- Autre branche → Vercel **Preview** (URL temporaire, pas le site public)
+- Branche `main` → Vercel **Production** (site live sur morphindex.com)
+- Branche `cursor/*` poussée → **Preview** inutile qui gaspille le quota
+- `vercel deploy --prod` après push `main` → **2× Production** pour le même commit
 
 ## UI / UX — shell auth (style Patreon)
 
